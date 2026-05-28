@@ -35,7 +35,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          VITE_BASE_PATH: /xensible/
+          VITE_BASE_PATH: /
 
       - name: Publish built site
         env:
