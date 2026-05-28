@@ -25,6 +25,37 @@ MIST = colors.HexColor("#eaf2ee")
 SURFACE = colors.HexColor("#f7f9f6")
 
 
+FREE_CURRICULUM = {
+    "slug": "free-ai-fluency-starter",
+    "title": "Free AI Fluency Starter",
+    "tier_label": "free curriculum companion",
+    "summary": "A public starter path for people who want a clear, non-intimidating first step into LLMs, prompting, safe practice, and practical review habits.",
+    "format": "Self-guided webpage and downloadable PDF companion, designed as a gentle entry point before a team briefing or coached workshop.",
+    "audience": "Individuals, leaders, and teams who are curious about AI but want plain-language basics before committing to training.",
+    "outcomes": [
+        "Understand what LLMs do, why they can be useful, and why their answers still need human review.",
+        "Use a simple prompt structure for common tasks such as drafting, summarizing, planning, and asking better questions.",
+        "Practice with non-sensitive examples while keeping patient, customer, employee, legal, financial, and proprietary data out of public AI tools.",
+    ],
+    "modules": [
+        ("LLMs in plain language", "A beginner-friendly explanation of how large language models respond to prompts, what they are useful for, and where they become unreliable."),
+        ("The first prompting loop", "A reusable pattern for giving context, asking for a draft, checking the result, and requesting a revision without overtrusting the output."),
+        ("Safe public-tool practice", "A practical boundary-setting module that keeps sensitive or proprietary details out of public tools while still making room to learn."),
+        ("Review before use", "A lightweight review habit for checking accuracy, tone, assumptions, missing context, and decisions that need a human owner."),
+    ],
+    "materials": [
+        "Free AI fluency starter guide",
+        "Basic prompting loop worksheet",
+        "Public-tool safety checklist",
+        "Output review checklist",
+    ],
+    "diagram_slots": [
+        "Beginner LLM session loop: ask, inspect, revise, verify",
+        "Safe practice boundary map for public AI tools",
+    ],
+}
+
+
 CURRICULA = [
     {
         "slug": "ai-fluency-essentials",
@@ -299,7 +330,7 @@ def build_pdf(curriculum, out_dir):
     )
     style = styles()
     story = [
-        Paragraph("Xensible curriculum companion", style["Kicker"]),
+        Paragraph(f"Xensible {curriculum.get('tier_label', 'expert curriculum companion')}", style["Kicker"]),
         Paragraph(curriculum["title"], style["CoverTitle"]),
         Paragraph(curriculum["summary"], style["BodyTextX"]),
         Spacer(1, 0.12 * inch),
@@ -370,7 +401,7 @@ def main():
     public_dir.mkdir(parents=True, exist_ok=True)
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    for curriculum in CURRICULA:
+    for curriculum in [FREE_CURRICULUM, *CURRICULA]:
         public_pdf = build_pdf(curriculum, public_dir)
         output_pdf = output_dir / public_pdf.name
         output_pdf.write_bytes(public_pdf.read_bytes())

@@ -28,6 +28,23 @@ import './App.css'
 
 type IconType = ComponentType<LucideProps>
 
+type CurriculumContent = {
+  slug: string
+  title: string
+  eyebrow: string
+  summary: string
+  format: string
+  audience: string
+  icon: IconType
+  outcomes: string[]
+  modules: Array<{ title: string; body: string }>
+  materials: string[]
+  diagramSlots: string[]
+  pdfHref: string
+}
+
+const expertPassword = 'xpert'
+
 const audience = [
   'Small and midsize companies that want clear AI literacy before buying tools',
   'Health care, nonprofit, and institutional teams that need a careful learning environment',
@@ -211,20 +228,79 @@ const offerFormats: Array<{
   },
 ]
 
-const curriculumPackages: Array<{
-  slug: string
-  title: string
-  eyebrow: string
-  summary: string
-  format: string
-  audience: string
-  icon: IconType
-  outcomes: string[]
-  modules: Array<{ title: string; body: string }>
-  materials: string[]
-  diagramSlots: string[]
-  pdfHref: string
-}> = [
+const freeCurriculum: CurriculumContent = {
+  slug: 'free-ai-fluency-starter',
+  title: 'Free AI Fluency Starter',
+  eyebrow: 'Free public tier',
+  summary:
+    'A public starter path for people who want a clear, non-intimidating first step into LLMs, prompting, safe practice, and practical review habits.',
+  format:
+    'Self-guided webpage and downloadable PDF companion, designed as a gentle entry point before a team briefing or coached workshop.',
+  audience:
+    'Individuals, leaders, and teams who are curious about AI but want plain-language basics before committing to training.',
+  icon: BookOpenCheck,
+  outcomes: [
+    'Understand what LLMs do, why they can be useful, and why their answers still need human review.',
+    'Use a simple prompt structure for common tasks such as drafting, summarizing, planning, and asking better questions.',
+    'Practice with non-sensitive examples while keeping patient, customer, employee, legal, financial, and proprietary data out of public AI tools.',
+  ],
+  modules: [
+    {
+      title: 'LLMs in plain language',
+      body: 'A beginner-friendly explanation of how large language models respond to prompts, what they are useful for, and where they become unreliable.',
+    },
+    {
+      title: 'The first prompting loop',
+      body: 'A reusable pattern for giving context, asking for a draft, checking the result, and requesting a revision without overtrusting the output.',
+    },
+    {
+      title: 'Safe public-tool practice',
+      body: 'A practical boundary-setting module that keeps sensitive or proprietary details out of public tools while still making room to learn.',
+    },
+    {
+      title: 'Review before use',
+      body: 'A lightweight review habit for checking accuracy, tone, assumptions, missing context, and decisions that need a human owner.',
+    },
+  ],
+  materials: [
+    'Free AI fluency starter guide',
+    'Basic prompting loop worksheet',
+    'Public-tool safety checklist',
+    'Output review checklist',
+  ],
+  diagramSlots: [
+    'Beginner LLM session loop: ask, inspect, revise, verify',
+    'Safe practice boundary map for public AI tools',
+  ],
+  pdfHref: '/curriculum-pdfs/free-ai-fluency-starter.pdf',
+}
+
+const curriculumTiers = [
+  {
+    slug: 'free',
+    title: 'Free Tier',
+    eyebrow: 'Open starter path',
+    summary:
+      'A public AI fluency primer with basic LLM concepts, prompting habits, safe-practice boundaries, and a downloadable starter PDF.',
+    href: '/curricula/free',
+    cta: 'View Free Tier',
+    icon: BookOpenCheck,
+    access: 'Open access',
+  },
+  {
+    slug: 'expert',
+    title: 'Expert Tier',
+    eyebrow: 'Password protected',
+    summary:
+      'The full Xensible curriculum library with six package paths, session modules, client-ready materials, PDF companions, and advanced Codex training.',
+    href: '/curricula/expert',
+    cta: 'Unlock Expert Tier',
+    icon: ShieldCheck,
+    access: 'Password: xpert',
+  },
+]
+
+const curriculumPackages: CurriculumContent[] = [
   {
     slug: 'ai-fluency-essentials',
     title: 'AI Fluency Essentials',
@@ -595,7 +671,7 @@ const faqs = [
 ]
 
 const contactHref =
-  'mailto:hello@xensible.com?subject=AI%20Fluency%20Call%20for%20Xensible'
+  'mailto:contact@xensible.com?subject=AI%20Fluency%20Call%20for%20Xensible'
 
 const basePath = import.meta.env.BASE_URL
 const basePathWithoutSlash =
@@ -645,15 +721,41 @@ const getInitialPath = () => {
   return stripBasePath(window.location.pathname)
 }
 
+const scrollToCurrentHash = () => {
+  const hashId = window.location.hash.slice(1)
+
+  if (!hashId) {
+    return
+  }
+
+  const target = document.getElementById(decodeURIComponent(hashId))
+  target?.scrollIntoView({ block: 'start' })
+}
+
 function App() {
   const [currentPath, setCurrentPath] = useState(getInitialPath)
   const activeOffer = offerFormats.find(
     (offer) => currentPath === `/offers/${offer.slug}`,
   )
   const activeCurriculum = curriculumPackages.find(
-    (curriculum) => currentPath === `/curricula/${curriculum.slug}`,
+    (curriculum) =>
+      currentPath === `/curricula/expert/${curriculum.slug}` ||
+      currentPath === `/curricula/${curriculum.slug}`,
   )
-  const isCurriculumLibrary = currentPath === '/curricula'
+  const isCurriculumHub = currentPath === '/curricula'
+  const isFreeCurriculum = currentPath === '/curricula/free'
+  const isExpertCurriculumLibrary = currentPath === '/curricula/expert'
+  const pageTitle = activeOffer
+    ? `${activeOffer.title} | Xensible`
+    : activeCurriculum
+      ? `${activeCurriculum.title} | Xensible Expert Curriculum`
+      : isFreeCurriculum
+        ? 'Free AI Fluency Starter | Xensible'
+        : isExpertCurriculumLibrary
+          ? 'Expert Curriculum Library | Xensible'
+          : isCurriculumHub
+            ? 'Curriculum Tiers | Xensible'
+            : 'Xensible | AI Fluency Training'
 
   useEffect(() => {
     const handlePopState = () => setCurrentPath(stripBasePath(window.location.pathname))
@@ -663,10 +765,23 @@ function App() {
   }, [])
 
   useEffect(() => {
-    document.title = activeOffer
-      ? `${activeOffer.title} | Xensible`
-      : 'Xensible | AI Fluency Training'
-  }, [activeOffer])
+    document.title = pageTitle
+  }, [pageTitle])
+
+  useEffect(() => {
+    if (currentPath === '/') {
+      window.requestAnimationFrame(scrollToCurrentHash)
+    }
+
+    const handleHashChange = () => {
+      if (stripBasePath(window.location.pathname) === '/') {
+        window.requestAnimationFrame(scrollToCurrentHash)
+      }
+    }
+
+    window.addEventListener('hashchange', handleHashChange)
+    return () => window.removeEventListener('hashchange', handleHashChange)
+  }, [currentPath])
 
   const navigateToRoute = (
     event: MouseEvent<HTMLAnchorElement>,
@@ -702,8 +817,13 @@ function App() {
 
       {activeOffer ? (
         <OfferPage offer={activeOffer} />
-      ) : activeCurriculum || isCurriculumLibrary ? (
-        <CurriculumPage curriculum={activeCurriculum} navigateToRoute={navigateToRoute} />
+      ) : activeCurriculum || isCurriculumHub || isFreeCurriculum || isExpertCurriculumLibrary ? (
+        <CurriculumPage
+          curriculum={activeCurriculum}
+          isFreeCurriculum={isFreeCurriculum}
+          isHub={isCurriculumHub}
+          navigateToRoute={navigateToRoute}
+        />
       ) : (
         <HomePage navigateToRoute={navigateToRoute} />
       )}
@@ -872,22 +992,22 @@ function HomePage({
           <div className="section-heading">
             <p className="eyebrow">Curriculum packages</p>
             <h2 id="curriculum-packages-title">
-              A practical learning ladder from basic AI fluency to advanced
-              local AI systems.
+              Two curriculum tiers: an open starter path and a protected
+              expert library.
             </h2>
             <p>
-              Each package can stand alone or connect into a longer development
-              path. Full curriculum notes and PDF companions are available in
-              the protected curriculum library.
+              Start with the free AI fluency primer, then unlock the expert
+              tier when you want the full six-package curriculum, advanced
+              operator training, and PDF companions.
             </p>
           </div>
-          <div className="curriculum-card-grid">
-            {curriculumPackages.map(({ slug, title, eyebrow, summary, icon: Icon }) => (
+          <div className="tier-grid">
+            {curriculumTiers.map(({ slug, title, eyebrow, summary, href, cta, access, icon: Icon }) => (
               <a
-                className="curriculum-card"
-                href={siteHref(`/curricula/${slug}`)}
+                className={`tier-card tier-card-${slug}`}
+                href={siteHref(href)}
                 key={slug}
-                onClick={(event) => navigateToRoute(event, `/curricula/${slug}`)}
+                onClick={(event) => navigateToRoute(event, href)}
               >
                 <span className="service-icon">
                   <Icon aria-hidden="true" />
@@ -895,8 +1015,35 @@ function HomePage({
                 <span className="curriculum-kicker">{eyebrow}</span>
                 <h3>{title}</h3>
                 <p>{summary}</p>
+                <span className="tier-access">{access}</span>
                 <span className="text-link">
-                  Unlock curriculum
+                  {cta}
+                  <ArrowRight aria-hidden="true" />
+                </span>
+              </a>
+            ))}
+          </div>
+          <div className="section-heading compact-heading">
+            <p className="eyebrow">Expert package ladder</p>
+            <h3>Six deeper paths available after unlocking the expert tier.</h3>
+          </div>
+          <div className="curriculum-card-grid">
+            {curriculumPackages.map(({ slug, title, eyebrow, summary, icon: Icon }) => (
+              <a
+                className="curriculum-card"
+                href={siteHref(`/curricula/expert/${slug}`)}
+                key={slug}
+                onClick={(event) => navigateToRoute(event, `/curricula/expert/${slug}`)}
+              >
+                <span className="service-icon">
+                  <Icon aria-hidden="true" />
+                </span>
+                <span className="curriculum-kicker">{eyebrow}</span>
+                <h3>{title}</h3>
+                <p>{summary}</p>
+                <span className="tier-access">Expert tier</span>
+                <span className="text-link">
+                  Unlock full content
                   <ArrowRight aria-hidden="true" />
                 </span>
               </a>
@@ -1076,7 +1223,7 @@ function CurriculumGate({ children }: { children: ReactNode }) {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
-    if (password.trim() === 'xpert') {
+    if (password.trim() === expertPassword) {
       window.sessionStorage.setItem('xensible-curriculum-access', 'true')
       setIsUnlocked(true)
       setError('')
@@ -1094,11 +1241,11 @@ function CurriculumGate({ children }: { children: ReactNode }) {
     <main className="protected-page">
       <section className="protected-gate" aria-labelledby="protected-title">
         <div>
-          <p className="eyebrow">Protected curriculum library</p>
-          <h1 id="protected-title">Enter the curriculum access password.</h1>
+          <p className="eyebrow">Expert curriculum tier</p>
+          <h1 id="protected-title">Enter the expert access password.</h1>
           <p className="hero-copy">
-            The full curriculum pages and PDF companions are reserved for
-            Xensible planning and client-ready materials.
+            The expert tier contains the full curriculum pages, advanced
+            package paths, planning notes, and PDF companions.
           </p>
         </div>
         <form className="password-panel" onSubmit={handleSubmit}>
@@ -1112,7 +1259,7 @@ function CurriculumGate({ children }: { children: ReactNode }) {
           {error && <p className="form-error">{error}</p>}
           <button className="button button-primary" type="submit">
             <ShieldCheck aria-hidden="true" />
-            Unlock Curricula
+            Unlock Expert Tier
           </button>
         </form>
       </section>
@@ -1122,26 +1269,101 @@ function CurriculumGate({ children }: { children: ReactNode }) {
 
 function CurriculumPage({
   curriculum,
+  isFreeCurriculum,
+  isHub,
   navigateToRoute,
 }: {
-  curriculum?: (typeof curriculumPackages)[number]
+  curriculum?: CurriculumContent
+  isFreeCurriculum: boolean
+  isHub: boolean
+  navigateToRoute: (
+    event: MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => void
+}) {
+  if (isHub) {
+    return <CurriculumTierHub navigateToRoute={navigateToRoute} />
+  }
+
+  if (isFreeCurriculum) {
+    return (
+      <CurriculumDetail
+        backHref="/curricula"
+        backLabel="Back to curriculum tiers"
+        curriculum={freeCurriculum}
+        tierLabel="Free tier"
+        navigateToRoute={navigateToRoute}
+      />
+    )
+  }
+
+  return (
+    <CurriculumGate>
+      {curriculum ? (
+        <CurriculumDetail
+          backHref="/curricula/expert"
+          backLabel="Back to expert library"
+          curriculum={curriculum}
+          tierLabel="Expert tier"
+          navigateToRoute={navigateToRoute}
+        />
+      ) : (
+        <ExpertCurriculumLibrary navigateToRoute={navigateToRoute} />
+      )}
+    </CurriculumGate>
+  )
+}
+
+function CurriculumTierHub({
+  navigateToRoute,
+}: {
   navigateToRoute: (
     event: MouseEvent<HTMLAnchorElement>,
     href: string,
   ) => void
 }) {
   return (
-    <CurriculumGate>
-      {curriculum ? (
-        <CurriculumDetail curriculum={curriculum} navigateToRoute={navigateToRoute} />
-      ) : (
-        <CurriculumLibrary navigateToRoute={navigateToRoute} />
-      )}
-    </CurriculumGate>
+    <main className="curriculum-page">
+      <section className="curriculum-hero curriculum-tier-hero">
+        <div>
+          <p className="eyebrow">Curriculum tiers</p>
+          <h1>Choose the right level of AI fluency support.</h1>
+          <p className="hero-copy">
+            The free tier gives learners a clear public starting point. The
+            expert tier contains the deeper Xensible curriculum library for
+            workshops, coaching, PDF companions, and advanced operator training.
+          </p>
+        </div>
+      </section>
+      <section className="section">
+        <div className="tier-grid">
+          {curriculumTiers.map(({ slug, title, eyebrow, summary, href, cta, access, icon: Icon }) => (
+            <a
+              className={`tier-card tier-card-${slug}`}
+              href={siteHref(href)}
+              key={slug}
+              onClick={(event) => navigateToRoute(event, href)}
+            >
+              <span className="service-icon">
+                <Icon aria-hidden="true" />
+              </span>
+              <span className="curriculum-kicker">{eyebrow}</span>
+              <h2>{title}</h2>
+              <p>{summary}</p>
+              <span className="tier-access">{access}</span>
+              <span className="text-link">
+                {cta}
+                <ArrowRight aria-hidden="true" />
+              </span>
+            </a>
+          ))}
+        </div>
+      </section>
+    </main>
   )
 }
 
-function CurriculumLibrary({
+function ExpertCurriculumLibrary({
   navigateToRoute,
 }: {
   navigateToRoute: (
@@ -1153,11 +1375,20 @@ function CurriculumLibrary({
     <main className="curriculum-page">
       <section className="curriculum-hero">
         <div>
-          <p className="eyebrow">Curriculum library</p>
-          <h1>Six practical paths for AI fluency training.</h1>
+          <a
+            className="back-link"
+            href={siteHref('/curricula')}
+            onClick={(event) => navigateToRoute(event, '/curricula')}
+          >
+            <ArrowLeft aria-hidden="true" />
+            Back to curriculum tiers
+          </a>
+          <p className="eyebrow">Expert curriculum library</p>
+          <h1>Six deeper paths for AI fluency training.</h1>
           <p className="hero-copy">
-            These protected outlines are the working curriculum base for
-            Xensible web pages, Zoom sessions, worksheets, and PDF companions.
+            These expert outlines are the working curriculum base for
+            Xensible web pages, Zoom sessions, worksheets, advanced coaching,
+            and PDF companions.
           </p>
         </div>
       </section>
@@ -1174,8 +1405,8 @@ function CurriculumLibrary({
               <div className="curriculum-actions">
                 <a
                   className="button button-primary"
-                  href={siteHref(`/curricula/${slug}`)}
-                  onClick={(event) => navigateToRoute(event, `/curricula/${slug}`)}
+                  href={siteHref(`/curricula/expert/${slug}`)}
+                  onClick={(event) => navigateToRoute(event, `/curricula/expert/${slug}`)}
                 >
                   View Webpage
                 </a>
@@ -1192,10 +1423,16 @@ function CurriculumLibrary({
 }
 
 function CurriculumDetail({
+  backHref,
+  backLabel,
   curriculum,
+  tierLabel,
   navigateToRoute,
 }: {
-  curriculum: (typeof curriculumPackages)[number]
+  backHref: string
+  backLabel: string
+  curriculum: CurriculumContent
+  tierLabel: string
   navigateToRoute: (
     event: MouseEvent<HTMLAnchorElement>,
     href: string,
@@ -1209,13 +1446,13 @@ function CurriculumDetail({
         <div>
           <a
             className="back-link"
-            href={siteHref('/curricula')}
-            onClick={(event) => navigateToRoute(event, '/curricula')}
+            href={siteHref(backHref)}
+            onClick={(event) => navigateToRoute(event, backHref)}
           >
             <ArrowLeft aria-hidden="true" />
-            Back to curriculum library
+            {backLabel}
           </a>
-          <p className="eyebrow">{curriculum.eyebrow}</p>
+          <p className="eyebrow">{tierLabel} / {curriculum.eyebrow}</p>
           <h1>{curriculum.title}</h1>
           <p className="hero-copy">{curriculum.summary}</p>
           <div className="hero-actions">
