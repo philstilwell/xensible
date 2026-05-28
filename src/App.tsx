@@ -9,7 +9,6 @@ import {
   CalendarDays,
   CheckCircle2,
   ClipboardCheck,
-  Compass,
   ExternalLink,
   GraduationCap,
   Handshake,
@@ -24,6 +23,7 @@ import {
   Video,
 } from 'lucide-react'
 import heroImage from './assets/xensible-hero.webp'
+import founderImage from './assets/phil-stilwell-bio.webp'
 import './App.css'
 
 type IconType = ComponentType<LucideProps>
@@ -572,10 +572,10 @@ function HomePage({
         </section>
 
         <section className="section founder-section" id="guide" aria-labelledby="guide-title">
-          <div className="founder-visual" aria-hidden="true">
-            <div className="guide-compass">
-              <Compass />
-            </div>
+          <div className="founder-visual">
+            <figure className="founder-photo-card">
+              <img src={founderImage} alt="Phil Stilwell, founder of Xensible" />
+            </figure>
             <div className="guide-lines">
               <span>3 years teaching AI over Zoom</span>
               <span>25+ years in education</span>
