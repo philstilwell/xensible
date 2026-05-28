@@ -580,7 +580,7 @@ function HomePage({
               <span>3 years teaching AI over Zoom</span>
               <span>25+ years in education</span>
               <span>100+ corporate training clients</span>
-              <span>critical thinking and writing coach</span>
+              <span>1 year of hands-on coding</span>
             </div>
           </div>
           <div className="founder-copy">
@@ -593,7 +593,9 @@ function HomePage({
               Phil Stilwell is an early AI adopter, educator, and AI fluency
               coach. For the past three years, he has been teaching AI skills
               over Zoom, helping people move from curiosity to practical
-              confidence.
+              confidence. He has also spent a year coding and has long been an
+              early adopter of demonstrably useful technology, which helps him
+              translate emerging tools into everyday work without the hype.
             </p>
             <p>
               His background includes more than 25 years in education,
@@ -612,8 +614,8 @@ function HomePage({
                 <p>Courses and coaching for universities, government, and professionals.</p>
               </div>
               <div>
-                <span>Coaching style</span>
-                <p>Clear, structured, non-intimidating guidance for complex ideas.</p>
+                <span>Practical technology judgment</span>
+                <p>Early adoption, hands-on coding, and careful attention to what actually helps.</p>
               </div>
             </div>
           </div>
