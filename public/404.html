@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Xensible</title>
+  </head>
+  <body>
+    <script>
+      const segments = location.pathname.split('/').filter(Boolean)
+      const basePath = segments[0] === 'xensible' ? '/xensible/' : '/'
+
+      sessionStorage.setItem(
+        'xensible-redirect',
+        location.pathname + location.search + location.hash,
+      )
+      location.replace(basePath)
+    </script>
+  </body>
+</html>
