@@ -1,4 +1,4 @@
-import type { ComponentType, MouseEvent } from 'react'
+import type { ComponentType, FormEvent, MouseEvent, ReactNode } from 'react'
 import { useEffect, useState } from 'react'
 import type { LucideProps } from 'lucide-react'
 import {
@@ -211,6 +211,292 @@ const offerFormats: Array<{
   },
 ]
 
+const curriculumPackages: Array<{
+  slug: string
+  title: string
+  eyebrow: string
+  summary: string
+  format: string
+  audience: string
+  icon: IconType
+  outcomes: string[]
+  modules: Array<{ title: string; body: string }>
+  materials: string[]
+  diagramSlots: string[]
+  pdfHref: string
+}> = [
+  {
+    slug: 'ai-fluency-essentials',
+    title: 'AI Fluency Essentials',
+    eyebrow: '90-minute Zoom intro',
+    summary:
+      'A calm, practical introduction for people who want to understand LLMs, use them safely, and build confidence with ordinary work tasks.',
+    format: 'One 90-minute Zoom session with guided practice and a follow-up handout.',
+    audience:
+      'Curious professionals, mixed-comfort teams, and organizations that need a shared starting point before deeper tool decisions.',
+    icon: GraduationCap,
+    outcomes: [
+      'Explain what LLMs are good at, where they fail, and why human review matters.',
+      'Use a basic prompting loop for drafting, summarizing, planning, and asking better questions.',
+      'Recognize sensitive-data boundaries and safer ways to practice with non-sensitive examples.',
+    ],
+    modules: [
+      {
+        title: 'The practical mental model',
+        body: 'Participants learn how prompts, context, instructions, examples, and review shape an AI session without needing technical background.',
+      },
+      {
+        title: 'Prompting as conversation design',
+        body: 'We practice turning vague requests into useful context, constraints, examples, and review questions.',
+      },
+      {
+        title: 'Safe experimentation',
+        body: 'The session establishes clear boundaries around patient, customer, employee, legal, financial, and proprietary information.',
+      },
+      {
+        title: 'Confidence routines',
+        body: 'Participants leave with small repeatable habits: draft, critique, revise, verify, and decide what still needs human judgment.',
+      },
+    ],
+    materials: [
+      'AI fluency starter guide',
+      'Prompt pattern quick sheet',
+      'Sensitive-data boundary checklist',
+      'Output review checklist',
+    ],
+    diagramSlots: [
+      'LLM session loop: prompt, context, output, review, revision',
+      'Safe-data boundary map for public AI tools',
+    ],
+    pdfHref: '/curriculum-pdfs/ai-fluency-essentials.pdf',
+  },
+  {
+    slug: 'practical-ai-workflows',
+    title: 'Practical AI Workflows',
+    eyebrow: 'Half-day or two-session workshop',
+    summary:
+      'Hands-on workflow training for writing, planning, research support, meeting preparation, and everyday knowledge work.',
+    format: 'Two 90-minute Zoom sessions or one half-day remote workshop.',
+    audience:
+      'Teams and professionals who already understand the basics and want practical routines they can reuse.',
+    icon: BookOpenCheck,
+    outcomes: [
+      'Build repeatable workflows for common work without copying sensitive data into public tools.',
+      'Use AI to generate first drafts, alternatives, summaries, meeting artifacts, and decision support.',
+      'Develop review habits that keep the human responsible for quality, context, and final judgment.',
+    ],
+    modules: [
+      {
+        title: 'Workflow anatomy',
+        body: 'We break a task into input, constraints, AI assist, review, revision, and final human decision.',
+      },
+      {
+        title: 'Writing and rewriting',
+        body: 'Participants practice using AI for tone, structure, audience adaptation, and first-pass drafting.',
+      },
+      {
+        title: 'Research support without overtrust',
+        body: 'We separate brainstorming, query planning, summarization, source checking, and final verification.',
+      },
+      {
+        title: 'Meetings and decisions',
+        body: 'Participants create safe workflows for agendas, prep notes, follow-up drafts, and option comparison.',
+      },
+    ],
+    materials: [
+      'Workflow recipe cards',
+      'Meeting preparation worksheet',
+      'Research triage checklist',
+      'Before-and-after prompt examples',
+    ],
+    diagramSlots: [
+      'Human-in-the-loop workflow map',
+      'Meeting-to-action pipeline',
+    ],
+    pdfHref: '/curriculum-pdfs/practical-ai-workflows.pdf',
+  },
+  {
+    slug: 'team-ai-readiness-sprint',
+    title: 'Team AI Readiness Sprint',
+    eyebrow: '2-3 session discovery sprint',
+    summary:
+      'A structured readiness process for teams that want to identify useful AI opportunities before buying tools or launching policies.',
+    format: 'Two or three Zoom sessions with discovery worksheets and a readiness summary.',
+    audience:
+      'Small and midsize companies, nonprofits, health care teams, and institutions that need cautious, practical alignment.',
+    icon: UsersRound,
+    outcomes: [
+      'Map current work patterns, friction points, comfort levels, and risk concerns.',
+      'Rank possible AI use cases by value, risk, readiness, and training needs.',
+      'Clarify what to train, what to pilot, what to postpone, and what not to do.',
+    ],
+    modules: [
+      {
+        title: 'Team context scan',
+        body: 'We identify where AI curiosity already exists, where anxiety is highest, and where work is repetitive or overloaded.',
+      },
+      {
+        title: 'Use-case discovery',
+        body: 'Participants collect possible use cases and sort them by task type, data sensitivity, and expected value.',
+      },
+      {
+        title: 'Risk and readiness scoring',
+        body: 'We use a simple matrix to distinguish low-risk practice from decisions that need stronger review or policy.',
+      },
+      {
+        title: 'Training path recommendation',
+        body: 'The sprint ends with a practical next-step map for briefings, workshops, office hours, or a limited pilot.',
+      },
+    ],
+    materials: [
+      'Team readiness worksheet',
+      'Use-case scoring rubric',
+      'AI norms discussion guide',
+      'Recommended next-step summary template',
+    ],
+    diagramSlots: [
+      'Use-case value/risk grid',
+      'Team adoption pathway from discovery to practice',
+    ],
+    pdfHref: '/curriculum-pdfs/team-ai-readiness-sprint.pdf',
+  },
+  {
+    slug: 'executive-ai-briefing',
+    title: 'Executive AI Briefing',
+    eyebrow: '60-90 minute leadership session',
+    summary:
+      'Plain-spoken AI orientation for leaders who need clarity before making budget, policy, vendor, or training decisions.',
+    format: 'One focused Zoom briefing, optionally followed by a Q&A or planning session.',
+    audience:
+      'Executives, founders, board-adjacent leaders, and department heads who need a useful map rather than hype.',
+    icon: BriefcaseBusiness,
+    outcomes: [
+      'Separate AI training needs from software purchasing needs.',
+      'Ask better questions about vendors, data, policy, implementation, and organizational readiness.',
+      'Identify decisions that need more learning before investment.',
+    ],
+    modules: [
+      {
+        title: 'What leaders need to know now',
+        body: 'A clear map of current AI capabilities, limitations, tool categories, and common misconceptions.',
+      },
+      {
+        title: 'Clarity before complexity',
+        body: 'We distinguish fluency, workflow practice, policy, vendor evaluation, and implementation work.',
+      },
+      {
+        title: 'Responsible decision questions',
+        body: 'Leaders practice asking about data exposure, review requirements, accountability, and expected business value.',
+      },
+      {
+        title: 'Next-step decision paths',
+        body: 'The briefing ends with a recommendation for training, discovery, a small pilot, or a deliberate wait.',
+      },
+    ],
+    materials: [
+      'Executive briefing deck outline',
+      'Vendor question guide',
+      'AI investment readiness checklist',
+      'Train, pilot, buy, or wait worksheet',
+    ],
+    diagramSlots: [
+      'Decision gates for AI investment',
+      'Build, buy, train, or wait decision tree',
+    ],
+    pdfHref: '/curriculum-pdfs/executive-ai-briefing.pdf',
+  },
+  {
+    slug: 'monthly-ai-office-hours',
+    title: 'Monthly AI Office Hours',
+    eyebrow: 'Ongoing Zoom support',
+    summary:
+      'A recurring learning forum for questions, tool changes, workflow practice, and steady coaching as AI habits mature.',
+    format: 'Monthly 60-minute Zoom sessions with question collection and lightweight follow-up notes.',
+    audience:
+      'Teams that have completed an initial training and want continuity without turning AI into a separate project.',
+    icon: Video,
+    outcomes: [
+      'Create a reliable place for practical questions and safe experiments.',
+      'Reinforce good review habits as tools, interfaces, and model capabilities change.',
+      'Turn scattered individual experiments into shared team learning.',
+    ],
+    modules: [
+      {
+        title: 'Question intake',
+        body: 'Each session starts with real questions, confusing moments, and examples from the previous month.',
+      },
+      {
+        title: 'Tool-change translation',
+        body: 'New AI features are explained in plain language, with emphasis on what is actually useful for the group.',
+      },
+      {
+        title: 'Live workflow coaching',
+        body: 'Participants work through non-sensitive scenarios and see how a workflow can be improved step by step.',
+      },
+      {
+        title: 'Habit reinforcement',
+        body: 'Each month ends with one or two practical habits the team can try before the next session.',
+      },
+    ],
+    materials: [
+      'Monthly question intake form',
+      'Office-hours recap template',
+      'Tool-change digest format',
+      'Team practice log',
+    ],
+    diagramSlots: [
+      'Monthly learning loop',
+      'Question-to-practice coaching flow',
+    ],
+    pdfHref: '/curriculum-pdfs/monthly-ai-office-hours.pdf',
+  },
+  {
+    slug: 'advanced-operator-codex-track',
+    title: 'Advanced Operator / Codex Track',
+    eyebrow: 'Multi-session advanced coaching',
+    summary:
+      'Advanced training for power users who want to supervise Codex and similar local full-control systems with judgment, testing, and rollback habits.',
+    format: 'Private coaching or cohort sessions with local practice, repo walkthroughs, and verification labs.',
+    audience:
+      'Technically curious professionals, builders, content-system owners, and advanced AI users ready for local controlled environments.',
+    icon: MonitorPlay,
+    outcomes: [
+      'Understand what local full-control systems can access and why that changes the supervision model.',
+      'Use repo inspection, file edits, tests, browser checks, Git commits, and deployment review responsibly.',
+      'Develop rollback thinking so AI-assisted work remains reversible, inspectable, and owned by the human.',
+    ],
+    modules: [
+      {
+        title: 'From chatbot to local operator',
+        body: 'We compare ordinary LLM sessions with local agents that can read files, run commands, inspect browsers, and edit projects.',
+      },
+      {
+        title: 'Supervising code and content changes',
+        body: 'Participants learn to ask for repo inspection, scoped edits, diffs, tests, and clear summaries before trusting changes.',
+      },
+      {
+        title: 'Full-control safety boundaries',
+        body: 'We define where local access helps, where it becomes risky, and what should require explicit human approval.',
+      },
+      {
+        title: 'Deployment and rollback practice',
+        body: 'Participants practice commit hygiene, public-site checks, deployment verification, and recovery paths.',
+      },
+    ],
+    materials: [
+      'Local agent supervision checklist',
+      'Git and deployment primer',
+      'Verification lab worksheet',
+      'Rollback and recovery checklist',
+    ],
+    diagramSlots: [
+      'Agent control loop: inspect, edit, test, review, commit',
+      'Local full-control safety boundary map',
+    ],
+    pdfHref: '/curriculum-pdfs/advanced-operator-codex-track.pdf',
+  },
+]
+
 const process = [
   {
     step: 'Discover',
@@ -364,6 +650,10 @@ function App() {
   const activeOffer = offerFormats.find(
     (offer) => currentPath === `/offers/${offer.slug}`,
   )
+  const activeCurriculum = curriculumPackages.find(
+    (curriculum) => currentPath === `/curricula/${curriculum.slug}`,
+  )
+  const isCurriculumLibrary = currentPath === '/curricula'
 
   useEffect(() => {
     const handlePopState = () => setCurrentPath(stripBasePath(window.location.pathname))
@@ -378,7 +668,7 @@ function App() {
       : 'Xensible | AI Fluency Training'
   }, [activeOffer])
 
-  const navigateToOffer = (
+  const navigateToRoute = (
     event: MouseEvent<HTMLAnchorElement>,
     href: string,
   ) => {
@@ -398,6 +688,7 @@ function App() {
         <div className="header-actions">
           <nav className="nav-links" aria-label="Main navigation">
             <a href={siteHref('/#services')}>Services</a>
+            <a href={siteHref('/#curriculum-packages')}>Curricula</a>
             <a href={siteHref('/#guide')}>Guide</a>
             <a href={siteHref('/#faq')}>FAQ</a>
             <a href={siteHref('/#contact')}>Contact</a>
@@ -411,8 +702,10 @@ function App() {
 
       {activeOffer ? (
         <OfferPage offer={activeOffer} />
+      ) : activeCurriculum || isCurriculumLibrary ? (
+        <CurriculumPage curriculum={activeCurriculum} navigateToRoute={navigateToRoute} />
       ) : (
-        <HomePage navigateToOffer={navigateToOffer} />
+        <HomePage navigateToRoute={navigateToRoute} />
       )}
 
       <footer className="site-footer">
@@ -424,9 +717,9 @@ function App() {
 }
 
 function HomePage({
-  navigateToOffer,
+  navigateToRoute,
 }: {
-  navigateToOffer: (
+  navigateToRoute: (
     event: MouseEvent<HTMLAnchorElement>,
     href: string,
   ) => void
@@ -555,7 +848,7 @@ function HomePage({
                 className="offer-card"
                 href={siteHref(`/offers/${slug}`)}
                 key={slug}
-                onClick={(event) => navigateToOffer(event, `/offers/${slug}`)}
+                onClick={(event) => navigateToRoute(event, `/offers/${slug}`)}
               >
                 <span className="service-icon">
                   <Icon aria-hidden="true" />
@@ -564,6 +857,46 @@ function HomePage({
                 <p>{summary}</p>
                 <span className="text-link">
                   View details
+                  <ArrowRight aria-hidden="true" />
+                </span>
+              </a>
+            ))}
+          </div>
+        </section>
+
+        <section
+          className="section curriculum-packages-section"
+          id="curriculum-packages"
+          aria-labelledby="curriculum-packages-title"
+        >
+          <div className="section-heading">
+            <p className="eyebrow">Curriculum packages</p>
+            <h2 id="curriculum-packages-title">
+              A practical learning ladder from basic AI fluency to advanced
+              local AI systems.
+            </h2>
+            <p>
+              Each package can stand alone or connect into a longer development
+              path. Full curriculum notes and PDF companions are available in
+              the protected curriculum library.
+            </p>
+          </div>
+          <div className="curriculum-card-grid">
+            {curriculumPackages.map(({ slug, title, eyebrow, summary, icon: Icon }) => (
+              <a
+                className="curriculum-card"
+                href={siteHref(`/curricula/${slug}`)}
+                key={slug}
+                onClick={(event) => navigateToRoute(event, `/curricula/${slug}`)}
+              >
+                <span className="service-icon">
+                  <Icon aria-hidden="true" />
+                </span>
+                <span className="curriculum-kicker">{eyebrow}</span>
+                <h3>{title}</h3>
+                <p>{summary}</p>
+                <span className="text-link">
+                  Unlock curriculum
                   <ArrowRight aria-hidden="true" />
                 </span>
               </a>
@@ -730,6 +1063,243 @@ function HomePage({
           </a>
         </section>
       </main>
+  )
+}
+
+function CurriculumGate({ children }: { children: ReactNode }) {
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+  const [isUnlocked, setIsUnlocked] = useState(
+    () => window.sessionStorage.getItem('xensible-curriculum-access') === 'true',
+  )
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+
+    if (password.trim() === 'xpert') {
+      window.sessionStorage.setItem('xensible-curriculum-access', 'true')
+      setIsUnlocked(true)
+      setError('')
+      return
+    }
+
+    setError('That password did not work.')
+  }
+
+  if (isUnlocked) {
+    return <>{children}</>
+  }
+
+  return (
+    <main className="protected-page">
+      <section className="protected-gate" aria-labelledby="protected-title">
+        <div>
+          <p className="eyebrow">Protected curriculum library</p>
+          <h1 id="protected-title">Enter the curriculum access password.</h1>
+          <p className="hero-copy">
+            The full curriculum pages and PDF companions are reserved for
+            Xensible planning and client-ready materials.
+          </p>
+        </div>
+        <form className="password-panel" onSubmit={handleSubmit}>
+          <label htmlFor="curriculum-password">Password</label>
+          <input
+            id="curriculum-password"
+            onChange={(event) => setPassword(event.target.value)}
+            type="password"
+            value={password}
+          />
+          {error && <p className="form-error">{error}</p>}
+          <button className="button button-primary" type="submit">
+            <ShieldCheck aria-hidden="true" />
+            Unlock Curricula
+          </button>
+        </form>
+      </section>
+    </main>
+  )
+}
+
+function CurriculumPage({
+  curriculum,
+  navigateToRoute,
+}: {
+  curriculum?: (typeof curriculumPackages)[number]
+  navigateToRoute: (
+    event: MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => void
+}) {
+  return (
+    <CurriculumGate>
+      {curriculum ? (
+        <CurriculumDetail curriculum={curriculum} navigateToRoute={navigateToRoute} />
+      ) : (
+        <CurriculumLibrary navigateToRoute={navigateToRoute} />
+      )}
+    </CurriculumGate>
+  )
+}
+
+function CurriculumLibrary({
+  navigateToRoute,
+}: {
+  navigateToRoute: (
+    event: MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => void
+}) {
+  return (
+    <main className="curriculum-page">
+      <section className="curriculum-hero">
+        <div>
+          <p className="eyebrow">Curriculum library</p>
+          <h1>Six practical paths for AI fluency training.</h1>
+          <p className="hero-copy">
+            These protected outlines are the working curriculum base for
+            Xensible web pages, Zoom sessions, worksheets, and PDF companions.
+          </p>
+        </div>
+      </section>
+      <section className="section">
+        <div className="curriculum-library-grid">
+          {curriculumPackages.map(({ slug, title, eyebrow, summary, icon: Icon, pdfHref }) => (
+            <article className="curriculum-library-card" key={slug}>
+              <span className="service-icon">
+                <Icon aria-hidden="true" />
+              </span>
+              <p className="eyebrow">{eyebrow}</p>
+              <h2>{title}</h2>
+              <p>{summary}</p>
+              <div className="curriculum-actions">
+                <a
+                  className="button button-primary"
+                  href={siteHref(`/curricula/${slug}`)}
+                  onClick={(event) => navigateToRoute(event, `/curricula/${slug}`)}
+                >
+                  View Webpage
+                </a>
+                <a className="button button-secondary" href={siteHref(pdfHref)}>
+                  PDF Companion
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+    </main>
+  )
+}
+
+function CurriculumDetail({
+  curriculum,
+  navigateToRoute,
+}: {
+  curriculum: (typeof curriculumPackages)[number]
+  navigateToRoute: (
+    event: MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => void
+}) {
+  const Icon = curriculum.icon
+
+  return (
+    <main className="curriculum-page">
+      <section className="curriculum-hero">
+        <div>
+          <a
+            className="back-link"
+            href={siteHref('/curricula')}
+            onClick={(event) => navigateToRoute(event, '/curricula')}
+          >
+            <ArrowLeft aria-hidden="true" />
+            Back to curriculum library
+          </a>
+          <p className="eyebrow">{curriculum.eyebrow}</p>
+          <h1>{curriculum.title}</h1>
+          <p className="hero-copy">{curriculum.summary}</p>
+          <div className="hero-actions">
+            <a className="button button-primary" href={contactHref}>
+              <CalendarDays aria-hidden="true" />
+              Discuss This Curriculum
+            </a>
+            <a className="button button-secondary" href={siteHref(curriculum.pdfHref)}>
+              PDF Companion
+            </a>
+          </div>
+        </div>
+        <div className="curriculum-hero-panel">
+          <span className="service-icon">
+            <Icon aria-hidden="true" />
+          </span>
+          <h2>Format</h2>
+          <p>{curriculum.format}</p>
+          <h2>Audience</h2>
+          <p>{curriculum.audience}</p>
+        </div>
+      </section>
+
+      <section className="section curriculum-detail-grid">
+        <div className="detail-panel">
+          <p className="eyebrow">Learner outcomes</p>
+          <ul className="offer-list">
+            {curriculum.outcomes.map((outcome) => (
+              <li key={outcome}>
+                <CheckCircle2 aria-hidden="true" />
+                <span>{outcome}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="detail-panel">
+          <p className="eyebrow">Materials to develop</p>
+          <ul className="offer-list">
+            {curriculum.materials.map((material) => (
+              <li key={material}>
+                <ClipboardCheck aria-hidden="true" />
+                <span>{material}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="section section-band">
+        <div className="section-heading centered">
+          <p className="eyebrow">Curriculum modules</p>
+          <h2>Session blocks that can become webpages, workshops, and PDFs.</h2>
+        </div>
+        <div className="module-grid">
+          {curriculum.modules.map(({ title, body }, index) => (
+            <article className="module-card" key={title}>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{title}</h3>
+              <p>{body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section diagram-planning-section">
+        <div className="section-heading">
+          <p className="eyebrow">Diagram candidates</p>
+          <h2>Visuals to define before production.</h2>
+          <p>
+            These are the first strong diagram locations. The final diagrams
+            should be parameterized before they are drawn so the visuals match
+            your teaching style and the audience level.
+          </p>
+        </div>
+        <div className="diagram-slot-list">
+          {curriculum.diagramSlots.map((slot) => (
+            <article className="diagram-slot" key={slot}>
+              <Map aria-hidden="true" />
+              <p>{slot}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+    </main>
   )
 }
 
