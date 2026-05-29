@@ -2955,8 +2955,8 @@ function HomePage({
           <div className="section-heading">
             <p className="eyebrow">Built by Phil with AI</p>
             <h2 id="examples-title">
-              Featured sites Phil created using AI-assisted thinking, writing,
-              and development.
+              Featured sites Xensible's lead trainer created using AI-assisted
+              thinking, writing, and development.
             </h2>
             <p>
               Phil created each of these public projects as practical examples
@@ -2965,6 +2965,18 @@ function HomePage({
               resources without losing human judgment.
             </p>
           </div>
+          <p className="example-origin-story">
+            For decades, Phil kept notebooks and stray files full of book
+            outlines, paper arguments, and website ideas, each one quietly
+            filed under someday: maybe, with a clear six-month stretch, one or
+            two could become real. AI changed the scale of that imagination. The
+            same kind of idea that once waited in the drawer can now be shaped,
+            tested, written, designed, and put together in about six focused
+            hours, with human judgment still steering the work. That lived shift
+            is central to Xensible: fluency is not about chasing novelty, but
+            about learning how to turn serious ideas into useful artifacts while
+            the energy behind them is still alive.
+          </p>
           <div className="example-grid">
             {aiBuiltSites.map(({ name, url, domain, image, alt, description }) => (
               <a
