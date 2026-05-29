@@ -2955,8 +2955,8 @@ function HomePage({
           <div className="section-heading">
             <p className="eyebrow">Built by Phil with AI</p>
             <h2 id="examples-title">
-              Featured sites Xensible's lead trainer created using AI-assisted
-              thinking, writing, and development.
+              Featured sites created by Xensible's lead trainer using
+              AI-assisted thinking, writing, and development.
             </h2>
             <p>
               Phil created each of these public projects as practical examples
