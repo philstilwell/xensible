@@ -3063,7 +3063,7 @@ function HomePage({
                 >
                   <picture>
                     <source srcSet={siteHref(image)} type="image/webp" />
-                    <img src={siteHref(fullImage)} alt={alt} loading="lazy" />
+                    <img src={siteHref(fullImage)} alt={alt} loading="eager" decoding="async" />
                   </picture>
                 </a>
                 <div className="visual-card-copy">
