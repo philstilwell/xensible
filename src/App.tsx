@@ -7,6 +7,7 @@ import {
   BookOpenCheck,
   BriefcaseBusiness,
   CalendarDays,
+  ChevronDown,
   CheckCircle2,
   ClipboardCheck,
   ExternalLink,
@@ -2778,6 +2779,8 @@ function HomePage({
     href: string,
   ) => void
 }) {
+  const [openVisualTitle, setOpenVisualTitle] = useState<string | null>(null)
+
   return (
     <main id="top">
         <section
@@ -3059,36 +3062,68 @@ function HomePage({
             </p>
           </div>
           <div className="visual-grid">
-            {visualConcepts.map(({ title, body, image, fullImage, alt, walkthrough }) => (
-              <article className="visual-card" key={title}>
-                <a
-                  className="visual-media"
-                  href={siteHref(fullImage)}
-                  aria-label={`Open full-size ${title} visual`}
-                >
-                  <picture>
-                    <source srcSet={siteHref(image)} type="image/webp" />
-                    <img src={siteHref(fullImage)} alt={alt} loading="eager" decoding="async" />
-                  </picture>
-                </a>
-                <div className="visual-card-copy">
-                  <h3>{title}</h3>
-                  <p>{body}</p>
-                  <ul className="visual-walkthrough" aria-label={`${title} walkthrough`}>
-                    {walkthrough.map(({ label, text }) => (
-                      <li key={label}>
-                        <strong>{label}</strong>
-                        <span>{text}</span>
-                      </li>
-                    ))}
-                  </ul>
-                  <a className="text-link" href={siteHref(fullImage)}>
-                    Open full-size visual
-                    <ArrowRight aria-hidden="true" />
-                  </a>
-                </div>
-              </article>
-            ))}
+            {visualConcepts.map(({ title, body, image, fullImage, alt, walkthrough }) => {
+              const isOpen = openVisualTitle === title
+              const visualPanelId = `visual-panel-${title
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, '-')
+                .replace(/(^-|-$)/g, '')}`
+
+              return (
+                <article className={`visual-card${isOpen ? ' is-open' : ''}`} key={title}>
+                  <button
+                    type="button"
+                    className="visual-summary"
+                    aria-expanded={isOpen}
+                    aria-controls={visualPanelId}
+                    onClick={() => setOpenVisualTitle(isOpen ? null : title)}
+                  >
+                    <span className="visual-summary-copy">
+                      <span className="visual-summary-title">{title}</span>
+                      <span className="visual-summary-body">{body}</span>
+                    </span>
+                    <span className="visual-summary-thumb" aria-hidden="true">
+                      <picture>
+                        <source srcSet={siteHref(image)} type="image/webp" />
+                        <img src={siteHref(fullImage)} alt="" loading="eager" decoding="async" />
+                      </picture>
+                    </span>
+                    <ChevronDown className="visual-summary-icon" aria-hidden="true" />
+                  </button>
+
+                  {isOpen ? (
+                    <div className="visual-panel" id={visualPanelId}>
+                      <a
+                        className="visual-panel-media"
+                        href={siteHref(fullImage)}
+                        aria-label={`Open full-size ${title} visual`}
+                      >
+                        <picture>
+                          <source srcSet={siteHref(image)} type="image/webp" />
+                          <img src={siteHref(fullImage)} alt={alt} loading="eager" decoding="async" />
+                        </picture>
+                      </a>
+                      <div className="visual-panel-copy">
+                        <h3>{title} notes</h3>
+                        <p>{body}</p>
+                        <ul className="visual-walkthrough" aria-label={`${title} walkthrough`}>
+                          {walkthrough.map(({ label, text }) => (
+                            <li key={label}>
+                              <strong>{label}</strong>
+                              <span>{text}</span>
+                            </li>
+                          ))}
+                        </ul>
+                        <a className="text-link" href={siteHref(fullImage)}>
+                          Open full-size visual
+                          <ArrowRight aria-hidden="true" />
+                        </a>
+                      </div>
+                    </div>
+                  ) : null}
+                </article>
+              )
+            })}
           </div>
           <div className="info-resource-strip">
             <div>
