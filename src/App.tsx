@@ -2143,6 +2143,7 @@ const getPageMetadata = ({
   isFreeCurriculum,
   isAiUsesToolsPage,
   isPracticeProjectsPage,
+  isThanksPage,
 }: {
   activeCurriculum?: CurriculumContent
   activeOffer?: (typeof offerFormats)[number]
@@ -2152,6 +2153,7 @@ const getPageMetadata = ({
   isFreeCurriculum: boolean
   isAiUsesToolsPage: boolean
   isPracticeProjectsPage: boolean
+  isThanksPage: boolean
 }): PageMetadata => {
   if (activeOffer) {
     return {
@@ -2216,6 +2218,16 @@ const getPageMetadata = ({
         'Try practical one- to two-hour AI exercises that help individuals experience useful AI workflows through safe inputs, review habits, and real walk-away artifacts.',
       path: '/practice-projects',
       schemaType: 'CollectionPage',
+    }
+  }
+
+  if (isThanksPage) {
+    return {
+      title: 'Booking Confirmed | Xensible',
+      description:
+        'Your Xensible AI fluency call has been scheduled. Review next steps and continue exploring AI training resources.',
+      path: '/thanks',
+      robots: 'noindex,follow',
     }
   }
 
@@ -2493,6 +2505,7 @@ function App() {
   const isExpertCurriculumLibrary = currentPath === '/curricula/expert'
   const isAiUsesToolsPage = currentPath === '/ai-uses-tools'
   const isPracticeProjectsPage = currentPath === '/practice-projects'
+  const isThanksPage = currentPath === '/thanks'
   const isUnknownRoute =
     currentPath !== '/' &&
     !activeOffer &&
@@ -2501,7 +2514,8 @@ function App() {
     !isFreeCurriculum &&
     !isExpertCurriculumLibrary &&
     !isAiUsesToolsPage &&
-    !isPracticeProjectsPage
+    !isPracticeProjectsPage &&
+    !isThanksPage
   const pageMetadata = useMemo(
     () =>
       getPageMetadata({
@@ -2513,6 +2527,7 @@ function App() {
         isFreeCurriculum,
         isAiUsesToolsPage,
         isPracticeProjectsPage,
+        isThanksPage,
       }),
     [
       activeCurriculum,
@@ -2523,6 +2538,7 @@ function App() {
       isFreeCurriculum,
       isAiUsesToolsPage,
       isPracticeProjectsPage,
+      isThanksPage,
     ],
   )
   const structuredData = useMemo(
@@ -2608,6 +2624,8 @@ function App() {
           isHub={isCurriculumHub}
           navigateToRoute={navigateToRoute}
         />
+      ) : isThanksPage ? (
+        <ThanksPage navigateToRoute={navigateToRoute} />
       ) : isUnknownRoute ? (
         <NotFoundPage />
       ) : (
@@ -3259,6 +3277,63 @@ function NotFoundPage() {
               <ArrowRight aria-hidden="true" />
             </a>
           </div>
+        </div>
+      </section>
+    </main>
+  )
+}
+
+function ThanksPage({
+  navigateToRoute,
+}: {
+  navigateToRoute: (
+    event: MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => void
+}) {
+  return (
+    <main className="info-page thank-you-page">
+      <section className="info-hero thank-you-hero" aria-labelledby="thanks-title">
+        <div>
+          <a
+            className="back-link"
+            href={siteHref('/')}
+            onClick={(event) => navigateToRoute(event, '/')}
+          >
+            <ArrowLeft aria-hidden="true" />
+            Back to home
+          </a>
+          <p className="eyebrow">Booking confirmed</p>
+          <h1 id="thanks-title">Your AI fluency call is on the calendar.</h1>
+          <p className="hero-copy">
+            Thanks for scheduling with Xensible. You should receive a Calendly
+            confirmation with the meeting details and conferencing link.
+          </p>
+          <div className="hero-actions">
+            <a
+              className="button button-primary"
+              href={siteHref('/practice-projects')}
+              onClick={(event) => navigateToRoute(event, '/practice-projects')}
+            >
+              Try a 1-Hour AI Project
+              <ArrowRight aria-hidden="true" />
+            </a>
+            <a
+              className="button button-secondary"
+              href={siteHref('/#services')}
+            >
+              Review Services
+            </a>
+          </div>
+        </div>
+        <div className="info-hero-panel">
+          <p className="eyebrow">Before we meet</p>
+          <h2>Bring one practical question.</h2>
+          <p>
+            A good starting point is one repeated task, decision, draft, or
+            team workflow where AI might save attention without replacing
+            human judgment.
+          </p>
         </div>
       </section>
     </main>
