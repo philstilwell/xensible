@@ -2952,36 +2952,39 @@ function HomePage({
           id="examples"
           aria-labelledby="examples-title"
         >
-          <div className="section-heading">
-            <p className="eyebrow">Built by Phil with AI</p>
-            <h2 id="examples-title">
-              Featured sites created by Xensible's lead trainer using
-              AI-assisted thinking, writing, and development.
-            </h2>
-            <p>
-              Phil created each of these public projects as practical examples
-              of the fluency Xensible teaches: using AI to structure complex
-              material, build useful interfaces, and turn ideas into working
-              resources without losing human judgment.
+          <div className="examples-intro-grid">
+            <div className="section-heading">
+              <p className="eyebrow">Built by Phil with AI</p>
+              <h2 id="examples-title">
+                Featured sites created by Xensible's lead trainer using
+                AI-assisted thinking, writing, and development.
+              </h2>
+              <p>
+                Phil created each of these public projects as practical
+                examples of the fluency Xensible teaches: using AI to structure
+                complex material, build useful interfaces, and turn ideas into
+                working resources without losing human judgment.
+              </p>
+            </div>
+            <p className="example-origin-story">
+              For decades, Phil kept notebooks and stray files full of book
+              outlines, paper arguments, and website ideas, each one quietly
+              filed under someday: maybe, with a clear six-month stretch, one
+              or two could become real. AI changed the scale of that
+              imagination. The same kind of idea that once waited in the drawer
+              can now be shaped, tested, written, designed, and put together in
+              about six focused hours, with human judgment still steering the
+              work. The business lesson is just as important: inside most
+              organizations, there are overlooked processes, dormant offerings,
+              neglected client questions, training gaps, and possible new
+              revenue channels that even experienced leaders may not see
+              because everyone is already moving at full speed. Today's
+              tireless AIs make those hidden possibilities easier to
+              brainstorm, compare, prototype, and refine, helping teams
+              discover where work can be done more efficiently and where new
+              value may be waiting.
             </p>
           </div>
-          <p className="example-origin-story">
-            For decades, Phil kept notebooks and stray files full of book
-            outlines, paper arguments, and website ideas, each one quietly
-            filed under someday: maybe, with a clear six-month stretch, one or
-            two could become real. AI changed the scale of that imagination. The
-            same kind of idea that once waited in the drawer can now be shaped,
-            tested, written, designed, and put together in about six focused
-            hours, with human judgment still steering the work. The business
-            lesson is just as important: inside most organizations, there are
-            overlooked processes, dormant offerings, neglected client questions,
-            training gaps, and possible new revenue channels that even
-            experienced leaders may not see because everyone is already moving
-            at full speed. Today's tireless AIs make those hidden possibilities
-            easier to brainstorm, compare, prototype, and refine, helping teams
-            discover where work can be done more efficiently and where new value
-            may be waiting.
-          </p>
           <div className="example-grid">
             {aiBuiltSites.map(({ name, url, domain, image, alt, description }) => (
               <a
