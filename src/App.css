@@ -1048,7 +1048,7 @@ details {
 }
 
 .visual-media img {
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .visual-card-copy {
@@ -1057,6 +1057,34 @@ details {
 
 .visual-card-copy p {
   line-height: 1.62;
+}
+
+.visual-walkthrough {
+  display: grid;
+  gap: 10px;
+  margin: 18px 0 20px;
+  padding: 0;
+  list-style: none;
+}
+
+.visual-walkthrough li {
+  display: grid;
+  gap: 5px;
+  padding: 12px 14px;
+  border-left: 4px solid var(--clay);
+  border-radius: 6px;
+  background: rgba(232, 239, 234, 0.52);
+}
+
+.visual-walkthrough strong {
+  color: var(--deep);
+  font-size: 0.92rem;
+}
+
+.visual-walkthrough span {
+  color: var(--muted);
+  font-size: 0.93rem;
+  line-height: 1.5;
 }
 
 .info-resource-strip {

@@ -1686,44 +1686,168 @@ const visualConcepts = [
   {
     title: 'AI Fluency Loop',
     body: 'A simple way to teach AI as an iterative practice: ask, add context, review the output, revise, and apply only what earns trust.',
-    image: '/visuals/ai-fluency-loop.webp',
-    fullImage: '/visuals/ai-fluency-loop.png',
-    alt: 'Infographic showing an AI fluency loop with Ask, Context, Output, Review, Revise, and Apply.',
+    image: '/visuals/gemini-native/ai-fluency-loop.webp',
+    fullImage: '/visuals/gemini-native/ai-fluency-loop.png',
+    alt: 'Infographic showing an AI fluency loop with Ask, Context, Draft, Review, Revise, Apply, and Human Judgment.',
+    walkthrough: [
+      {
+        label: 'Ask',
+        text: 'Start with a real work question, not a vague request for magic.',
+      },
+      {
+        label: 'Context',
+        text: 'Add the audience, constraints, examples, tone, and standard of success.',
+      },
+      {
+        label: 'Draft',
+        text: 'Let the model produce a first version that can be inspected, challenged, and improved.',
+      },
+      {
+        label: 'Review',
+        text: 'Check accuracy, usefulness, uncertainty, missing context, and fit for the situation.',
+      },
+      {
+        label: 'Revise and apply',
+        text: 'Iterate until the output earns trust, then use it with human judgment still in charge.',
+      },
+    ],
   },
   {
     title: 'Safe Experimentation Boundary Map',
     body: 'A visual anchor for separating low-risk practice from sensitive data, with human judgment kept at the boundary.',
-    image: '/visuals/safe-experimentation-boundary-map.webp',
-    fullImage: '/visuals/safe-experimentation-boundary-map.png',
+    image: '/visuals/gemini-native/safe-experimentation-boundary-map.webp',
+    fullImage: '/visuals/gemini-native/safe-experimentation-boundary-map.png',
     alt: 'Infographic showing practice, caution, private data, and human judgment zones.',
+    walkthrough: [
+      {
+        label: 'Practice zone',
+        text: 'Use fictional examples, public materials, and low-stakes drafts to build skill safely.',
+      },
+      {
+        label: 'Caution zone',
+        text: 'When work starts to resemble internal operations, pause for review before sharing details with a tool.',
+      },
+      {
+        label: 'Private data',
+        text: 'Patient, customer, employee, proprietary, financial, credential, or regulated information stays out of public AI tools.',
+      },
+      {
+        label: 'Human review',
+        text: 'The team decides what can be tested, which tools are appropriate, and how outputs will be checked.',
+      },
+    ],
   },
   {
     title: 'Use-Case Discovery Grid',
     body: 'A decision tool for ranking AI ideas by value and risk before teams buy tools, launch pilots, or make workflow changes.',
-    image: '/visuals/use-case-discovery-grid.webp',
-    fullImage: '/visuals/use-case-discovery-grid.png',
+    image: '/visuals/gemini-native/use-case-discovery-grid.webp',
+    fullImage: '/visuals/gemini-native/use-case-discovery-grid.png',
     alt: 'Infographic showing an AI use-case grid with value and risk axes.',
+    walkthrough: [
+      {
+        label: 'Quick wins',
+        text: 'Low-risk, high-value tasks are the best early practice targets because they can show usefulness quickly.',
+      },
+      {
+        label: 'Strategic pilots',
+        text: 'High-value, higher-risk ideas may be worth exploring, but only with scope, ownership, and review standards.',
+      },
+      {
+        label: 'Govern first',
+        text: 'High-risk ideas need boundaries, policy discussion, and human oversight before experimentation.',
+      },
+      {
+        label: 'Defer',
+        text: 'Low-value ideas should wait so attention stays on workflows that actually matter.',
+      },
+    ],
   },
   {
     title: 'AI Adoption Value Scan',
     body: 'A practical discovery model that starts with where the business spends time and which important work keeps slipping out of reach.',
-    image: '/visuals/ai-adoption-value-scan.webp',
-    fullImage: '/visuals/ai-adoption-value-scan.png',
+    image: '/visuals/gemini-native/ai-adoption-value-scan.webp',
+    fullImage: '/visuals/gemini-native/ai-adoption-value-scan.png',
     alt: 'Infographic showing an AI adoption value scan from time sinks and neglected work through scoring and next-step selection.',
+    walkthrough: [
+      {
+        label: 'Time spent',
+        text: 'Look first at where work hours actually go: meetings, email, drafts, reports, searching, rework, and handoffs.',
+      },
+      {
+        label: 'Neglected work',
+        text: 'Name the valuable tasks that keep getting postponed, such as documentation, follow-up, analysis, training, or client education.',
+      },
+      {
+        label: 'Pattern map',
+        text: 'Group the work by frequency, friction, value, sensitivity, and who would review the output.',
+      },
+      {
+        label: 'Low-risk experiments',
+        text: 'Try small workflows that use safe inputs, clear success criteria, and visible human review.',
+      },
+      {
+        label: 'Value shortlist',
+        text: 'Choose the best next steps before buying tools or redesigning processes.',
+      },
+    ],
   },
   {
     title: 'Responsible AI Adoption Loop',
     body: 'A visual teaching model for moving from fluency to bounded practice, evaluation, learning capture, and shared team norms.',
-    image: '/visuals/responsible-ai-adoption-loop.webp',
-    fullImage: '/visuals/responsible-ai-adoption-loop.png',
+    image: '/visuals/gemini-native/responsible-ai-adoption-loop.webp',
+    fullImage: '/visuals/gemini-native/responsible-ai-adoption-loop.png',
     alt: 'Infographic showing a responsible AI adoption loop with learn, bound, practice, evaluate, capture, and normalize around human judgment.',
+    walkthrough: [
+      {
+        label: 'Learn',
+        text: 'Build shared vocabulary so people understand what AI tools can and cannot do.',
+      },
+      {
+        label: 'Bound',
+        text: 'Set data boundaries, tool boundaries, and review expectations before normal use begins.',
+      },
+      {
+        label: 'Practice',
+        text: 'Use guided exercises and low-risk workflows so confidence grows through direct experience.',
+      },
+      {
+        label: 'Evaluate',
+        text: 'Check outputs for accuracy, uncertainty, missing context, and practical fit.',
+      },
+      {
+        label: 'Capture and normalize',
+        text: 'Save lessons, prompts, review habits, and decision rules so good practice becomes team culture.',
+      },
+    ],
   },
   {
     title: 'Local Operator Control Loop',
     body: 'A teaching model for advanced Codex-style work: inspect, edit, test, review, commit, and keep rollback thinking visible.',
-    image: '/visuals/local-operator-control-loop.webp',
-    fullImage: '/visuals/local-operator-control-loop.png',
+    image: '/visuals/gemini-native/local-operator-control-loop.webp',
+    fullImage: '/visuals/gemini-native/local-operator-control-loop.png',
     alt: 'Infographic showing an operator workflow with Inspect, Edit, Test, Review, Commit, and Roll Back.',
+    walkthrough: [
+      {
+        label: 'Inspect',
+        text: 'Read the repo, relevant files, local conventions, dependencies, and risks before changing anything.',
+      },
+      {
+        label: 'Plan and edit',
+        text: 'Choose a small reversible change, then modify only what the task requires.',
+      },
+      {
+        label: 'Test',
+        text: 'Run builds, automated checks, browser checks, and visual review when the surface is user-facing.',
+      },
+      {
+        label: 'Review and commit',
+        text: 'Read the diff, verify behavior, record the change clearly, and keep rollback options visible.',
+      },
+      {
+        label: 'Human control',
+        text: 'The local operator remains responsible for judgment, secrets, file scope, deployment, and final approval.',
+      },
+    ],
   },
 ]
 
@@ -1983,6 +2107,7 @@ const emailHref =
   'mailto:contact@xensible.com?subject=AI%20Fluency%20Call%20for%20Xensible'
 const defaultCalendlyHref = 'https://calendly.com/contact-xensible/30min'
 const calendlyWidgetSrc = 'https://assets.calendly.com/assets/external/widget.js'
+const onsiteBookingHref = '/#contact'
 const bookingHref =
   import.meta.env.VITE_CALENDLY_URL?.trim() || defaultCalendlyHref
 const calendlyEmbedHref = (() => {
@@ -2602,9 +2727,9 @@ function App() {
             <a href={siteHref('/#curriculum-packages')}>Curricula</a>
             <a href={siteHref('/ai-uses-tools')}>AI Map</a>
             <a href={siteHref('/#guide')}>About</a>
-            <a href={siteHref('/#contact')}>Contact</a>
+            <a href={siteHref(onsiteBookingHref)}>Contact</a>
           </nav>
-          <a className="button button-primary nav-cta" href={bookingHref}>
+          <a className="button button-primary nav-cta" href={siteHref(onsiteBookingHref)}>
             <CalendarDays aria-hidden="true" />
             Schedule
           </a>
@@ -2663,7 +2788,7 @@ function HomePage({
               before they make expensive technology decisions.
             </p>
             <div className="hero-actions" aria-label="Primary calls to action">
-              <a className="button button-primary" href={bookingHref}>
+              <a className="button button-primary" href={siteHref(onsiteBookingHref)}>
                 <CalendarDays aria-hidden="true" />
                 Schedule an AI Fluency Call
               </a>
@@ -2929,7 +3054,7 @@ function HomePage({
             </p>
           </div>
           <div className="visual-grid">
-            {visualConcepts.map(({ title, body, image, fullImage, alt }) => (
+            {visualConcepts.map(({ title, body, image, fullImage, alt, walkthrough }) => (
               <article className="visual-card" key={title}>
                 <a
                   className="visual-media"
@@ -2944,6 +3069,14 @@ function HomePage({
                 <div className="visual-card-copy">
                   <h3>{title}</h3>
                   <p>{body}</p>
+                  <ul className="visual-walkthrough" aria-label={`${title} walkthrough`}>
+                    {walkthrough.map(({ label, text }) => (
+                      <li key={label}>
+                        <strong>{label}</strong>
+                        <span>{text}</span>
+                      </li>
+                    ))}
+                  </ul>
                   <a className="text-link" href={siteHref(fullImage)}>
                     Open full-size visual
                     <ArrowRight aria-hidden="true" />
