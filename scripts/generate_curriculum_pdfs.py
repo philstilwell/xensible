@@ -87,6 +87,32 @@ FREE_CURRICULUM = {
         "Collect three questions that would benefit from coaching or a team discussion.",
         "Choose one recurring task that may become a future workflow workshop candidate.",
     ],
+    "tangible_cases": [
+        {
+            "title": "Public article summary",
+            "situation": "A learner wants to understand a public article, newsletter, or announcement without losing the main ideas.",
+            "learner_task": "Use AI to summarize the text, then mark which claims still need source checking before sharing.",
+            "prompt": "Summarize the following public text for a beginner. Give me five key points, three terms to define, and a short list of claims I should verify before I rely on the summary: [paste public text].",
+        },
+        {
+            "title": "Fictional email draft",
+            "situation": "A professional wants to practice drafting an email without using client, patient, employee, or proprietary details.",
+            "learner_task": "Draft from a fictional scenario, revise tone, and decide what a human should edit before sending.",
+            "prompt": "Using this fictional scenario, draft a warm professional email. Keep it concise, avoid promises, and include a checklist of details a human should confirm before sending: [fictional scenario].",
+        },
+        {
+            "title": "First practice plan",
+            "situation": "A curious learner needs a low-pressure way to keep practicing after the starter session.",
+            "learner_task": "Choose one safe weekly task, define boundaries, and keep a short log of useful and unreliable outputs.",
+            "prompt": "Help me design a one-week AI practice plan using only public or fictional information. Include one task per day, a safety reminder, and a simple log format for what worked, what failed, and what I checked.",
+        },
+    ],
+    "prompt_library": [
+        ("Plain-language explanation", "Explain [AI concept] for a smart beginner. Use an everyday analogy, name two useful applications, and name two reasons I should not overtrust the output."),
+        ("Starter prompt builder", "Turn my rough request into a stronger prompt. Ask me for missing context first. Then produce a prompt with task, audience, context, constraints, and review criteria."),
+        ("Output review", "Review this AI-generated draft. Identify unsupported claims, vague wording, missing context, possible bias, tone problems, and anything that needs human verification: [draft]."),
+        ("Safe practice chooser", "Given these possible practice tasks, sort them into safe public practice, use caution, and do not use in a public tool. Explain the reason for each category: [task list]."),
+    ],
 }
 
 
@@ -154,6 +180,32 @@ CURRICULA = [
             "Collect examples of confusing, useful, or unreliable AI outputs for discussion.",
             "Identify one team workflow that may deserve deeper workshop treatment.",
         ],
+        "tangible_cases": [
+            {
+                "title": "Shared vocabulary kickoff",
+                "situation": "A leadership group and frontline staff are using different words for prompts, outputs, hallucinations, and review.",
+                "learner_task": "Create a shared glossary and test it against everyday examples so the group can discuss AI without confusion.",
+                "prompt": "Create a plain-language glossary for a team learning AI. Define prompt, context, output, hallucination, review, sensitive data, and human judgment. For each term, give a workplace example and a common misconception.",
+            },
+            {
+                "title": "Nonprofit communications draft",
+                "situation": "A nonprofit team wants to draft a donor update from public program facts and a fictional event recap.",
+                "learner_task": "Practice drafting, audience adaptation, and review without using donor records or private beneficiary details.",
+                "prompt": "Draft a donor update using only the public facts and fictional event notes below. Make it warm, specific, and modest. Then list what a staff member should verify before sending: [public facts and fictional notes].",
+            },
+            {
+                "title": "Healthcare admin FAQ practice",
+                "situation": "A cautious health care admin team wants AI practice that does not involve patient information.",
+                "learner_task": "Use a fictional policy FAQ to practice summarizing, tone adjustment, and boundary setting.",
+                "prompt": "Using this fictional clinic FAQ, rewrite the answer for a general audience. Do not add medical advice. Flag anything that should be reviewed by the appropriate internal owner before publication: [fictional FAQ].",
+            },
+        ],
+        "prompt_library": [
+            ("Team baseline", "Ask five questions that help a mixed-comfort team describe what they know about AI, what worries them, and what they want to learn. Keep the questions nontechnical and practical."),
+            ("Prompt anatomy", "Rewrite this vague prompt into a stronger one with role, task, audience, context, constraints, examples, and success criteria. Explain what changed and why: [rough prompt]."),
+            ("Output comparison", "Compare these two AI outputs. Which is more useful, more accurate, clearer, and safer to use? Name what still needs human review before either one is applied: [output A] [output B]."),
+            ("Boundary sort", "Sort these example inputs into safe public practice, caution, and do not paste into public AI tools. Give a short reason for each decision: [example inputs]."),
+        ],
     },
     {
         "slug": "practical-ai-workflows",
@@ -218,6 +270,32 @@ CURRICULA = [
             "Pilot one documented workflow for two weeks using safe inputs.",
             "Track where the workflow saves time, improves quality, or creates review burden.",
             "Bring one workflow back for refinement before scaling it to a broader team.",
+        ],
+        "tangible_cases": [
+            {
+                "title": "Meeting-to-action workflow",
+                "situation": "A team loses momentum after meetings because notes, decisions, and follow-up messages are inconsistent.",
+                "learner_task": "Use fictional meeting notes to create an agenda, decision summary, action list, and follow-up draft.",
+                "prompt": "Using these fictional meeting notes, create a concise decision summary, action-item table, and follow-up email draft. Mark anything that requires human confirmation before sending: [fictional notes].",
+            },
+            {
+                "title": "Policy explainer rewrite",
+                "situation": "A department has a dense internal policy that staff struggle to understand.",
+                "learner_task": "Rewrite a public or sanitized policy excerpt into clearer language, then review for missing nuance.",
+                "prompt": "Rewrite this public or sanitized policy excerpt for busy staff. Keep the meaning intact, define jargon, list what changed, and identify any part that should be reviewed by the policy owner: [excerpt].",
+            },
+            {
+                "title": "Research question map",
+                "situation": "A professional needs to explore an unfamiliar topic before deciding what sources to read.",
+                "learner_task": "Use AI to generate research questions, search terms, source categories, and verification steps.",
+                "prompt": "Help me plan research on [topic]. Give me key questions, useful search terms, source types to look for, likely blind spots, and a verification checklist. Do not make final claims without sources.",
+            },
+        ],
+        "prompt_library": [
+            ("Workflow recipe", "Turn this recurring task into an AI-assisted workflow recipe. Include purpose, safe inputs, prompt sequence, review checkpoints, human decision points, and when not to use the workflow: [task]."),
+            ("Draft and critique", "Create a first draft for [audience] using the safe context below. Then critique your own draft for clarity, tone, unsupported claims, missing context, and review needs: [safe context]."),
+            ("Meeting preparation", "Using this fictional meeting context, create an agenda, prep questions, risks to discuss, and a follow-up template. Keep all assumptions visible: [fictional context]."),
+            ("Decision support", "Compare these options without choosing for me. Create criteria, pros and cons, assumptions, missing information, and questions a human decision maker should answer: [options]."),
         ],
     },
     {
@@ -284,6 +362,32 @@ CURRICULA = [
             "Schedule the right briefing or workshop for the highest-priority audience.",
             "Review the map monthly as team fluency and tool options change.",
         ],
+        "tangible_cases": [
+            {
+                "title": "Nonprofit intake backlog",
+                "situation": "A nonprofit team spends too much time sorting public inquiries, drafting first responses, and preparing internal handoffs.",
+                "learner_task": "Map the workflow, identify safe practice points, and decide which steps are training candidates rather than automation projects.",
+                "prompt": "Analyze this fictional nonprofit intake workflow. Identify friction points, possible AI training opportunities, data sensitivity concerns, review needs, and whether each idea belongs in train, pilot, wait, or avoid: [fictional workflow].",
+            },
+            {
+                "title": "Clinic admin documentation",
+                "situation": "A health care organization wants to improve admin templates but is cautious about patient privacy and medical claims.",
+                "learner_task": "Separate generic documentation practice from anything requiring internal privacy, clinical, legal, or compliance owners.",
+                "prompt": "Given this fictional clinic admin workflow, list low-risk AI training ideas, items that require private systems or internal approval, and items to avoid. Do not provide medical, legal, compliance, or cybersecurity assurances: [fictional workflow].",
+            },
+            {
+                "title": "Customer support knowledge gaps",
+                "situation": "A small company has scattered public FAQ pages and repeated support questions.",
+                "learner_task": "Score possible use cases by value, risk, readiness, and review burden before any tool purchase.",
+                "prompt": "Turn these fictional support pain points into use-case cards. For each card, include task, user, input, output, value, risk, readiness, review owner, and recommended next step: [pain points].",
+            },
+        ],
+        "prompt_library": [
+            ("Friction map", "Help a team map workflow friction. Ask for recurring tasks, delays, rework, handoffs, knowledge bottlenecks, and sensitive-data concerns. Then summarize likely AI training opportunities."),
+            ("Use-case card", "Create a use-case card for this AI idea with user, task, input, output, value, risk, data sensitivity, review owner, readiness, and training need: [idea]."),
+            ("Value-risk scoring", "Score these AI ideas from 1 to 5 for value, risk, readiness, and review burden. Explain each score and sort the ideas into train, pilot, wait, or avoid: [ideas]."),
+            ("Readiness summary", "Draft a cautious readiness summary for leaders. Include what the team is ready to learn, what should be postponed, what needs specialist review, and the smallest practical next step: [findings]."),
+        ],
     },
     {
         "slug": "executive-ai-briefing",
@@ -348,6 +452,32 @@ CURRICULA = [
             "Select a first audience for training or discovery.",
             "List vendor, policy, or data questions that require specialist review.",
             "Schedule a follow-up briefing or readiness sprint if the organization needs a fuller map.",
+        ],
+        "tangible_cases": [
+            {
+                "title": "Vendor pitch review",
+                "situation": "A CEO hears a vendor promise broad productivity gains and wants better questions before spending money.",
+                "learner_task": "Translate the pitch into concrete questions about workflow fit, data handling, review, ownership, and training.",
+                "prompt": "Turn this vendor claim into practical evaluation questions. Cover workflow fit, data handling, human review, implementation burden, training needs, lock-in, and evidence we should request: [vendor claim].",
+            },
+            {
+                "title": "Board-level AI stance",
+                "situation": "A board or senior leadership group asks whether the organization has an AI strategy.",
+                "learner_task": "Draft a calm response that frames learning, boundaries, and next steps without overpromising outcomes.",
+                "prompt": "Draft a board-level AI learning statement. Emphasize clarity before complexity, staff fluency, safe experimentation, human judgment, and decisions that need the right internal owners. Avoid hype and guarantees.",
+            },
+            {
+                "title": "Policy before practice tension",
+                "situation": "A department wants to ban, buy, or standardize AI before staff understand practical use.",
+                "learner_task": "Separate what training can solve from what requires policy, legal, privacy, technical, or procurement decisions.",
+                "prompt": "Given this leadership concern, separate issues into fluency training, workflow practice, policy, procurement, technical implementation, and specialist review. Recommend a small next step for each: [concern].",
+            },
+        ],
+        "prompt_library": [
+            ("Decision gate", "Evaluate this AI idea through decision gates: learn, practice, pilot, buy, wait, or seek specialist review. Explain the evidence needed before moving to the next gate: [AI idea]."),
+            ("Leadership briefing prep", "Prepare a plain-language executive briefing on [AI topic]. Include what it is, what it is useful for, limits, risks, good questions to ask, and a cautious next step."),
+            ("Vendor question bank", "Create a vendor question bank for [tool category]. Include questions about data use, privacy, review workflows, admin controls, implementation effort, training, support, and exit options."),
+            ("Internal message", "Draft an internal message explaining that we are learning about AI before making major technology decisions. Keep it calm, practical, nontechnical, and clear about responsible use boundaries."),
         ],
     },
     {
@@ -414,6 +544,32 @@ CURRICULA = [
             "Submit questions or examples before the next session.",
             "Update shared notes with what worked, what failed, and what needs clearer guidance.",
         ],
+        "tangible_cases": [
+            {
+                "title": "Prompt that failed",
+                "situation": "A team member tried AI for a harmless task, but the result was generic, wrong, or too confident.",
+                "learner_task": "Diagnose whether the issue was task choice, missing context, weak constraints, or insufficient review.",
+                "prompt": "Diagnose why this AI attempt failed. Classify the likely issue as task choice, missing context, unclear constraints, weak examples, overtrust, or review failure. Suggest a safer revised prompt: [failed prompt and output].",
+            },
+            {
+                "title": "New feature translation",
+                "situation": "A model or product announces a new feature, and the team is unsure whether it matters.",
+                "learner_task": "Translate the change into practical implications, ignore the noise, and name any new boundaries.",
+                "prompt": "Explain this AI tool update for a cautious team. What changed, what might be useful, what should we ignore for now, what risks or boundaries remain, and what small safe experiment could we try? [update].",
+            },
+            {
+                "title": "Shared learning capture",
+                "situation": "Several staff members are experimenting privately, but the organization is not learning from those experiments.",
+                "learner_task": "Convert individual examples into shared guidance, question lists, workflow notes, and follow-up topics.",
+                "prompt": "Turn these monthly AI practice notes into a team learning recap. Include useful patterns, confusing moments, unsafe ideas to avoid, workflows to revisit, and questions for next office hours: [practice notes].",
+            },
+        ],
+        "prompt_library": [
+            ("Question refinement", "Turn this messy AI question into a clearer office-hours question. Identify the real task, missing context, data boundaries, and what kind of answer would be useful: [question]."),
+            ("Workflow rescue", "Rescue this disappointing AI workflow. Identify where it broke down, rewrite the prompt sequence, add review checkpoints, and say when the task should stay human-led: [workflow]."),
+            ("Tool-change digest", "Summarize this AI tool change for a practical team. Use three sections: what changed, who should care, and what to test safely next month: [announcement]."),
+            ("Monthly recap", "Create a one-page office-hours recap from these notes. Include questions answered, examples discussed, practice habit, cautions, and items to revisit next month: [notes]."),
+        ],
     },
     {
         "slug": "advanced-operator-codex-track",
@@ -479,6 +635,32 @@ CURRICULA = [
             "Run one scoped agent-assisted change on a low-risk project.",
             "Capture the prompt, diff, checks, and final decision in a practice log.",
             "Build a personal checklist for future Codex-style work before using it on higher-risk projects.",
+        ],
+        "tangible_cases": [
+            {
+                "title": "Website content update",
+                "situation": "A site owner wants to add a new section to a public website while preserving design patterns and avoiding unrelated changes.",
+                "learner_task": "Ask the agent to inspect the repo, propose scoped edits, implement, test, screenshot, and summarize the diff.",
+                "prompt": "Inspect this project first. Then add a new public content section about [topic] using existing design patterns. Do not change unrelated files. After editing, run the appropriate checks, capture any layout concerns, and summarize the exact files changed.",
+            },
+            {
+                "title": "PDF companion generation",
+                "situation": "A curriculum owner wants PDF companions regenerated from site content and visually checked.",
+                "learner_task": "Use the local generator, render PDFs to images, inspect layout, and keep public and output copies synchronized.",
+                "prompt": "Update the PDF companion content for [track]. Regenerate the PDFs, render representative pages to images, check for clipping or awkward spacing, and report the output files and verification results.",
+            },
+            {
+                "title": "Low-risk bug fix",
+                "situation": "A local app has a visible layout bug on mobile after new content was added.",
+                "learner_task": "Have the agent reproduce the issue, inspect CSS, make a targeted fix, run lint/build, and verify mobile width.",
+                "prompt": "Reproduce the mobile layout issue at [route]. Identify the smallest CSS change that fixes it, avoid unrelated refactors, run lint and build, then verify there is no horizontal overflow at 390px width.",
+            },
+        ],
+        "prompt_library": [
+            ("Inspect before editing", "Before making changes, inspect the repo structure, relevant files, existing patterns, and likely risks. Then propose the smallest implementation plan and wait for approval if the change touches deployment, credentials, deletion, or external API calls."),
+            ("Scoped edit", "Make only the requested change: [change]. Follow existing patterns, avoid unrelated refactors, and list any assumptions. After editing, show the files changed and the verification you ran."),
+            ("Verification plan", "Create and run a verification plan for this change. Include static checks, build, browser checks, screenshot or render checks where relevant, and any residual risks a human should review."),
+            ("Rollback thinking", "Before publishing, explain how to reverse this change if it is wrong. Identify the commit, changed files, deployment checks, and the exact evidence we should confirm after release."),
         ],
     },
 ]
@@ -626,6 +808,18 @@ def build_pdf(curriculum, out_dir):
     for title, body in curriculum["practice_labs"]:
         story.append(Paragraph(f"<b>{title}</b>", style["BodyTextX"]))
         story.append(Paragraph(body, style["BodyTextX"]))
+
+    story.append(Paragraph("Tangible cases", style["SectionTitle"]))
+    for case in curriculum["tangible_cases"]:
+        story.append(Paragraph(f"<b>{case['title']}</b>", style["BodyTextX"]))
+        story.append(Paragraph(f"<b>Situation:</b> {case['situation']}", style["BodyTextX"]))
+        story.append(Paragraph(f"<b>Learner task:</b> {case['learner_task']}", style["BodyTextX"]))
+        story.append(Paragraph(f"<b>Starter prompt:</b> {case['prompt']}", style["BodyTextX"]))
+
+    story.append(Paragraph("Prompt library", style["SectionTitle"]))
+    for title, prompt in curriculum["prompt_library"]:
+        story.append(Paragraph(f"<b>{title}</b>", style["BodyTextX"]))
+        story.append(Paragraph(prompt, style["BodyTextX"]))
 
     story.extend(
         [

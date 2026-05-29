@@ -296,6 +296,12 @@ p {
 .diagram-slot,
 .flow-card,
 .practice-lab-card,
+.case-card,
+.prompt-card,
+.info-image-card,
+.info-mini-card,
+.tool-class-card,
+.source-link-card,
 .visual-card,
 .example-card,
 .process-step,
@@ -670,6 +676,83 @@ details {
   color: var(--teal);
 }
 
+.curriculum-case-section {
+  background: var(--surface);
+}
+
+.case-grid,
+.prompt-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.case-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.prompt-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.case-card,
+.prompt-card {
+  padding: 24px;
+}
+
+.case-card {
+  display: grid;
+  gap: 18px;
+}
+
+.case-card > svg,
+.prompt-card > svg {
+  width: 24px;
+  height: 24px;
+  color: var(--teal);
+}
+
+.case-card > p,
+.prompt-card > p,
+.case-task p,
+.prompt-box p {
+  line-height: 1.6;
+}
+
+.case-task,
+.prompt-box {
+  padding: 16px;
+  border: 1px solid rgba(26, 44, 49, 0.1);
+  border-radius: 8px;
+  background: rgba(234, 242, 238, 0.56);
+}
+
+.case-task span,
+.prompt-box span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--clay);
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.case-task p,
+.prompt-box p {
+  margin-bottom: 0;
+  color: var(--ink-soft);
+  font-size: 0.94rem;
+  font-weight: 640;
+}
+
+.prompt-card {
+  min-height: 286px;
+}
+
+.prompt-card svg {
+  margin-bottom: 22px;
+}
+
 .diagram-planning-section {
   background: var(--surface-warm);
 }
@@ -732,6 +815,178 @@ details {
 
 .visual-card-copy p {
   line-height: 1.62;
+}
+
+.info-resource-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  margin-top: 28px;
+  padding: 28px;
+  border: 1px solid rgba(26, 44, 49, 0.1);
+  border-radius: 8px;
+  background: var(--paper);
+  box-shadow: 0 18px 50px rgba(28, 76, 84, 0.07);
+}
+
+.info-resource-strip div {
+  max-width: 760px;
+}
+
+.info-resource-strip h3 {
+  font-size: 1.38rem;
+}
+
+.info-resource-strip p:not(.eyebrow) {
+  margin-bottom: 0;
+  line-height: 1.62;
+}
+
+.info-page {
+  background: var(--surface);
+}
+
+.info-page * {
+  min-width: 0;
+}
+
+.info-page h1,
+.info-page h2,
+.info-page h3,
+.info-page p,
+.info-page li {
+  overflow-wrap: break-word;
+}
+
+.info-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 0.42fr);
+  gap: 52px;
+  align-items: center;
+  min-height: 58svh;
+  padding: 82px 48px;
+  background:
+    linear-gradient(135deg, rgba(234, 242, 238, 0.9), rgba(247, 249, 246, 0.95)),
+    var(--mist);
+}
+
+.info-hero-panel {
+  padding: 30px;
+  border: 1px solid rgba(26, 44, 49, 0.1);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 24px 60px rgba(28, 76, 84, 0.1);
+}
+
+.info-hero-panel p:not(.eyebrow) {
+  color: var(--ink-soft);
+  font-size: 1.02rem;
+  font-weight: 660;
+  line-height: 1.6;
+}
+
+.info-visual-section {
+  background: var(--surface);
+}
+
+.info-visual-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.info-image-card {
+  overflow: hidden;
+}
+
+.info-image-link {
+  display: block;
+  aspect-ratio: 16 / 9;
+  background: var(--mist);
+}
+
+.info-image-link picture,
+.info-image-link img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.info-image-link img {
+  object-fit: cover;
+}
+
+.info-image-card > div {
+  padding: 24px;
+}
+
+.info-image-card p {
+  line-height: 1.62;
+}
+
+.info-list-grid,
+.tool-class-grid,
+.source-link-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.info-list-grid,
+.tool-class-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.source-link-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.info-mini-card,
+.tool-class-card {
+  min-height: 210px;
+  padding: 22px;
+}
+
+.info-mini-card span,
+.tool-class-card span {
+  display: block;
+  margin-bottom: 18px;
+  color: var(--clay);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.info-mini-card p,
+.tool-class-card p {
+  line-height: 1.6;
+}
+
+.tool-class-card span {
+  color: var(--teal);
+  font-size: 0.9rem;
+  line-height: 1.35;
+}
+
+.info-sources-section {
+  background: var(--surface-warm);
+}
+
+.source-link-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 72px;
+  padding: 18px;
+  color: var(--ink);
+  font-weight: 740;
+  text-decoration: none;
+}
+
+.source-link-card svg {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  color: var(--teal);
 }
 
 .text-link {
@@ -1254,17 +1509,24 @@ details p {
   .curriculum-card-grid,
   .curriculum-library-grid,
   .visual-grid,
+  .info-visual-grid,
   .example-grid,
   .process-grid,
   .module-grid,
   .curriculum-flow-grid,
-  .practice-lab-grid {
+  .practice-lab-grid,
+  .case-grid,
+  .prompt-grid,
+  .info-list-grid,
+  .tool-class-grid,
+  .source-link-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .offer-hero,
   .protected-gate,
-  .curriculum-hero {
+  .curriculum-hero,
+  .info-hero {
     padding-right: 28px;
     padding-left: 28px;
   }
@@ -1340,31 +1602,39 @@ details p {
 
   .section-intro,
   .founder-section,
-  .why-section,
-  .contact-section {
+    .why-section,
+    .contact-section {
     grid-template-columns: 1fr;
   }
 
   .section-intro,
   .founder-section,
   .why-section,
-  .offer-hero {
+  .offer-hero,
+  .info-resource-strip {
     gap: 34px;
   }
 
   .offer-hero,
   .protected-gate,
   .curriculum-hero,
+  .info-hero,
   .offer-detail-section {
     grid-template-columns: 1fr;
   }
 
   .offer-hero,
   .protected-gate,
-  .curriculum-hero {
+  .curriculum-hero,
+  .info-hero {
     min-height: auto;
     padding-top: 60px;
     padding-bottom: 64px;
+  }
+
+  .info-resource-strip {
+    align-items: flex-start;
+    flex-direction: column;
   }
 
   .founder-proof-grid {
@@ -1448,11 +1718,17 @@ details p {
   .curriculum-card-grid,
   .curriculum-library-grid,
   .visual-grid,
+  .info-visual-grid,
   .example-grid,
   .process-grid,
   .module-grid,
   .curriculum-flow-grid,
   .practice-lab-grid,
+  .case-grid,
+  .prompt-grid,
+  .info-list-grid,
+  .tool-class-grid,
+  .source-link-grid,
   .diagram-slot-list,
   .curriculum-detail-grid {
     grid-template-columns: 1fr;
@@ -1465,18 +1741,24 @@ details p {
   .curriculum-card,
   .curriculum-library-card,
   .visual-card,
+  .info-image-card,
+  .info-mini-card,
+  .tool-class-card,
   .example-card,
   .process-step,
   .module-card,
   .flow-card,
   .practice-lab-card,
+  .case-card,
+  .prompt-card,
   .diagram-slot {
     min-height: auto;
   }
 
   .offer-hero,
   .protected-gate,
-  .curriculum-hero {
+  .curriculum-hero,
+  .info-hero {
     padding-right: 20px;
     padding-left: 20px;
   }
@@ -1484,6 +1766,7 @@ details p {
   .offer-hero-panel,
   .password-panel,
   .curriculum-hero-panel,
+  .info-hero-panel,
   .detail-panel {
     padding: 22px;
   }

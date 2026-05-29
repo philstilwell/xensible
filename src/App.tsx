@@ -1,5 +1,5 @@
 import type { ComponentType, FormEvent, MouseEvent, ReactNode } from 'react'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import type { LucideProps } from 'lucide-react'
 import {
   ArrowLeft,
@@ -46,6 +46,13 @@ type CurriculumContent = {
   materials: string[]
   diagramSlots: string[]
   followUp: string[]
+  tangibleCases: Array<{
+    title: string
+    situation: string
+    learnerTask: string
+    prompt: string
+  }>
+  promptLibrary: Array<{ title: string; prompt: string }>
   pdfHref: string
 }
 
@@ -339,6 +346,57 @@ const freeCurriculum: CurriculumContent = {
     'Collect three questions that would benefit from coaching or a team discussion.',
     'Choose one recurring task that may become a future workflow workshop candidate.',
   ],
+  tangibleCases: [
+    {
+      title: 'Public article summary',
+      situation:
+        'A learner wants to understand a public article, newsletter, or announcement without losing the main ideas.',
+      learnerTask:
+        'Use AI to summarize the text, then mark which claims still need source checking before sharing.',
+      prompt:
+        'Summarize the following public text for a beginner. Give me five key points, three terms to define, and a short list of claims I should verify before I rely on the summary: [paste public text].',
+    },
+    {
+      title: 'Fictional email draft',
+      situation:
+        'A professional wants to practice drafting an email without using client, patient, employee, or proprietary details.',
+      learnerTask:
+        'Draft from a fictional scenario, revise tone, and decide what a human should edit before sending.',
+      prompt:
+        'Using this fictional scenario, draft a warm professional email. Keep it concise, avoid promises, and include a checklist of details a human should confirm before sending: [fictional scenario].',
+    },
+    {
+      title: 'First practice plan',
+      situation:
+        'A curious learner needs a low-pressure way to keep practicing after the starter session.',
+      learnerTask:
+        'Choose one safe weekly task, define boundaries, and keep a short log of useful and unreliable outputs.',
+      prompt:
+        'Help me design a one-week AI practice plan using only public or fictional information. Include one task per day, a safety reminder, and a simple log format for what worked, what failed, and what I checked.',
+    },
+  ],
+  promptLibrary: [
+    {
+      title: 'Plain-language explanation',
+      prompt:
+        'Explain [AI concept] for a smart beginner. Use an everyday analogy, name two useful applications, and name two reasons I should not overtrust the output.',
+    },
+    {
+      title: 'Starter prompt builder',
+      prompt:
+        'Turn my rough request into a stronger prompt. Ask me for missing context first. Then produce a prompt with task, audience, context, constraints, and review criteria.',
+    },
+    {
+      title: 'Output review',
+      prompt:
+        'Review this AI-generated draft. Identify unsupported claims, vague wording, missing context, possible bias, tone problems, and anything that needs human verification: [draft].',
+    },
+    {
+      title: 'Safe practice chooser',
+      prompt:
+        'Given these possible practice tasks, sort them into safe public practice, use caution, and do not use in a public tool. Explain the reason for each category: [task list].',
+    },
+  ],
   pdfHref: '/curriculum-pdfs/free-ai-fluency-starter.pdf',
 }
 
@@ -476,6 +534,57 @@ const curriculumPackages: CurriculumContent[] = [
       'Collect examples of confusing, useful, or unreliable AI outputs for discussion.',
       'Identify one team workflow that may deserve deeper workshop treatment.',
     ],
+    tangibleCases: [
+      {
+        title: 'Shared vocabulary kickoff',
+        situation:
+          'A leadership group and frontline staff are using different words for prompts, outputs, hallucinations, and review.',
+        learnerTask:
+          'Create a shared glossary and test it against everyday examples so the group can discuss AI without confusion.',
+        prompt:
+          'Create a plain-language glossary for a team learning AI. Define prompt, context, output, hallucination, review, sensitive data, and human judgment. For each term, give a workplace example and a common misconception.',
+      },
+      {
+        title: 'Nonprofit communications draft',
+        situation:
+          'A nonprofit team wants to draft a donor update from public program facts and a fictional event recap.',
+        learnerTask:
+          'Practice drafting, audience adaptation, and review without using donor records or private beneficiary details.',
+        prompt:
+          'Draft a donor update using only the public facts and fictional event notes below. Make it warm, specific, and modest. Then list what a staff member should verify before sending: [public facts and fictional notes].',
+      },
+      {
+        title: 'Healthcare admin FAQ practice',
+        situation:
+          'A cautious health care admin team wants AI practice that does not involve patient information.',
+        learnerTask:
+          'Use a fictional policy FAQ to practice summarizing, tone adjustment, and boundary setting.',
+        prompt:
+          'Using this fictional clinic FAQ, rewrite the answer for a general audience. Do not add medical advice. Flag anything that should be reviewed by the appropriate internal owner before publication: [fictional FAQ].',
+      },
+    ],
+    promptLibrary: [
+      {
+        title: 'Team baseline',
+        prompt:
+          'Ask five questions that help a mixed-comfort team describe what they know about AI, what worries them, and what they want to learn. Keep the questions nontechnical and practical.',
+      },
+      {
+        title: 'Prompt anatomy',
+        prompt:
+          'Rewrite this vague prompt into a stronger one with role, task, audience, context, constraints, examples, and success criteria. Explain what changed and why: [rough prompt].',
+      },
+      {
+        title: 'Output comparison',
+        prompt:
+          'Compare these two AI outputs. Which is more useful, more accurate, clearer, and safer to use? Name what still needs human review before either one is applied: [output A] [output B].',
+      },
+      {
+        title: 'Boundary sort',
+        prompt:
+          'Sort these example inputs into safe public practice, caution, and do not paste into public AI tools. Give a short reason for each decision: [example inputs].',
+      },
+    ],
     pdfHref: '/curriculum-pdfs/ai-fluency-essentials.pdf',
   },
   {
@@ -586,6 +695,57 @@ const curriculumPackages: CurriculumContent[] = [
       'Pilot one documented workflow for two weeks using safe inputs.',
       'Track where the workflow saves time, improves quality, or creates review burden.',
       'Bring one workflow back for refinement before scaling it to a broader team.',
+    ],
+    tangibleCases: [
+      {
+        title: 'Meeting-to-action workflow',
+        situation:
+          'A team loses momentum after meetings because notes, decisions, and follow-up messages are inconsistent.',
+        learnerTask:
+          'Use fictional meeting notes to create an agenda, decision summary, action list, and follow-up draft.',
+        prompt:
+          'Using these fictional meeting notes, create a concise decision summary, action-item table, and follow-up email draft. Mark anything that requires human confirmation before sending: [fictional notes].',
+      },
+      {
+        title: 'Policy explainer rewrite',
+        situation:
+          'A department has a dense internal policy that staff struggle to understand.',
+        learnerTask:
+          'Rewrite a public or sanitized policy excerpt into clearer language, then review for missing nuance.',
+        prompt:
+          'Rewrite this public or sanitized policy excerpt for busy staff. Keep the meaning intact, define jargon, list what changed, and identify any part that should be reviewed by the policy owner: [excerpt].',
+      },
+      {
+        title: 'Research question map',
+        situation:
+          'A professional needs to explore an unfamiliar topic before deciding what sources to read.',
+        learnerTask:
+          'Use AI to generate research questions, search terms, source categories, and verification steps.',
+        prompt:
+          'Help me plan research on [topic]. Give me key questions, useful search terms, source types to look for, likely blind spots, and a verification checklist. Do not make final claims without sources.',
+      },
+    ],
+    promptLibrary: [
+      {
+        title: 'Workflow recipe',
+        prompt:
+          'Turn this recurring task into an AI-assisted workflow recipe. Include purpose, safe inputs, prompt sequence, review checkpoints, human decision points, and when not to use the workflow: [task].',
+      },
+      {
+        title: 'Draft and critique',
+        prompt:
+          'Create a first draft for [audience] using the safe context below. Then critique your own draft for clarity, tone, unsupported claims, missing context, and review needs: [safe context].',
+      },
+      {
+        title: 'Meeting preparation',
+        prompt:
+          'Using this fictional meeting context, create an agenda, prep questions, risks to discuss, and a follow-up template. Keep all assumptions visible: [fictional context].',
+      },
+      {
+        title: 'Decision support',
+        prompt:
+          'Compare these options without choosing for me. Create criteria, pros and cons, assumptions, missing information, and questions a human decision maker should answer: [options].',
+      },
     ],
     pdfHref: '/curriculum-pdfs/practical-ai-workflows.pdf',
   },
@@ -698,6 +858,57 @@ const curriculumPackages: CurriculumContent[] = [
       'Schedule the right briefing or workshop for the highest-priority audience.',
       'Review the map monthly as team fluency and tool options change.',
     ],
+    tangibleCases: [
+      {
+        title: 'Nonprofit intake backlog',
+        situation:
+          'A nonprofit team spends too much time sorting public inquiries, drafting first responses, and preparing internal handoffs.',
+        learnerTask:
+          'Map the workflow, identify safe practice points, and decide which steps are training candidates rather than automation projects.',
+        prompt:
+          'Analyze this fictional nonprofit intake workflow. Identify friction points, possible AI training opportunities, data sensitivity concerns, review needs, and whether each idea belongs in train, pilot, wait, or avoid: [fictional workflow].',
+      },
+      {
+        title: 'Clinic admin documentation',
+        situation:
+          'A health care organization wants to improve admin templates but is cautious about patient privacy and medical claims.',
+        learnerTask:
+          'Separate generic documentation practice from anything requiring internal privacy, clinical, legal, or compliance owners.',
+        prompt:
+          'Given this fictional clinic admin workflow, list low-risk AI training ideas, items that require private systems or internal approval, and items to avoid. Do not provide medical, legal, compliance, or cybersecurity assurances: [fictional workflow].',
+      },
+      {
+        title: 'Customer support knowledge gaps',
+        situation:
+          'A small company has scattered public FAQ pages and repeated support questions.',
+        learnerTask:
+          'Score possible use cases by value, risk, readiness, and review burden before any tool purchase.',
+        prompt:
+          'Turn these fictional support pain points into use-case cards. For each card, include task, user, input, output, value, risk, readiness, review owner, and recommended next step: [pain points].',
+      },
+    ],
+    promptLibrary: [
+      {
+        title: 'Friction map',
+        prompt:
+          'Help a team map workflow friction. Ask for recurring tasks, delays, rework, handoffs, knowledge bottlenecks, and sensitive-data concerns. Then summarize likely AI training opportunities.',
+      },
+      {
+        title: 'Use-case card',
+        prompt:
+          'Create a use-case card for this AI idea with user, task, input, output, value, risk, data sensitivity, review owner, readiness, and training need: [idea].',
+      },
+      {
+        title: 'Value-risk scoring',
+        prompt:
+          'Score these AI ideas from 1 to 5 for value, risk, readiness, and review burden. Explain each score and sort the ideas into train, pilot, wait, or avoid: [ideas].',
+      },
+      {
+        title: 'Readiness summary',
+        prompt:
+          'Draft a cautious readiness summary for leaders. Include what the team is ready to learn, what should be postponed, what needs specialist review, and the smallest practical next step: [findings].',
+      },
+    ],
     pdfHref: '/curriculum-pdfs/team-ai-readiness-sprint.pdf',
   },
   {
@@ -809,6 +1020,57 @@ const curriculumPackages: CurriculumContent[] = [
       'List vendor, policy, or data questions that require specialist review.',
       'Schedule a follow-up briefing or readiness sprint if the organization needs a fuller map.',
     ],
+    tangibleCases: [
+      {
+        title: 'Vendor pitch review',
+        situation:
+          'A CEO hears a vendor promise broad productivity gains and wants better questions before spending money.',
+        learnerTask:
+          'Translate the pitch into concrete questions about workflow fit, data handling, review, ownership, and training.',
+        prompt:
+          'Turn this vendor claim into practical evaluation questions. Cover workflow fit, data handling, human review, implementation burden, training needs, lock-in, and evidence we should request: [vendor claim].',
+      },
+      {
+        title: 'Board-level AI stance',
+        situation:
+          'A board or senior leadership group asks whether the organization has an AI strategy.',
+        learnerTask:
+          'Draft a calm response that frames learning, boundaries, and next steps without overpromising outcomes.',
+        prompt:
+          'Draft a board-level AI learning statement. Emphasize clarity before complexity, staff fluency, safe experimentation, human judgment, and decisions that need the right internal owners. Avoid hype and guarantees.',
+      },
+      {
+        title: 'Policy before practice tension',
+        situation:
+          'A department wants to ban, buy, or standardize AI before staff understand practical use.',
+        learnerTask:
+          'Separate what training can solve from what requires policy, legal, privacy, technical, or procurement decisions.',
+        prompt:
+          'Given this leadership concern, separate issues into fluency training, workflow practice, policy, procurement, technical implementation, and specialist review. Recommend a small next step for each: [concern].',
+      },
+    ],
+    promptLibrary: [
+      {
+        title: 'Decision gate',
+        prompt:
+          'Evaluate this AI idea through decision gates: learn, practice, pilot, buy, wait, or seek specialist review. Explain the evidence needed before moving to the next gate: [AI idea].',
+      },
+      {
+        title: 'Leadership briefing prep',
+        prompt:
+          'Prepare a plain-language executive briefing on [AI topic]. Include what it is, what it is useful for, limits, risks, good questions to ask, and a cautious next step.',
+      },
+      {
+        title: 'Vendor question bank',
+        prompt:
+          'Create a vendor question bank for [tool category]. Include questions about data use, privacy, review workflows, admin controls, implementation effort, training, support, and exit options.',
+      },
+      {
+        title: 'Internal message',
+        prompt:
+          'Draft an internal message explaining that we are learning about AI before making major technology decisions. Keep it calm, practical, nontechnical, and clear about responsible use boundaries.',
+      },
+    ],
     pdfHref: '/curriculum-pdfs/executive-ai-briefing.pdf',
   },
   {
@@ -919,6 +1181,57 @@ const curriculumPackages: CurriculumContent[] = [
       'Try the monthly practice habit with one safe task.',
       'Submit questions or examples before the next session.',
       'Update shared notes with what worked, what failed, and what needs clearer guidance.',
+    ],
+    tangibleCases: [
+      {
+        title: 'Prompt that failed',
+        situation:
+          'A team member tried AI for a harmless task, but the result was generic, wrong, or too confident.',
+        learnerTask:
+          'Diagnose whether the issue was task choice, missing context, weak constraints, or insufficient review.',
+        prompt:
+          'Diagnose why this AI attempt failed. Classify the likely issue as task choice, missing context, unclear constraints, weak examples, overtrust, or review failure. Suggest a safer revised prompt: [failed prompt and output].',
+      },
+      {
+        title: 'New feature translation',
+        situation:
+          'A model or product announces a new feature, and the team is unsure whether it matters.',
+        learnerTask:
+          'Translate the change into practical implications, ignore the noise, and name any new boundaries.',
+        prompt:
+          'Explain this AI tool update for a cautious team. What changed, what might be useful, what should we ignore for now, what risks or boundaries remain, and what small safe experiment could we try? [update].',
+      },
+      {
+        title: 'Shared learning capture',
+        situation:
+          'Several staff members are experimenting privately, but the organization is not learning from those experiments.',
+        learnerTask:
+          'Convert individual examples into shared guidance, question lists, workflow notes, and follow-up topics.',
+        prompt:
+          'Turn these monthly AI practice notes into a team learning recap. Include useful patterns, confusing moments, unsafe ideas to avoid, workflows to revisit, and questions for next office hours: [practice notes].',
+      },
+    ],
+    promptLibrary: [
+      {
+        title: 'Question refinement',
+        prompt:
+          'Turn this messy AI question into a clearer office-hours question. Identify the real task, missing context, data boundaries, and what kind of answer would be useful: [question].',
+      },
+      {
+        title: 'Workflow rescue',
+        prompt:
+          'Rescue this disappointing AI workflow. Identify where it broke down, rewrite the prompt sequence, add review checkpoints, and say when the task should stay human-led: [workflow].',
+      },
+      {
+        title: 'Tool-change digest',
+        prompt:
+          'Summarize this AI tool change for a practical team. Use three sections: what changed, who should care, and what to test safely next month: [announcement].',
+      },
+      {
+        title: 'Monthly recap',
+        prompt:
+          'Create a one-page office-hours recap from these notes. Include questions answered, examples discussed, practice habit, cautions, and items to revisit next month: [notes].',
+      },
     ],
     pdfHref: '/curriculum-pdfs/monthly-ai-office-hours.pdf',
   },
@@ -1035,6 +1348,57 @@ const curriculumPackages: CurriculumContent[] = [
       'Capture the prompt, diff, checks, and final decision in a practice log.',
       'Build a personal checklist for future Codex-style work before using it on higher-risk projects.',
     ],
+    tangibleCases: [
+      {
+        title: 'Website content update',
+        situation:
+          'A site owner wants to add a new section to a public website while preserving design patterns and avoiding unrelated changes.',
+        learnerTask:
+          'Ask the agent to inspect the repo, propose scoped edits, implement, test, screenshot, and summarize the diff.',
+        prompt:
+          'Inspect this project first. Then add a new public content section about [topic] using existing design patterns. Do not change unrelated files. After editing, run the appropriate checks, capture any layout concerns, and summarize the exact files changed.',
+      },
+      {
+        title: 'PDF companion generation',
+        situation:
+          'A curriculum owner wants PDF companions regenerated from site content and visually checked.',
+        learnerTask:
+          'Use the local generator, render PDFs to images, inspect layout, and keep public and output copies synchronized.',
+        prompt:
+          'Update the PDF companion content for [track]. Regenerate the PDFs, render representative pages to images, check for clipping or awkward spacing, and report the output files and verification results.',
+      },
+      {
+        title: 'Low-risk bug fix',
+        situation:
+          'A local app has a visible layout bug on mobile after new content was added.',
+        learnerTask:
+          'Have the agent reproduce the issue, inspect CSS, make a targeted fix, run lint/build, and verify mobile width.',
+        prompt:
+          'Reproduce the mobile layout issue at [route]. Identify the smallest CSS change that fixes it, avoid unrelated refactors, run lint and build, then verify there is no horizontal overflow at 390px width.',
+      },
+    ],
+    promptLibrary: [
+      {
+        title: 'Inspect before editing',
+        prompt:
+          'Before making changes, inspect the repo structure, relevant files, existing patterns, and likely risks. Then propose the smallest implementation plan and wait for approval if the change touches deployment, credentials, deletion, or external API calls.',
+      },
+      {
+        title: 'Scoped edit',
+        prompt:
+          'Make only the requested change: [change]. Follow existing patterns, avoid unrelated refactors, and list any assumptions. After editing, show the files changed and the verification you ran.',
+      },
+      {
+        title: 'Verification plan',
+        prompt:
+          'Create and run a verification plan for this change. Include static checks, build, browser checks, screenshot or render checks where relevant, and any residual risks a human should review.',
+      },
+      {
+        title: 'Rollback thinking',
+        prompt:
+          'Before publishing, explain how to reverse this change if it is wrong. Identify the commit, changed files, deployment checks, and the exact evidence we should confirm after release.',
+      },
+    ],
     pdfHref: '/curriculum-pdfs/advanced-operator-codex-track.pdf',
   },
 ]
@@ -1068,6 +1432,114 @@ const visualConcepts = [
     fullImage: '/visuals/local-operator-control-loop.png',
     alt: 'Infographic showing an operator workflow with Inspect, Edit, Test, Review, Commit, and Roll Back.',
   },
+]
+
+const publicInfoVisuals = [
+  {
+    title: 'AI Uses You May Not Have Considered',
+    body:
+      'A public-facing map of practical AI experiments for curious professionals who want useful ideas before committing to expensive tools.',
+    image: '/visuals/ai-uses-you-may-not-have-considered.webp',
+    fullImage: '/visuals/ai-uses-you-may-not-have-considered.png',
+    alt: 'Infographic mapping practical AI uses such as decision rehearsal, meeting momentum, learning acceleration, research support, writing, workflows, roleplay, and pattern finding.',
+  },
+  {
+    title: 'AI Tools by Utility Class',
+    body:
+      'A current tool-class map that helps visitors think in categories rather than chasing product names.',
+    image: '/visuals/ai-tools-utility-classes.webp',
+    fullImage: '/visuals/ai-tools-utility-classes.png',
+    alt: 'Infographic grouping AI tools into utility classes including general assistants, research tools, workplace copilots, creative design, video and voice, coding agents, automation agents, and data sensemaking.',
+  },
+]
+
+const aiUseIdeas = [
+  {
+    title: 'Decision rehearsal',
+    body: 'Compare options, surface assumptions, and run a pre-mortem before a meeting.',
+  },
+  {
+    title: 'Meeting momentum',
+    body: 'Draft agendas, prep questions, action summaries, and follow-up notes from fictional or sanitized inputs.',
+  },
+  {
+    title: 'Learning accelerator',
+    body: 'Ask for analogies, quizzes, examples, and explanations at your current knowledge level.',
+  },
+  {
+    title: 'Research compass',
+    body: 'Generate better questions, search terms, source categories, and verification checklists.',
+  },
+  {
+    title: 'Writing studio',
+    body: 'Shape first drafts, rewrite for audience, tighten structure, and check tone.',
+  },
+  {
+    title: 'Workflow sketching',
+    body: 'Turn a repeated task into steps, inputs, review points, and human decision gates.',
+  },
+  {
+    title: 'Roleplay practice',
+    body: 'Rehearse a difficult conversation, interview, sales call, or coaching exchange.',
+  },
+  {
+    title: 'Pattern finding',
+    body: 'Sort public or anonymized notes into themes, risks, questions, and next actions.',
+  },
+]
+
+const toolUtilityClasses = [
+  {
+    title: 'General assistants',
+    examples: 'ChatGPT, Claude, Gemini',
+    body: 'Draft, explain, reason, summarize, brainstorm, and work across text, images, files, and conversation.',
+  },
+  {
+    title: 'Research and source tools',
+    examples: 'Perplexity, NotebookLM, Deep Research',
+    body: 'Explore questions, synthesize source material, compare claims, and keep verification visible.',
+  },
+  {
+    title: 'Workplace copilots',
+    examples: 'Microsoft Copilot, Gemini Workspace',
+    body: 'Bring AI into email, docs, spreadsheets, meetings, calendars, and internal knowledge work.',
+  },
+  {
+    title: 'Creative design',
+    examples: 'Canva, Adobe Firefly, Midjourney',
+    body: 'Create and revise images, layouts, brand assets, presentation visuals, and campaign concepts.',
+  },
+  {
+    title: 'Video and voice',
+    examples: 'Runway, Descript, ElevenLabs',
+    body: 'Generate or edit video, clean up audio, create voiceovers, dub, and prototype media.',
+  },
+  {
+    title: 'Coding agents',
+    examples: 'Codex, Cursor, GitHub Copilot',
+    body: 'Inspect repositories, write code, edit files, run tests, explain diffs, and support review.',
+  },
+  {
+    title: 'Automation agents',
+    examples: 'Zapier, Make, workflow agents',
+    body: 'Connect apps, route information, draft handoffs, and coordinate repeatable steps.',
+  },
+  {
+    title: 'Data sensemaking',
+    examples: 'Spreadsheets, BI copilots, notebooks',
+    body: 'Clean tables, find patterns, summarize trends, and generate questions for human review.',
+  },
+]
+
+const toolMapSources = [
+  { label: 'OpenAI ChatGPT', href: 'https://openai.com/chatgpt/' },
+  { label: 'Google Gemini', href: 'https://gemini.google.com/' },
+  { label: 'Anthropic Claude', href: 'https://www.anthropic.com/claude' },
+  { label: 'NotebookLM', href: 'https://notebooklm.google.com/' },
+  { label: 'GitHub Copilot', href: 'https://github.com/features/copilot' },
+  { label: 'Canva Magic Studio', href: 'https://www.canva.com/magic-studio/' },
+  { label: 'Adobe Firefly', href: 'https://www.adobe.com/products/firefly.html' },
+  { label: 'Zapier AI', href: 'https://zapier.com/ai' },
 ]
 
 const process = [
@@ -1189,6 +1661,381 @@ const faqs = [
 const contactHref =
   'mailto:contact@xensible.com?subject=AI%20Fluency%20Call%20for%20Xensible'
 
+type PageMetadata = {
+  title: string
+  description: string
+  path: string
+  robots?: string
+  schemaType?: string
+}
+
+const siteOrigin = 'https://xensible.com'
+const siteName = 'Xensible'
+const organizationId = `${siteOrigin}/#organization`
+const websiteId = `${siteOrigin}/#website`
+const founderId = `${siteOrigin}/#phil-stilwell`
+const defaultSocialImagePath = '/og-image.jpg'
+const defaultPageDescription =
+  'Practical AI fluency training, coaching, and Zoom workshops for teams, leaders, and professionals who want responsible AI workflows without hype.'
+const offerSeoDescriptions: Record<string, string> = {
+  'ai-briefing':
+    'Book a focused AI briefing for leaders who need plain-language clarity on AI tools, data boundaries, readiness, and next steps.',
+  'team-workshop':
+    'Plan a hands-on Zoom workshop that helps teams use AI for writing, research, planning, meetings, and safer repeatable workflows.',
+  'office-hours':
+    'Set up monthly AI office hours for practical questions, tool changes, workflow coaching, and steady team fluency support over Zoom.',
+}
+
+const absoluteSiteUrl = (path = '/') => {
+  const normalizedPath = path.startsWith('/') ? path : `/${path}`
+  return new URL(normalizedPath, siteOrigin).toString()
+}
+
+const slugify = (value: string) =>
+  value
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '')
+
+const setMetaByAttribute = (
+  attribute: 'name' | 'property',
+  key: string,
+  content: string,
+) => {
+  let element = document.head.querySelector<HTMLMetaElement>(
+    `meta[${attribute}="${key}"]`,
+  )
+
+  if (!element) {
+    element = document.createElement('meta')
+    element.setAttribute(attribute, key)
+    document.head.append(element)
+  }
+
+  element.content = content
+}
+
+const setCanonicalUrl = (href: string) => {
+  let element = document.head.querySelector<HTMLLinkElement>(
+    'link[rel="canonical"]',
+  )
+
+  if (!element) {
+    element = document.createElement('link')
+    element.rel = 'canonical'
+    document.head.append(element)
+  }
+
+  element.href = href
+}
+
+const setStructuredData = (structuredData: Record<string, unknown>) => {
+  let script = document.getElementById(
+    'xensible-structured-data',
+  ) as HTMLScriptElement | null
+
+  if (!script) {
+    script = document.createElement('script')
+    script.id = 'xensible-structured-data'
+    script.type = 'application/ld+json'
+    document.head.append(script)
+  }
+
+  script.textContent = JSON.stringify(structuredData)
+}
+
+const applyPageMetadata = (
+  metadata: PageMetadata,
+  structuredData: Record<string, unknown>,
+) => {
+  const canonicalUrl = absoluteSiteUrl(metadata.path)
+  const socialImageUrl = absoluteSiteUrl(defaultSocialImagePath)
+  const robots = metadata.robots ?? 'index,follow'
+
+  document.title = metadata.title
+  setCanonicalUrl(canonicalUrl)
+  setMetaByAttribute('name', 'description', metadata.description)
+  setMetaByAttribute('name', 'robots', robots)
+  setMetaByAttribute('name', 'author', siteName)
+  setMetaByAttribute('property', 'og:site_name', siteName)
+  setMetaByAttribute('property', 'og:locale', 'en_US')
+  setMetaByAttribute('property', 'og:type', 'website')
+  setMetaByAttribute('property', 'og:title', metadata.title)
+  setMetaByAttribute('property', 'og:description', metadata.description)
+  setMetaByAttribute('property', 'og:url', canonicalUrl)
+  setMetaByAttribute('property', 'og:image', socialImageUrl)
+  setMetaByAttribute(
+    'property',
+    'og:image:alt',
+    'Xensible AI fluency training visual',
+  )
+  setMetaByAttribute('property', 'og:image:width', '1200')
+  setMetaByAttribute('property', 'og:image:height', '630')
+  setMetaByAttribute('name', 'twitter:card', 'summary_large_image')
+  setMetaByAttribute('name', 'twitter:title', metadata.title)
+  setMetaByAttribute('name', 'twitter:description', metadata.description)
+  setMetaByAttribute('name', 'twitter:image', socialImageUrl)
+  setMetaByAttribute(
+    'name',
+    'twitter:image:alt',
+    'Xensible AI fluency training visual',
+  )
+  setStructuredData(structuredData)
+}
+
+const getPageMetadata = ({
+  activeCurriculum,
+  activeOffer,
+  currentPath,
+  isCurriculumHub,
+  isExpertCurriculumLibrary,
+  isFreeCurriculum,
+  isAiUsesToolsPage,
+}: {
+  activeCurriculum?: CurriculumContent
+  activeOffer?: (typeof offerFormats)[number]
+  currentPath: string
+  isCurriculumHub: boolean
+  isExpertCurriculumLibrary: boolean
+  isFreeCurriculum: boolean
+  isAiUsesToolsPage: boolean
+}): PageMetadata => {
+  if (activeOffer) {
+    return {
+      title: `${activeOffer.title} | Xensible AI Training`,
+      description: offerSeoDescriptions[activeOffer.slug] ?? activeOffer.summary,
+      path: `/offers/${activeOffer.slug}`,
+    }
+  }
+
+  if (activeCurriculum) {
+    return {
+      title: `${activeCurriculum.title} | Xensible Expert Curriculum`,
+      description: `${activeCurriculum.summary} Includes modules, practice labs, realistic cases, and prompt libraries for guided AI training.`,
+      path: `/curricula/expert/${activeCurriculum.slug}`,
+      robots: 'noindex,follow',
+    }
+  }
+
+  if (isFreeCurriculum) {
+    return {
+      title: 'Free AI Fluency Starter | Xensible',
+      description:
+        'Start learning AI fluency with a free Xensible starter curriculum covering LLM basics, prompt structure, safe practice, and human review habits.',
+      path: '/curricula/free',
+    }
+  }
+
+  if (isExpertCurriculumLibrary) {
+    return {
+      title: 'Expert Curriculum Library | Xensible',
+      description:
+        'Password-protected Xensible expert curriculum library for AI fluency workshops, office hours, readiness sprints, and advanced operator coaching.',
+      path: '/curricula/expert',
+      robots: 'noindex,follow',
+    }
+  }
+
+  if (isCurriculumHub) {
+    return {
+      title: 'AI Fluency Curriculum Tiers | Xensible',
+      description:
+        'Compare Xensible\'s free AI fluency starter path with the expert curriculum library for team workshops, office hours, and advanced operator coaching.',
+      path: '/curricula',
+      schemaType: 'CollectionPage',
+    }
+  }
+
+  if (isAiUsesToolsPage) {
+    return {
+      title: 'AI Uses and Tool Classes | Xensible',
+      description:
+        'Explore practical AI use cases and a current map of AI tool utility classes for AI-curious professionals, teams, and leaders.',
+      path: '/ai-uses-tools',
+      schemaType: 'CollectionPage',
+    }
+  }
+
+  if (currentPath !== '/') {
+    return {
+      title: 'Page Not Found | Xensible',
+      description:
+        'The Xensible page you requested could not be found. Return to AI fluency training services, curricula, or consultation details.',
+      path: currentPath,
+      robots: 'noindex,follow',
+    }
+  }
+
+  return {
+    title: 'Xensible | AI Fluency Training, Coaching, and Workshops',
+    description: defaultPageDescription,
+    path: '/',
+  }
+}
+
+const getBaseSchemaGraph = (
+  metadata: PageMetadata,
+): Array<Record<string, unknown>> => {
+  const canonicalUrl = absoluteSiteUrl(metadata.path)
+
+  return [
+    {
+      '@type': 'Organization',
+      '@id': organizationId,
+      name: siteName,
+      url: absoluteSiteUrl('/'),
+      logo: absoluteSiteUrl('/favicon.svg'),
+      email: 'contact@xensible.com',
+      description: defaultPageDescription,
+      founder: { '@id': founderId },
+    },
+    {
+      '@type': 'Person',
+      '@id': founderId,
+      name: 'Phil Stilwell',
+      jobTitle: 'AI fluency coach and educator',
+      worksFor: { '@id': organizationId },
+    },
+    {
+      '@type': 'WebSite',
+      '@id': websiteId,
+      name: siteName,
+      url: absoluteSiteUrl('/'),
+      inLanguage: 'en-US',
+      publisher: { '@id': organizationId },
+    },
+    {
+      '@type': metadata.schemaType ?? 'WebPage',
+      '@id': `${canonicalUrl}#webpage`,
+      url: canonicalUrl,
+      name: metadata.title,
+      description: metadata.description,
+      isPartOf: { '@id': websiteId },
+      inLanguage: 'en-US',
+      publisher: { '@id': organizationId },
+    },
+  ]
+}
+
+const getServiceListSchema = () => ({
+  '@type': 'ItemList',
+  '@id': `${absoluteSiteUrl('/')}#services`,
+  name: 'Xensible AI fluency services',
+  itemListElement: services.map(({ title, body }, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    item: {
+      '@type': 'Service',
+      '@id': `${absoluteSiteUrl('/')}#service-${slugify(title)}`,
+      name: title,
+      description: body,
+      provider: { '@id': organizationId },
+      serviceType: 'AI fluency training',
+      areaServed: { '@type': 'Country', name: 'United States' },
+      availableChannel: {
+        '@type': 'ServiceChannel',
+        serviceUrl: absoluteSiteUrl('/#contact'),
+        availableLanguage: 'en-US',
+      },
+    },
+  })),
+})
+
+const getFaqSchema = () => ({
+  '@type': 'FAQPage',
+  '@id': `${absoluteSiteUrl('/')}#faq-schema`,
+  mainEntity: faqs.map(({ question, answer }) => ({
+    '@type': 'Question',
+    name: question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: answer,
+    },
+  })),
+})
+
+const getOfferSchema = (offer: (typeof offerFormats)[number]) => ({
+  '@type': 'Service',
+  '@id': `${absoluteSiteUrl(`/offers/${offer.slug}`)}#service`,
+  name: offer.title,
+  description: offer.summary,
+  provider: { '@id': organizationId },
+  serviceType: 'AI fluency training',
+  areaServed: { '@type': 'Country', name: 'United States' },
+  audience: offer.bestFor.map((item) => ({
+    '@type': 'Audience',
+    audienceType: item,
+  })),
+  availableChannel: {
+    '@type': 'ServiceChannel',
+    serviceUrl: absoluteSiteUrl('/#contact'),
+    availableLanguage: 'en-US',
+  },
+})
+
+const getCourseSchema = (curriculum: CurriculumContent, path: string) => ({
+  '@type': 'Course',
+  '@id': `${absoluteSiteUrl(path)}#course`,
+  name: curriculum.title,
+  description: curriculum.summary,
+  provider: { '@id': organizationId },
+  educationalLevel: curriculum.level,
+  audience: {
+    '@type': 'Audience',
+    audienceType: curriculum.audience,
+  },
+  teaches: curriculum.outcomes,
+})
+
+const getCurriculumTierListSchema = () => ({
+  '@type': 'ItemList',
+  '@id': `${absoluteSiteUrl('/curricula')}#curriculum-tiers`,
+  name: 'Xensible AI fluency curriculum tiers',
+  itemListElement: curriculumTiers.map(({ title, summary, href }, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    url: absoluteSiteUrl(href),
+    name: title,
+    description: summary,
+  })),
+})
+
+const getStructuredData = (
+  metadata: PageMetadata,
+  {
+    activeOffer,
+    isCurriculumHub,
+    isFreeCurriculum,
+  }: {
+    activeOffer?: (typeof offerFormats)[number]
+    isCurriculumHub: boolean
+    isFreeCurriculum: boolean
+  },
+) => {
+  const graph = getBaseSchemaGraph(metadata)
+
+  if (metadata.path === '/') {
+    graph.push(getServiceListSchema(), getFaqSchema())
+  }
+
+  if (activeOffer) {
+    graph.push(getOfferSchema(activeOffer))
+  }
+
+  if (isCurriculumHub) {
+    graph.push(getCurriculumTierListSchema())
+  }
+
+  if (isFreeCurriculum) {
+    graph.push(getCourseSchema(freeCurriculum, '/curricula/free'))
+  }
+
+  return {
+    '@context': 'https://schema.org',
+    '@graph': graph,
+  }
+}
+
 const basePath = import.meta.env.BASE_URL
 const basePathWithoutSlash =
   basePath === '/' ? '' : basePath.replace(/\/$/, '')
@@ -1261,17 +2108,45 @@ function App() {
   const isCurriculumHub = currentPath === '/curricula'
   const isFreeCurriculum = currentPath === '/curricula/free'
   const isExpertCurriculumLibrary = currentPath === '/curricula/expert'
-  const pageTitle = activeOffer
-    ? `${activeOffer.title} | Xensible`
-    : activeCurriculum
-      ? `${activeCurriculum.title} | Xensible Expert Curriculum`
-      : isFreeCurriculum
-        ? 'Free AI Fluency Starter | Xensible'
-        : isExpertCurriculumLibrary
-          ? 'Expert Curriculum Library | Xensible'
-          : isCurriculumHub
-            ? 'Curriculum Tiers | Xensible'
-            : 'Xensible | AI Fluency Training'
+  const isAiUsesToolsPage = currentPath === '/ai-uses-tools'
+  const isUnknownRoute =
+    currentPath !== '/' &&
+    !activeOffer &&
+    !activeCurriculum &&
+    !isCurriculumHub &&
+    !isFreeCurriculum &&
+    !isExpertCurriculumLibrary &&
+    !isAiUsesToolsPage
+  const pageMetadata = useMemo(
+    () =>
+      getPageMetadata({
+        activeCurriculum,
+        activeOffer,
+        currentPath,
+        isCurriculumHub,
+        isExpertCurriculumLibrary,
+        isFreeCurriculum,
+        isAiUsesToolsPage,
+      }),
+    [
+      activeCurriculum,
+      activeOffer,
+      currentPath,
+      isCurriculumHub,
+      isExpertCurriculumLibrary,
+      isFreeCurriculum,
+      isAiUsesToolsPage,
+    ],
+  )
+  const structuredData = useMemo(
+    () =>
+      getStructuredData(pageMetadata, {
+        activeOffer,
+        isCurriculumHub,
+        isFreeCurriculum,
+      }),
+    [activeOffer, isCurriculumHub, isFreeCurriculum, pageMetadata],
+  )
 
   useEffect(() => {
     const handlePopState = () => setCurrentPath(stripBasePath(window.location.pathname))
@@ -1281,8 +2156,8 @@ function App() {
   }, [])
 
   useEffect(() => {
-    document.title = pageTitle
-  }, [pageTitle])
+    applyPageMetadata(pageMetadata, structuredData)
+  }, [pageMetadata, structuredData])
 
   useEffect(() => {
     if (currentPath === '/') {
@@ -1320,6 +2195,7 @@ function App() {
           <nav className="nav-links" aria-label="Main navigation">
             <a href={siteHref('/#services')}>Services</a>
             <a href={siteHref('/#curriculum-packages')}>Curricula</a>
+            <a href={siteHref('/ai-uses-tools')}>AI Map</a>
             <a href={siteHref('/#visuals')}>Visuals</a>
             <a href={siteHref('/#guide')}>Guide</a>
             <a href={siteHref('/#faq')}>FAQ</a>
@@ -1334,6 +2210,8 @@ function App() {
 
       {activeOffer ? (
         <OfferPage offer={activeOffer} />
+      ) : isAiUsesToolsPage ? (
+        <AiUsesToolsPage navigateToRoute={navigateToRoute} />
       ) : activeCurriculum || isCurriculumHub || isFreeCurriculum || isExpertCurriculumLibrary ? (
         <CurriculumPage
           curriculum={activeCurriculum}
@@ -1341,6 +2219,8 @@ function App() {
           isHub={isCurriculumHub}
           navigateToRoute={navigateToRoute}
         />
+      ) : isUnknownRoute ? (
+        <NotFoundPage />
       ) : (
         <HomePage navigateToRoute={navigateToRoute} />
       )}
@@ -1608,6 +2488,25 @@ function HomePage({
               </article>
             ))}
           </div>
+          <div className="info-resource-strip">
+            <div>
+              <p className="eyebrow">Public resource</p>
+              <h3>AI uses and tool classes for the AI-curious.</h3>
+              <p>
+                A nontechnical map visitors can use to see practical uses they
+                may not have considered and understand tool categories before
+                choosing what to try.
+              </p>
+            </div>
+            <a
+              className="button button-primary"
+              href={siteHref('/ai-uses-tools')}
+              onClick={(event) => navigateToRoute(event, '/ai-uses-tools')}
+            >
+              Open AI Map
+              <ArrowRight aria-hidden="true" />
+            </a>
+          </div>
         </section>
 
         <section className="section founder-section" id="guide" aria-labelledby="guide-title">
@@ -1778,6 +2677,34 @@ function HomePage({
   )
 }
 
+function NotFoundPage() {
+  return (
+    <main className="not-found-page">
+      <section className="curriculum-hero curriculum-tier-hero">
+        <div>
+          <p className="eyebrow">Page not found</p>
+          <h1>This Xensible page is not available.</h1>
+          <p className="hero-copy">
+            Return to the AI fluency training overview, browse the public
+            curriculum starter, or start a conversation about the right next
+            step.
+          </p>
+          <div className="hero-actions">
+            <a className="button button-primary" href={siteHref('/')}>
+              <ArrowLeft aria-hidden="true" />
+              Xensible Home
+            </a>
+            <a className="button button-secondary" href={siteHref('/curricula/free')}>
+              Free AI Fluency Starter
+              <ArrowRight aria-hidden="true" />
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+  )
+}
+
 function CurriculumGate({ children }: { children: ReactNode }) {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -1827,6 +2754,157 @@ function CurriculumGate({ children }: { children: ReactNode }) {
             Unlock Expert Tier
           </button>
         </form>
+      </section>
+    </main>
+  )
+}
+
+function AiUsesToolsPage({
+  navigateToRoute,
+}: {
+  navigateToRoute: (
+    event: MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => void
+}) {
+  return (
+    <main className="info-page">
+      <section className="info-hero">
+        <div>
+          <a
+            className="back-link"
+            href={siteHref('/')}
+            onClick={(event) => navigateToRoute(event, '/')}
+          >
+            <ArrowLeft aria-hidden="true" />
+            Back to home
+          </a>
+          <p className="eyebrow">Public AI map</p>
+          <h1>AI uses and tool classes for the AI-curious.</h1>
+          <p className="hero-copy">
+            These public infographics help visitors see practical AI uses they
+            may not have considered and understand the current tool landscape
+            by utility class rather than hype.
+          </p>
+          <div className="hero-actions">
+            <a className="button button-primary" href={contactHref}>
+              <CalendarDays aria-hidden="true" />
+              Discuss Team Training
+            </a>
+            <a
+              className="button button-secondary"
+              href={siteHref('/curricula/free')}
+              onClick={(event) => navigateToRoute(event, '/curricula/free')}
+            >
+              Free Starter Curriculum
+              <ArrowRight aria-hidden="true" />
+            </a>
+          </div>
+        </div>
+        <div className="info-hero-panel">
+          <p className="eyebrow">How to use this page</p>
+          <p>
+            Start with a work need, choose a low-risk experiment, and keep
+            human review visible. Tool names change quickly; judgment and
+            workflow fit matter more than the newest announcement.
+          </p>
+        </div>
+      </section>
+
+      <section className="section info-visual-section" aria-labelledby="public-visuals-title">
+        <div className="section-heading">
+          <p className="eyebrow">Public infographics</p>
+          <h2 id="public-visuals-title">Two maps for practical AI curiosity.</h2>
+          <p>
+            The images are designed for quick public sharing, while the HTML
+            lists below keep the same ideas accessible and easy to scan.
+          </p>
+        </div>
+        <div className="info-visual-grid">
+          {publicInfoVisuals.map(({ title, body, image, fullImage, alt }) => (
+            <article className="info-image-card" key={title}>
+              <a
+                className="info-image-link"
+                href={siteHref(fullImage)}
+                aria-label={`Open full-size ${title} infographic`}
+              >
+                <picture>
+                  <source srcSet={siteHref(image)} type="image/webp" />
+                  <img src={siteHref(fullImage)} alt={alt} />
+                </picture>
+              </a>
+              <div>
+                <h3>{title}</h3>
+                <p>{body}</p>
+                <a className="text-link" href={siteHref(fullImage)}>
+                  Open full-size image
+                  <ArrowRight aria-hidden="true" />
+                </a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section section-band" aria-labelledby="uses-list-title">
+        <div className="section-heading centered">
+          <p className="eyebrow">Uses to consider</p>
+          <h2 id="uses-list-title">AI can help before it becomes a technology decision.</h2>
+          <p>
+            These are safe places to begin with public, fictional, or
+            anonymized examples.
+          </p>
+        </div>
+        <div className="info-list-grid">
+          {aiUseIdeas.map(({ title, body }, index) => (
+            <article className="info-mini-card" key={title}>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{title}</h3>
+              <p>{body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section" aria-labelledby="tool-classes-title">
+        <div className="section-heading">
+          <p className="eyebrow">Tool utility classes</p>
+          <h2 id="tool-classes-title">Think in classes before choosing products.</h2>
+          <p>
+            Examples reflect the current public AI landscape, but the durable
+            habit is matching the tool class to the work, the data boundary,
+            and the review burden.
+          </p>
+        </div>
+        <div className="tool-class-grid">
+          {toolUtilityClasses.map(({ title, examples, body }) => (
+            <article className="tool-class-card" key={title}>
+              <h3>{title}</h3>
+              <span>{examples}</span>
+              <p>{body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section info-sources-section" aria-labelledby="sources-title">
+        <div className="section-heading">
+          <p className="eyebrow">Source check</p>
+          <h2 id="sources-title">Tool examples should be refreshed over time.</h2>
+          <p>
+            The categories are intentionally more important than the product
+            list. These public product pages are useful starting points for a
+            periodic refresh.
+          </p>
+        </div>
+        <div className="source-link-grid">
+          {toolMapSources.map(({ label, href }) => (
+            <a className="source-link-card" href={href} key={href} rel="noreferrer" target="_blank">
+              <ExternalLink aria-hidden="true" />
+              <span>{label}</span>
+            </a>
+          ))}
+        </div>
       </section>
     </main>
   )
@@ -2136,6 +3214,46 @@ function CurriculumDetail({
               <ClipboardCheck aria-hidden="true" />
               <h3>{title}</h3>
               <p>{body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section curriculum-case-section">
+        <div className="section-heading">
+          <p className="eyebrow">Tangible cases</p>
+          <h2>Realistic scenarios for practice without risky data.</h2>
+        </div>
+        <div className="case-grid">
+          {curriculum.tangibleCases.map(({ title, situation, learnerTask, prompt }) => (
+            <article className="case-card" key={title}>
+              <Lightbulb aria-hidden="true" />
+              <h3>{title}</h3>
+              <p>{situation}</p>
+              <div className="case-task">
+                <span>Learner task</span>
+                <p>{learnerTask}</p>
+              </div>
+              <div className="prompt-box">
+                <span>Starter prompt</span>
+                <p>{prompt}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section section-band prompt-library-section">
+        <div className="section-heading centered">
+          <p className="eyebrow">Prompt library</p>
+          <h2>Reusable prompts connected to this level.</h2>
+        </div>
+        <div className="prompt-grid">
+          {curriculum.promptLibrary.map(({ title, prompt }) => (
+            <article className="prompt-card" key={title}>
+              <Sparkles aria-hidden="true" />
+              <h3>{title}</h3>
+              <p>{prompt}</p>
             </article>
           ))}
         </div>
