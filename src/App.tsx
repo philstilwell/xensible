@@ -35,11 +35,17 @@ type CurriculumContent = {
   summary: string
   format: string
   audience: string
+  level: string
   icon: IconType
   outcomes: string[]
   modules: Array<{ title: string; body: string }>
+  guidingQuestions: string[]
+  sessionFlow: Array<{ title: string; body: string }>
+  practiceLabs: Array<{ title: string; body: string }>
+  readinessChecks: string[]
   materials: string[]
   diagramSlots: string[]
+  followUp: string[]
   pdfHref: string
 }
 
@@ -238,11 +244,13 @@ const freeCurriculum: CurriculumContent = {
     'Self-guided webpage and downloadable PDF companion, designed as a gentle entry point before a team briefing or coached workshop.',
   audience:
     'Individuals, leaders, and teams who are curious about AI but want plain-language basics before committing to training.',
+  level: 'Level 0: orientation and first safe practice',
   icon: BookOpenCheck,
   outcomes: [
     'Understand what LLMs do, why they can be useful, and why their answers still need human review.',
     'Use a simple prompt structure for common tasks such as drafting, summarizing, planning, and asking better questions.',
     'Practice with non-sensitive examples while keeping patient, customer, employee, legal, financial, and proprietary data out of public AI tools.',
+    'Decide whether the next best step is self-practice, one-on-one coaching, a team briefing, or a structured workshop.',
   ],
   modules: [
     {
@@ -261,16 +269,75 @@ const freeCurriculum: CurriculumContent = {
       title: 'Review before use',
       body: 'A lightweight review habit for checking accuracy, tone, assumptions, missing context, and decisions that need a human owner.',
     },
+    {
+      title: 'Choosing a next step',
+      body: 'A closing module that helps learners identify one useful, low-risk task to practice and one question to bring to a trainer or manager.',
+    },
+  ],
+  guidingQuestions: [
+    'What can an LLM help me draft, reframe, summarize, or plan?',
+    'What information should stay out of public AI tools?',
+    'How do I tell whether an AI answer is useful enough to keep working with?',
+    'Which everyday task would be a safe first place to practice?',
+  ],
+  sessionFlow: [
+    {
+      title: 'Orient',
+      body: 'Start with a plain-language explanation of LLMs, prompts, outputs, and why confident-sounding answers still need review.',
+    },
+    {
+      title: 'Try',
+      body: 'Use a neutral sample task to practice context, constraints, tone, examples, and follow-up questions.',
+    },
+    {
+      title: 'Review',
+      body: 'Check the result for accuracy, usefulness, assumptions, missing context, and whether a human should verify it.',
+    },
+    {
+      title: 'Choose',
+      body: 'Name one safe workflow to practice and one boundary the learner will keep in mind.',
+    },
+  ],
+  practiceLabs: [
+    {
+      title: 'Rewrite a neutral paragraph',
+      body: 'Practice asking for tone and audience changes using public, non-sensitive text.',
+    },
+    {
+      title: 'Summarize public information',
+      body: 'Turn a public article or generic meeting note into a summary, then identify what still needs verification.',
+    },
+    {
+      title: 'Plan a simple task',
+      body: 'Ask AI for a checklist, timeline, or agenda, then revise it to fit real constraints.',
+    },
+    {
+      title: 'Critique the output',
+      body: 'Use a review prompt to find weak assumptions, vague wording, and missing context.',
+    },
+  ],
+  readinessChecks: [
+    'Can explain what an LLM is without technical jargon.',
+    'Can write a prompt with context, task, audience, and constraints.',
+    'Can name at least three kinds of data that should not be pasted into public tools.',
+    'Can identify when an output needs outside verification or human approval.',
   ],
   materials: [
     'Free AI fluency starter guide',
     'Basic prompting loop worksheet',
     'Public-tool safety checklist',
     'Output review checklist',
+    'First safe workflow practice log',
   ],
   diagramSlots: [
     'Beginner LLM session loop: ask, inspect, revise, verify',
     'Safe practice boundary map for public AI tools',
+    'First workflow chooser: draft, summarize, plan, or critique',
+  ],
+  followUp: [
+    'Keep a one-week practice log using only non-sensitive examples.',
+    'Collect three questions that would benefit from coaching or a team discussion.',
+    'Choose one recurring task that may become a future workflow workshop candidate.',
   ],
   pdfHref: '/curriculum-pdfs/free-ai-fluency-starter.pdf',
 }
@@ -310,11 +377,13 @@ const curriculumPackages: CurriculumContent[] = [
     format: 'One 90-minute Zoom session with guided practice and a follow-up handout.',
     audience:
       'Curious professionals, mixed-comfort teams, and organizations that need a shared starting point before deeper tool decisions.',
+    level: 'Level 1: shared team AI fluency',
     icon: GraduationCap,
     outcomes: [
       'Explain what LLMs are good at, where they fail, and why human review matters.',
       'Use a basic prompting loop for drafting, summarizing, planning, and asking better questions.',
       'Recognize sensitive-data boundaries and safer ways to practice with non-sensitive examples.',
+      'Leave with shared vocabulary for prompts, context, output quality, uncertainty, and review.',
     ],
     modules: [
       {
@@ -333,16 +402,79 @@ const curriculumPackages: CurriculumContent[] = [
         title: 'Confidence routines',
         body: 'Participants leave with small repeatable habits: draft, critique, revise, verify, and decide what still needs human judgment.',
       },
+      {
+        title: 'Team language and norms',
+        body: 'The group names simple shared expectations for AI use, including what to try, what to avoid, and how to talk about uncertain outputs.',
+      },
+    ],
+    guidingQuestions: [
+      'What does our team need to understand before choosing tools or policies?',
+      'Which everyday tasks are safe places to build skill?',
+      'How should we review AI output before it affects real work?',
+      'What shared language will help us discuss AI without hype or fear?',
+    ],
+    sessionFlow: [
+      {
+        title: 'Baseline',
+        body: 'Surface current comfort levels, hopes, concerns, and common misconceptions.',
+      },
+      {
+        title: 'Model',
+        body: 'Teach a practical mental model for context, instructions, examples, model output, and review.',
+      },
+      {
+        title: 'Practice',
+        body: 'Run guided prompt exercises using neutral scenarios that resemble the team\'s work without exposing sensitive data.',
+      },
+      {
+        title: 'Review',
+        body: 'Apply a quality checklist to outputs and discuss what should be verified, revised, or discarded.',
+      },
+      {
+        title: 'Normalize',
+        body: 'Close with team language, safe-use reminders, and a first set of practice habits.',
+      },
+    ],
+    practiceLabs: [
+      {
+        title: 'Prompt anatomy lab',
+        body: 'Rewrite a weak prompt into a stronger one by adding role, task, context, audience, constraints, and success criteria.',
+      },
+      {
+        title: 'Output comparison',
+        body: 'Compare two model responses and identify which is more useful, what is missing, and what should be checked.',
+      },
+      {
+        title: 'Data-boundary sorting',
+        body: 'Sort example inputs into safe public practice, caution, and private-data categories.',
+      },
+      {
+        title: 'Revision ladder',
+        body: 'Practice moving from first draft to better draft through critique, constraint, and audience-shift prompts.',
+      },
+    ],
+    readinessChecks: [
+      'Participants can describe AI as an assistive drafting and reasoning partner, not an authority.',
+      'Participants can use a repeatable prompt structure.',
+      'Participants can explain the difference between safe examples and sensitive operational data.',
+      'Participants can name a human review habit they will use before applying output.',
     ],
     materials: [
       'AI fluency starter guide',
       'Prompt pattern quick sheet',
       'Sensitive-data boundary checklist',
       'Output review checklist',
+      'Team language and norms worksheet',
     ],
     diagramSlots: [
       'LLM session loop: prompt, context, output, review, revision',
       'Safe-data boundary map for public AI tools',
+      'Team fluency ladder from curiosity to useful practice',
+    ],
+    followUp: [
+      'Run one safe prompt experiment before the next meeting.',
+      'Collect examples of confusing, useful, or unreliable AI outputs for discussion.',
+      'Identify one team workflow that may deserve deeper workshop treatment.',
     ],
     pdfHref: '/curriculum-pdfs/ai-fluency-essentials.pdf',
   },
@@ -355,11 +487,13 @@ const curriculumPackages: CurriculumContent[] = [
     format: 'Two 90-minute Zoom sessions or one half-day remote workshop.',
     audience:
       'Teams and professionals who already understand the basics and want practical routines they can reuse.',
+    level: 'Level 2: practical workflow fluency',
     icon: BookOpenCheck,
     outcomes: [
       'Build repeatable workflows for common work without copying sensitive data into public tools.',
       'Use AI to generate first drafts, alternatives, summaries, meeting artifacts, and decision support.',
       'Develop review habits that keep the human responsible for quality, context, and final judgment.',
+      'Turn scattered experiments into documented workflow recipes that can be shared inside a team.',
     ],
     modules: [
       {
@@ -378,16 +512,80 @@ const curriculumPackages: CurriculumContent[] = [
         title: 'Meetings and decisions',
         body: 'Participants create safe workflows for agendas, prep notes, follow-up drafts, and option comparison.',
       },
+      {
+        title: 'Workflow documentation',
+        body: 'Teams capture the steps, prompts, inputs, review points, and human decisions that make a workflow repeatable.',
+      },
+    ],
+    guidingQuestions: [
+      'Which tasks repeat often enough to deserve a workflow?',
+      'Where can AI help without becoming the decision maker?',
+      'What inputs are safe to use, and what must be abstracted or withheld?',
+      'How will we review, revise, and document the workflow so others can use it?',
+    ],
+    sessionFlow: [
+      {
+        title: 'Select',
+        body: 'Choose one or two common tasks with clear boundaries and enough repetition to justify practice.',
+      },
+      {
+        title: 'Decompose',
+        body: 'Break each task into inputs, decisions, drafts, checks, revisions, and final human ownership.',
+      },
+      {
+        title: 'Build',
+        body: 'Create prompt sequences and review steps using non-sensitive examples.',
+      },
+      {
+        title: 'Stress test',
+        body: 'Try edge cases, poor inputs, missing context, and output-review prompts.',
+      },
+      {
+        title: 'Document',
+        body: 'Capture the workflow as a short recipe that names when to use it and when not to.',
+      },
+    ],
+    practiceLabs: [
+      {
+        title: 'Writing workflow',
+        body: 'Draft, critique, revise, and audience-tune a neutral document while keeping the human responsible for final voice and claims.',
+      },
+      {
+        title: 'Meeting workflow',
+        body: 'Generate an agenda, prep questions, follow-up notes, and action-item drafts from fictional or sanitized scenarios.',
+      },
+      {
+        title: 'Research triage workflow',
+        body: 'Use AI for question planning and source-triage support, then separate what must be verified elsewhere.',
+      },
+      {
+        title: 'Decision-support workflow',
+        body: 'Compare options, surface assumptions, and draft decision criteria without outsourcing the decision itself.',
+      },
+    ],
+    readinessChecks: [
+      'The workflow has a named owner and a clear final human decision point.',
+      'Inputs avoid sensitive or proprietary data unless a suitable private environment is approved.',
+      'The workflow includes a review step for accuracy, tone, assumptions, and missing context.',
+      'The team can explain when the workflow is useful and when it should not be used.',
     ],
     materials: [
       'Workflow recipe cards',
       'Meeting preparation worksheet',
       'Research triage checklist',
       'Before-and-after prompt examples',
+      'Workflow documentation template',
+      'Human review checkpoint guide',
     ],
     diagramSlots: [
       'Human-in-the-loop workflow map',
       'Meeting-to-action pipeline',
+      'Workflow recipe anatomy: inputs, AI assist, review, apply',
+    ],
+    followUp: [
+      'Pilot one documented workflow for two weeks using safe inputs.',
+      'Track where the workflow saves time, improves quality, or creates review burden.',
+      'Bring one workflow back for refinement before scaling it to a broader team.',
     ],
     pdfHref: '/curriculum-pdfs/practical-ai-workflows.pdf',
   },
@@ -400,11 +598,13 @@ const curriculumPackages: CurriculumContent[] = [
     format: 'Two or three Zoom sessions with discovery worksheets and a readiness summary.',
     audience:
       'Small and midsize companies, nonprofits, health care teams, and institutions that need cautious, practical alignment.',
+    level: 'Level 3: organizational readiness and use-case discovery',
     icon: UsersRound,
     outcomes: [
       'Map current work patterns, friction points, comfort levels, and risk concerns.',
       'Rank possible AI use cases by value, risk, readiness, and training needs.',
       'Clarify what to train, what to pilot, what to postpone, and what not to do.',
+      'Create a practical readiness map before buying tools or announcing large AI initiatives.',
     ],
     modules: [
       {
@@ -423,16 +623,80 @@ const curriculumPackages: CurriculumContent[] = [
         title: 'Training path recommendation',
         body: 'The sprint ends with a practical next-step map for briefings, workshops, office hours, or a limited pilot.',
       },
+      {
+        title: 'Governance questions for later',
+        body: 'The sprint names policy, procurement, privacy, and implementation questions that should be handled by the right internal owners.',
+      },
+    ],
+    guidingQuestions: [
+      'Where are people already experimenting, and where are they hesitant?',
+      'Which tasks create friction, delay, rework, or knowledge bottlenecks?',
+      'Which ideas are low-risk training candidates, and which need stronger review before action?',
+      'What should we learn before spending money on tools or vendors?',
+    ],
+    sessionFlow: [
+      {
+        title: 'Discover',
+        body: 'Interview or workshop with leaders and users to surface real work patterns, pain points, and comfort levels.',
+      },
+      {
+        title: 'Inventory',
+        body: 'Collect possible use cases and describe each one by task type, data sensitivity, value, and review needs.',
+      },
+      {
+        title: 'Score',
+        body: 'Rank ideas with a simple value, risk, readiness, and training-needs rubric.',
+      },
+      {
+        title: 'Sort',
+        body: 'Place ideas into train, pilot, wait, or avoid categories.',
+      },
+      {
+        title: 'Recommend',
+        body: 'Translate findings into a short next-step roadmap for training, office hours, or a narrow pilot.',
+      },
+    ],
+    practiceLabs: [
+      {
+        title: 'Friction mapping',
+        body: 'Identify where teams lose time to drafting, summarizing, searching, rework, planning, or coordination.',
+      },
+      {
+        title: 'Use-case card sorting',
+        body: 'Turn vague AI ideas into comparable cards with audience, input, output, review, and risk fields.',
+      },
+      {
+        title: 'Value-risk matrix',
+        body: 'Place candidate use cases on the grid and discuss what belongs in training, pilot, wait, or avoid.',
+      },
+      {
+        title: 'Readiness narrative',
+        body: 'Draft a plain-language summary leaders can use to explain the next step without overpromising.',
+      },
+    ],
+    readinessChecks: [
+      'The team can distinguish training needs from implementation or procurement needs.',
+      'Use cases are ranked by value, risk, readiness, and review burden.',
+      'Sensitive-data concerns are named without implying legal or compliance guarantees.',
+      'Next steps are limited enough to learn from safely.',
     ],
     materials: [
       'Team readiness worksheet',
       'Use-case scoring rubric',
       'AI norms discussion guide',
       'Recommended next-step summary template',
+      'Use-case card deck',
+      'Train, pilot, wait, avoid decision sheet',
     ],
     diagramSlots: [
       'Use-case value/risk grid',
       'Team adoption pathway from discovery to practice',
+      'Readiness map from friction points to training path',
+    ],
+    followUp: [
+      'Choose two low-risk training candidates and one idea to postpone.',
+      'Schedule the right briefing or workshop for the highest-priority audience.',
+      'Review the map monthly as team fluency and tool options change.',
     ],
     pdfHref: '/curriculum-pdfs/team-ai-readiness-sprint.pdf',
   },
@@ -445,11 +709,13 @@ const curriculumPackages: CurriculumContent[] = [
     format: 'One focused Zoom briefing, optionally followed by a Q&A or planning session.',
     audience:
       'Executives, founders, board-adjacent leaders, and department heads who need a useful map rather than hype.',
+    level: 'Leadership level: clarity before technology decisions',
     icon: BriefcaseBusiness,
     outcomes: [
       'Separate AI training needs from software purchasing needs.',
       'Ask better questions about vendors, data, policy, implementation, and organizational readiness.',
       'Identify decisions that need more learning before investment.',
+      'Leave with a leadership vocabulary for opportunity, uncertainty, human review, and responsible experimentation.',
     ],
     modules: [
       {
@@ -468,16 +734,80 @@ const curriculumPackages: CurriculumContent[] = [
         title: 'Next-step decision paths',
         body: 'The briefing ends with a recommendation for training, discovery, a small pilot, or a deliberate wait.',
       },
+      {
+        title: 'Internal communication',
+        body: 'Leaders practice explaining AI next steps in language that reduces confusion, fear, and unrealistic expectations.',
+      },
+    ],
+    guidingQuestions: [
+      'What should leaders understand before authorizing tools, pilots, policies, or budgets?',
+      'Where does education need to come before procurement?',
+      'Which risks require the right internal owners rather than a training promise?',
+      'What small next step would increase clarity without locking the organization into a premature decision?',
+    ],
+    sessionFlow: [
+      {
+        title: 'Landscape',
+        body: 'Explain current AI capabilities, limitations, and tool categories in plain language.',
+      },
+      {
+        title: 'Separate',
+        body: 'Distinguish fluency training, workflow practice, policy, vendor evaluation, implementation, and governance.',
+      },
+      {
+        title: 'Question',
+        body: 'Work through leader-level questions about value, data exposure, review burden, and accountability.',
+      },
+      {
+        title: 'Decide',
+        body: 'Sort likely next steps into train, discover, pilot, wait, or seek specialist advice.',
+      },
+      {
+        title: 'Communicate',
+        body: 'Draft a short internal message that frames AI learning without hype or guarantees.',
+      },
+    ],
+    practiceLabs: [
+      {
+        title: 'Vendor question drill',
+        body: 'Translate broad vendor claims into concrete questions about data handling, review, workflow fit, and training needs.',
+      },
+      {
+        title: 'Decision-gate scenario',
+        body: 'Walk through an AI idea and decide whether it belongs in training, discovery, pilot, procurement, or wait.',
+      },
+      {
+        title: 'Risk language rehearsal',
+        body: 'Practice naming uncertainty and boundaries without implying legal, medical, compliance, or cybersecurity guarantees.',
+      },
+      {
+        title: 'Leadership message draft',
+        body: 'Create a calm message that explains why the organization is learning before buying or implementing.',
+      },
+    ],
+    readinessChecks: [
+      'Leaders can explain why fluency training may be needed before tool investment.',
+      'Leaders can ask practical questions about data boundaries, review, ownership, and expected value.',
+      'The organization has named which decisions require internal policy, legal, privacy, or technical owners.',
+      'The next step is small enough to learn from and clear enough to communicate.',
     ],
     materials: [
       'Executive briefing deck outline',
       'Vendor question guide',
       'AI investment readiness checklist',
       'Train, pilot, buy, or wait worksheet',
+      'Leadership communication template',
+      'Decision-gate question bank',
     ],
     diagramSlots: [
       'Decision gates for AI investment',
       'Build, buy, train, or wait decision tree',
+      'Leadership clarity map: learn, test, decide, communicate',
+    ],
+    followUp: [
+      'Select a first audience for training or discovery.',
+      'List vendor, policy, or data questions that require specialist review.',
+      'Schedule a follow-up briefing or readiness sprint if the organization needs a fuller map.',
     ],
     pdfHref: '/curriculum-pdfs/executive-ai-briefing.pdf',
   },
@@ -490,11 +820,13 @@ const curriculumPackages: CurriculumContent[] = [
     format: 'Monthly 60-minute Zoom sessions with question collection and lightweight follow-up notes.',
     audience:
       'Teams that have completed an initial training and want continuity without turning AI into a separate project.',
+    level: 'Ongoing level: sustained fluency and habit support',
     icon: Video,
     outcomes: [
       'Create a reliable place for practical questions and safe experiments.',
       'Reinforce good review habits as tools, interfaces, and model capabilities change.',
       'Turn scattered individual experiments into shared team learning.',
+      'Maintain momentum without forcing AI into every workflow or chasing every announcement.',
     ],
     modules: [
       {
@@ -513,16 +845,80 @@ const curriculumPackages: CurriculumContent[] = [
         title: 'Habit reinforcement',
         body: 'Each month ends with one or two practical habits the team can try before the next session.',
       },
+      {
+        title: 'Learning capture',
+        body: 'Useful examples, cautions, and workflow refinements are captured so the team builds institutional memory over time.',
+      },
+    ],
+    guidingQuestions: [
+      'What did people try this month, and what happened?',
+      'Which tool changes matter for this team, and which can be ignored for now?',
+      'Where are review habits holding up, and where are outputs being trusted too quickly?',
+      'What one practice should the team try before the next office hours session?',
+    ],
+    sessionFlow: [
+      {
+        title: 'Collect',
+        body: 'Gather questions, examples, confusing moments, and useful experiments from the previous month.',
+      },
+      {
+        title: 'Translate',
+        body: 'Explain relevant tool changes in practical language and ignore updates that do not affect the group.',
+      },
+      {
+        title: 'Coach',
+        body: 'Work through live non-sensitive examples, improving prompts and review habits together.',
+      },
+      {
+        title: 'Capture',
+        body: 'Document useful patterns, cautions, and candidate workflows.',
+      },
+      {
+        title: 'Assign',
+        body: 'Choose one small practice experiment for the next month.',
+      },
+    ],
+    practiceLabs: [
+      {
+        title: 'Question clinic',
+        body: 'Turn participant questions into better prompts, safer examples, and clearer review steps.',
+      },
+      {
+        title: 'Tool-change translation',
+        body: 'Assess one new AI feature and decide whether it changes actual practice for the team.',
+      },
+      {
+        title: 'Workflow rescue',
+        body: 'Take an AI experiment that disappointed someone and diagnose whether the issue was prompt, context, task choice, or overtrust.',
+      },
+      {
+        title: 'Monthly habit drill',
+        body: 'Practice one review or revision habit until it becomes easy enough to use in ordinary work.',
+      },
+    ],
+    readinessChecks: [
+      'Participants bring real but non-sensitive questions and examples.',
+      'The team can separate useful tool changes from noise.',
+      'Repeated questions are converted into shared guidance or workflow notes.',
+      'Office hours reinforce boundaries rather than encouraging careless experimentation.',
     ],
     materials: [
       'Monthly question intake form',
       'Office-hours recap template',
       'Tool-change digest format',
       'Team practice log',
+      'Workflow refinement log',
+      'Reusable question bank',
     ],
     diagramSlots: [
       'Monthly learning loop',
       'Question-to-practice coaching flow',
+      'Office-hours knowledge capture cycle',
+    ],
+    followUp: [
+      'Try the monthly practice habit with one safe task.',
+      'Submit questions or examples before the next session.',
+      'Update shared notes with what worked, what failed, and what needs clearer guidance.',
     ],
     pdfHref: '/curriculum-pdfs/monthly-ai-office-hours.pdf',
   },
@@ -535,11 +931,13 @@ const curriculumPackages: CurriculumContent[] = [
     format: 'Private coaching or cohort sessions with local practice, repo walkthroughs, and verification labs.',
     audience:
       'Technically curious professionals, builders, content-system owners, and advanced AI users ready for local controlled environments.',
+    level: 'Level 4: advanced operator and local-agent supervision',
     icon: MonitorPlay,
     outcomes: [
       'Understand what local full-control systems can access and why that changes the supervision model.',
       'Use repo inspection, file edits, tests, browser checks, Git commits, and deployment review responsibly.',
       'Develop rollback thinking so AI-assisted work remains reversible, inspectable, and owned by the human.',
+      'Operate Codex-style systems with explicit boundaries, verification habits, and human approval points.',
     ],
     modules: [
       {
@@ -558,16 +956,84 @@ const curriculumPackages: CurriculumContent[] = [
         title: 'Deployment and rollback practice',
         body: 'Participants practice commit hygiene, public-site checks, deployment verification, and recovery paths.',
       },
+      {
+        title: 'Operator judgment',
+        body: 'Advanced users learn when to let the agent proceed, when to require confirmation, when to inspect manually, and when to stop.',
+      },
+    ],
+    guidingQuestions: [
+      'What changes when an AI system can read files, run commands, inspect browsers, and edit projects?',
+      'Which actions are safe for an agent to take, and which require explicit human approval?',
+      'How will we verify outputs with tests, screenshots, diffs, and deployment checks?',
+      'How will we recover if an AI-assisted change is wrong?',
+    ],
+    sessionFlow: [
+      {
+        title: 'Orient',
+        body: 'Compare chat-based AI with local agent systems that can act inside a project environment.',
+      },
+      {
+        title: 'Inspect',
+        body: 'Read project structure, current state, dependencies, and risk before asking for changes.',
+      },
+      {
+        title: 'Constrain',
+        body: 'Write scoped instructions that define files, boundaries, verification, and approval points.',
+      },
+      {
+        title: 'Verify',
+        body: 'Use linting, tests, screenshots, diffs, and manual review to decide whether work is acceptable.',
+      },
+      {
+        title: 'Recover',
+        body: 'Practice commit hygiene, rollback thinking, and post-deployment checks.',
+      },
+    ],
+    practiceLabs: [
+      {
+        title: 'Repo inspection lab',
+        body: 'Ask the agent to inspect a project and produce a change plan before editing anything.',
+      },
+      {
+        title: 'Scoped edit lab',
+        body: 'Make a small content or UI change, then review the diff and reject unrelated churn.',
+      },
+      {
+        title: 'Verification lab',
+        body: 'Run lint, build, browser screenshots, and content checks before deciding whether to commit.',
+      },
+      {
+        title: 'Rollback lab',
+        body: 'Use Git history and deployment checks to reason about how to recover from a bad change.',
+      },
+      {
+        title: 'Approval boundary lab',
+        body: 'Classify actions such as file edits, package installs, API calls, credential use, deployment, and deletion by approval level.',
+      },
+    ],
+    readinessChecks: [
+      'The operator can explain what local files, commands, browsers, and deployments the agent can affect.',
+      'The operator can request scoped changes and inspect diffs before accepting them.',
+      'The operator can run appropriate verification before committing or publishing.',
+      'The operator has a rollback path and knows when to stop for human review.',
     ],
     materials: [
       'Local agent supervision checklist',
       'Git and deployment primer',
       'Verification lab worksheet',
       'Rollback and recovery checklist',
+      'Approval-boundary matrix',
+      'Codex prompt patterns for scoped work',
     ],
     diagramSlots: [
       'Agent control loop: inspect, edit, test, review, commit',
       'Local full-control safety boundary map',
+      'Approval boundary matrix for local agent actions',
+    ],
+    followUp: [
+      'Run one scoped agent-assisted change on a low-risk project.',
+      'Capture the prompt, diff, checks, and final decision in a practice log.',
+      'Build a personal checklist for future Codex-style work before using it on higher-risk projects.',
     ],
     pdfHref: '/curriculum-pdfs/advanced-operator-codex-track.pdf',
   },
@@ -1570,6 +2036,8 @@ function CurriculumDetail({
           </span>
           <h2>Format</h2>
           <p>{curriculum.format}</p>
+          <h2>Level</h2>
+          <p>{curriculum.level}</p>
           <h2>Audience</h2>
           <p>{curriculum.audience}</p>
         </div>
@@ -1600,6 +2068,31 @@ function CurriculumDetail({
         </div>
       </section>
 
+      <section className="section curriculum-detail-grid curriculum-questions-section">
+        <div className="detail-panel">
+          <p className="eyebrow">Guiding questions</p>
+          <ul className="offer-list">
+            {curriculum.guidingQuestions.map((question) => (
+              <li key={question}>
+                <MessageCircle aria-hidden="true" />
+                <span>{question}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="detail-panel">
+          <p className="eyebrow">Readiness checks</p>
+          <ul className="offer-list">
+            {curriculum.readinessChecks.map((check) => (
+              <li key={check}>
+                <SearchCheck aria-hidden="true" />
+                <span>{check}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       <section className="section section-band">
         <div className="section-heading centered">
           <p className="eyebrow">Curriculum modules</p>
@@ -1609,6 +2102,38 @@ function CurriculumDetail({
           {curriculum.modules.map(({ title, body }, index) => (
             <article className="module-card" key={title}>
               <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{title}</h3>
+              <p>{body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section curriculum-flow-section">
+        <div className="section-heading">
+          <p className="eyebrow">Session flow</p>
+          <h2>How this level moves from understanding to practice.</h2>
+        </div>
+        <div className="curriculum-flow-grid">
+          {curriculum.sessionFlow.map(({ title, body }, index) => (
+            <article className="flow-card" key={title}>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{title}</h3>
+              <p>{body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section section-band">
+        <div className="section-heading centered">
+          <p className="eyebrow">Practice labs</p>
+          <h2>Exercises that turn concepts into repeatable habits.</h2>
+        </div>
+        <div className="practice-lab-grid">
+          {curriculum.practiceLabs.map(({ title, body }) => (
+            <article className="practice-lab-card" key={title}>
+              <ClipboardCheck aria-hidden="true" />
               <h3>{title}</h3>
               <p>{body}</p>
             </article>
@@ -1632,6 +2157,21 @@ function CurriculumDetail({
               <Map aria-hidden="true" />
               <p>{slot}</p>
             </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section curriculum-follow-up-section">
+        <div className="section-heading">
+          <p className="eyebrow">Follow-up work</p>
+          <h2>What learners do after the session.</h2>
+        </div>
+        <div className="reason-list">
+          {curriculum.followUp.map((item) => (
+            <div className="reason-item" key={item}>
+              <ArrowRight aria-hidden="true" />
+              <p>{item}</p>
+            </div>
           ))}
         </div>
       </section>
