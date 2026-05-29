@@ -28,6 +28,23 @@ import './App.css'
 
 type IconType = ComponentType<LucideProps>
 
+type UtilityProject = {
+  title: string
+  timebox: string
+  hook: string
+  outcome: string
+  safeInput: string
+  steps: string[]
+  starterPrompt: string
+}
+
+type SectorProjectExample = {
+  title: string
+  audience: string
+  body: string
+  safeInput: string
+}
+
 type CurriculumContent = {
   slug: string
   title: string
@@ -43,6 +60,7 @@ type CurriculumContent = {
   sessionFlow: Array<{ title: string; body: string }>
   practiceLabs: Array<{ title: string; body: string }>
   readinessChecks: string[]
+  adoptionPractices: string[]
   materials: string[]
   diagramSlots: string[]
   followUp: string[]
@@ -127,6 +145,222 @@ const services: Array<{
     body: 'A reliable space for questions, tool updates, prompt practice, and thoughtful next steps as AI keeps changing.',
     icon: Video,
   },
+]
+
+const individualUtilityProjects: UtilityProject[] = [
+  {
+    title: 'Learning Sprint',
+    timebox: '60-75 minutes',
+    hook: 'Turn a confusing topic into a private tutor session.',
+    outcome:
+      'A one-page explainer, a short quiz, a glossary, and a list of what to verify elsewhere.',
+    safeInput:
+      'Use a public topic, a public article, or a concept you want to understand. Avoid private client, patient, employee, or proprietary material.',
+    steps: [
+      'Ask for a plain-language explanation at your current level.',
+      'Request examples, analogies, common misconceptions, and a five-question quiz.',
+      'Ask what claims need source checking before you rely on them.',
+    ],
+    starterPrompt:
+      'Teach me [topic] as a smart beginner. Start with a plain-language explanation, then give examples, common misconceptions, a short glossary, a five-question quiz, and a list of claims I should verify with reliable sources.',
+  },
+  {
+    title: 'Decision Clarity Brief',
+    timebox: '75-90 minutes',
+    hook: 'Use AI to make a decision easier to think about without outsourcing the decision.',
+    outcome:
+      'A comparison table, assumptions list, pre-mortem, missing-information checklist, and final decision questions.',
+    safeInput:
+      'Use a personal, public, fictional, or sanitized decision. Keep confidential finances, contracts, medical, legal, or customer details out of public tools.',
+    steps: [
+      'Describe the options, constraints, values, and what would count as success.',
+      'Ask AI to compare options and surface assumptions instead of choosing for you.',
+      'Run a pre-mortem and identify what a human should check before acting.',
+    ],
+    starterPrompt:
+      'Help me think through this decision without deciding for me: [safe decision context]. Create criteria, compare options, name assumptions, run a pre-mortem, list missing information, and end with questions I should answer myself.',
+  },
+  {
+    title: 'Meeting Prep Kit',
+    timebox: '60-90 minutes',
+    hook: 'Turn a rough meeting idea into a more useful conversation.',
+    outcome:
+      'A meeting agenda, prep questions, likely tensions, decision points, and a follow-up email template.',
+    safeInput:
+      'Use fictional or sanitized meeting context. Do not paste private attendee notes, personnel details, patient data, customer records, or proprietary plans into public tools.',
+    steps: [
+      'Give AI the purpose, audience, desired outcome, and any safe background.',
+      'Ask for an agenda, questions, risks, and decisions to clarify.',
+      'Revise the agenda for tone, time, and who needs to review it.',
+    ],
+    starterPrompt:
+      'Using this fictional or sanitized meeting context, create a focused agenda, prep questions, likely tensions, decision points, and a follow-up email template. Mark anything that needs human confirmation: [context].',
+  },
+  {
+    title: 'Writing Upgrade Studio',
+    timebox: '60 minutes',
+    hook: 'See how AI can draft, critique, and revise with you in a loop.',
+    outcome:
+      'A stronger email, memo, bio, announcement, or short article with a revision history and review checklist.',
+    safeInput:
+      'Use a rough draft that contains no sensitive personal, client, patient, employee, legal, financial, or proprietary details.',
+    steps: [
+      'Ask for a first rewrite for a specific audience and tone.',
+      'Ask AI to critique its own draft for clarity, claims, tone, and missing context.',
+      'Request a final revision and make the last edits yourself.',
+    ],
+    starterPrompt:
+      'Improve this rough draft for [audience] with a [tone] tone. Then critique your revision for clarity, unsupported claims, missing context, and anything a human should verify before sending: [safe draft].',
+  },
+  {
+    title: 'Research Compass',
+    timebox: '90-120 minutes',
+    hook: 'Use AI to plan research before you read, search, or cite.',
+    outcome:
+      'A research question map, search terms, source categories, red flags, and verification plan.',
+    safeInput:
+      'Use a public topic or general business question. Do not ask AI to invent citations or make final claims without sources.',
+    steps: [
+      'Ask AI to turn a broad topic into better questions and search terms.',
+      'Request source categories, possible biases, and missing perspectives.',
+      'Use the output as a reading plan, then verify claims in actual sources.',
+    ],
+    starterPrompt:
+      'Help me plan research on [public topic]. Create key questions, search terms, source types to seek, likely blind spots, red flags, and a verification checklist. Do not make final claims without sources.',
+  },
+  {
+    title: 'Workflow Recipe Builder',
+    timebox: '90-120 minutes',
+    hook: 'Turn one repeated task into a reusable AI-assisted workflow.',
+    outcome:
+      'A workflow recipe with inputs, prompt sequence, review gates, human owner, and when-not-to-use guidance.',
+    safeInput:
+      'Choose a recurring task and describe it generally or with fictional examples. Keep sensitive operational data out of public tools.',
+    steps: [
+      'Map the task into steps, inputs, outputs, review points, and handoffs.',
+      'Ask AI where it can help and where human judgment should stay in charge.',
+      'Create a repeatable prompt sequence and a review checklist.',
+    ],
+    starterPrompt:
+      'Turn this recurring task into a safe AI-assisted workflow recipe: [task]. Include purpose, safe inputs, prompt sequence, review checkpoints, human decision points, risks, and when not to use AI for this task.',
+  },
+  {
+    title: 'Professional Profile Refresh',
+    timebox: '75-90 minutes',
+    hook: 'Use AI as a coach for describing your work more clearly.',
+    outcome:
+      'A refreshed bio, resume bullet options, interview talking points, and confidence-building practice questions.',
+    safeInput:
+      'Use a sanitized career summary or fictionalized role description. Do not include private employer data, references, compensation, or confidential projects.',
+    steps: [
+      'Give AI a safe summary of your work, audience, and desired tone.',
+      'Ask for clearer positioning, bullet options, and examples of evidence to add.',
+      'Roleplay interview questions and revise anything that feels inflated or inaccurate.',
+    ],
+    starterPrompt:
+      'Using this sanitized professional summary, help me describe my work more clearly. Draft a short bio, five resume bullet options, three interview talking points, and questions I should answer to make the claims more accurate: [summary].',
+  },
+  {
+    title: 'Personal Planning Co-Pilot',
+    timebox: '60-75 minutes',
+    hook: 'Use AI to turn vague goals into a realistic plan you can actually follow.',
+    outcome:
+      'A one-week plan, prioritized task list, obstacle plan, review ritual, and next-action checklist.',
+    safeInput:
+      'Use personal goals and constraints that are not private, medical, financial, legal, or deeply sensitive.',
+    steps: [
+      'Describe the goal, constraints, time available, and what has made it hard.',
+      'Ask AI for a practical plan with tradeoffs and small next actions.',
+      'Review the plan yourself and remove anything unrealistic or intrusive.',
+    ],
+    starterPrompt:
+      'Help me turn this goal into a realistic one-week plan: [safe goal]. Ask clarifying questions if needed, then create priorities, daily actions, likely obstacles, a review ritual, and a simple checklist.',
+  },
+]
+
+const starterProjectPdfHref = '/curriculum-pdfs/first-60-minute-ai-utility-project.pdf'
+
+const sectorProjectExamples: SectorProjectExample[] = [
+  {
+    title: 'Nonprofit donor update practice',
+    audience: 'Nonprofits',
+    body:
+      'Turn public program facts and fictional event notes into a warm update, then check claims, tone, and what a staff member must verify.',
+    safeInput:
+      'Use public facts, fictional event notes, and no donor records or private beneficiary details.',
+  },
+  {
+    title: 'Health care admin FAQ rewrite',
+    audience: 'Health care organizations',
+    body:
+      'Rewrite a fictional clinic FAQ for clarity while flagging anything that belongs with the appropriate internal owner.',
+    safeInput:
+      'Use fictional FAQ text only. Do not include patient data or ask AI for medical, legal, compliance, or cybersecurity assurances.',
+  },
+  {
+    title: 'Small business meeting follow-up',
+    audience: 'Small businesses',
+    body:
+      'Convert sanitized meeting context into decisions, action items, owner questions, and a follow-up email draft.',
+    safeInput:
+      'Use sanitized or fictional notes, not customer records, employee issues, contracts, or proprietary plans.',
+  },
+  {
+    title: 'Professional profile refresh',
+    audience: 'Individual professionals',
+    body:
+      'Use AI as a positioning coach for a short bio, resume bullets, interview talking points, and practice questions.',
+    safeInput:
+      'Use a sanitized career summary with no private employer data, references, compensation, or confidential projects.',
+  },
+  {
+    title: 'Department knowledge cleanup',
+    audience: 'Teams and departments',
+    body:
+      'Turn a public or sanitized process description into a clearer checklist, glossary, and questions for the process owner.',
+    safeInput:
+      'Use public or sanitized process text. Keep private operational data, credentials, and proprietary details out.',
+  },
+  {
+    title: 'Personal learning sprint',
+    audience: 'AI-curious beginners',
+    body:
+      'Transform a confusing topic into an explainer, examples, quiz, glossary, and verification checklist.',
+    safeInput:
+      'Use public topics or articles and verify important claims with reliable sources before relying on them.',
+  },
+]
+
+const projectSelectionRubric = [
+  {
+    title: 'Real work, low risk',
+    body:
+      'Choose a task people already recognize, but keep inputs public, fictional, or sanitized so practice does not depend on sensitive data.',
+  },
+  {
+    title: 'Clear walk-away artifact',
+    body:
+      'The exercise should produce something concrete: a brief, agenda, checklist, glossary, comparison table, or reusable prompt sequence.',
+  },
+  {
+    title: 'Visible judgment step',
+    body:
+      'Build in a moment where the learner checks claims, names uncertainty, revises tone, or decides what should remain human-led.',
+  },
+  {
+    title: 'Transferable habit',
+    body:
+      'A strong project teaches a pattern the learner can reuse later: ask better questions, provide context, compare outputs, or verify before relying.',
+  },
+]
+
+const projectReviewQuestions = [
+  'What did AI make easier, faster, clearer, or more complete?',
+  'Where did the output sound confident but still need verification?',
+  'What context improved the result most?',
+  'What information should never be pasted into a public tool?',
+  'What part of the work should remain owned by a person?',
+  'What small workflow would be worth practicing again next week?',
 ]
 
 const offerFormats: Array<{
@@ -329,6 +563,12 @@ const freeCurriculum: CurriculumContent = {
     'Can name at least three kinds of data that should not be pasted into public tools.',
     'Can identify when an output needs outside verification or human approval.',
   ],
+  adoptionPractices: [
+    'Start with public, fictional, or anonymized examples so skill building does not depend on risky data.',
+    'Treat AI output as a draft or suggestion until a person has checked facts, assumptions, tone, and missing context.',
+    'Keep a small practice log that records what worked, what failed, and what had to be verified elsewhere.',
+    'Choose first experiments from ordinary work: drafting, summarizing, planning, learning, or question generation.',
+  ],
   materials: [
     'Free AI fluency starter guide',
     'Basic prompting loop worksheet',
@@ -340,6 +580,7 @@ const freeCurriculum: CurriculumContent = {
     'Beginner LLM session loop: ask, inspect, revise, verify',
     'Safe practice boundary map for public AI tools',
     'First workflow chooser: draft, summarize, plan, or critique',
+    'Responsible adoption loop: learn, practice, review, apply',
   ],
   followUp: [
     'Keep a one-week practice log using only non-sensitive examples.',
@@ -421,7 +662,7 @@ const curriculumTiers = [
     href: '/curricula/expert',
     cta: 'Unlock Expert Tier',
     icon: ShieldCheck,
-    access: 'Password: xpert',
+    access: 'Preview gate',
   },
 ]
 
@@ -516,6 +757,12 @@ const curriculumPackages: CurriculumContent[] = [
       'Participants can use a repeatable prompt structure.',
       'Participants can explain the difference between safe examples and sensitive operational data.',
       'Participants can name a human review habit they will use before applying output.',
+    ],
+    adoptionPractices: [
+      'Build shared vocabulary before asking a team to adopt new tools or policies.',
+      'Normalize careful experimentation so people can ask basic questions without embarrassment.',
+      'Make quality control and critical thinking explicit parts of AI fluency, not advanced extras.',
+      'Give managers and team leads enough fluency to model responsible use and reinforce boundaries.',
     ],
     materials: [
       'AI fluency starter guide',
@@ -677,6 +924,12 @@ const curriculumPackages: CurriculumContent[] = [
       'Inputs avoid sensitive or proprietary data unless a suitable private environment is approved.',
       'The workflow includes a review step for accuracy, tone, assumptions, and missing context.',
       'The team can explain when the workflow is useful and when it should not be used.',
+    ],
+    adoptionPractices: [
+      'Prioritize recurring tasks that consume real time or create repeated rework, not flashy demos.',
+      'Break each workflow into inputs, AI assistance, review checkpoints, handoffs, and final ownership.',
+      'Measure usefulness in time saved, quality improved, rework reduced, and review burden created.',
+      'Document the workflow recipe so a useful experiment can become a teachable team practice.',
     ],
     materials: [
       'Workflow recipe cards',
@@ -840,6 +1093,12 @@ const curriculumPackages: CurriculumContent[] = [
       'Sensitive-data concerns are named without implying legal or compliance guarantees.',
       'Next steps are limited enough to learn from safely.',
     ],
+    adoptionPractices: [
+      'Start discovery by asking where the business spends most of its time and what important work is being neglected.',
+      'Combine top-down priorities with worker voice so use cases reflect real operations, not only leadership guesses.',
+      'Score each idea by value, risk, readiness, data sensitivity, review burden, and learning required.',
+      'Separate train, pilot, wait, avoid, and specialist-review decisions before spending money on tools.',
+    ],
     materials: [
       'Team readiness worksheet',
       'Use-case scoring rubric',
@@ -852,6 +1111,7 @@ const curriculumPackages: CurriculumContent[] = [
       'Use-case value/risk grid',
       'Team adoption pathway from discovery to practice',
       'Readiness map from friction points to training path',
+      'AI adoption value scan: time spent, neglected work, value, risk, next step',
     ],
     followUp: [
       'Choose two low-risk training candidates and one idea to postpone.',
@@ -1002,6 +1262,12 @@ const curriculumPackages: CurriculumContent[] = [
       'The organization has named which decisions require internal policy, legal, privacy, or technical owners.',
       'The next step is small enough to learn from and clear enough to communicate.',
     ],
+    adoptionPractices: [
+      'Treat AI adoption as work redesign and capability building, not simply tool access.',
+      'Ask what evidence would justify scaling before approving major spend or vendor lock-in.',
+      'Align incentives, manager support, and evaluation habits so experimentation can produce shared learning.',
+      'Create a basic evaluation structure: who reviews outputs, who updates workflows, and how lessons are captured.',
+    ],
     materials: [
       'Executive briefing deck outline',
       'Vendor question guide',
@@ -1014,6 +1280,7 @@ const curriculumPackages: CurriculumContent[] = [
       'Decision gates for AI investment',
       'Build, buy, train, or wait decision tree',
       'Leadership clarity map: learn, test, decide, communicate',
+      'Responsible adoption operating model: people, process, governance, measurement',
     ],
     followUp: [
       'Select a first audience for training or discovery.',
@@ -1163,6 +1430,12 @@ const curriculumPackages: CurriculumContent[] = [
       'The team can separate useful tool changes from noise.',
       'Repeated questions are converted into shared guidance or workflow notes.',
       'Office hours reinforce boundaries rather than encouraging careless experimentation.',
+    ],
+    adoptionPractices: [
+      'Use recurring office hours as a learning system: collect questions, compare examples, update norms, and share what changed.',
+      'Reward useful observations about failures and confusing outputs, not only successful prompts.',
+      'Translate tool changes into work implications so people are not forced to chase every announcement.',
+      'Revisit boundaries as tools gain new file, memory, browsing, coding, or agent capabilities.',
     ],
     materials: [
       'Monthly question intake form',
@@ -1330,6 +1603,12 @@ const curriculumPackages: CurriculumContent[] = [
       'The operator can run appropriate verification before committing or publishing.',
       'The operator has a rollback path and knows when to stop for human review.',
     ],
+    adoptionPractices: [
+      'Use least-privilege thinking: give local agents only the access, scope, and autonomy the task actually requires.',
+      'Assume agent outputs and actions need verification through diffs, tests, screenshots, logs, or independent review.',
+      'Treat prompt injection, sensitive information disclosure, and excessive agency as design risks for tool-using systems.',
+      'Keep rollback, audit trail, and human approval points visible before using full-control agents on higher-risk work.',
+    ],
     materials: [
       'Local agent supervision checklist',
       'Git and deployment primer',
@@ -1424,6 +1703,20 @@ const visualConcepts = [
     image: '/visuals/use-case-discovery-grid.webp',
     fullImage: '/visuals/use-case-discovery-grid.png',
     alt: 'Infographic showing an AI use-case grid with value and risk axes.',
+  },
+  {
+    title: 'AI Adoption Value Scan',
+    body: 'A practical discovery model that starts with where the business spends time and which important work keeps slipping out of reach.',
+    image: '/visuals/ai-adoption-value-scan.webp',
+    fullImage: '/visuals/ai-adoption-value-scan.png',
+    alt: 'Infographic showing an AI adoption value scan from time sinks and neglected work through scoring and next-step selection.',
+  },
+  {
+    title: 'Responsible AI Adoption Loop',
+    body: 'A visual teaching model for moving from fluency to bounded practice, evaluation, learning capture, and shared team norms.',
+    image: '/visuals/responsible-ai-adoption-loop.webp',
+    fullImage: '/visuals/responsible-ai-adoption-loop.png',
+    alt: 'Infographic showing a responsible AI adoption loop with learn, bound, practice, evaluate, capture, and normalize around human judgment.',
   },
   {
     title: 'Local Operator Control Loop',
@@ -1791,6 +2084,7 @@ const getPageMetadata = ({
   isExpertCurriculumLibrary,
   isFreeCurriculum,
   isAiUsesToolsPage,
+  isPracticeProjectsPage,
 }: {
   activeCurriculum?: CurriculumContent
   activeOffer?: (typeof offerFormats)[number]
@@ -1799,6 +2093,7 @@ const getPageMetadata = ({
   isExpertCurriculumLibrary: boolean
   isFreeCurriculum: boolean
   isAiUsesToolsPage: boolean
+  isPracticeProjectsPage: boolean
 }): PageMetadata => {
   if (activeOffer) {
     return {
@@ -1830,7 +2125,7 @@ const getPageMetadata = ({
     return {
       title: 'Expert Curriculum Library | Xensible',
       description:
-        'Password-protected Xensible expert curriculum library for AI fluency workshops, office hours, readiness sprints, and advanced operator coaching.',
+        'Preview-gated Xensible expert curriculum library for AI fluency workshops, office hours, readiness sprints, and advanced operator coaching.',
       path: '/curricula/expert',
       robots: 'noindex,follow',
     }
@@ -1852,6 +2147,16 @@ const getPageMetadata = ({
       description:
         'Explore practical AI use cases and a current map of AI tool utility classes for AI-curious professionals, teams, and leaders.',
       path: '/ai-uses-tools',
+      schemaType: 'CollectionPage',
+    }
+  }
+
+  if (isPracticeProjectsPage) {
+    return {
+      title: '1-Hour AI Practice Projects | Xensible',
+      description:
+        'Try practical one- to two-hour AI exercises that help individuals experience useful AI workflows through safe inputs, review habits, and real walk-away artifacts.',
+      path: '/practice-projects',
       schemaType: 'CollectionPage',
     }
   }
@@ -2000,16 +2305,32 @@ const getCurriculumTierListSchema = () => ({
   })),
 })
 
+const getPracticeProjectListSchema = () => ({
+  '@type': 'ItemList',
+  '@id': `${absoluteSiteUrl('/practice-projects')}#practice-projects`,
+  name: 'Xensible practical AI utility projects',
+  itemListElement: individualUtilityProjects.map(({ title, hook, outcome, timebox }, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: title,
+    description: `${hook} ${outcome}`,
+    additionalType: 'LearningResource',
+    timeRequired: timebox,
+  })),
+})
+
 const getStructuredData = (
   metadata: PageMetadata,
   {
     activeOffer,
     isCurriculumHub,
     isFreeCurriculum,
+    isPracticeProjectsPage,
   }: {
     activeOffer?: (typeof offerFormats)[number]
     isCurriculumHub: boolean
     isFreeCurriculum: boolean
+    isPracticeProjectsPage: boolean
   },
 ) => {
   const graph = getBaseSchemaGraph(metadata)
@@ -2028,6 +2349,10 @@ const getStructuredData = (
 
   if (isFreeCurriculum) {
     graph.push(getCourseSchema(freeCurriculum, '/curricula/free'))
+  }
+
+  if (isPracticeProjectsPage) {
+    graph.push(getPracticeProjectListSchema())
   }
 
   return {
@@ -2109,6 +2434,7 @@ function App() {
   const isFreeCurriculum = currentPath === '/curricula/free'
   const isExpertCurriculumLibrary = currentPath === '/curricula/expert'
   const isAiUsesToolsPage = currentPath === '/ai-uses-tools'
+  const isPracticeProjectsPage = currentPath === '/practice-projects'
   const isUnknownRoute =
     currentPath !== '/' &&
     !activeOffer &&
@@ -2116,7 +2442,8 @@ function App() {
     !isCurriculumHub &&
     !isFreeCurriculum &&
     !isExpertCurriculumLibrary &&
-    !isAiUsesToolsPage
+    !isAiUsesToolsPage &&
+    !isPracticeProjectsPage
   const pageMetadata = useMemo(
     () =>
       getPageMetadata({
@@ -2127,6 +2454,7 @@ function App() {
         isExpertCurriculumLibrary,
         isFreeCurriculum,
         isAiUsesToolsPage,
+        isPracticeProjectsPage,
       }),
     [
       activeCurriculum,
@@ -2136,6 +2464,7 @@ function App() {
       isExpertCurriculumLibrary,
       isFreeCurriculum,
       isAiUsesToolsPage,
+      isPracticeProjectsPage,
     ],
   )
   const structuredData = useMemo(
@@ -2144,8 +2473,9 @@ function App() {
         activeOffer,
         isCurriculumHub,
         isFreeCurriculum,
+        isPracticeProjectsPage,
       }),
-    [activeOffer, isCurriculumHub, isFreeCurriculum, pageMetadata],
+    [activeOffer, isCurriculumHub, isFreeCurriculum, isPracticeProjectsPage, pageMetadata],
   )
 
   useEffect(() => {
@@ -2194,22 +2524,23 @@ function App() {
         <div className="header-actions">
           <nav className="nav-links" aria-label="Main navigation">
             <a href={siteHref('/#services')}>Services</a>
+            <a href={siteHref('/practice-projects')}>Projects</a>
             <a href={siteHref('/#curriculum-packages')}>Curricula</a>
             <a href={siteHref('/ai-uses-tools')}>AI Map</a>
-            <a href={siteHref('/#visuals')}>Visuals</a>
-            <a href={siteHref('/#guide')}>Guide</a>
-            <a href={siteHref('/#faq')}>FAQ</a>
+            <a href={siteHref('/#guide')}>About</a>
             <a href={siteHref('/#contact')}>Contact</a>
           </nav>
           <a className="button button-primary nav-cta" href={contactHref}>
             <CalendarDays aria-hidden="true" />
-            Book Call
+            Schedule
           </a>
         </div>
       </header>
 
       {activeOffer ? (
         <OfferPage offer={activeOffer} />
+      ) : isPracticeProjectsPage ? (
+        <PracticeProjectsPage navigateToRoute={navigateToRoute} />
       ) : isAiUsesToolsPage ? (
         <AiUsesToolsPage navigateToRoute={navigateToRoute} />
       ) : activeCurriculum || isCurriculumHub || isFreeCurriculum || isExpertCurriculumLibrary ? (
@@ -2258,10 +2589,14 @@ function HomePage({
             <div className="hero-actions" aria-label="Primary calls to action">
               <a className="button button-primary" href={contactHref}>
                 <CalendarDays aria-hidden="true" />
-                Book a Zoom Consultation
+                Schedule an AI Fluency Call
               </a>
-              <a className="button button-secondary" href={siteHref('/#services')}>
-                Explore Services
+              <a
+                className="button button-secondary"
+                href={siteHref('/practice-projects')}
+                onClick={(event) => navigateToRoute(event, '/practice-projects')}
+              >
+                Try a 1-Hour AI Project
                 <ArrowRight aria-hidden="true" />
               </a>
             </div>
@@ -2320,6 +2655,59 @@ function HomePage({
                 <p>{body}</p>
               </article>
             ))}
+          </div>
+        </section>
+
+        <section
+          className="section utility-project-section"
+          id="practice-projects"
+          aria-labelledby="practice-projects-title"
+        >
+          <div className="section-heading">
+            <p className="eyebrow">Practical individual projects</p>
+            <h2 id="practice-projects-title">
+              One or two hours is enough to feel what AI can actually do.
+            </h2>
+            <p>
+              These short exercises give AI-curious learners a real artifact:
+              a clearer decision, a stronger draft, a research plan, a meeting
+              kit, or a reusable workflow. Each project uses safe inputs and
+              keeps the human responsible for the final judgment.
+            </p>
+          </div>
+          <div className="utility-project-grid">
+            {individualUtilityProjects.map(({ title, timebox, hook, outcome, steps }) => (
+              <article className="utility-project-card" key={title}>
+                <span className="project-time">{timebox}</span>
+                <h3>{title}</h3>
+                <p>{hook}</p>
+                <div className="project-outcome">
+                  <span>Walk-away artifact</span>
+                  <p>{outcome}</p>
+                </div>
+                <ol>
+                  {steps.map((step) => (
+                    <li key={step}>{step}</li>
+                  ))}
+                </ol>
+              </article>
+            ))}
+          </div>
+          <div className="project-note-strip">
+            <p>
+              The rule for every exercise: use public, fictional, sanitized, or
+              personal-but-not-sensitive material. The goal is to experience AI
+              utility without handing a public tool information it should not
+              have.
+            </p>
+            <a
+              className="button button-secondary"
+              href={siteHref('/practice-projects')}
+              onClick={(event) => navigateToRoute(event, '/practice-projects')}
+            >
+              Open All Practice Projects
+              <ArrowRight aria-hidden="true" />
+            </a>
           </div>
         </section>
 
@@ -2668,10 +3056,13 @@ function HomePage({
               the right first step.
             </p>
             <p className="contact-insight">
-              Best first question: where does your business spend most of its
-              time, and what important work keeps getting ignored because no one
-              has enough capacity? That is often where AI fluency reveals its
-              most practical value before a costly technology decision.
+              Best first question: what does your business spend most of its
+              time doing, and what important work keeps getting ignored because
+              no one has enough capacity? That is often where AI fluency reveals
+              its most practical value before a costly technology decision.
+            </p>
+            <p className="contact-email">
+              Direct email: <a href={contactHref}>contact@xensible.com</a>
             </p>
           </div>
           <a className="button button-primary" href={contactHref}>
@@ -2711,6 +3102,178 @@ function NotFoundPage() {
   )
 }
 
+function PracticeProjectsPage({
+  navigateToRoute,
+}: {
+  navigateToRoute: (
+    event: MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => void
+}) {
+  return (
+    <main className="project-page">
+      <section className="info-hero project-hero">
+        <div>
+          <a
+            className="back-link"
+            href={siteHref('/')}
+            onClick={(event) => navigateToRoute(event, '/')}
+          >
+            <ArrowLeft aria-hidden="true" />
+            Back to home
+          </a>
+          <p className="eyebrow">Practical AI projects</p>
+          <h1>Try a useful AI project before you choose a tool.</h1>
+          <p className="hero-copy">
+            These one- to two-hour exercises are designed for AI-curious
+            individuals who need to feel the utility of AI through real work:
+            a clearer decision, a stronger draft, a meeting kit, a research
+            plan, or a workflow recipe.
+          </p>
+          <div className="hero-actions">
+            <a className="button button-primary" href={siteHref(starterProjectPdfHref)}>
+              Download Starter PDF
+            </a>
+            <a className="button button-secondary" href={contactHref}>
+              Want This Guided Over Zoom?
+              <ArrowRight aria-hidden="true" />
+            </a>
+          </div>
+        </div>
+        <div className="info-hero-panel starter-pdf-panel">
+          <p className="eyebrow">Best first project</p>
+          <h2>Learning Sprint</h2>
+          <p>
+            Start with one topic you genuinely want to understand. In about an
+            hour, AI can help you produce an explainer, examples, a quiz, a
+            glossary, and a verification checklist.
+          </p>
+          <a className="text-link" href={siteHref(starterProjectPdfHref)}>
+            Download the 60-minute worksheet
+            <ArrowRight aria-hidden="true" />
+          </a>
+        </div>
+      </section>
+
+      <section className="section utility-project-detail-section" aria-labelledby="project-list-title">
+        <div className="section-heading">
+          <p className="eyebrow">Project menu</p>
+          <h2 id="project-list-title">Eight short projects with real walk-away artifacts.</h2>
+          <p>
+            Pick the project that matches the work a learner already recognizes.
+            Each project keeps public-tool safety, review, and human ownership
+            built into the exercise.
+          </p>
+        </div>
+        <div className="utility-project-grid utility-project-detail-grid">
+          {individualUtilityProjects.map(({ title, timebox, hook, outcome, safeInput, steps, starterPrompt }) => (
+            <article className="utility-project-card utility-project-card-detailed" key={title}>
+              <span className="project-time">{timebox}</span>
+              <h3>{title}</h3>
+              <p>{hook}</p>
+              <div className="project-outcome">
+                <span>Walk-away artifact</span>
+                <p>{outcome}</p>
+              </div>
+              <div className="project-outcome project-safe-input">
+                <span>Safe input</span>
+                <p>{safeInput}</p>
+              </div>
+              <ol>
+                {steps.map((step) => (
+                  <li key={step}>{step}</li>
+                ))}
+              </ol>
+              <div className="prompt-box">
+                <span>Starter prompt</span>
+                <p>{starterPrompt}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section project-rigor-section" aria-labelledby="project-rigor-title">
+        <div className="section-heading">
+          <p className="eyebrow">How to choose well</p>
+          <h2 id="project-rigor-title">A good first AI project is useful, bounded, and reviewable.</h2>
+          <p>
+            The strongest beginner exercises are not impressive demos. They are
+            small pieces of real work where learners can see value, keep safe
+            boundaries, and practice judgment before relying on an output.
+          </p>
+        </div>
+        <div className="project-rigor-grid">
+          {projectSelectionRubric.map(({ title, body }) => (
+            <article className="project-rigor-card" key={title}>
+              <CheckCircle2 aria-hidden="true" />
+              <h3>{title}</h3>
+              <p>{body}</p>
+            </article>
+          ))}
+        </div>
+        <div className="project-reflection-panel">
+          <div>
+            <p className="eyebrow">Debrief questions</p>
+            <h3>Turn a useful exercise into durable fluency.</h3>
+          </div>
+          <ul className="project-reflection-list">
+            {projectReviewQuestions.map((question) => (
+              <li key={question}>{question}</li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      <section className="section section-band" aria-labelledby="sector-projects-title">
+        <div className="section-heading centered">
+          <p className="eyebrow">Sector examples</p>
+          <h2 id="sector-projects-title">Concrete first projects for cautious organizations.</h2>
+          <p>
+            These examples show how the same short-project format can meet
+            different learners where they are without asking them to expose
+            sensitive information.
+          </p>
+        </div>
+        <div className="sector-example-grid">
+          {sectorProjectExamples.map(({ title, audience, body, safeInput }) => (
+            <article className="sector-example-card" key={title}>
+              <span>{audience}</span>
+              <h3>{title}</h3>
+              <p>{body}</p>
+              <div className="project-outcome project-safe-input">
+                <span>Safe input</span>
+                <p>{safeInput}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="contact-section project-conversion-section" aria-labelledby="project-conversion-title">
+        <div>
+          <p className="eyebrow">Guided version</p>
+          <h2 id="project-conversion-title">Want this guided over Zoom for your team?</h2>
+          <p>
+            A Xensible session can turn these short projects into a warm,
+            practical workshop where participants finish with useful artifacts
+            and shared habits for safer AI practice.
+          </p>
+          <p className="contact-insight">
+            Good workshop candidates are tasks people already spend time on:
+            drafting, planning, meeting prep, research, knowledge cleanup, or
+            work they keep postponing because attention is scarce.
+          </p>
+        </div>
+        <a className="button button-primary" href={contactHref}>
+          <Handshake aria-hidden="true" />
+          Schedule a Guided Project Session
+        </a>
+      </section>
+    </main>
+  )
+}
+
 function CurriculumGate({ children }: { children: ReactNode }) {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -2743,7 +3306,9 @@ function CurriculumGate({ children }: { children: ReactNode }) {
           <h1 id="protected-title">Enter the expert access password.</h1>
           <p className="hero-copy">
             The expert tier contains the full curriculum pages, advanced
-            package paths, planning notes, and PDF companions.
+            package paths, planning notes, and PDF companions. This is a
+            lightweight preview gate, not a private client portal, so sensitive
+            or paid-exclusive client materials should not live here.
           </p>
         </div>
         <form className="password-panel" onSubmit={handleSubmit}>
@@ -3037,7 +3602,8 @@ function ExpertCurriculumLibrary({
           <p className="hero-copy">
             These expert outlines are the working curriculum base for
             Xensible web pages, Zoom sessions, worksheets, advanced coaching,
-            and PDF companions.
+            and PDF companions. The password gate is for preview access only;
+            it is not a secure repository for sensitive client material.
           </p>
         </div>
       </section>
@@ -3193,6 +3759,21 @@ function CurriculumDetail({
         </div>
       </section>
 
+      <section className="section adoption-practices-section">
+        <div className="section-heading centered">
+          <p className="eyebrow">Adoption practices</p>
+          <h2>Research-backed habits for applying AI without skipping judgment.</h2>
+        </div>
+        <div className="adoption-practice-grid">
+          {curriculum.adoptionPractices.map((practice, index) => (
+            <article className="adoption-practice-card" key={practice}>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <p>{practice}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="section curriculum-flow-section">
         <div className="section-heading">
           <p className="eyebrow">Session flow</p>
@@ -3220,6 +3801,44 @@ function CurriculumDetail({
               <ClipboardCheck aria-hidden="true" />
               <h3>{title}</h3>
               <p>{body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section utility-project-detail-section">
+        <div className="section-heading">
+          <p className="eyebrow">1-2 hour utility projects</p>
+          <h2>Short projects that let individuals feel AI's practical power.</h2>
+          <p>
+            These projects are designed for a Zoom session, homework sprint, or
+            individual coaching assignment. Each one produces a usable artifact
+            while reinforcing safe inputs, review habits, and human ownership.
+          </p>
+        </div>
+        <div className="utility-project-grid utility-project-detail-grid">
+          {individualUtilityProjects.map(({ title, timebox, hook, outcome, safeInput, steps, starterPrompt }) => (
+            <article className="utility-project-card utility-project-card-detailed" key={title}>
+              <span className="project-time">{timebox}</span>
+              <h3>{title}</h3>
+              <p>{hook}</p>
+              <div className="project-outcome">
+                <span>Walk-away artifact</span>
+                <p>{outcome}</p>
+              </div>
+              <div className="project-outcome project-safe-input">
+                <span>Safe input</span>
+                <p>{safeInput}</p>
+              </div>
+              <ol>
+                {steps.map((step) => (
+                  <li key={step}>{step}</li>
+                ))}
+              </ol>
+              <div className="prompt-box">
+                <span>Starter prompt</span>
+                <p>{starterPrompt}</p>
+              </div>
             </article>
           ))}
         </div>

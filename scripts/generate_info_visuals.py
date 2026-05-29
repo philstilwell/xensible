@@ -220,6 +220,137 @@ def tool_classes():
     return img
 
 
+def adoption_value_scan():
+    img = Image.new("RGB", (WIDTH, HEIGHT), SURFACE)
+    draw = ImageDraw.Draw(img)
+    draw.rectangle((0, 0, WIDTH, 24), fill=TEAL)
+    draw_header(
+        draw,
+        "adoption guide",
+        "AI adoption value scan",
+        "The best starting point is not a tool demo. It is a map of where work really goes and which valuable tasks keep getting ignored.",
+    )
+
+    steps = [
+        (
+            "Map time sinks",
+            "Where do people spend repeated hours drafting, summarizing, searching, coordinating, or reworking?",
+        ),
+        (
+            "Name neglected work",
+            "What important tasks are delayed because no one has enough attention, time, or confidence?",
+        ),
+        (
+            "Find AI-fit tasks",
+            "Which candidates involve language, structure, comparison, planning, learning, or first drafts?",
+        ),
+        (
+            "Score responsibly",
+            "Rate value, risk, readiness, data sensitivity, review burden, and human ownership.",
+        ),
+        (
+            "Choose next step",
+            "Train, pilot, wait, avoid, or send to the right specialist owner before moving further.",
+        ),
+    ]
+
+    card_w = 400
+    card_h = 430
+    top = 440
+    gap = 52
+    start = 110
+    for i, (title, body) in enumerate(steps, start=1):
+        x = start + (i - 1) * (card_w + gap)
+        accent = [TEAL, CLAY, BRASS, TEAL, CLAY][i - 1]
+        rounded(draw, (x, top, x + card_w, top + card_h), 26, PAPER, LINE, width=2)
+        rounded(draw, (x + 28, top + 28, x + 96, top + 96), 18, MIST)
+        draw.text((x + 52, top + 45), str(i), font=font(32, bold=True), fill=accent)
+        wrapped(draw, title, (x + 30, top + 130), card_w - 60, font(38, bold=True), INK, line_gap=6)
+        wrapped(draw, body, (x + 30, top + 230), card_w - 60, font(25), MUTED, line_gap=8)
+        if i < len(steps):
+            mid_y = top + card_h // 2
+            draw.line((x + card_w + 10, mid_y, x + card_w + gap - 12, mid_y), fill=LINE, width=5)
+            draw.polygon(
+                [
+                    (x + card_w + gap - 12, mid_y),
+                    (x + card_w + gap - 32, mid_y - 14),
+                    (x + card_w + gap - 32, mid_y + 14),
+                ],
+                fill=BRASS,
+            )
+
+    rounded(draw, (165, 930, 2235, 1125), 26, TEAL)
+    draw.text((205, 970), "Xensible framing question", font=font(30, bold=True), fill=BRASS_LIGHT)
+    wrapped(
+        draw,
+        "Where is the organization losing time, and what useful work is being left undone? AI fluency helps teams explore those gaps safely before making expensive technology decisions.",
+        (205, 1018),
+        1930,
+        font(28),
+        SURFACE,
+        line_gap=9,
+    )
+
+    rounded(draw, (600, 1188, 1800, 1278), 18, WARM, LINE, width=2)
+    draw.text((640, 1218), "Output:", font=font(28, bold=True), fill=INK)
+    wrapped(
+        draw,
+        "a ranked list of training candidates, pilot ideas, wait items, and specialist-review questions.",
+        (752, 1208),
+        980,
+        font(27),
+        INK_SOFT,
+        line_gap=6,
+    )
+    return img
+
+
+def responsible_adoption_loop():
+    img = Image.new("RGB", (WIDTH, HEIGHT), SURFACE)
+    draw = ImageDraw.Draw(img)
+    draw.rectangle((0, 0, WIDTH, 24), fill=TEAL)
+    draw_header(
+        draw,
+        "practice model",
+        "Responsible AI adoption loop",
+        "A learning cycle for building fluency, bounded workflows, review habits, and shared team norms.",
+    )
+
+    center = (1200, 735)
+    nodes = [
+        ("Learn", "Build shared language and basic AI fluency.", (280, 460, 700, 630), CLAY),
+        ("Bound", "Set data, review, and approval boundaries.", (850, 385, 1270, 555), TEAL),
+        ("Practice", "Use realistic, non-sensitive scenarios.", (1700, 460, 2120, 630), BRASS),
+        ("Evaluate", "Check quality, usefulness, risk, and review burden.", (1700, 820, 2120, 990), TEAL),
+        ("Capture", "Document prompts, lessons, mistakes, and examples.", (850, 895, 1270, 1065), CLAY),
+        ("Normalize", "Share what works and update team habits.", (280, 820, 700, 990), BRASS),
+    ]
+
+    for title, body, box, accent in nodes:
+        x1, y1, x2, y2 = box
+        connector(draw, center, ((x1 + x2) / 2, (y1 + y2) / 2), LINE)
+        rounded(draw, box, 24, PAPER, LINE, width=2)
+        rounded(draw, (x1 + 26, y1 + 28, x1 + 78, y1 + 80), 15, MIST)
+        draw.ellipse((x1 + 42, y1 + 44, x1 + 62, y1 + 64), fill=accent)
+        draw.text((x1 + 104, y1 + 28), title, font=font(34, bold=True), fill=INK)
+        wrapped(draw, body, (x1 + 104, y1 + 82), x2 - x1 - 132, font(23), MUTED, line_gap=6)
+
+    rounded(draw, (930, 580, 1470, 890), 42, TEAL)
+    centered(draw, "Human judgment", 655, font(44, bold=True), SURFACE)
+    centered(draw, "+", 717, font(46, bold=True), BRASS_LIGHT)
+    centered(draw, "business context", 770, font(44, bold=True), SURFACE)
+
+    rounded(draw, (110, 1190, 2290, 1285), 18, WARM, LINE, width=2)
+    draw.text((146, 1223), "Adoption rule:", font=font(28, bold=True), fill=INK)
+    draw.text(
+        (350, 1223),
+        "Do not scale a workflow until its value, data boundaries, review owner, and failure modes are understood.",
+        font=font(28),
+        fill=INK_SOFT,
+    )
+    return img
+
+
 def save_asset(img, stem):
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     png = OUT_DIR / f"{stem}.png"
@@ -233,6 +364,8 @@ def save_asset(img, stem):
 def main():
     save_asset(ai_uses(), "ai-uses-you-may-not-have-considered")
     save_asset(tool_classes(), "ai-tools-utility-classes")
+    save_asset(adoption_value_scan(), "ai-adoption-value-scan")
+    save_asset(responsible_adoption_loop(), "responsible-ai-adoption-loop")
 
 
 if __name__ == "__main__":

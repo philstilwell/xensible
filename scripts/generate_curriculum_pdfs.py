@@ -25,6 +25,132 @@ MIST = colors.HexColor("#eaf2ee")
 SURFACE = colors.HexColor("#f7f9f6")
 
 
+INDIVIDUAL_UTILITY_PROJECTS = [
+    {
+        "title": "Learning Sprint",
+        "timebox": "60-75 minutes",
+        "hook": "Turn a confusing topic into a private tutor session.",
+        "outcome": "A one-page explainer, a short quiz, a glossary, and a list of what to verify elsewhere.",
+        "safe_input": "Use a public topic, a public article, or a concept you want to understand. Avoid private client, patient, employee, or proprietary material.",
+        "steps": [
+            "Ask for a plain-language explanation at your current level.",
+            "Request examples, analogies, common misconceptions, and a five-question quiz.",
+            "Ask what claims need source checking before you rely on them.",
+        ],
+        "starter_prompt": "Teach me [topic] as a smart beginner. Start with a plain-language explanation, then give examples, common misconceptions, a short glossary, a five-question quiz, and a list of claims I should verify with reliable sources.",
+    },
+    {
+        "title": "Decision Clarity Brief",
+        "timebox": "75-90 minutes",
+        "hook": "Use AI to make a decision easier to think about without outsourcing the decision.",
+        "outcome": "A comparison table, assumptions list, pre-mortem, missing-information checklist, and final decision questions.",
+        "safe_input": "Use a personal, public, fictional, or sanitized decision. Keep confidential finances, contracts, medical, legal, or customer details out of public tools.",
+        "steps": [
+            "Describe the options, constraints, values, and what would count as success.",
+            "Ask AI to compare options and surface assumptions instead of choosing for you.",
+            "Run a pre-mortem and identify what a human should check before acting.",
+        ],
+        "starter_prompt": "Help me think through this decision without deciding for me: [safe decision context]. Create criteria, compare options, name assumptions, run a pre-mortem, list missing information, and end with questions I should answer myself.",
+    },
+    {
+        "title": "Meeting Prep Kit",
+        "timebox": "60-90 minutes",
+        "hook": "Turn a rough meeting idea into a more useful conversation.",
+        "outcome": "A meeting agenda, prep questions, likely tensions, decision points, and a follow-up email template.",
+        "safe_input": "Use fictional or sanitized meeting context. Do not paste private attendee notes, personnel details, patient data, customer records, or proprietary plans into public tools.",
+        "steps": [
+            "Give AI the purpose, audience, desired outcome, and any safe background.",
+            "Ask for an agenda, questions, risks, and decisions to clarify.",
+            "Revise the agenda for tone, time, and who needs to review it.",
+        ],
+        "starter_prompt": "Using this fictional or sanitized meeting context, create a focused agenda, prep questions, likely tensions, decision points, and a follow-up email template. Mark anything that needs human confirmation: [context].",
+    },
+    {
+        "title": "Writing Upgrade Studio",
+        "timebox": "60 minutes",
+        "hook": "See how AI can draft, critique, and revise with you in a loop.",
+        "outcome": "A stronger email, memo, bio, announcement, or short article with a revision history and review checklist.",
+        "safe_input": "Use a rough draft that contains no sensitive personal, client, patient, employee, legal, financial, or proprietary details.",
+        "steps": [
+            "Ask for a first rewrite for a specific audience and tone.",
+            "Ask AI to critique its own draft for clarity, claims, tone, and missing context.",
+            "Request a final revision and make the last edits yourself.",
+        ],
+        "starter_prompt": "Improve this rough draft for [audience] with a [tone] tone. Then critique your revision for clarity, unsupported claims, missing context, and anything a human should verify before sending: [safe draft].",
+    },
+    {
+        "title": "Research Compass",
+        "timebox": "90-120 minutes",
+        "hook": "Use AI to plan research before you read, search, or cite.",
+        "outcome": "A research question map, search terms, source categories, red flags, and verification plan.",
+        "safe_input": "Use a public topic or general business question. Do not ask AI to invent citations or make final claims without sources.",
+        "steps": [
+            "Ask AI to turn a broad topic into better questions and search terms.",
+            "Request source categories, possible biases, and missing perspectives.",
+            "Use the output as a reading plan, then verify claims in actual sources.",
+        ],
+        "starter_prompt": "Help me plan research on [public topic]. Create key questions, search terms, source types to seek, likely blind spots, red flags, and a verification checklist. Do not make final claims without sources.",
+    },
+    {
+        "title": "Workflow Recipe Builder",
+        "timebox": "90-120 minutes",
+        "hook": "Turn one repeated task into a reusable AI-assisted workflow.",
+        "outcome": "A workflow recipe with inputs, prompt sequence, review gates, human owner, and when-not-to-use guidance.",
+        "safe_input": "Choose a recurring task and describe it generally or with fictional examples. Keep sensitive operational data out of public tools.",
+        "steps": [
+            "Map the task into steps, inputs, outputs, review points, and handoffs.",
+            "Ask AI where it can help and where human judgment should stay in charge.",
+            "Create a repeatable prompt sequence and a review checklist.",
+        ],
+        "starter_prompt": "Turn this recurring task into a safe AI-assisted workflow recipe: [task]. Include purpose, safe inputs, prompt sequence, review checkpoints, human decision points, risks, and when not to use AI for this task.",
+    },
+    {
+        "title": "Professional Profile Refresh",
+        "timebox": "75-90 minutes",
+        "hook": "Use AI as a coach for describing your work more clearly.",
+        "outcome": "A refreshed bio, resume bullet options, interview talking points, and confidence-building practice questions.",
+        "safe_input": "Use a sanitized career summary or fictionalized role description. Do not include private employer data, references, compensation, or confidential projects.",
+        "steps": [
+            "Give AI a safe summary of your work, audience, and desired tone.",
+            "Ask for clearer positioning, bullet options, and examples of evidence to add.",
+            "Roleplay interview questions and revise anything that feels inflated or inaccurate.",
+        ],
+        "starter_prompt": "Using this sanitized professional summary, help me describe my work more clearly. Draft a short bio, five resume bullet options, three interview talking points, and questions I should answer to make the claims more accurate: [summary].",
+    },
+    {
+        "title": "Personal Planning Co-Pilot",
+        "timebox": "60-75 minutes",
+        "hook": "Use AI to turn vague goals into a realistic plan you can actually follow.",
+        "outcome": "A one-week plan, prioritized task list, obstacle plan, review ritual, and next-action checklist.",
+        "safe_input": "Use personal goals and constraints that are not private, medical, financial, legal, or deeply sensitive.",
+        "steps": [
+            "Describe the goal, constraints, time available, and what has made it hard.",
+            "Ask AI for a practical plan with tradeoffs and small next actions.",
+            "Review the plan yourself and remove anything unrealistic or intrusive.",
+        ],
+        "starter_prompt": "Help me turn this goal into a realistic one-week plan: [safe goal]. Ask clarifying questions if needed, then create priorities, daily actions, likely obstacles, a review ritual, and a simple checklist.",
+    },
+]
+
+
+PROJECT_SELECTION_RUBRIC = [
+    "Real work, low risk: choose a task people already recognize, but keep inputs public, fictional, or sanitized.",
+    "Clear walk-away artifact: produce a brief, agenda, checklist, glossary, comparison table, or reusable prompt sequence.",
+    "Visible judgment step: check claims, name uncertainty, revise tone, or decide what should remain human-led.",
+    "Transferable habit: practice a pattern the learner can reuse later, such as giving context, comparing outputs, or verifying before relying.",
+]
+
+
+PROJECT_REVIEW_QUESTIONS = [
+    "What did AI make easier, faster, clearer, or more complete?",
+    "Where did the output sound confident but still need verification?",
+    "What context improved the result most?",
+    "What information should never be pasted into a public tool?",
+    "What part of the work should remain owned by a person?",
+    "What small workflow would be worth practicing again next week?",
+]
+
+
 FREE_CURRICULUM = {
     "slug": "free-ai-fluency-starter",
     "title": "Free AI Fluency Starter",
@@ -70,6 +196,12 @@ FREE_CURRICULUM = {
         "Can name at least three kinds of data that should not be pasted into public tools.",
         "Can identify when an output needs outside verification or human approval.",
     ],
+    "adoption_practices": [
+        "Start with public, fictional, or anonymized examples so skill building does not depend on risky data.",
+        "Treat AI output as a draft or suggestion until a person has checked facts, assumptions, tone, and missing context.",
+        "Keep a small practice log that records what worked, what failed, and what had to be verified elsewhere.",
+        "Choose first experiments from ordinary work: drafting, summarizing, planning, learning, or question generation.",
+    ],
     "materials": [
         "Free AI fluency starter guide",
         "Basic prompting loop worksheet",
@@ -81,6 +213,7 @@ FREE_CURRICULUM = {
         "Beginner LLM session loop: ask, inspect, revise, verify",
         "Safe practice boundary map for public AI tools",
         "First workflow chooser: draft, summarize, plan, or critique",
+        "Responsible adoption loop: learn, practice, review, apply",
     ],
     "follow_up": [
         "Keep a one-week practice log using only non-sensitive examples.",
@@ -162,6 +295,12 @@ CURRICULA = [
             "Participants can use a repeatable prompt structure.",
             "Participants can explain the difference between safe examples and sensitive operational data.",
             "Participants can name a human review habit they will use before applying output.",
+        ],
+        "adoption_practices": [
+            "Build shared vocabulary before asking a team to adopt new tools or policies.",
+            "Normalize careful experimentation so people can ask basic questions without embarrassment.",
+            "Make quality control and critical thinking explicit parts of AI fluency, not advanced extras.",
+            "Give managers and team leads enough fluency to model responsible use and reinforce boundaries.",
         ],
         "materials": [
             "AI fluency starter guide",
@@ -252,6 +391,12 @@ CURRICULA = [
             "Inputs avoid sensitive or proprietary data unless a suitable private environment is approved.",
             "The workflow includes a review step for accuracy, tone, assumptions, and missing context.",
             "The team can explain when the workflow is useful and when it should not be used.",
+        ],
+        "adoption_practices": [
+            "Prioritize recurring tasks that consume real time or create repeated rework, not flashy demos.",
+            "Break each workflow into inputs, AI assistance, review checkpoints, handoffs, and final ownership.",
+            "Measure usefulness in time saved, quality improved, rework reduced, and review burden created.",
+            "Document the workflow recipe so a useful experiment can become a teachable team practice.",
         ],
         "materials": [
             "Workflow recipe cards",
@@ -344,6 +489,12 @@ CURRICULA = [
             "Sensitive-data concerns are named without implying legal or compliance guarantees.",
             "Next steps are limited enough to learn from safely.",
         ],
+        "adoption_practices": [
+            "Start discovery by asking where the business spends most of its time and what important work is being neglected.",
+            "Combine top-down priorities with worker voice so use cases reflect real operations, not only leadership guesses.",
+            "Score each idea by value, risk, readiness, data sensitivity, review burden, and learning required.",
+            "Separate train, pilot, wait, avoid, and specialist-review decisions before spending money on tools.",
+        ],
         "materials": [
             "Team readiness worksheet",
             "Use-case scoring rubric",
@@ -356,6 +507,7 @@ CURRICULA = [
             "Use-case value/risk grid",
             "Team adoption pathway from discovery to practice",
             "Readiness map from friction points to training path",
+            "AI adoption value scan: time spent, neglected work, value, risk, next step",
         ],
         "follow_up": [
             "Choose two low-risk training candidates and one idea to postpone.",
@@ -435,6 +587,12 @@ CURRICULA = [
             "The organization has named which decisions require internal policy, legal, privacy, or technical owners.",
             "The next step is small enough to learn from and clear enough to communicate.",
         ],
+        "adoption_practices": [
+            "Treat AI adoption as work redesign and capability building, not simply tool access.",
+            "Ask what evidence would justify scaling before approving major spend or vendor lock-in.",
+            "Align incentives, manager support, and evaluation habits so experimentation can produce shared learning.",
+            "Create a basic evaluation structure: who reviews outputs, who updates workflows, and how lessons are captured.",
+        ],
         "materials": [
             "Executive briefing deck outline",
             "Vendor question guide",
@@ -447,6 +605,7 @@ CURRICULA = [
             "Decision gates for AI investment",
             "Build, buy, train, or wait decision tree",
             "Leadership clarity map: learn, test, decide, communicate",
+            "Responsible adoption operating model: people, process, governance, measurement",
         ],
         "follow_up": [
             "Select a first audience for training or discovery.",
@@ -525,6 +684,12 @@ CURRICULA = [
             "The team can separate useful tool changes from noise.",
             "Repeated questions are converted into shared guidance or workflow notes.",
             "Office hours reinforce boundaries rather than encouraging careless experimentation.",
+        ],
+        "adoption_practices": [
+            "Use recurring office hours as a learning system: collect questions, compare examples, update norms, and share what changed.",
+            "Reward useful observations about failures and confusing outputs, not only successful prompts.",
+            "Translate tool changes into work implications so people are not forced to chase every announcement.",
+            "Revisit boundaries as tools gain new file, memory, browsing, coding, or agent capabilities.",
         ],
         "materials": [
             "Monthly question intake form",
@@ -617,6 +782,12 @@ CURRICULA = [
             "The operator can request scoped changes and inspect diffs before accepting them.",
             "The operator can run appropriate verification before committing or publishing.",
             "The operator has a rollback path and knows when to stop for human review.",
+        ],
+        "adoption_practices": [
+            "Use least-privilege thinking: give local agents only the access, scope, and autonomy the task actually requires.",
+            "Assume agent outputs and actions need verification through diffs, tests, screenshots, logs, or independent review.",
+            "Treat prompt injection, sensitive information disclosure, and excessive agency as design risks for tool-using systems.",
+            "Keep rollback, audit trail, and human approval points visible before using full-control agents on higher-risk work.",
         ],
         "materials": [
             "Local agent supervision checklist",
@@ -792,6 +963,8 @@ def build_pdf(curriculum, out_dir):
         bullet_list(curriculum["guiding_questions"], style["BodyTextX"]),
         Paragraph("Readiness checks", style["SectionTitle"]),
         bullet_list(curriculum["readiness_checks"], style["BodyTextX"]),
+        Paragraph("Research-backed adoption practices", style["SectionTitle"]),
+        bullet_list(curriculum["adoption_practices"], style["BodyTextX"]),
         Paragraph("Curriculum modules", style["SectionTitle"]),
     ]
 
@@ -808,6 +981,23 @@ def build_pdf(curriculum, out_dir):
     for title, body in curriculum["practice_labs"]:
         story.append(Paragraph(f"<b>{title}</b>", style["BodyTextX"]))
         story.append(Paragraph(body, style["BodyTextX"]))
+
+    story.append(Paragraph("1-2 hour utility projects", style["SectionTitle"]))
+    story.append(
+        Paragraph(
+            "These short projects are designed to help individuals experience practical AI utility while keeping inputs safe and human review visible.",
+            style["BodyTextX"],
+        )
+    )
+    story.append(Paragraph("How to choose a strong first project", style["SectionTitle"]))
+    story.append(bullet_list(PROJECT_SELECTION_RUBRIC, style["BodyTextX"]))
+    for project in INDIVIDUAL_UTILITY_PROJECTS:
+        story.append(Paragraph(f"<b>{project['title']} ({project['timebox']})</b>", style["BodyTextX"]))
+        story.append(Paragraph(project["hook"], style["BodyTextX"]))
+        story.append(Paragraph(f"<b>Walk-away artifact:</b> {project['outcome']}", style["BodyTextX"]))
+        story.append(Paragraph(f"<b>Safe input:</b> {project['safe_input']}", style["BodyTextX"]))
+        story.append(bullet_list(project["steps"], style["BodyTextX"]))
+        story.append(Paragraph(f"<b>Starter prompt:</b> {project['starter_prompt']}", style["BodyTextX"]))
 
     story.append(Paragraph("Tangible cases", style["SectionTitle"]))
     for case in curriculum["tangible_cases"]:
@@ -856,6 +1046,86 @@ def build_pdf(curriculum, out_dir):
     return out_path
 
 
+def build_starter_project_pdf(out_dir):
+    out_path = out_dir / "first-60-minute-ai-utility-project.pdf"
+    doc = SimpleDocTemplate(
+        str(out_path),
+        pagesize=letter,
+        rightMargin=0.72 * inch,
+        leftMargin=0.72 * inch,
+        topMargin=0.72 * inch,
+        bottomMargin=0.72 * inch,
+        title="First 60-Minute AI Utility Project | Xensible",
+    )
+    style = styles()
+    starter = INDIVIDUAL_UTILITY_PROJECTS[0]
+    story = [
+        Paragraph("Xensible free practice worksheet", style["Kicker"]),
+        Paragraph("First 60-Minute AI Utility Project", style["CoverTitle"]),
+        Paragraph(
+            "A short, practical exercise for AI-curious individuals who want to feel real utility before choosing tools, buying software, or joining a longer training path.",
+            style["BodyTextX"],
+        ),
+        Spacer(1, 0.12 * inch),
+        Table(
+            [
+                [Paragraph("<b>Project</b>", style["BodyTextX"]), Paragraph(starter["title"], style["BodyTextX"])],
+                [Paragraph("<b>Timebox</b>", style["BodyTextX"]), Paragraph(starter["timebox"], style["BodyTextX"])],
+                [Paragraph("<b>Artifact</b>", style["BodyTextX"]), Paragraph(starter["outcome"], style["BodyTextX"])],
+            ],
+            colWidths=[1.15 * inch, 4.65 * inch],
+            style=TableStyle(
+                [
+                    ("BACKGROUND", (0, 0), (-1, -1), MIST),
+                    ("BOX", (0, 0), (-1, -1), 0.5, colors.HexColor("#d7e3de")),
+                    ("INNERGRID", (0, 0), (-1, -1), 0.5, colors.HexColor("#d7e3de")),
+                    ("VALIGN", (0, 0), (-1, -1), "TOP"),
+                    ("LEFTPADDING", (0, 0), (-1, -1), 10),
+                    ("RIGHTPADDING", (0, 0), (-1, -1), 10),
+                    ("TOPPADDING", (0, 0), (-1, -1), 8),
+                    ("BOTTOMPADDING", (0, 0), (-1, -1), 8),
+                ]
+            ),
+        ),
+        Paragraph("Why this project works", style["SectionTitle"]),
+        Paragraph(
+            "Learning sprints are often the easiest way to experience AI's practical value. The learner starts with curiosity, gets a usable artifact, and immediately practices the judgment habit of checking what still needs verification.",
+            style["BodyTextX"],
+        ),
+        Paragraph("Safe input rule", style["SectionTitle"]),
+        Paragraph(starter["safe_input"], style["BodyTextX"]),
+        Paragraph("Steps", style["SectionTitle"]),
+        bullet_list(starter["steps"], style["BodyTextX"]),
+        Paragraph("Starter prompt", style["SectionTitle"]),
+        Paragraph(starter["starter_prompt"], style["BodyTextX"]),
+        PageBreak(),
+        Paragraph("Review before relying", style["SectionTitle"]),
+        bullet_list(PROJECT_REVIEW_QUESTIONS, style["BodyTextX"]),
+        Paragraph("How to choose the next project", style["SectionTitle"]),
+        bullet_list(PROJECT_SELECTION_RUBRIC, style["BodyTextX"]),
+        Paragraph("Other 1-2 hour projects to try", style["SectionTitle"]),
+    ]
+
+    for project in INDIVIDUAL_UTILITY_PROJECTS[1:]:
+        story.append(Paragraph(f"<b>{project['title']} ({project['timebox']})</b>", style["BodyTextX"]))
+        story.append(Paragraph(project["hook"], style["BodyTextX"]))
+        story.append(Paragraph(f"<b>Walk-away artifact:</b> {project['outcome']}", style["BodyTextX"]))
+
+    story.extend(
+        [
+            Paragraph("Guided Zoom option", style["SectionTitle"]),
+            Paragraph(
+                "These projects can be run as individual coaching assignments or as team workshops. A guided session helps learners choose safe inputs, improve prompts, review outputs, and connect the exercise to real work without overtrusting the tool.",
+                style["BodyTextX"],
+            ),
+            Paragraph("Contact", style["SectionTitle"]),
+            Paragraph("contact@xensible.com", style["BodyTextX"]),
+        ]
+    )
+    doc.build(story, onFirstPage=draw_page, onLaterPages=draw_page)
+    return out_path
+
+
 def main():
     public_dir = Path("public/curriculum-pdfs")
     output_dir = Path("output/pdf")
@@ -867,6 +1137,11 @@ def main():
         output_pdf = output_dir / public_pdf.name
         output_pdf.write_bytes(public_pdf.read_bytes())
         print(public_pdf)
+
+    starter_pdf = build_starter_project_pdf(public_dir)
+    starter_output_pdf = output_dir / starter_pdf.name
+    starter_output_pdf.write_bytes(starter_pdf.read_bytes())
+    print(starter_pdf)
 
 
 if __name__ == "__main__":
