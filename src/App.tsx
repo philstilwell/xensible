@@ -1863,10 +1863,30 @@ const process = [
 ]
 
 const reasons = [
-  'Education comes first, so people understand the tools before committing to them.',
-  'Sessions are warm, practical, and designed for people who are curious but not yet confident.',
-  'The work is remote-first and easy to tailor for teams, departments, leaders, or individuals.',
-  'Responsible use is built in: data boundaries, uncertainty, review habits, and human judgment stay central.',
+  {
+    title:
+      'Education comes first, so people understand the tools before committing to them.',
+    detail:
+      'Xensible starts with fluency because better understanding leads to better decisions. Teams learn what current AI tools can and cannot do, how prompts and context shape results, and why output still needs review. That foundation helps organizations avoid both panic and overbuying. Before a team pays for software, hires vendors, or changes policy, people should know enough to ask sharper questions and recognize what kind of value is actually possible.',
+  },
+  {
+    title:
+      'Sessions are warm, practical, and designed for people who are curious but not yet confident.',
+    detail:
+      'Many professionals are interested in AI but quietly unsure where to begin, what is safe to try, or whether they are already behind. Xensible sessions are designed to lower that pressure. The training uses plain language, real examples, and guided practice so participants can ask basic questions without embarrassment. The goal is not to impress people with technical jargon. It is to help them leave with confidence, vocabulary, and a few useful habits they can repeat.',
+  },
+  {
+    title:
+      'The work is remote-first and easy to tailor for teams, departments, leaders, or individuals.',
+    detail:
+      'Because the training is built for Zoom, it can meet people where they already work. A leadership group may need a strategic briefing. A department may need workflow practice. An individual may need coaching on writing, research, planning, or local AI tools. Each session can be shaped around the audience, comfort level, sector concerns, and real tasks, while still keeping a consistent structure for safe experimentation and practical follow-through.',
+  },
+  {
+    title:
+      'Responsible use is built in: data boundaries, uncertainty, review habits, and human judgment stay central.',
+    detail:
+      'Responsible AI practice is treated as a normal part of fluency, not a warning added at the end. Participants learn to avoid pasting sensitive patient, customer, employee, legal, financial, or proprietary data into public tools. They also practice checking claims, noticing uncertainty, revising outputs, and deciding what should remain human-led. Xensible does not promise legal, medical, compliance, or cybersecurity guarantees. It teaches people to use AI with clearer boundaries and better judgment.',
+  },
 ]
 
 const aiBuiltSites = [
@@ -3062,10 +3082,24 @@ function HomePage({
             </p>
           </div>
           <div className="reason-list">
-            {reasons.map((reason) => (
-              <div className="reason-item" key={reason}>
-                <Sparkles aria-hidden="true" />
-                <p>{reason}</p>
+            {reasons.map(({ title, detail }, index) => (
+              <div
+                aria-describedby={`reason-detail-${index + 1}`}
+                className="reason-item reason-item-interactive"
+                key={title}
+                tabIndex={0}
+              >
+                <div className="reason-item-front">
+                  <Sparkles aria-hidden="true" />
+                  <p>{title}</p>
+                </div>
+                <div className="reason-hover-panel" id={`reason-detail-${index + 1}`}>
+                  <Sparkles aria-hidden="true" />
+                  <div>
+                    <h3>{title}</h3>
+                    <p>{detail}</p>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
