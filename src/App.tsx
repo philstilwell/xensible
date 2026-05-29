@@ -2667,6 +2667,12 @@ function HomePage({
               feels confusing. We will use a short Zoom conversation to identify
               the right first step.
             </p>
+            <p className="contact-insight">
+              Best first question: where does your business spend most of its
+              time, and what important work keeps getting ignored because no one
+              has enough capacity? That is often where AI fluency reveals its
+              most practical value before a costly technology decision.
+            </p>
           </div>
           <a className="button button-primary" href={contactHref}>
             <Handshake aria-hidden="true" />
@@ -3383,6 +3389,12 @@ function OfferPage({
           <p>
             We will clarify your goals, audience, and comfort level, then choose
             the right training format.
+          </p>
+          <p className="contact-insight">
+            The most useful starting point is a map of where your workday
+            actually goes and which valuable tasks keep slipping out of reach.
+            From there, AI training can focus on practical value instead of
+            abstract possibility.
           </p>
         </div>
         <a className="button button-primary" href={contactHref}>

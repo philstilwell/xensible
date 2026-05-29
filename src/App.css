@@ -1351,6 +1351,18 @@ details p {
   color: rgba(247, 249, 246, 0.76);
 }
 
+.contact-section .contact-insight {
+  max-width: 720px;
+  margin-top: 18px;
+  padding: 16px 18px;
+  border: 1px solid rgba(247, 249, 246, 0.18);
+  border-left: 4px solid var(--brass-light);
+  border-radius: 8px;
+  background: rgba(16, 31, 35, 0.2);
+  color: rgba(247, 249, 246, 0.9);
+  font-weight: 650;
+}
+
 .contact-section .eyebrow {
   color: var(--brass-light);
 }
