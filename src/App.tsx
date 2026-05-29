@@ -2101,6 +2101,11 @@ const faqs = [
     answer:
       'A short Zoom consultation or team briefing is usually enough to understand your goals, audience, and the right level of training.',
   },
+  {
+    question: 'What does the first consultation cost?',
+    answer:
+      'The first 30-minute consultation is free. It is a risk-free way to clarify your actual needs before any paid work begins. After that, billing is transparent and moves forward only with client approval. Typical fees range from $40-$50 per hour for individual coaching and $50-$70 per hour for Zoom classroom coaching, with generous preparation, examples, and practical guidance built into the work.',
+  },
 ]
 
 const emailHref =
@@ -3309,6 +3314,14 @@ function HomePage({
               Bring your questions, your team context, and the places where AI
               feels confusing. We will use a short Zoom conversation to identify
               the right first step.
+            </p>
+            <p className="contact-pricing-note">
+              The first 30-minute consultation is free, so we can clarify your
+              actual needs before any paid work begins. After that, billing is
+              transparent and based on your approval. Typical rates are $40-$50
+              per hour for individual coaching and $50-$70 per hour for Zoom
+              classroom coaching, with generous preparation, examples, and
+              practical guidance included in the work.
             </p>
             <p className="contact-insight">
               Best first question: what does your business spend most of its

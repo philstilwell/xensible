@@ -1884,6 +1884,14 @@ details p {
   font-weight: 650;
 }
 
+.contact-section .contact-pricing-note {
+  max-width: 720px;
+  margin-top: 18px;
+  color: rgba(247, 249, 246, 0.92);
+  font-weight: 700;
+  line-height: 1.62;
+}
+
 .contact-section .contact-email {
   margin-top: 14px;
   margin-bottom: 0;
