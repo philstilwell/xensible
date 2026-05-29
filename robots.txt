@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /curriculum-pdfs/
+
+Sitemap: https://xensible.com/sitemap.xml
