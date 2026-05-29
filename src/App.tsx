@@ -635,6 +635,8 @@ const aiBuiltSites = [
     name: 'LogFall',
     url: 'https://logfall.com/',
     domain: 'logfall.com',
+    image: '/showcase/logfall.webp',
+    alt: 'Screenshot of the LogFall landing page.',
     description:
       'A logical-fallacies reference with definitions, examples, teaching paths, case studies, and practice tools.',
   },
@@ -642,6 +644,8 @@ const aiBuiltSites = [
     name: 'CogBias',
     url: 'https://cogbias.site/',
     domain: 'cogbias.site',
+    image: '/showcase/cogbias.webp',
+    alt: 'Screenshot of the CogBias landing page.',
     description:
       'A cognitive-bias learning site with clear entries, comparison guides, assessments, self-audits, and debiasing tools.',
   },
@@ -649,6 +653,8 @@ const aiBuiltSites = [
     name: 'Byteseismic Philosophy',
     url: 'https://byteseismic.com/',
     domain: 'byteseismic.com',
+    image: '/showcase/byteseismic.webp',
+    alt: 'Screenshot of the Byteseismic Philosophy landing page.',
     description:
       'A guided philosophy inquiry network organized by questions, routes, concepts, dialogues, maps, and quizzes.',
   },
@@ -656,6 +662,8 @@ const aiBuiltSites = [
     name: 'DOING.TOKYO',
     url: 'https://doing.tokyo/',
     domain: 'doing.tokyo',
+    image: '/showcase/doing-tokyo.webp',
+    alt: 'Screenshot of the DOING.TOKYO landing page.',
     description:
       'A practical one-day Tokyo itinerary planner that adapts route style, budget, pace, weather, food, and logistics.',
   },
@@ -663,6 +671,8 @@ const aiBuiltSites = [
     name: 'Credencing',
     url: 'https://credencing.com/',
     domain: 'credencing.com',
+    image: '/showcase/credencing.webp',
+    alt: 'Screenshot of the Credencing landing page.',
     description:
       'An interactive model for thinking about evidence, perception, confidence, rationality, and irrationality.',
   },
@@ -670,6 +680,8 @@ const aiBuiltSites = [
     name: 'Slugfester',
     url: 'https://slugfester.com/',
     domain: 'slugfester.com',
+    image: '/showcase/slugfester.webp',
+    alt: 'Screenshot of the Slugfester landing page.',
     description:
       'A debate-analysis tool for tracking argument strength, rebuttals, fallacies, and cognitive biases in transcripts.',
   },
@@ -1188,20 +1200,20 @@ function HomePage({
           aria-labelledby="examples-title"
         >
           <div className="section-heading">
-            <p className="eyebrow">Built with AI</p>
+            <p className="eyebrow">Built by Phil with AI</p>
             <h2 id="examples-title">
-              Public examples of AI-assisted thinking, writing, and site
-              creation.
+              Featured sites Phil created using AI-assisted thinking, writing,
+              and development.
             </h2>
             <p>
-              These projects show the kind of practical fluency Xensible
-              teaches: using AI to structure complex material, build useful
-              interfaces, and turn ideas into working resources without losing
-              human judgment.
+              Phil created each of these public projects as practical examples
+              of the fluency Xensible teaches: using AI to structure complex
+              material, build useful interfaces, and turn ideas into working
+              resources without losing human judgment.
             </p>
           </div>
           <div className="example-grid">
-            {aiBuiltSites.map(({ name, url, domain, description }) => (
+            {aiBuiltSites.map(({ name, url, domain, image, alt, description }) => (
               <a
                 className="example-card"
                 href={url}
@@ -1209,12 +1221,18 @@ function HomePage({
                 rel="noreferrer"
                 target="_blank"
               >
-                <span className="example-domain">{domain}</span>
-                <h3>{name}</h3>
-                <p>{description}</p>
-                <span className="text-link">
-                  Visit site
-                  <ExternalLink aria-hidden="true" />
+                <span className="example-shot">
+                  <img src={siteHref(image)} alt={alt} loading="lazy" />
+                </span>
+                <span className="example-card-content">
+                  <span className="example-domain">{domain}</span>
+                  <span className="example-creator">Created by Phil Stilwell</span>
+                  <h3>{name}</h3>
+                  <p>{description}</p>
+                  <span className="text-link">
+                    Visit site
+                    <ExternalLink aria-hidden="true" />
+                  </span>
                 </span>
               </a>
             ))}
