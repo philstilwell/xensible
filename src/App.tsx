@@ -1839,18 +1839,26 @@ const process = [
   {
     step: 'Discover',
     body: 'Map your team\'s questions, comfort level, and real work contexts.',
+    detail:
+      'Discovery starts with the actual shape of work: where time goes, which tasks feel repetitive or neglected, what people are curious about, and what makes them cautious. The goal is not to force AI into every corner of the organization. It is to identify low-risk learning opportunities, hidden efficiency gains, and business questions worth exploring before anyone buys tools or rewrites policies.',
   },
   {
     step: 'Train',
     body: 'Build a shared foundation with clear examples and plain language.',
+    detail:
+      'Training gives teams a shared vocabulary for prompts, context, review, uncertainty, data boundaries, and useful AI roles. Participants learn what current tools can do well, where they are unreliable, and how to ask better questions. The emphasis is on confidence without overtrust: people should leave able to explain AI clearly, use it deliberately, and recognize when human judgment or specialist review still matters.',
   },
   {
     step: 'Practice',
     body: 'Try practical workflows together in a safe, guided Zoom setting.',
+    detail:
+      'Practice turns concepts into lived experience. In guided Zoom exercises, participants work with realistic but non-sensitive scenarios: drafting, summarizing, meeting prep, research planning, decision support, and workflow design. They compare outputs, revise prompts, spot weak claims, and build review habits. This is where AI stops feeling abstract and starts becoming a practical thinking partner.',
   },
   {
     step: 'Apply',
     body: 'Choose sensible next steps your team can use with better judgment.',
+    detail:
+      'Application converts learning into a next-step map. Some ideas become repeatable prompt patterns or workflow recipes. Some need a pilot, a private environment, leadership discussion, or policy input. Some should wait. The aim is disciplined progress: choose the use cases with real value, clear review points, safe inputs, and enough team understanding to move forward wisely.',
   },
 ]
 
@@ -3018,11 +3026,23 @@ function HomePage({
             <h2 id="process-title">Discover, train, practice, apply.</h2>
           </div>
           <div className="process-grid">
-            {process.map(({ step, body }, index) => (
-              <article className="process-step" key={step}>
-                <span>{String(index + 1).padStart(2, '0')}</span>
-                <h3>{step}</h3>
-                <p>{body}</p>
+            {process.map(({ step, body, detail }, index) => (
+              <article
+                aria-describedby={`process-detail-${index + 1}`}
+                className="process-step process-step-interactive"
+                key={step}
+                tabIndex={0}
+              >
+                <div className="process-step-front">
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  <h3>{step}</h3>
+                  <p>{body}</p>
+                </div>
+                <div className="process-hover-panel" id={`process-detail-${index + 1}`}>
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  <h3>{step}</h3>
+                  <p>{detail}</p>
+                </div>
               </article>
             ))}
           </div>
