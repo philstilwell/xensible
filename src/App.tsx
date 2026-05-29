@@ -573,6 +573,37 @@ const curriculumPackages: CurriculumContent[] = [
   },
 ]
 
+const visualConcepts = [
+  {
+    title: 'AI Fluency Loop',
+    body: 'A simple way to teach AI as an iterative practice: ask, add context, review the output, revise, and apply only what earns trust.',
+    image: '/visuals/ai-fluency-loop.webp',
+    fullImage: '/visuals/ai-fluency-loop.png',
+    alt: 'Infographic showing an AI fluency loop with Ask, Context, Output, Review, Revise, and Apply.',
+  },
+  {
+    title: 'Safe Experimentation Boundary Map',
+    body: 'A visual anchor for separating low-risk practice from sensitive data, with human judgment kept at the boundary.',
+    image: '/visuals/safe-experimentation-boundary-map.webp',
+    fullImage: '/visuals/safe-experimentation-boundary-map.png',
+    alt: 'Infographic showing practice, caution, private data, and human judgment zones.',
+  },
+  {
+    title: 'Use-Case Discovery Grid',
+    body: 'A decision tool for ranking AI ideas by value and risk before teams buy tools, launch pilots, or make workflow changes.',
+    image: '/visuals/use-case-discovery-grid.webp',
+    fullImage: '/visuals/use-case-discovery-grid.png',
+    alt: 'Infographic showing an AI use-case grid with value and risk axes.',
+  },
+  {
+    title: 'Local Operator Control Loop',
+    body: 'A teaching model for advanced Codex-style work: inspect, edit, test, review, commit, and keep rollback thinking visible.',
+    image: '/visuals/local-operator-control-loop.webp',
+    fullImage: '/visuals/local-operator-control-loop.png',
+    alt: 'Infographic showing an operator workflow with Inspect, Edit, Test, Review, Commit, and Roll Back.',
+  },
+]
+
 const process = [
   {
     step: 'Discover',
@@ -634,6 +665,13 @@ const aiBuiltSites = [
     domain: 'credencing.com',
     description:
       'An interactive model for thinking about evidence, perception, confidence, rationality, and irrationality.',
+  },
+  {
+    name: 'Slugfester',
+    url: 'https://slugfester.com/',
+    domain: 'slugfester.com',
+    description:
+      'A debate-analysis tool for tracking argument strength, rebuttals, fallacies, and cognitive biases in transcripts.',
   },
 ]
 
@@ -804,6 +842,7 @@ function App() {
           <nav className="nav-links" aria-label="Main navigation">
             <a href={siteHref('/#services')}>Services</a>
             <a href={siteHref('/#curriculum-packages')}>Curricula</a>
+            <a href={siteHref('/#visuals')}>Visuals</a>
             <a href={siteHref('/#guide')}>Guide</a>
             <a href={siteHref('/#faq')}>FAQ</a>
             <a href={siteHref('/#contact')}>Contact</a>
@@ -1047,6 +1086,48 @@ function HomePage({
                   <ArrowRight aria-hidden="true" />
                 </span>
               </a>
+            ))}
+          </div>
+        </section>
+
+        <section
+          className="section visuals-section"
+          id="visuals"
+          aria-labelledby="visuals-title"
+        >
+          <div className="section-heading">
+            <p className="eyebrow">Visual curriculum anchors</p>
+            <h2 id="visuals-title">
+              Diagrams that make AI judgment easier to see and discuss.
+            </h2>
+            <p>
+              These infographics support the Xensible curriculum by turning
+              abstract AI habits into memorable teaching models for teams,
+              leaders, and advanced learners.
+            </p>
+          </div>
+          <div className="visual-grid">
+            {visualConcepts.map(({ title, body, image, fullImage, alt }) => (
+              <article className="visual-card" key={title}>
+                <a
+                  className="visual-media"
+                  href={siteHref(fullImage)}
+                  aria-label={`Open full-size ${title} visual`}
+                >
+                  <picture>
+                    <source srcSet={siteHref(image)} type="image/webp" />
+                    <img src={siteHref(fullImage)} alt={alt} loading="lazy" />
+                  </picture>
+                </a>
+                <div className="visual-card-copy">
+                  <h3>{title}</h3>
+                  <p>{body}</p>
+                  <a className="text-link" href={siteHref(fullImage)}>
+                    Open full-size visual
+                    <ArrowRight aria-hidden="true" />
+                  </a>
+                </div>
+              </article>
             ))}
           </div>
         </section>

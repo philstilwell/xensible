@@ -294,6 +294,7 @@ p {
 .curriculum-library-card,
 .module-card,
 .diagram-slot,
+.visual-card,
 .example-card,
 .process-step,
 details {
@@ -637,6 +638,45 @@ details {
   color: var(--teal);
 }
 
+.visuals-section {
+  background: var(--surface-warm);
+}
+
+.visual-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.visual-card {
+  overflow: hidden;
+}
+
+.visual-media {
+  display: block;
+  aspect-ratio: 16 / 9;
+  background: var(--mist);
+}
+
+.visual-media picture,
+.visual-media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.visual-media img {
+  object-fit: cover;
+}
+
+.visual-card-copy {
+  padding: 24px;
+}
+
+.visual-card-copy p {
+  line-height: 1.62;
+}
+
 .text-link {
   display: inline-flex;
   align-items: center;
@@ -662,7 +702,7 @@ details {
 
 .example-grid {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
 }
 
@@ -1118,6 +1158,7 @@ details p {
   .tier-grid,
   .curriculum-card-grid,
   .curriculum-library-grid,
+  .visual-grid,
   .example-grid,
   .process-grid,
   .module-grid {
@@ -1309,6 +1350,7 @@ details p {
   .tier-grid,
   .curriculum-card-grid,
   .curriculum-library-grid,
+  .visual-grid,
   .example-grid,
   .process-grid,
   .module-grid,
@@ -1323,6 +1365,7 @@ details p {
   .tier-card,
   .curriculum-card,
   .curriculum-library-card,
+  .visual-card,
   .example-card,
   .process-step,
   .module-card,
