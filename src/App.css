@@ -1815,8 +1815,25 @@ details p {
   background: var(--teal);
 }
 
-.contact-section div {
+.contact-section > div {
   max-width: 780px;
+}
+
+.contact-booking-section {
+  align-items: stretch;
+}
+
+.contact-booking-copy {
+  flex: 1 1 460px;
+  align-self: center;
+  max-width: 560px;
+}
+
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 22px;
 }
 
 .contact-section h2 {
@@ -1863,6 +1880,42 @@ details p {
 
 .contact-section .button-primary:hover {
   background: #ffffff;
+}
+
+.contact-section .button-secondary {
+  border-color: rgba(247, 249, 246, 0.32);
+  background: transparent;
+  color: var(--surface);
+}
+
+.contact-section .button-secondary:hover {
+  border-color: rgba(247, 249, 246, 0.58);
+  background: rgba(247, 249, 246, 0.1);
+}
+
+.contact-booking-panel {
+  flex: 1 1 560px;
+  width: min(100%, 620px);
+  min-height: 700px;
+  overflow: hidden;
+  border: 1px solid rgba(247, 249, 246, 0.2);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: 0 24px 60px rgba(16, 31, 35, 0.28);
+}
+
+.calendly-embed {
+  display: block;
+  width: 100%;
+  height: 700px;
+  background: var(--surface);
+}
+
+.calendly-embed iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
 
 .site-footer {
@@ -2166,6 +2219,11 @@ details p {
     display: grid;
   }
 
+  .contact-booking-panel {
+    width: 100%;
+    max-width: none;
+  }
+
   .site-footer {
     flex-direction: column;
   }
@@ -2219,8 +2277,17 @@ details p {
 
   .hero-actions .button,
   .project-note-strip .button,
-  .contact-section .button-primary {
+  .contact-section .button-primary,
+  .contact-section .button-secondary {
     width: 100%;
+  }
+
+  .contact-booking-panel {
+    min-height: 640px;
+  }
+
+  .calendly-embed {
+    height: 640px;
   }
 
   .project-reflection-panel {

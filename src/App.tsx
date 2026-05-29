@@ -1,5 +1,5 @@
 import type { ComponentType, FormEvent, MouseEvent, ReactNode } from 'react'
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import type { LucideProps } from 'lucide-react'
 import {
   ArrowLeft,
@@ -1979,8 +1979,38 @@ const faqs = [
   },
 ]
 
-const contactHref =
+const emailHref =
   'mailto:contact@xensible.com?subject=AI%20Fluency%20Call%20for%20Xensible'
+const defaultCalendlyHref = 'https://calendly.com/contact-xensible/30min'
+const calendlyWidgetSrc = 'https://assets.calendly.com/assets/external/widget.js'
+const bookingHref =
+  import.meta.env.VITE_CALENDLY_URL?.trim() || defaultCalendlyHref
+const calendlyEmbedHref = (() => {
+  try {
+    const embedUrl = new URL(bookingHref)
+    embedUrl.searchParams.set('hide_gdpr_banner', '1')
+    embedUrl.searchParams.set('background_color', 'f7f9f6')
+    embedUrl.searchParams.set('text_color', '172b31')
+    embedUrl.searchParams.set('primary_color', '1c4c54')
+    embedUrl.searchParams.set('embed_domain', window.location.host)
+    embedUrl.searchParams.set('embed_type', 'Inline')
+    return embedUrl.toString()
+  } catch {
+    return bookingHref
+  }
+})()
+
+declare global {
+  interface Window {
+    Calendly?: {
+      initInlineWidget: (options: {
+        parentElement: HTMLElement
+        resize?: boolean
+        url: string
+      }) => void
+    }
+  }
+}
 
 type PageMetadata = {
   title: string
@@ -2267,7 +2297,7 @@ const getServiceListSchema = () => ({
       areaServed: { '@type': 'Country', name: 'United States' },
       availableChannel: {
         '@type': 'ServiceChannel',
-        serviceUrl: absoluteSiteUrl('/#contact'),
+        serviceUrl: bookingHref,
         availableLanguage: 'en-US',
       },
     },
@@ -2301,7 +2331,7 @@ const getOfferSchema = (offer: (typeof offerFormats)[number]) => ({
   })),
   availableChannel: {
     '@type': 'ServiceChannel',
-    serviceUrl: absoluteSiteUrl('/#contact'),
+    serviceUrl: bookingHref,
     availableLanguage: 'en-US',
   },
 })
@@ -2558,7 +2588,7 @@ function App() {
             <a href={siteHref('/#guide')}>About</a>
             <a href={siteHref('/#contact')}>Contact</a>
           </nav>
-          <a className="button button-primary nav-cta" href={contactHref}>
+          <a className="button button-primary nav-cta" href={bookingHref}>
             <CalendarDays aria-hidden="true" />
             Schedule
           </a>
@@ -2615,7 +2645,7 @@ function HomePage({
               before they make expensive technology decisions.
             </p>
             <div className="hero-actions" aria-label="Primary calls to action">
-              <a className="button button-primary" href={contactHref}>
+              <a className="button button-primary" href={bookingHref}>
                 <CalendarDays aria-hidden="true" />
                 Schedule an AI Fluency Call
               </a>
@@ -3120,8 +3150,8 @@ function HomePage({
           </div>
         </section>
 
-        <section className="contact-section" id="contact" aria-labelledby="contact-title">
-          <div>
+        <section className="contact-section contact-booking-section" id="contact" aria-labelledby="contact-title">
+          <div className="contact-booking-copy">
             <p className="eyebrow">Start with a conversation</p>
             <h2 id="contact-title">Schedule an AI Fluency Call</h2>
             <p>
@@ -3136,16 +3166,75 @@ function HomePage({
               its most practical value before a costly technology decision.
             </p>
             <p className="contact-email">
-              Direct email: <a href={contactHref}>contact@xensible.com</a>
+              Direct email: <a href={emailHref}>contact@xensible.com</a>
             </p>
+            <div className="contact-actions">
+              <a className="button button-primary" href={bookingHref}>
+                <Handshake aria-hidden="true" />
+                Book on Calendly
+              </a>
+              <a className="button button-secondary" href={emailHref}>
+                Email Instead
+                <ExternalLink aria-hidden="true" />
+              </a>
+            </div>
           </div>
-          <a className="button button-primary" href={contactHref}>
-            <Handshake aria-hidden="true" />
-            Start with a Team Briefing
-          </a>
+          <aside className="contact-booking-panel" aria-label="Calendly booking calendar">
+            <CalendlyInlineEmbed url={calendlyEmbedHref} />
+          </aside>
         </section>
       </main>
   )
+}
+
+function CalendlyInlineEmbed({ url }: { url: string }) {
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const container = containerRef.current
+
+    if (!container) {
+      return
+    }
+
+    const initWidget = () => {
+      if (!window.Calendly?.initInlineWidget || !containerRef.current) {
+        return
+      }
+
+      containerRef.current.innerHTML = ''
+      window.Calendly.initInlineWidget({
+        parentElement: containerRef.current,
+        resize: true,
+        url,
+      })
+    }
+
+    const existingScript = document.querySelector<HTMLScriptElement>(
+      `script[src="${calendlyWidgetSrc}"]`,
+    )
+
+    const script = existingScript ?? document.createElement('script')
+
+    if (window.Calendly?.initInlineWidget) {
+      initWidget()
+    } else {
+      script.src = calendlyWidgetSrc
+      script.async = true
+      script.addEventListener('load', initWidget)
+
+      if (!existingScript) {
+        document.body.appendChild(script)
+      }
+    }
+
+    return () => {
+      script.removeEventListener('load', initWidget)
+      container.innerHTML = ''
+    }
+  }, [url])
+
+  return <div className="calendly-embed" ref={containerRef} />
 }
 
 function NotFoundPage() {
@@ -3208,7 +3297,7 @@ function PracticeProjectsPage({
             <a className="button button-primary" href={siteHref(starterProjectPdfHref)}>
               Download Starter PDF
             </a>
-            <a className="button button-secondary" href={contactHref}>
+            <a className="button button-secondary" href={bookingHref}>
               Want This Guided Over Zoom?
               <ArrowRight aria-hidden="true" />
             </a>
@@ -3339,7 +3428,7 @@ function PracticeProjectsPage({
             work they keep postponing because attention is scarce.
           </p>
         </div>
-        <a className="button button-primary" href={contactHref}>
+        <a className="button button-primary" href={bookingHref}>
           <Handshake aria-hidden="true" />
           Schedule a Guided Project Session
         </a>
@@ -3432,7 +3521,7 @@ function AiUsesToolsPage({
             by utility class rather than hype.
           </p>
           <div className="hero-actions">
-            <a className="button button-primary" href={contactHref}>
+            <a className="button button-primary" href={bookingHref}>
               <CalendarDays aria-hidden="true" />
               Discuss Team Training
             </a>
@@ -3745,7 +3834,7 @@ function CurriculumDetail({
           <h1>{curriculum.title}</h1>
           <p className="hero-copy">{curriculum.summary}</p>
           <div className="hero-actions">
-            <a className="button button-primary" href={contactHref}>
+            <a className="button button-primary" href={bookingHref}>
               <CalendarDays aria-hidden="true" />
               Discuss This Curriculum
             </a>
@@ -4015,7 +4104,7 @@ function OfferPage({
           <h1>{offer.title}</h1>
           <p className="hero-copy">{offer.summary}</p>
           <div className="hero-actions">
-            <a className="button button-primary" href={contactHref}>
+            <a className="button button-primary" href={bookingHref}>
               <CalendarDays aria-hidden="true" />
               {offer.cta}
             </a>
@@ -4090,7 +4179,7 @@ function OfferPage({
             abstract possibility.
           </p>
         </div>
-        <a className="button button-primary" href={contactHref}>
+        <a className="button button-primary" href={bookingHref}>
           <Handshake aria-hidden="true" />
           Schedule an AI Fluency Call
         </a>
