@@ -3467,16 +3467,12 @@ function HomePage({
 
                   {isOpen ? (
                     <div className="visual-panel" id={visualPanelId}>
-                      <a
-                        className="visual-panel-media"
-                        href={siteHref(fullImage)}
-                        aria-label={`Open full-size ${title} visual`}
-                      >
+                      <div className="visual-panel-media">
                         <picture>
                           <source srcSet={siteHref(image)} type="image/webp" />
                           <img src={siteHref(fullImage)} alt={alt} loading="eager" decoding="async" />
                         </picture>
-                      </a>
+                      </div>
                       <div className="visual-panel-copy">
                         <h3>{title} notes</h3>
                         <p>{body}</p>
@@ -3488,10 +3484,6 @@ function HomePage({
                             </li>
                           ))}
                         </ul>
-                        <a className="text-link" href={siteHref(fullImage)}>
-                          Open full-size visual
-                          <ArrowRight aria-hidden="true" />
-                        </a>
                       </div>
                     </div>
                   ) : null}
