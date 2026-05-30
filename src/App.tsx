@@ -1867,7 +1867,7 @@ const publicInfoVisuals = [
       'A current tool-class map that helps visitors think in categories rather than chasing product names.',
     image: '/visuals/ai-tools-utility-classes.webp',
     fullImage: '/visuals/ai-tools-utility-classes.png',
-    alt: 'Infographic grouping AI tools into utility classes including general assistants, research tools, workplace copilots, creative design, video and voice, coding agents, automation agents, and data sensemaking.',
+    alt: 'Symbolic infographic mapping AI tool classes through conversation, research, workplace documents, creative design, video and audio, coding, automation, and data visuals.',
   },
 ]
 
