@@ -446,6 +446,7 @@ p {
 .clear-principle-card,
 .prompt-example-card,
 .prompt-tip-card,
+.workflow-example-card,
 .tier-card,
 .curriculum-card,
 .curriculum-library-card,
@@ -1173,6 +1174,46 @@ details {
   min-height: 430px;
   align-content: start;
   gap: 16px;
+}
+
+.workflow-acceleration-section {
+  background: linear-gradient(180deg, var(--surface) 0%, var(--surface-warm) 100%);
+}
+
+.workflow-acceleration-section-compact {
+  background: var(--surface-warm);
+}
+
+.workflow-example-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.workflow-example-card {
+  display: grid;
+  min-height: 610px;
+  align-content: start;
+  gap: 16px;
+  padding: 24px;
+  border-top: 5px solid var(--teal);
+}
+
+.workflow-example-card:nth-child(3n + 2) {
+  border-top-color: var(--clay);
+}
+
+.workflow-example-card:nth-child(3n) {
+  border-top-color: var(--brass);
+}
+
+.workflow-example-card > p {
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+.workflow-example-card .prompt-box {
+  margin-top: auto;
 }
 
 .practice-challenge-grid {
@@ -3072,6 +3113,7 @@ details p {
   .resource-directory-grid,
   .resource-principle-grid,
   .use-domain-grid,
+  .workflow-example-grid,
   .practice-challenge-grid,
   .landscape-note-grid,
   .monthly-note-grid,
@@ -3392,6 +3434,7 @@ details p {
   .resource-directory-grid,
   .resource-principle-grid,
   .use-domain-grid,
+  .workflow-example-grid,
   .practice-challenge-grid,
   .landscape-note-grid,
   .monthly-note-grid,
@@ -3429,6 +3472,7 @@ details p {
   .resource-directory-card,
   .resource-principle-card,
   .use-domain-card,
+  .workflow-example-card,
   .practice-challenge-card,
   .landscape-note-card,
   .monthly-note-card,

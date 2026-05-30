@@ -46,6 +46,15 @@ type SectorProjectExample = {
   safeInput: string
 }
 
+type WorkflowAccelerationExample = {
+  title: string
+  context: string
+  aiAssist: string
+  humanReview: string
+  speedGain: string
+  starterPrompt: string
+}
+
 type PracticeLab = {
   title: string
   artifact: string
@@ -171,18 +180,99 @@ const services: Array<{
   },
   {
     title: 'Practical AI Workflow Workshops',
-    body: 'Hands-on sessions that translate broad curiosity into repeatable workflows for specific roles or departments.',
+    body: 'Hands-on sessions that turn meetings, drafts, research, intake, onboarding, and follow-up into repeatable review-ready workflows.',
     icon: BookOpenCheck,
   },
   {
     title: 'AI Readiness and Use-Case Discovery',
-    body: 'A guided scan of where AI may help, where it should wait, and what your team needs to learn first.',
+    body: 'A guided scan of where time is going, what valuable work is being ignored, and which AI-assisted workflows are worth testing first.',
     icon: SearchCheck,
   },
   {
     title: 'Monthly AI Office Hours over Zoom',
     body: 'A reliable space for questions, tool updates, prompt practice, and thoughtful next steps as AI keeps changing.',
     icon: Video,
+  },
+]
+
+const workflowAccelerationExamples: WorkflowAccelerationExample[] = [
+  {
+    title: 'Meeting follow-through packet',
+    context:
+      'A manager has rough, sanitized notes after a planning meeting and needs the work to keep moving before the next day.',
+    aiAssist:
+      'AI drafts a decision summary, unresolved-question list, action table with owner placeholders, and a follow-up email shell.',
+    humanReview:
+      'The manager confirms the decisions, owners, dates, and anything the notes did not actually establish.',
+    speedGain:
+      'The useful shift is from post-meeting blank page to review pass: less drift, fewer forgotten commitments, and faster handoff.',
+    starterPrompt:
+      'Using these sanitized meeting notes, create a follow-through packet with decision summary, action-item table, owner and date placeholders, unresolved questions, follow-up email draft, and assumptions requiring human confirmation: [notes].',
+  },
+  {
+    title: 'Nonprofit donor update pipeline',
+    context:
+      'A nonprofit has public program facts, a fictional event recap, and a need for a warm update that staff can verify.',
+    aiAssist:
+      'AI prepares a short donor update, subject-line options, thank-you variants, a claims-to-check list, and a review note for the program owner.',
+    humanReview:
+      'Staff verify facts, remove private beneficiary details, adjust tone, and decide what can be sent.',
+    speedGain:
+      'The team spends more time checking substance and less time wrestling the first draft into existence.',
+    starterPrompt:
+      'Use only the public facts and fictional event notes below to draft a donor update packet. Include a 250-word update, five subject lines, two thank-you variants, a claims-to-verify checklist, and a staff review note. Do not use donor records or private beneficiary details: [safe notes].',
+  },
+  {
+    title: 'Clinic admin FAQ refresh',
+    context:
+      'A health care admin team wants to improve a general office FAQ without touching patient data or making medical claims.',
+    aiAssist:
+      'AI rewrites a fictional FAQ in plain language, builds a jargon glossary, separates admin questions from owner-review questions, and flags risky wording.',
+    humanReview:
+      'The appropriate internal owner checks accuracy, policy fit, scope, and anything that could sound like medical, legal, or compliance advice.',
+    speedGain:
+      'The exercise teaches safer structure quickly while keeping sensitive information and final approval out of the model.',
+    starterPrompt:
+      'Using this fictional clinic FAQ, create a plain-language version, jargon glossary, review-owner checklist, and list of phrases to avoid. Do not add medical advice or legal, compliance, privacy, or security assurances: [fictional FAQ].',
+  },
+  {
+    title: 'Proposal discovery prep',
+    context:
+      'A small business needs to prepare for a prospect conversation using only a public website, a safe scenario, and known service boundaries.',
+    aiAssist:
+      'AI creates discovery questions, a needs hypothesis table, likely objections, a proposal outline, and a list of claims that must not be made.',
+    humanReview:
+      'The business owner confirms fit, pricing, promises, evidence, and whether the opportunity is worth pursuing.',
+    speedGain:
+      'Prep becomes a structured review of possibilities instead of a scramble through scattered notes.',
+    starterPrompt:
+      'Using this public prospect description and safe service context, create discovery questions, likely needs, possible objections, a proposal outline, evidence needed, and claims to avoid. Do not invent pricing, credentials, outcomes, or private client details: [context].',
+  },
+  {
+    title: 'Onboarding checklist kit',
+    context:
+      'A team has a public or sanitized process description and wants new staff to understand the sequence faster.',
+    aiAssist:
+      'AI turns the process into a role-specific checklist, common-mistake list, practice scenario, short quiz, and manager review guide.',
+    humanReview:
+      'The process owner checks whether the sequence, exceptions, vocabulary, and handoffs match actual practice.',
+    speedGain:
+      'A messy explanation becomes a training artifact that can be improved over time instead of re-explained from scratch.',
+    starterPrompt:
+      'Turn this public or sanitized process into an onboarding kit. Include a role-specific checklist, key vocabulary, common mistakes, practice scenario, five-question quiz, manager review guide, and questions the process owner must answer: [process].',
+  },
+  {
+    title: 'Survey feedback synthesis',
+    context:
+      'A team has fictional, public, or anonymized workshop feedback and needs to see patterns before choosing improvements.',
+    aiAssist:
+      'AI clusters comments into themes, names representative examples, drafts follow-up questions, and proposes a next-action table.',
+    humanReview:
+      'The team checks whether categories are fair, whether the sample is biased, and which actions are actually responsible.',
+    speedGain:
+      'Pattern finding becomes faster, while conclusions remain clearly marked as human-reviewed and evidence-limited.',
+    starterPrompt:
+      'Cluster this fictional, public, or anonymized feedback into themes. Include representative comments, possible bias or missing voices, follow-up questions, action options, and what a human should verify before acting: [feedback].',
   },
 ]
 
@@ -1323,6 +1413,7 @@ const curriculumPackages: CurriculumContent[] = [
     outcomes: [
       'Build repeatable workflows for common work without copying sensitive data into public tools.',
       'Use AI to generate first drafts, alternatives, summaries, meeting artifacts, and decision support.',
+      'Identify where AI can speed work by drafting, sorting, sequencing, and preparing review-ready artifacts.',
       'Develop review habits that keep the human responsible for quality, context, and final judgment.',
       'Turn scattered experiments into documented workflow recipes that can be shared inside a team.',
       'Package proven prompt sequences into narrow Gems, custom GPTs, project assistants, or similar specialty helpers.',
@@ -1345,6 +1436,10 @@ const curriculumPackages: CurriculumContent[] = [
         body: 'Participants create safe workflows for agendas, prep notes, follow-up drafts, and option comparison.',
       },
       {
+        title: 'Workflow acceleration cases',
+        body: 'We compare real-world patterns such as meeting follow-through, donor updates, admin FAQs, proposal prep, onboarding kits, and feedback synthesis.',
+      },
+      {
         title: 'Workflow documentation',
         body: 'Teams capture the steps, prompts, inputs, review points, and human decisions that make a workflow repeatable.',
       },
@@ -1356,6 +1451,7 @@ const curriculumPackages: CurriculumContent[] = [
     guidingQuestions: [
       'Which tasks repeat often enough to deserve a workflow?',
       'Where can AI help without becoming the decision maker?',
+      'What work currently stalls because the first draft, first sort, or first plan takes too long to begin?',
       'What inputs are safe to use, and what must be abstracted or withheld?',
       'How will we review, revise, and document the workflow so others can use it?',
       'When should a workflow remain a prompt recipe, and when is it mature enough to become a specialty assistant?',
@@ -1372,6 +1468,10 @@ const curriculumPackages: CurriculumContent[] = [
       {
         title: 'Build',
         body: 'Create prompt sequences and review steps using non-sensitive examples.',
+      },
+      {
+        title: 'Estimate',
+        body: 'Name where time might be saved, what review burden remains, and how the team will tell whether the workflow is worth keeping.',
       },
       {
         title: 'Stress test',
@@ -1440,6 +1540,20 @@ const curriculumPackages: CurriculumContent[] = [
           'The workflow should make thinking clearer while leaving the decision, accountability, and risk acceptance with a person.',
       },
       {
+        title: 'Workflow speed map',
+        artifact:
+          'A bottleneck map with before/after steps, safe AI-assist points, review gates, time-saved hypotheses, and stop signs.',
+        safeInput:
+          'A fictional, public, or sanitized recurring task such as intake sorting, donor updates, onboarding, proposal prep, or feedback review.',
+        steps: [
+          'Write the current workflow as seven to ten steps, including waits, handoffs, and repeated rework.',
+          'Mark where AI could draft, sort, summarize, compare, sequence, or prepare a review-ready artifact.',
+          'Estimate time saved as a hypothesis and name the human review burden that remains.',
+        ],
+        review:
+          'The map is useful only if it shows both acceleration and accountability: safe inputs, review owner, approval gate, and when not to use AI.',
+      },
+      {
         title: 'Gem-style specialty assistant blueprint',
         artifact:
           'A build sheet for one focused helper: job statement, instruction block, required questions, output format, review gates, safe examples, edge tests, and version notes.',
@@ -1465,6 +1579,7 @@ const curriculumPackages: CurriculumContent[] = [
       'Prioritize recurring tasks that consume real time or create repeated rework, not flashy demos.',
       'Break each workflow into inputs, AI assistance, review checkpoints, handoffs, and final ownership.',
       'Measure usefulness in time saved, quality improved, rework reduced, and review burden created.',
+      'Track concrete before-and-after artifacts so learners can see where AI shortened drafting, sorting, sequencing, or follow-up.',
       'Document the workflow recipe so a useful experiment can become a teachable team practice.',
       'Promote only stable, well-reviewed recipes into Gems, custom GPTs, project spaces, or other reusable assistants.',
     ],
@@ -1474,6 +1589,7 @@ const curriculumPackages: CurriculumContent[] = [
       'Research triage checklist',
       'Before-and-after prompt examples',
       'Workflow documentation template',
+      'Before-and-after workflow speed map',
       'Human review checkpoint guide',
       'Specialty assistant build sheet',
       'Gem-style instruction template',
@@ -1482,11 +1598,13 @@ const curriculumPackages: CurriculumContent[] = [
       'Human-in-the-loop workflow map',
       'Meeting-to-action pipeline',
       'Workflow recipe anatomy: inputs, AI assist, review, apply',
+      'Workflow acceleration map: blank page, AI assist, human review, reusable artifact',
       'Specialty assistant lifecycle: recipe, instructions, safe tests, review, versioning',
     ],
     followUp: [
       'Pilot one documented workflow for two weeks using safe inputs.',
       'Track where the workflow saves time, improves quality, or creates review burden.',
+      'Compare one before-and-after artifact so the team can see whether the workflow actually improved the work.',
       'Bring one workflow back for refinement before scaling it to a broader team.',
       'Decide whether the workflow should stay as a prompt card or become a maintained specialty assistant.',
     ],
@@ -1499,6 +1617,24 @@ const curriculumPackages: CurriculumContent[] = [
           'Use fictional meeting notes to create a decision summary, action table, unresolved-questions list, and follow-up draft.',
         prompt:
           'Using these fictional meeting notes, create a meeting-to-action packet: decision summary, action-item table with owner and deadline placeholders, unresolved questions, follow-up email draft, and assumptions requiring human confirmation: [fictional notes].',
+      },
+      {
+        title: 'Donor update workflow',
+        situation:
+          'A nonprofit has public program facts and a fictional event recap but keeps delaying donor updates because the first draft takes too long.',
+        learnerTask:
+          'Create a donor update packet with draft, subject lines, thank-you variants, claims-to-check list, and staff review note.',
+        prompt:
+          'Use only the public facts and fictional event notes below to draft a donor update packet. Include a 250-word update, five subject lines, two thank-you variants, a claims-to-verify checklist, and a staff review note. Do not use donor records or private beneficiary details: [safe notes].',
+      },
+      {
+        title: 'Onboarding kit workflow',
+        situation:
+          'A growing team repeats the same process explanations every month and wants new staff to understand the sequence faster.',
+        learnerTask:
+          'Turn a public or sanitized process into a checklist, vocabulary list, practice scenario, quiz, and manager review guide.',
+        prompt:
+          'Turn this public or sanitized process into an onboarding kit. Include a role-specific checklist, key vocabulary, common mistakes, practice scenario, five-question quiz, manager review guide, and questions the process owner must answer: [process].',
       },
       {
         title: 'Policy explainer rewrite',
@@ -1529,6 +1665,11 @@ const curriculumPackages: CurriculumContent[] = [
       },
     ],
     promptLibrary: [
+      {
+        title: 'Workflow speed map',
+        prompt:
+          'Map this recurring task for workflow acceleration without automating judgment. Create a before/after table with current steps, delays, AI-assist opportunities, safe inputs, expected artifact, human review gate, time-saved hypothesis, risks, stop signs, and owner: [task].',
+      },
       {
         title: 'Specialty assistant build sheet',
         prompt:
@@ -2779,6 +2920,11 @@ const resourceCategories = [
     href: '#use-domains',
   },
   {
+    title: 'Workflow Speed Examples',
+    body: 'Concrete before-and-after examples for meetings, updates, FAQs, onboarding, proposals, and feedback.',
+    href: '#workflow-examples',
+  },
+  {
     title: 'Practice Challenges',
     body: 'Challenge-style prompts for teams, leaders, and individuals to use in workshops.',
     href: '#practice-challenges',
@@ -2958,48 +3104,64 @@ const useDomainGroups = [
     title: 'Learning and explanation',
     body: 'Turn a public source or unfamiliar topic into examples, analogies, glossaries, quizzes, and misconception checks.',
     firstExperiment: 'Create a one-page learning kit from a public article.',
+    workflowExample:
+      'A training lead turns one public policy page into a glossary, quiz, misconception list, and facilitator notes before a staff learning session.',
     watchFor: 'Unsupported claims, invented citations, and explanations that sound clearer than they are.',
   },
   {
     title: 'Writing and communication',
     body: 'Draft, rewrite, tighten, change tone, produce subject lines, or create before-and-after writing comparisons.',
     firstExperiment: 'Rewrite one fictional email in concise, warm, and formal versions.',
+    workflowExample:
+      'A program manager turns a rough announcement into three audience-specific versions, a change log, and a send-before-review checklist.',
     watchFor: 'Overpromising, generic voice, missing facts, and language that no longer sounds like the sender.',
   },
   {
     title: 'Meetings and follow-through',
     body: 'Create agendas, prep questions, decision logs, action-item tables, and follow-up drafts from sanitized scenarios.',
     firstExperiment: 'Build a 30-minute agenda and follow-up shell from a fictional meeting goal.',
+    workflowExample:
+      'A team lead turns a meeting goal and safe notes into a timed agenda, decision log, action table, and confirmation email.',
     watchFor: 'Invented commitments, unclear owners, unrealistic timing, and private notes.',
   },
   {
     title: 'Decision support',
     body: 'Compare options, surface assumptions, run pre-mortems, list missing evidence, and clarify human decision questions.',
     firstExperiment: 'Create a decision brief for a public, personal, or fictional decision.',
+    workflowExample:
+      'A director prepares an option matrix, assumption register, pre-mortem, and evidence checklist before choosing a vendor or program path.',
     watchFor: 'The model choosing for the person, hidden assumptions, and risk language that needs specialist review.',
   },
   {
     title: 'Research planning',
     body: 'Generate question clusters, search terms, source categories, opposing views, and claim-check tables before searching.',
     firstExperiment: 'Build a research launch board for a public topic.',
+    workflowExample:
+      'A staff member turns a broad question into search strings, source categories, blind spots, and a claim-check table before reading sources.',
     watchFor: 'Treating model output as evidence instead of a plan for finding evidence.',
   },
   {
     title: 'Data and pattern finding',
     body: 'Sort public or anonymized notes into categories, themes, risks, questions, and next actions.',
     firstExperiment: 'Cluster a fictional feedback list into themes and follow-up questions.',
+    workflowExample:
+      'A workshop host clusters anonymized feedback into themes, follow-up questions, possible bias notes, and a next-action table.',
     watchFor: 'Privacy leakage, weak categories, and conclusions from incomplete or biased samples.',
   },
   {
     title: 'Creative and content planning',
     body: 'Brainstorm angles, titles, outlines, images, campaign concepts, teaching examples, and content variations.',
     firstExperiment: 'Generate three lesson or webpage outlines from public topic notes.',
+    workflowExample:
+      'A small team turns a safe campaign idea into audience angles, content calendar options, image prompts, and a review rubric.',
     watchFor: 'Style without substance, invented facts, and outputs that need brand or audience review.',
   },
   {
     title: 'Workflow and operations',
     body: 'Map repeated tasks into safe inputs, prompt sequences, review gates, owners, stop signs, and reusable recipe cards.',
     firstExperiment: 'Write a workflow recipe for one repeated administrative task using fictional inputs.',
+    workflowExample:
+      'An operations lead turns intake triage, onboarding, or recurring reporting into a recipe card with AI assist points and human approval gates.',
     watchFor: 'Accidental automation thinking before the team understands the work and the review burden.',
   },
 ]
@@ -4145,6 +4307,8 @@ function HomePage({
 
         <ClearPromptingTeaserSection navigateToRoute={navigateToRoute} />
 
+        <WorkflowAccelerationExamplesSection compact />
+
         <section
           className="section utility-project-section"
           id="practice-projects"
@@ -4863,6 +5027,62 @@ function ClearPromptingTeaserSection({
   )
 }
 
+function WorkflowAccelerationExamplesSection({
+  compact = false,
+}: {
+  compact?: boolean
+}) {
+  const examples = compact
+    ? workflowAccelerationExamples.slice(0, 3)
+    : workflowAccelerationExamples
+
+  return (
+    <section
+      className={`section workflow-acceleration-section${compact ? ' workflow-acceleration-section-compact' : ''}`}
+      id="workflow-examples"
+      aria-labelledby="workflow-examples-title"
+    >
+      <div className="section-heading">
+        <p className="eyebrow">Workflow speed examples</p>
+        <h2 id="workflow-examples-title">
+          Real work speeds up when AI prepares the next review-ready artifact.
+        </h2>
+        <p>
+          These examples show the practical Xensible pattern: start with safe
+          inputs, ask AI to draft, sort, sequence, or compare, then keep a
+          human responsible for facts, tone, decisions, and final approval.
+          The goal is not autopilot. It is less blank-page time, clearer
+          handoffs, and faster movement through work that already matters.
+        </p>
+      </div>
+      <div className="workflow-example-grid">
+        {examples.map(({ title, context, aiAssist, humanReview, speedGain, starterPrompt }) => (
+          <article className="workflow-example-card" key={title}>
+            <h3>{title}</h3>
+            <p>{context}</p>
+            <div className="activity-detail">
+              <span>AI helps by</span>
+              <p>{aiAssist}</p>
+            </div>
+            <div className="activity-detail activity-safe-input">
+              <span>Human review</span>
+              <p>{humanReview}</p>
+            </div>
+            <div className="activity-detail">
+              <span>Practical speedup</span>
+              <p>{speedGain}</p>
+            </div>
+            <div className="prompt-box">
+              <span>Starter prompt</span>
+              <p>{starterPrompt}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  )
+}
+
 function ClearPromptingPage({
   navigateToRoute,
 }: {
@@ -5332,13 +5552,17 @@ function ResourcesPage({
           </p>
         </div>
         <div className="use-domain-grid">
-          {useDomainGroups.map(({ title, body, firstExperiment, watchFor }) => (
+          {useDomainGroups.map(({ title, body, firstExperiment, workflowExample, watchFor }) => (
             <article className="use-domain-card" key={title}>
               <h3>{title}</h3>
               <p>{body}</p>
               <div className="activity-detail">
                 <span>First experiment</span>
                 <p>{firstExperiment}</p>
+              </div>
+              <div className="activity-detail">
+                <span>Workflow example</span>
+                <p>{workflowExample}</p>
               </div>
               <div className="activity-detail activity-safe-input">
                 <span>Watch for</span>
@@ -5348,6 +5572,8 @@ function ResourcesPage({
           ))}
         </div>
       </section>
+
+      <WorkflowAccelerationExamplesSection />
 
       <section className="section section-band practice-challenge-section" id="practice-challenges" aria-labelledby="practice-challenges-title">
         <div className="section-heading centered">
@@ -5772,13 +5998,17 @@ function AiUsesToolsPage({
           </p>
         </div>
         <div className="use-domain-grid">
-          {useDomainGroups.map(({ title, body, firstExperiment, watchFor }) => (
+          {useDomainGroups.map(({ title, body, firstExperiment, workflowExample, watchFor }) => (
             <article className="use-domain-card" key={title}>
               <h3>{title}</h3>
               <p>{body}</p>
               <div className="activity-detail">
                 <span>First experiment</span>
                 <p>{firstExperiment}</p>
+              </div>
+              <div className="activity-detail">
+                <span>Workflow example</span>
+                <p>{workflowExample}</p>
               </div>
               <div className="activity-detail activity-safe-input">
                 <span>Watch for</span>
@@ -6159,6 +6389,10 @@ function CurriculumDetail({
           ))}
         </div>
       </section>
+
+      {curriculum.slug === 'practical-ai-workflows' ? (
+        <WorkflowAccelerationExamplesSection compact />
+      ) : null}
 
       <section className="section section-band">
         <div className="section-heading centered">

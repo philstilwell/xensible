@@ -571,6 +571,7 @@ CURRICULA = [
         "outcomes": [
             "Build repeatable workflows for common work without copying sensitive data into public tools.",
             "Use AI to generate first drafts, alternatives, summaries, meeting artifacts, and decision support.",
+            "Identify where AI can speed work by drafting, sorting, sequencing, and preparing review-ready artifacts.",
             "Develop review habits that keep the human responsible for quality, context, and final judgment.",
             "Turn scattered experiments into documented workflow recipes that can be shared inside a team.",
             "Package proven prompt sequences into narrow Gems, custom GPTs, project assistants, or similar specialty helpers.",
@@ -580,12 +581,14 @@ CURRICULA = [
             ("Writing and rewriting", "Participants practice using AI for tone, structure, audience adaptation, and first-pass drafting."),
             ("Research support without overtrust", "We separate brainstorming, query planning, summarization, source checking, and final verification."),
             ("Meetings and decisions", "Participants create safe workflows for agendas, prep notes, follow-up drafts, and option comparison."),
+            ("Workflow acceleration cases", "We compare real-world patterns such as meeting follow-through, donor updates, admin FAQs, proposal prep, onboarding kits, and feedback synthesis."),
             ("Workflow documentation", "Teams capture the steps, prompts, inputs, review points, and human decisions that make a workflow repeatable."),
             ("Specialty assistant builder", "Learners turn one reliable workflow into a narrow Gem-style helper with operating instructions, safe source material, test cases, and maintenance notes."),
         ],
         "guiding_questions": [
             "Which tasks repeat often enough to deserve a workflow?",
             "Where can AI help without becoming the decision maker?",
+            "What work currently stalls because the first draft, first sort, or first plan takes too long to begin?",
             "What inputs are safe to use, and what must be abstracted or withheld?",
             "How will we review, revise, and document the workflow so others can use it?",
             "When should a workflow remain a prompt recipe, and when is it mature enough to become a specialty assistant?",
@@ -594,6 +597,7 @@ CURRICULA = [
             ("Select", "Choose one or two common tasks with clear boundaries and enough repetition to justify practice."),
             ("Decompose", "Break each task into inputs, decisions, drafts, checks, revisions, and final human ownership."),
             ("Build", "Create prompt sequences and review steps using non-sensitive examples."),
+            ("Estimate", "Name where time might be saved, what review burden remains, and how the team will tell whether the workflow is worth keeping."),
             ("Stress test", "Try edge cases, poor inputs, missing context, and output-review prompts."),
             ("Document", "Capture the workflow as a short recipe that names when to use it and when not to."),
         ],
@@ -602,6 +606,7 @@ CURRICULA = [
             ("Meeting-to-action workflow", "Build: agenda, prep questions, decision log, action table, and follow-up message. Use: fictional or sanitized meeting context. Do: generate the packet and mark confirmations. Check: invented commitments, owner placeholders, and due dates."),
             ("Research triage board", "Build: question clusters, source categories, search strings, blind spots, and claim-verification table. Use: a public topic or general business question. Do: plan research before collecting sources. Check: model output is not treated as evidence."),
             ("Decision-support brief", "Build: criteria, option matrix, assumptions, pre-mortem, missing evidence, and human decision questions. Use: a fictional, public, or sanitized decision. Do: compare without choosing. Check: accountability remains with a person."),
+            ("Workflow speed map", "Build: a bottleneck map with before/after steps, safe AI-assist points, review gates, time-saved hypotheses, and stop signs. Use: a fictional, public, or sanitized recurring task such as intake sorting, donor updates, onboarding, proposal prep, or feedback review. Do: map current steps, mark AI assist points, and estimate review burden. Check: acceleration and accountability are both visible."),
             ("Gem-style specialty assistant blueprint", "Build: job statement, instruction block, required questions, output format, review gates, safe examples, edge tests, and version notes. Use: a fictional, public, or sanitized repeated task. Do: write and test one narrow helper. Check: allowed inputs, stop signs, and human approval are explicit."),
         ],
         "readiness_checks": [
@@ -615,6 +620,7 @@ CURRICULA = [
             "Prioritize recurring tasks that consume real time or create repeated rework, not flashy demos.",
             "Break each workflow into inputs, AI assistance, review checkpoints, handoffs, and final ownership.",
             "Measure usefulness in time saved, quality improved, rework reduced, and review burden created.",
+            "Track concrete before-and-after artifacts so learners can see where AI shortened drafting, sorting, sequencing, or follow-up.",
             "Document the workflow recipe so a useful experiment can become a teachable team practice.",
             "Promote only stable, well-reviewed recipes into Gems, custom GPTs, project spaces, or other reusable assistants.",
         ],
@@ -624,6 +630,7 @@ CURRICULA = [
             "Research triage checklist",
             "Before-and-after prompt examples",
             "Workflow documentation template",
+            "Before-and-after workflow speed map",
             "Human review checkpoint guide",
             "Specialty assistant build sheet",
             "Gem-style instruction template",
@@ -632,11 +639,13 @@ CURRICULA = [
             "Human-in-the-loop workflow map",
             "Meeting-to-action pipeline",
             "Workflow recipe anatomy: inputs, AI assist, review, apply",
+            "Workflow acceleration map: blank page, AI assist, human review, reusable artifact",
             "Specialty assistant lifecycle: recipe, instructions, safe tests, review, versioning",
         ],
         "follow_up": [
             "Pilot one documented workflow for two weeks using safe inputs.",
             "Track where the workflow saves time, improves quality, or creates review burden.",
+            "Compare one before-and-after artifact so the team can see whether the workflow actually improved the work.",
             "Bring one workflow back for refinement before scaling it to a broader team.",
             "Decide whether the workflow should stay as a prompt card or become a maintained specialty assistant.",
         ],
@@ -646,6 +655,18 @@ CURRICULA = [
                 "situation": "A team loses momentum after meetings because notes, decisions, and follow-up messages are inconsistent.",
                 "learner_task": "Use fictional meeting notes to create a decision summary, action table, unresolved-questions list, and follow-up draft.",
                 "prompt": "Using these fictional meeting notes, create a meeting-to-action packet: decision summary, action-item table with owner and deadline placeholders, unresolved questions, follow-up email draft, and assumptions requiring human confirmation: [fictional notes].",
+            },
+            {
+                "title": "Donor update workflow",
+                "situation": "A nonprofit has public program facts and a fictional event recap but keeps delaying donor updates because the first draft takes too long.",
+                "learner_task": "Create a donor update packet with draft, subject lines, thank-you variants, claims-to-check list, and staff review note.",
+                "prompt": "Use only the public facts and fictional event notes below to draft a donor update packet. Include a 250-word update, five subject lines, two thank-you variants, a claims-to-verify checklist, and a staff review note. Do not use donor records or private beneficiary details: [safe notes].",
+            },
+            {
+                "title": "Onboarding kit workflow",
+                "situation": "A growing team repeats the same process explanations every month and wants new staff to understand the sequence faster.",
+                "learner_task": "Turn a public or sanitized process into a checklist, vocabulary list, practice scenario, quiz, and manager review guide.",
+                "prompt": "Turn this public or sanitized process into an onboarding kit. Include a role-specific checklist, key vocabulary, common mistakes, practice scenario, five-question quiz, manager review guide, and questions the process owner must answer: [process].",
             },
             {
                 "title": "Policy explainer rewrite",
@@ -667,6 +688,7 @@ CURRICULA = [
             },
         ],
         "prompt_library": [
+            ("Workflow speed map", "Map this recurring task for workflow acceleration without automating judgment. Create a before/after table with current steps, delays, AI-assist opportunities, safe inputs, expected artifact, human review gate, time-saved hypothesis, risks, stop signs, and owner: [task]."),
             ("Specialty assistant build sheet", "Turn this proven prompt workflow into a Gem-style specialty assistant build sheet. Include the assistant purpose, intended user, required intake questions, operating instructions, allowed inputs, prohibited inputs, output format, review gates, edge cases, safe test cases, owner, and version notes: [workflow]."),
             ("Workflow recipe", "Turn this recurring task into an AI-assisted workflow recipe card. Include trigger, user, safe inputs, prompt sequence, expected output, review checkpoints, human decision points, handoffs, risks, stop signs, and when not to use the workflow: [task]."),
             ("Draft and critique", "Create a first draft for [audience] using the safe context below. Then produce a critique table covering clarity, tone, unsupported claims, missing context, audience fit, and review needs. Finish with a revised version and a human-final checklist: [safe context]."),
@@ -1224,6 +1246,8 @@ def build_pdf(curriculum, out_dir):
 
     story.append(Paragraph("Practice labs", style["SectionTitle"]))
     for title, body in curriculum["practice_labs"]:
+        if curriculum["slug"] == "practical-ai-workflows" and title == "Workflow speed map":
+            story.append(PageBreak())
         story.append(Paragraph(f"<b>{title}</b>", style["BodyTextX"]))
         story.append(Paragraph(body, style["BodyTextX"]))
 
