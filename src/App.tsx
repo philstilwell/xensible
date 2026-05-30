@@ -3444,12 +3444,12 @@ const faqs = [
   {
     question: 'What is the best way to start?',
     answer:
-      'A short Zoom consultation or team briefing is usually enough to understand your goals, audience, and the right level of training.',
+      'A short Zoom consultation is usually enough to understand your goals, audience, and the right level of training. If there is a fit, we can agree on a defined initial block of hours at a defined price so the first engagement demonstrates practical worth before anything larger is considered.',
   },
   {
     question: 'What does the first consultation cost?',
     answer:
-      'The first 30-minute consultation is free. It is a risk-free way to clarify your actual needs before any paid work begins. After that, billing is transparent and moves forward only with client approval. Typical fees range from $40-$50 per hour for individual coaching and $50-$70 per hour for Zoom classroom coaching, with generous preparation, examples, and practical guidance built into the work.',
+      'The first 30-minute consultation is free. After that, any paid work begins only after we agree on the number of hours, the hourly rate or total price, and the practical outcome for the initial demonstration. That first block can be a one-off that never repeats, or it can become the starting point for deeper training if the value is clear. Typical fees range from $40-$50 per hour for individual coaching and $50-$70 per hour for Zoom classroom coaching, with generous preparation, examples, and practical guidance built into the work.',
   },
 ]
 
@@ -3502,7 +3502,7 @@ const websiteId = `${siteOrigin}/#website`
 const founderId = `${siteOrigin}/#phil-stilwell`
 const defaultSocialImagePath = '/og-image.jpg'
 const defaultPageDescription =
-  'Practical AI fluency training, coaching, and Zoom workshops for teams, leaders, and professionals who want responsible AI workflows without hype.'
+  'Practical AI fluency training, one-on-one coaching, Zoom workshops, practice projects, and clear prompting resources for teams, leaders, and professionals.'
 const offerSeoDescriptions: Record<string, string> = {
   'ai-briefing':
     'Book a focused AI briefing for leaders who need plain-language clarity on AI tools, data boundaries, readiness, and next steps.',
@@ -3593,7 +3593,7 @@ const applyPageMetadata = (
   setMetaByAttribute(
     'property',
     'og:image:alt',
-    'Xensible AI fluency training visual',
+    'Xensible AI fluency training and practice projects visual',
   )
   setMetaByAttribute('property', 'og:image:width', '1200')
   setMetaByAttribute('property', 'og:image:height', '630')
@@ -3604,7 +3604,7 @@ const applyPageMetadata = (
   setMetaByAttribute(
     'name',
     'twitter:image:alt',
-    'Xensible AI fluency training visual',
+    'Xensible AI fluency training and practice projects visual',
   )
   setStructuredData(structuredData)
 }
@@ -3741,7 +3741,7 @@ const getPageMetadata = ({
   }
 
   return {
-    title: 'Xensible | AI Fluency Training, Coaching, and Workshops',
+    title: 'Xensible | Practical AI Fluency Training and Coaching',
     description: defaultPageDescription,
     path: '/',
   }
@@ -4786,10 +4786,13 @@ function HomePage({
             </p>
             <p className="contact-pricing-note">
               The first 30-minute consultation is free, so we can clarify your
-              actual needs before any paid work begins. After that, billing is
-              transparent and based on your approval. Typical rates are $40-$50
-              per hour for individual coaching and $50-$70 per hour for Zoom
-              classroom coaching, with generous preparation, examples, and
+              actual needs before any paid work begins. If there is a fit, we
+              agree on a specific number of hours at a specific price for an
+              initial demonstration of worth. That first block can be a
+              one-off, never repeated, or it can become the starting point for
+              deeper training sessions if the value is clear. Typical rates are
+              $40-$50 per hour for individual coaching and $50-$70 per hour for
+              Zoom classroom coaching, with generous preparation, examples, and
               practical guidance included in the work.
             </p>
             <p className="contact-insight">
@@ -6627,7 +6630,9 @@ function OfferPage({
           <h2>Start with a short Zoom consultation.</h2>
           <p>
             We will clarify your goals, audience, and comfort level, then choose
-            the right training format.
+            the right training format. If there is a fit, we can define a
+            specific initial block of hours at a specific price so you can
+            evaluate practical value before committing to deeper training.
           </p>
           <p className="contact-insight">
             The most useful starting point is a map of where your workday
