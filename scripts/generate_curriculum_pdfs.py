@@ -1,5 +1,6 @@
 from pathlib import Path
 
+from reportlab import rl_config
 from reportlab.lib import colors
 from reportlab.lib.enums import TA_CENTER
 from reportlab.lib.pagesizes import letter
@@ -16,6 +17,8 @@ from reportlab.platypus import (
     TableStyle,
 )
 
+
+rl_config.invariant = True
 
 INK = colors.HexColor("#172b31")
 TEAL = colors.HexColor("#1c4c54")
@@ -476,6 +479,7 @@ CURRICULA = [
             "Use AI to generate first drafts, alternatives, summaries, meeting artifacts, and decision support.",
             "Develop review habits that keep the human responsible for quality, context, and final judgment.",
             "Turn scattered experiments into documented workflow recipes that can be shared inside a team.",
+            "Package proven prompt sequences into narrow Gems, custom GPTs, project assistants, or similar specialty helpers.",
         ],
         "modules": [
             ("Workflow anatomy", "We break a task into input, constraints, AI assist, review, revision, and final human decision."),
@@ -483,12 +487,14 @@ CURRICULA = [
             ("Research support without overtrust", "We separate brainstorming, query planning, summarization, source checking, and final verification."),
             ("Meetings and decisions", "Participants create safe workflows for agendas, prep notes, follow-up drafts, and option comparison."),
             ("Workflow documentation", "Teams capture the steps, prompts, inputs, review points, and human decisions that make a workflow repeatable."),
+            ("Specialty assistant builder", "Learners turn one reliable workflow into a narrow Gem-style helper with operating instructions, safe source material, test cases, and maintenance notes."),
         ],
         "guiding_questions": [
             "Which tasks repeat often enough to deserve a workflow?",
             "Where can AI help without becoming the decision maker?",
             "What inputs are safe to use, and what must be abstracted or withheld?",
             "How will we review, revise, and document the workflow so others can use it?",
+            "When should a workflow remain a prompt recipe, and when is it mature enough to become a specialty assistant?",
         ],
         "session_flow": [
             ("Select", "Choose one or two common tasks with clear boundaries and enough repetition to justify practice."),
@@ -502,18 +508,21 @@ CURRICULA = [
             ("Meeting-to-action workflow", "Build: agenda, prep questions, decision log, action table, and follow-up message. Use: fictional or sanitized meeting context. Do: generate the packet and mark confirmations. Check: invented commitments, owner placeholders, and due dates."),
             ("Research triage board", "Build: question clusters, source categories, search strings, blind spots, and claim-verification table. Use: a public topic or general business question. Do: plan research before collecting sources. Check: model output is not treated as evidence."),
             ("Decision-support brief", "Build: criteria, option matrix, assumptions, pre-mortem, missing evidence, and human decision questions. Use: a fictional, public, or sanitized decision. Do: compare without choosing. Check: accountability remains with a person."),
+            ("Gem-style specialty assistant blueprint", "Build: job statement, instruction block, required questions, output format, review gates, safe examples, edge tests, and version notes. Use: a fictional, public, or sanitized repeated task. Do: write and test one narrow helper. Check: allowed inputs, stop signs, and human approval are explicit."),
         ],
         "readiness_checks": [
             "The workflow has a named owner and a clear final human decision point.",
             "Inputs avoid sensitive or proprietary data unless a suitable private environment is approved.",
             "The workflow includes a review step for accuracy, tone, assumptions, and missing context.",
             "The team can explain when the workflow is useful and when it should not be used.",
+            "Any specialty assistant has written boundaries, safe test cases, review requirements, and an owner for updates.",
         ],
         "adoption_practices": [
             "Prioritize recurring tasks that consume real time or create repeated rework, not flashy demos.",
             "Break each workflow into inputs, AI assistance, review checkpoints, handoffs, and final ownership.",
             "Measure usefulness in time saved, quality improved, rework reduced, and review burden created.",
             "Document the workflow recipe so a useful experiment can become a teachable team practice.",
+            "Promote only stable, well-reviewed recipes into Gems, custom GPTs, project spaces, or other reusable assistants.",
         ],
         "materials": [
             "Workflow recipe cards",
@@ -522,16 +531,20 @@ CURRICULA = [
             "Before-and-after prompt examples",
             "Workflow documentation template",
             "Human review checkpoint guide",
+            "Specialty assistant build sheet",
+            "Gem-style instruction template",
         ],
         "diagram_slots": [
             "Human-in-the-loop workflow map",
             "Meeting-to-action pipeline",
             "Workflow recipe anatomy: inputs, AI assist, review, apply",
+            "Specialty assistant lifecycle: recipe, instructions, safe tests, review, versioning",
         ],
         "follow_up": [
             "Pilot one documented workflow for two weeks using safe inputs.",
             "Track where the workflow saves time, improves quality, or creates review burden.",
             "Bring one workflow back for refinement before scaling it to a broader team.",
+            "Decide whether the workflow should stay as a prompt card or become a maintained specialty assistant.",
         ],
         "tangible_cases": [
             {
@@ -552,8 +565,15 @@ CURRICULA = [
                 "learner_task": "Use AI to create a research launch board with search strings, source ladder, blind spots, and claim-check table.",
                 "prompt": "Help me plan research on [topic]. Build a research launch board with question clusters, search strings, source types, likely blind spots, opposing perspectives, red flags, and a claim-check table. Do not make final claims without sources.",
             },
+            {
+                "title": "Specialty assistant for a repeated task",
+                "situation": "A team has a useful prompt sequence for meeting follow-ups, lesson kits, decision briefs, or writing review, but the sequence is too easy to forget or apply inconsistently.",
+                "learner_task": "Convert the sequence into a Gem-style assistant blueprint with instructions, boundaries, examples, output format, review gates, and safe test cases.",
+                "prompt": "Help me design a narrow specialty assistant for this repeated task: [task]. Create a build sheet with purpose, user, required intake questions, operating instructions, output format, safety boundaries, claims to verify, human approval points, three safe test cases, three edge cases, and version notes. Do not assume private data can be used.",
+            },
         ],
         "prompt_library": [
+            ("Specialty assistant build sheet", "Turn this proven prompt workflow into a Gem-style specialty assistant build sheet. Include the assistant purpose, intended user, required intake questions, operating instructions, allowed inputs, prohibited inputs, output format, review gates, edge cases, safe test cases, owner, and version notes: [workflow]."),
             ("Workflow recipe", "Turn this recurring task into an AI-assisted workflow recipe card. Include trigger, user, safe inputs, prompt sequence, expected output, review checkpoints, human decision points, handoffs, risks, stop signs, and when not to use the workflow: [task]."),
             ("Draft and critique", "Create a first draft for [audience] using the safe context below. Then produce a critique table covering clarity, tone, unsupported claims, missing context, audience fit, and review needs. Finish with a revised version and a human-final checklist: [safe context]."),
             ("Meeting preparation", "Using this fictional meeting context, create a timed agenda, prep questions by role, likely tensions, decision log template, action table, and follow-up email shell. Keep assumptions visible and mark what a human must confirm: [fictional context]."),

@@ -1108,6 +1108,7 @@ const curriculumPackages: CurriculumContent[] = [
       'Use AI to generate first drafts, alternatives, summaries, meeting artifacts, and decision support.',
       'Develop review habits that keep the human responsible for quality, context, and final judgment.',
       'Turn scattered experiments into documented workflow recipes that can be shared inside a team.',
+      'Package proven prompt sequences into narrow Gems, custom GPTs, project assistants, or similar specialty helpers.',
     ],
     modules: [
       {
@@ -1130,12 +1131,17 @@ const curriculumPackages: CurriculumContent[] = [
         title: 'Workflow documentation',
         body: 'Teams capture the steps, prompts, inputs, review points, and human decisions that make a workflow repeatable.',
       },
+      {
+        title: 'Specialty assistant builder',
+        body: 'Learners turn one reliable workflow into a narrow Gem-style helper with operating instructions, safe source material, test cases, and maintenance notes.',
+      },
     ],
     guidingQuestions: [
       'Which tasks repeat often enough to deserve a workflow?',
       'Where can AI help without becoming the decision maker?',
       'What inputs are safe to use, and what must be abstracted or withheld?',
       'How will we review, revise, and document the workflow so others can use it?',
+      'When should a workflow remain a prompt recipe, and when is it mature enough to become a specialty assistant?',
     ],
     sessionFlow: [
       {
@@ -1216,18 +1222,34 @@ const curriculumPackages: CurriculumContent[] = [
         review:
           'The workflow should make thinking clearer while leaving the decision, accountability, and risk acceptance with a person.',
       },
+      {
+        title: 'Gem-style specialty assistant blueprint',
+        artifact:
+          'A build sheet for one focused helper: job statement, instruction block, required questions, output format, review gates, safe examples, edge tests, and version notes.',
+        safeInput:
+          'A fictional, public, or sanitized repeated task such as drafting event follow-ups, creating lesson kits, reviewing survey questions, or preparing decision briefs.',
+        steps: [
+          'Choose one narrow job that repeats often enough to deserve a helper.',
+          'Write operating instructions that name role, audience, tone, boundaries, output format, and review behavior.',
+          'Test the helper with vague, incomplete, and risky inputs before using it on real work.',
+        ],
+        review:
+          'The assistant is useful only if the team can explain what it does, what it must not do, what inputs are allowed, and how a human approves the output.',
+      },
     ],
     readinessChecks: [
       'The workflow has a named owner and a clear final human decision point.',
       'Inputs avoid sensitive or proprietary data unless a suitable private environment is approved.',
       'The workflow includes a review step for accuracy, tone, assumptions, and missing context.',
       'The team can explain when the workflow is useful and when it should not be used.',
+      'Any specialty assistant has written boundaries, safe test cases, review requirements, and an owner for updates.',
     ],
     adoptionPractices: [
       'Prioritize recurring tasks that consume real time or create repeated rework, not flashy demos.',
       'Break each workflow into inputs, AI assistance, review checkpoints, handoffs, and final ownership.',
       'Measure usefulness in time saved, quality improved, rework reduced, and review burden created.',
       'Document the workflow recipe so a useful experiment can become a teachable team practice.',
+      'Promote only stable, well-reviewed recipes into Gems, custom GPTs, project spaces, or other reusable assistants.',
     ],
     materials: [
       'Workflow recipe cards',
@@ -1236,16 +1258,20 @@ const curriculumPackages: CurriculumContent[] = [
       'Before-and-after prompt examples',
       'Workflow documentation template',
       'Human review checkpoint guide',
+      'Specialty assistant build sheet',
+      'Gem-style instruction template',
     ],
     diagramSlots: [
       'Human-in-the-loop workflow map',
       'Meeting-to-action pipeline',
       'Workflow recipe anatomy: inputs, AI assist, review, apply',
+      'Specialty assistant lifecycle: recipe, instructions, safe tests, review, versioning',
     ],
     followUp: [
       'Pilot one documented workflow for two weeks using safe inputs.',
       'Track where the workflow saves time, improves quality, or creates review burden.',
       'Bring one workflow back for refinement before scaling it to a broader team.',
+      'Decide whether the workflow should stay as a prompt card or become a maintained specialty assistant.',
     ],
     tangibleCases: [
       {
@@ -1275,8 +1301,22 @@ const curriculumPackages: CurriculumContent[] = [
         prompt:
           'Help me plan research on [topic]. Build a research launch board with question clusters, search strings, source types, likely blind spots, opposing perspectives, red flags, and a claim-check table. Do not make final claims without sources.',
       },
+      {
+        title: 'Specialty assistant for a repeated task',
+        situation:
+          'A team has a useful prompt sequence for meeting follow-ups, lesson kits, decision briefs, or writing review, but the sequence is too easy to forget or apply inconsistently.',
+        learnerTask:
+          'Convert the sequence into a Gem-style assistant blueprint with instructions, boundaries, examples, output format, review gates, and safe test cases.',
+        prompt:
+          'Help me design a narrow specialty assistant for this repeated task: [task]. Create a build sheet with purpose, user, required intake questions, operating instructions, output format, safety boundaries, claims to verify, human approval points, three safe test cases, three edge cases, and version notes. Do not assume private data can be used.',
+      },
     ],
     promptLibrary: [
+      {
+        title: 'Specialty assistant build sheet',
+        prompt:
+          'Turn this proven prompt workflow into a Gem-style specialty assistant build sheet. Include the assistant purpose, intended user, required intake questions, operating instructions, allowed inputs, prohibited inputs, output format, review gates, edge cases, safe test cases, owner, and version notes: [workflow].',
+      },
       {
         title: 'Workflow recipe',
         prompt:
@@ -2507,6 +2547,11 @@ const resourceCategories = [
     href: '#practice-cards',
   },
   {
+    title: 'Specialty AI Builders',
+    body: 'How to design Gems, custom GPTs, project assistants, and similar focused helpers across many skills.',
+    href: '#specialty-builders',
+  },
+  {
     title: 'Use Domains Map',
     body: 'Where AI can help before a business starts comparing tools or vendors.',
     href: '#use-domains',
@@ -2557,6 +2602,132 @@ const promptingMindsetPrinciples = [
   {
     title: 'Review before relying',
     body: 'Every useful workflow needs a final human pass for accuracy, tone, assumptions, missing context, and responsibility.',
+  },
+]
+
+const specialtyBuilderSteps = [
+  {
+    title: 'Choose one repeatable job',
+    body: 'A strong Gem or specialty assistant starts with a narrow job: revise emails, create meeting kits, coach interview answers, draft lesson plans, or inspect code diffs.',
+  },
+  {
+    title: 'Write operating instructions',
+    body: 'Define the role, audience, tone, required questions, output format, review criteria, and what the assistant must not do.',
+  },
+  {
+    title: 'Add examples and source material carefully',
+    body: 'Use public, fictional, or approved material. If the tool supports project knowledge, add only material that belongs in that environment.',
+  },
+  {
+    title: 'Build review gates into the behavior',
+    body: 'Tell the assistant to label assumptions, list missing facts, flag claims to verify, and ask for human approval before high-impact output.',
+  },
+  {
+    title: 'Test with safe edge cases',
+    body: 'Try vague inputs, conflicting instructions, risky requests, and poor examples so learners see where the assistant helps and where it fails.',
+  },
+  {
+    title: 'Version and maintain it',
+    body: 'Treat specialty assistants like living teaching tools. Keep notes on what changed, what failed, and when instructions or source material need refreshing.',
+  },
+]
+
+const specialtySkillBuilders = [
+  {
+    title: 'Writing coach',
+    purpose: 'Revises drafts for audience, tone, clarity, structure, and claims that need checking.',
+    instruction:
+      'Ask for audience, purpose, tone, length, and non-negotiable facts before revising. Return a change log and send-before-review checklist.',
+    safeTest:
+      'Use a fictional announcement or sanitized email and ask for concise, warm, and formal versions.',
+  },
+  {
+    title: 'Research compass',
+    purpose: 'Turns broad topics into question clusters, search terms, source ladders, and claim-check tables.',
+    instruction:
+      'Do not treat model output as evidence. Separate research planning from verified claims and ask for source categories before conclusions.',
+    safeTest:
+      'Use a public topic and build a research launch board with missing perspectives and red flags.',
+  },
+  {
+    title: 'Meeting facilitator',
+    purpose: 'Creates agendas, prep questions, decision logs, action-item tables, and follow-up shells.',
+    instruction:
+      'Use role placeholders rather than private names when needed. Mark every owner, deadline, and decision as requiring human confirmation.',
+    safeTest:
+      'Use a fictional cross-team meeting goal and ask for a 30-minute agenda plus follow-up packet.',
+  },
+  {
+    title: 'Decision brief coach',
+    purpose: 'Helps compare options, surface assumptions, run pre-mortems, and name missing evidence.',
+    instruction:
+      'Never decide for the user. End with human-only decision questions, evidence gaps, and assumptions that should be tested.',
+    safeTest:
+      'Use a public, personal, or fictional decision with low stakes and no confidential data.',
+  },
+  {
+    title: 'Learning tutor',
+    purpose: 'Explains unfamiliar material with analogies, examples, glossaries, quizzes, and misconception checks.',
+    instruction:
+      'Ask for the learner’s level first. Separate explanation from evidence and include a verification table for important claims.',
+    safeTest:
+      'Use one public article and create a one-page learning kit.',
+  },
+  {
+    title: 'Career proof coach',
+    purpose: 'Turns scattered experience into bios, resume bullets, proof banks, and interview answer outlines.',
+    instruction:
+      'Flag inflated claims, ask for evidence, and avoid inventing credentials, employers, dates, metrics, or confidential project details.',
+    safeTest:
+      'Use a fictional or sanitized work history and ask for a claims-to-evidence checklist.',
+  },
+  {
+    title: 'Survey and form helper',
+    purpose: 'Cleans question wording, standardizes response scales, and formats items for forms or spreadsheets.',
+    instruction:
+      'Check for leading language, double-barreled questions, inconsistent scales, and sensitive data collection concerns.',
+    safeTest:
+      'Use fictional workshop feedback questions and request a form-ready version.',
+  },
+  {
+    title: 'Chart storyboarder',
+    purpose: 'Plans charts by defining the data question, columns, audience, chart type, labels, caveats, and checks.',
+    instruction:
+      'Ask what decision or explanation the chart should support before recommending a visual form.',
+    safeTest:
+      'Use public or fictional data and ask for a chart plan instead of a finished chart.',
+  },
+  {
+    title: 'Brand and naming reviewer',
+    purpose: 'Explores connotations, audience fit, risks, wording alternatives, and questions to test with humans.',
+    instruction:
+      'Treat brand ideas as hypotheses. Include cultural, tone, and clarity questions without claiming market certainty.',
+    safeTest:
+      'Use fictional product names and ask for positive associations, drawbacks, and test questions.',
+  },
+  {
+    title: 'Workflow recipe designer',
+    purpose: 'Turns repeated tasks into safe inputs, prompt sequences, outputs, review gates, owners, and stop signs.',
+    instruction:
+      'Keep workflow design separate from automation. Name when a human, private environment, or internal owner is needed.',
+    safeTest:
+      'Use a fictional administrative task and create a recipe card with review checkpoints.',
+  },
+  {
+    title: 'Code review companion',
+    purpose: 'Supports repo inspection, change summaries, test plans, diff review, documentation, and rollback thinking.',
+    instruction:
+      'Require file scope, tests, human review, and rollback notes. Never expose secrets or make destructive changes without explicit approval.',
+    safeTest:
+      'Use a public or low-risk practice repo and ask for a pre-edit memo before any change.',
+  },
+  {
+    title: 'Creative director',
+    purpose: 'Generates creative briefs, visual directions, image prompts, campaign variants, and critique rubrics.',
+    instruction:
+      'Ask for audience, medium, constraints, brand traits, and review criteria. Keep final selection and brand judgment human-led.',
+    safeTest:
+      'Use a fictional campaign and request three visual directions with critique criteria.',
   },
 ]
 
@@ -2710,6 +2881,30 @@ const resourceShelfLinks = [
     category: 'Prompting guides',
     href: 'https://ai.google.dev/gemini-api/docs/prompting-strategies',
     body: 'Google AI guidance for prompt design and iterative refinement.',
+  },
+  {
+    label: 'Google Gemini Gems',
+    category: 'Specialty assistants',
+    href: 'https://gemini.google/overview/gems/',
+    body: 'Google’s overview of Gems as customized AI experts for recurring tasks.',
+  },
+  {
+    label: 'OpenAI: Create a GPT',
+    category: 'Specialty assistants',
+    href: 'https://help.openai.com/en/articles/8554397-create-a-gpt',
+    body: 'OpenAI help guidance for creating custom GPTs with instructions and knowledge.',
+  },
+  {
+    label: 'Anthropic Claude Projects',
+    category: 'Specialty assistants',
+    href: 'https://support.claude.com/en/articles/9519177-how-can-i-create-and-manage-projects',
+    body: 'Anthropic help guidance for organizing chats, project knowledge, and custom instructions.',
+  },
+  {
+    label: 'Microsoft Copilot agents',
+    category: 'Specialty assistants',
+    href: 'https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/agent-builder',
+    body: 'Microsoft documentation for creating agents that extend Copilot for specific work contexts.',
   },
   {
     label: 'Microsoft 365 Copilot Prompts Gallery',
@@ -4499,6 +4694,57 @@ function ResourcesPage({
       </section>
 
       <PromptingStarterLabSection />
+
+      <section className="section specialty-builder-section" id="specialty-builders" aria-labelledby="specialty-builders-title">
+        <div className="section-heading">
+          <p className="eyebrow">Specialty AI builders</p>
+          <h2 id="specialty-builders-title">Build Gems and similar specialty assistants around repeatable skills.</h2>
+          <p>
+            Gemini Gems, custom GPTs, Claude Projects-style spaces, Copilot
+            agents, and reusable prompt assistants all work best when they are
+            narrow, well-instructed, tested with safe examples, and reviewed by
+            humans. The point is not to create an all-purpose bot. It is to
+            give learners a focused helper for one kind of work.
+          </p>
+        </div>
+        <div className="specialty-builder-grid">
+          {specialtyBuilderSteps.map(({ title, body }, index) => (
+            <article className="specialty-builder-card" key={title}>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{title}</h3>
+              <p>{body}</p>
+            </article>
+          ))}
+        </div>
+        <div className="specialty-skill-panel">
+          <div className="section-heading">
+            <p className="eyebrow">Across many skills</p>
+            <h3>Examples of specialty assistants Xensible can teach learners to design.</h3>
+            <p>
+              Each example below includes the job, the instruction pattern,
+              and a safe first test. This keeps the emphasis on fluency,
+              judgment, and reusable practice rather than vendor-specific
+              magic.
+            </p>
+          </div>
+          <div className="specialty-skill-grid">
+            {specialtySkillBuilders.map(({ title, purpose, instruction, safeTest }) => (
+              <article className="specialty-skill-card" key={title}>
+                <h3>{title}</h3>
+                <p>{purpose}</p>
+                <div className="activity-detail">
+                  <span>Instructions should</span>
+                  <p>{instruction}</p>
+                </div>
+                <div className="activity-detail activity-safe-input">
+                  <span>Safe first test</span>
+                  <p>{safeTest}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section className="section use-domain-section" id="use-domains" aria-labelledby="use-domains-title">
         <div className="section-heading">

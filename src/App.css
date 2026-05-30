@@ -1001,6 +1001,78 @@ details {
   margin-top: auto;
 }
 
+.specialty-builder-section {
+  background: var(--surface-warm);
+}
+
+.specialty-builder-grid,
+.specialty-skill-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.specialty-builder-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.specialty-builder-card,
+.specialty-skill-card {
+  padding: 24px;
+}
+
+.specialty-builder-card {
+  min-height: 250px;
+  border-top: 4px solid var(--teal);
+}
+
+.specialty-builder-card:nth-child(3n + 2) {
+  border-top-color: var(--clay);
+}
+
+.specialty-builder-card:nth-child(3n) {
+  border-top-color: var(--brass);
+}
+
+.specialty-builder-card > span {
+  display: inline-flex;
+  margin-bottom: 22px;
+  color: var(--clay);
+  font-size: 0.76rem;
+  font-weight: 840;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.specialty-builder-card p,
+.specialty-skill-card p {
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+.specialty-skill-panel {
+  margin-top: 56px;
+}
+
+.specialty-skill-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.specialty-skill-card {
+  display: grid;
+  min-height: 460px;
+  align-content: start;
+  gap: 16px;
+  border-top: 4px solid var(--brass);
+}
+
+.specialty-skill-card:nth-child(3n + 2) {
+  border-top-color: var(--teal);
+}
+
+.specialty-skill-card:nth-child(3n) {
+  border-top-color: var(--clay);
+}
+
 .sector-example-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -2768,6 +2840,8 @@ details p {
   .landscape-note-grid,
   .monthly-note-grid,
   .resource-shelf-grid,
+  .specialty-builder-grid,
+  .specialty-skill-grid,
   .sector-example-grid,
   .project-rigor-grid,
   .tier-grid,
@@ -3086,6 +3160,8 @@ details p {
   .landscape-note-grid,
   .monthly-note-grid,
   .resource-shelf-grid,
+  .specialty-builder-grid,
+  .specialty-skill-grid,
   .sector-example-grid,
   .project-rigor-grid,
   .tier-grid,
@@ -3121,6 +3197,8 @@ details p {
   .landscape-note-card,
   .monthly-note-card,
   .resource-shelf-card,
+  .specialty-builder-card,
+  .specialty-skill-card,
   .sector-example-card,
   .project-rigor-card,
   .tier-card,
