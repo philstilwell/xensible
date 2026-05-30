@@ -813,6 +813,194 @@ details {
   background: var(--surface-warm);
 }
 
+.resources-page {
+  background: var(--surface);
+}
+
+.resource-hero {
+  background:
+    linear-gradient(135deg, rgba(247, 249, 246, 0.97), rgba(234, 242, 238, 0.9)),
+    var(--surface);
+}
+
+.resource-structure-list {
+  display: grid;
+  gap: 10px;
+  margin: 18px 0 0;
+  padding-left: 18px;
+  color: var(--ink-soft);
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.resource-directory-section {
+  background: var(--surface);
+}
+
+.resource-directory-grid,
+.resource-principle-grid,
+.use-domain-grid,
+.practice-challenge-grid,
+.landscape-note-grid,
+.monthly-note-grid,
+.resource-shelf-grid {
+  display: grid;
+  gap: 18px;
+}
+
+.resource-directory-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.resource-directory-card,
+.resource-principle-card,
+.use-domain-card,
+.practice-challenge-card,
+.landscape-note-card,
+.monthly-note-card,
+.resource-shelf-card {
+  padding: 24px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.resource-directory-card {
+  display: grid;
+  min-height: 250px;
+  align-content: space-between;
+  gap: 16px;
+  border-top: 4px solid var(--teal);
+}
+
+.resource-directory-card:nth-child(3n + 2),
+.resource-principle-card:nth-child(3n + 2),
+.practice-challenge-card:nth-child(3n + 2),
+.resource-shelf-card:nth-child(3n + 2) {
+  border-top-color: var(--clay);
+}
+
+.resource-directory-card:nth-child(3n),
+.resource-principle-card:nth-child(3n),
+.practice-challenge-card:nth-child(3n),
+.resource-shelf-card:nth-child(3n) {
+  border-top-color: var(--brass);
+}
+
+.resource-directory-card p,
+.resource-principle-card p,
+.use-domain-card p,
+.practice-challenge-card p,
+.landscape-note-card p,
+.monthly-note-card p,
+.resource-shelf-card p {
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+.resource-mindset-section,
+.practice-challenge-section {
+  background: var(--mist);
+}
+
+.resource-principle-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.resource-principle-card,
+.practice-challenge-card,
+.resource-shelf-card {
+  border-top: 4px solid var(--teal);
+}
+
+.resource-principle-card > span,
+.monthly-note-card > span,
+.resource-shelf-card > span {
+  display: inline-flex;
+  margin-bottom: 22px;
+  color: var(--clay);
+  font-size: 0.76rem;
+  font-weight: 840;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.use-domain-section {
+  background: var(--surface);
+}
+
+.use-domain-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.use-domain-card {
+  display: grid;
+  min-height: 430px;
+  align-content: start;
+  gap: 16px;
+}
+
+.practice-challenge-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.practice-challenge-card {
+  display: grid;
+  min-height: 330px;
+  align-content: start;
+  gap: 16px;
+}
+
+.practice-challenge-card > svg {
+  width: 24px;
+  height: 24px;
+  color: var(--teal);
+}
+
+.landscape-note-section {
+  background: var(--surface);
+}
+
+.landscape-note-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.landscape-note-card {
+  min-height: 260px;
+  border-top: 4px solid var(--brass);
+}
+
+.monthly-notes-section {
+  background: var(--surface-warm);
+}
+
+.monthly-note-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.monthly-note-card {
+  min-height: 250px;
+  border-top: 4px solid var(--clay);
+}
+
+.resource-shelf-section {
+  background: var(--surface);
+}
+
+.resource-shelf-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.resource-shelf-card {
+  display: grid;
+  min-height: 300px;
+  align-content: start;
+  gap: 14px;
+}
+
+.resource-shelf-card .text-link {
+  margin-top: auto;
+}
+
 .sector-example-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -2573,6 +2761,13 @@ details p {
   .offer-format-grid,
   .utility-project-grid,
   .prompting-activity-grid,
+  .resource-directory-grid,
+  .resource-principle-grid,
+  .use-domain-grid,
+  .practice-challenge-grid,
+  .landscape-note-grid,
+  .monthly-note-grid,
+  .resource-shelf-grid,
   .sector-example-grid,
   .project-rigor-grid,
   .tier-grid,
@@ -2884,6 +3079,13 @@ details p {
   .offer-format-grid,
   .utility-project-grid,
   .prompting-activity-grid,
+  .resource-directory-grid,
+  .resource-principle-grid,
+  .use-domain-grid,
+  .practice-challenge-grid,
+  .landscape-note-grid,
+  .monthly-note-grid,
+  .resource-shelf-grid,
   .sector-example-grid,
   .project-rigor-grid,
   .tier-grid,
@@ -2912,6 +3114,13 @@ details p {
   .offer-card,
   .utility-project-card,
   .prompting-activity-card,
+  .resource-directory-card,
+  .resource-principle-card,
+  .use-domain-card,
+  .practice-challenge-card,
+  .landscape-note-card,
+  .monthly-note-card,
+  .resource-shelf-card,
   .sector-example-card,
   .project-rigor-card,
   .tier-card,

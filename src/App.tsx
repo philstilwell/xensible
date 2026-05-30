@@ -2495,6 +2495,236 @@ const toolMapSources = [
   { label: 'Zapier AI', href: 'https://zapier.com/ai' },
 ]
 
+const resourceCategories = [
+  {
+    title: 'Prompting Mindset',
+    body: 'How to think clearly with AI: context, curiosity, iteration, review, and boundaries.',
+    href: '#mindset',
+  },
+  {
+    title: 'Prompting Practice Cards',
+    body: 'Short beginner activities that help learners try useful prompt patterns safely.',
+    href: '#practice-cards',
+  },
+  {
+    title: 'Use Domains Map',
+    body: 'Where AI can help before a business starts comparing tools or vendors.',
+    href: '#use-domains',
+  },
+  {
+    title: 'Practice Challenges',
+    body: 'Challenge-style prompts for teams, leaders, and individuals to use in workshops.',
+    href: '#practice-challenges',
+  },
+  {
+    title: 'Landscape Notes',
+    body: 'A calm prompt-scape: durable tool classes and questions to watch over time.',
+    href: '#landscape-notes',
+  },
+  {
+    title: 'Monthly Fluency Notes',
+    body: 'A sustainable rhythm for tracking useful AI changes without chasing weekly news.',
+    href: '#monthly-notes',
+  },
+  {
+    title: 'Resource Shelf',
+    body: 'Curated links for prompt practice, tool literacy, and responsible AI judgment.',
+    href: '#resource-shelf',
+  },
+]
+
+const promptingMindsetPrinciples = [
+  {
+    title: 'Begin with the job, not the tool',
+    body: 'Name the work you are trying to improve: a draft, decision, meeting, research plan, explanation, or workflow. The tool choice comes later.',
+  },
+  {
+    title: 'Give context generously',
+    body: 'Useful prompts include audience, purpose, constraints, examples, format, and what success should look like. Context is how you teach the model the shape of the task.',
+  },
+  {
+    title: 'Iterate in public view',
+    body: 'Good prompting is a visible loop: ask, inspect, revise, compare, and explain what changed. Learners should see the process, not only the polished result.',
+  },
+  {
+    title: 'Treat output as material',
+    body: 'AI output is not a verdict. It is draft material to inspect, reshape, verify, discard, or combine with human knowledge.',
+  },
+  {
+    title: 'Keep boundaries active',
+    body: 'Use public, fictional, or sanitized inputs for practice. Keep patient, customer, employee, legal, financial, security, and proprietary material out of public tools.',
+  },
+  {
+    title: 'Review before relying',
+    body: 'Every useful workflow needs a final human pass for accuracy, tone, assumptions, missing context, and responsibility.',
+  },
+]
+
+const useDomainGroups = [
+  {
+    title: 'Learning and explanation',
+    body: 'Turn a public source or unfamiliar topic into examples, analogies, glossaries, quizzes, and misconception checks.',
+    firstExperiment: 'Create a one-page learning kit from a public article.',
+    watchFor: 'Unsupported claims, invented citations, and explanations that sound clearer than they are.',
+  },
+  {
+    title: 'Writing and communication',
+    body: 'Draft, rewrite, tighten, change tone, produce subject lines, or create before-and-after writing comparisons.',
+    firstExperiment: 'Rewrite one fictional email in concise, warm, and formal versions.',
+    watchFor: 'Overpromising, generic voice, missing facts, and language that no longer sounds like the sender.',
+  },
+  {
+    title: 'Meetings and follow-through',
+    body: 'Create agendas, prep questions, decision logs, action-item tables, and follow-up drafts from sanitized scenarios.',
+    firstExperiment: 'Build a 30-minute agenda and follow-up shell from a fictional meeting goal.',
+    watchFor: 'Invented commitments, unclear owners, unrealistic timing, and private notes.',
+  },
+  {
+    title: 'Decision support',
+    body: 'Compare options, surface assumptions, run pre-mortems, list missing evidence, and clarify human decision questions.',
+    firstExperiment: 'Create a decision brief for a public, personal, or fictional decision.',
+    watchFor: 'The model choosing for the person, hidden assumptions, and risk language that needs specialist review.',
+  },
+  {
+    title: 'Research planning',
+    body: 'Generate question clusters, search terms, source categories, opposing views, and claim-check tables before searching.',
+    firstExperiment: 'Build a research launch board for a public topic.',
+    watchFor: 'Treating model output as evidence instead of a plan for finding evidence.',
+  },
+  {
+    title: 'Data and pattern finding',
+    body: 'Sort public or anonymized notes into categories, themes, risks, questions, and next actions.',
+    firstExperiment: 'Cluster a fictional feedback list into themes and follow-up questions.',
+    watchFor: 'Privacy leakage, weak categories, and conclusions from incomplete or biased samples.',
+  },
+  {
+    title: 'Creative and content planning',
+    body: 'Brainstorm angles, titles, outlines, images, campaign concepts, teaching examples, and content variations.',
+    firstExperiment: 'Generate three lesson or webpage outlines from public topic notes.',
+    watchFor: 'Style without substance, invented facts, and outputs that need brand or audience review.',
+  },
+  {
+    title: 'Workflow and operations',
+    body: 'Map repeated tasks into safe inputs, prompt sequences, review gates, owners, stop signs, and reusable recipe cards.',
+    firstExperiment: 'Write a workflow recipe for one repeated administrative task using fictional inputs.',
+    watchFor: 'Accidental automation thinking before the team understands the work and the review burden.',
+  },
+]
+
+const practiceChallenges = [
+  {
+    title: 'Beginner: Repair a vague prompt',
+    brief: 'Start with “Help me write this better” and turn it into a prompt with audience, purpose, tone, constraints, and review criteria.',
+    output: 'A before-and-after prompt card plus a note explaining what changed.',
+  },
+  {
+    title: 'Individual: Build a learning kit',
+    brief: 'Use one public article to create an explainer, glossary, quiz, misconception list, and claim-check table.',
+    output: 'A compact study packet and a list of claims to verify.',
+  },
+  {
+    title: 'Team: Meeting momentum',
+    brief: 'Use a fictional meeting scenario to produce a timed agenda, prep questions, decision log, action table, and follow-up draft.',
+    output: 'A meeting kit with owner placeholders and human confirmation points.',
+  },
+  {
+    title: 'Leader: Vendor claim scorecard',
+    brief: 'Take a public or fictional AI vendor claim and turn it into questions about evidence, workflow fit, data, review, and implementation burden.',
+    output: 'A vendor-question scorecard that supports clarity before buying.',
+  },
+  {
+    title: 'Workflow: Recipe card',
+    brief: 'Choose one repeated task and describe the safest AI-assisted slice with inputs, prompt sequence, output, review gates, and stop signs.',
+    output: 'A reusable workflow recipe that can be tested with fictional data.',
+  },
+  {
+    title: 'Review: Red-team an output',
+    brief: 'Ask AI to critique an AI-generated draft for unsupported claims, vague wording, missing context, assumptions, and safety concerns.',
+    output: 'A marked-up draft with keep, revise, verify, and discard decisions.',
+  },
+]
+
+const landscapeNotes = [
+  {
+    title: 'Assistants are becoming multimodal',
+    body: 'General assistants increasingly handle text, images, files, voice, and browsing. The durable skill is knowing what evidence the output rests on.',
+  },
+  {
+    title: 'Workplace AI is moving into existing tools',
+    body: 'Email, documents, spreadsheets, meetings, and calendars are natural surfaces for AI. Teams need shared norms before convenience becomes careless practice.',
+  },
+  {
+    title: 'Research tools are useful but not final authority',
+    body: 'Source-aware tools can speed up exploration, but learners still need source judgment, citation checks, and confidence boundaries.',
+  },
+  {
+    title: 'Agents raise the supervision bar',
+    body: 'Coding and workflow agents can act across files or apps. The human operator needs scope, review, approval, and rollback habits.',
+  },
+  {
+    title: 'Private data changes the question',
+    body: 'Once sensitive or proprietary data is involved, the issue is no longer basic prompting. The right internal owners and approved environments matter.',
+  },
+]
+
+const monthlyFluencyNotes = [
+  {
+    title: 'What changed?',
+    body: 'Name the tool or capability change in plain language. Ignore announcements that do not affect the team’s actual work.',
+  },
+  {
+    title: 'What did we try?',
+    body: 'Capture one safe experiment, the artifact it produced, what worked, and what failed.',
+  },
+  {
+    title: 'What needs review?',
+    body: 'Update boundaries around data, source checking, approvals, human ownership, and tasks that should stay out of public tools.',
+  },
+  {
+    title: 'What is next month’s practice?',
+    body: 'Choose one narrow practice habit: better context, output comparison, claim checking, meeting follow-up, or workflow documentation.',
+  },
+]
+
+const resourceShelfLinks = [
+  {
+    label: 'Everybody Prompts',
+    category: 'Starter activities',
+    href: 'https://everybodyprompts.wordpress.com/',
+    body: 'A practical archive of beginner prompting activities and examples.',
+  },
+  {
+    label: 'OpenAI prompt engineering guide',
+    category: 'Prompting guides',
+    href: 'https://developers.openai.com/api/docs/guides/prompt-engineering',
+    body: 'Official OpenAI guidance on improving prompts and working with model outputs.',
+  },
+  {
+    label: 'Anthropic prompt engineering overview',
+    category: 'Prompting guides',
+    href: 'https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview',
+    body: 'Official Claude documentation on prompt engineering practices.',
+  },
+  {
+    label: 'Gemini prompt design strategies',
+    category: 'Prompting guides',
+    href: 'https://ai.google.dev/gemini-api/docs/prompting-strategies',
+    body: 'Google AI guidance for prompt design and iterative refinement.',
+  },
+  {
+    label: 'Microsoft 365 Copilot Prompts Gallery',
+    category: 'Workplace examples',
+    href: 'https://m365.cloud.microsoft/copilot-prompts',
+    body: 'Prompt examples organized around Microsoft 365 work scenarios.',
+  },
+  {
+    label: 'NIST AI Risk Management Framework',
+    category: 'Responsible AI',
+    href: 'https://www.nist.gov/itl/ai-risk-management-framework',
+    body: 'A useful reference for organizations thinking about AI risk, governance, and review.',
+  },
+]
+
 const process = [
   {
     step: 'Discover',
@@ -2809,6 +3039,7 @@ const getPageMetadata = ({
   isFreeCurriculum,
   isAiUsesToolsPage,
   isPracticeProjectsPage,
+  isResourcesPage,
   isThanksPage,
 }: {
   activeCurriculum?: CurriculumContent
@@ -2819,6 +3050,7 @@ const getPageMetadata = ({
   isFreeCurriculum: boolean
   isAiUsesToolsPage: boolean
   isPracticeProjectsPage: boolean
+  isResourcesPage: boolean
   isThanksPage: boolean
 }): PageMetadata => {
   if (activeOffer) {
@@ -2883,6 +3115,16 @@ const getPageMetadata = ({
       description:
         'Try practical one- to two-hour AI exercises that help individuals experience useful AI workflows through safe inputs, review habits, and real walk-away artifacts.',
       path: '/practice-projects',
+      schemaType: 'CollectionPage',
+    }
+  }
+
+  if (isResourcesPage) {
+    return {
+      title: 'AI Fluency Resources | Xensible',
+      description:
+        'Explore Xensible AI fluency resources: prompting mindset, practice cards, use domains, practice challenges, landscape notes, monthly fluency notes, and curated links.',
+      path: '/resources',
       schemaType: 'CollectionPage',
     }
   }
@@ -3055,6 +3297,19 @@ const getPracticeProjectListSchema = () => ({
   })),
 })
 
+const getResourceListSchema = () => ({
+  '@type': 'ItemList',
+  '@id': `${absoluteSiteUrl('/resources')}#resource-categories`,
+  name: 'Xensible AI fluency resources',
+  itemListElement: resourceCategories.map(({ title, body, href }, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    url: absoluteSiteUrl(`/resources${href}`),
+    name: title,
+    description: body,
+  })),
+})
+
 const getStructuredData = (
   metadata: PageMetadata,
   {
@@ -3062,11 +3317,13 @@ const getStructuredData = (
     isCurriculumHub,
     isFreeCurriculum,
     isPracticeProjectsPage,
+    isResourcesPage,
   }: {
     activeOffer?: (typeof offerFormats)[number]
     isCurriculumHub: boolean
     isFreeCurriculum: boolean
     isPracticeProjectsPage: boolean
+    isResourcesPage: boolean
   },
 ) => {
   const graph = getBaseSchemaGraph(metadata)
@@ -3089,6 +3346,10 @@ const getStructuredData = (
 
   if (isPracticeProjectsPage) {
     graph.push(getPracticeProjectListSchema())
+  }
+
+  if (isResourcesPage) {
+    graph.push(getResourceListSchema())
   }
 
   return {
@@ -3171,6 +3432,7 @@ function App() {
   const isExpertCurriculumLibrary = currentPath === '/curricula/expert'
   const isAiUsesToolsPage = currentPath === '/ai-uses-tools'
   const isPracticeProjectsPage = currentPath === '/practice-projects'
+  const isResourcesPage = currentPath === '/resources'
   const isThanksPage = currentPath === '/thanks'
   const isUnknownRoute =
     currentPath !== '/' &&
@@ -3181,6 +3443,7 @@ function App() {
     !isExpertCurriculumLibrary &&
     !isAiUsesToolsPage &&
     !isPracticeProjectsPage &&
+    !isResourcesPage &&
     !isThanksPage
   const pageMetadata = useMemo(
     () =>
@@ -3193,6 +3456,7 @@ function App() {
         isFreeCurriculum,
         isAiUsesToolsPage,
         isPracticeProjectsPage,
+        isResourcesPage,
         isThanksPage,
       }),
     [
@@ -3204,6 +3468,7 @@ function App() {
       isFreeCurriculum,
       isAiUsesToolsPage,
       isPracticeProjectsPage,
+      isResourcesPage,
       isThanksPage,
     ],
   )
@@ -3214,8 +3479,9 @@ function App() {
         isCurriculumHub,
         isFreeCurriculum,
         isPracticeProjectsPage,
+        isResourcesPage,
       }),
-    [activeOffer, isCurriculumHub, isFreeCurriculum, isPracticeProjectsPage, pageMetadata],
+    [activeOffer, isCurriculumHub, isFreeCurriculum, isPracticeProjectsPage, isResourcesPage, pageMetadata],
   )
 
   useEffect(() => {
@@ -3266,7 +3532,7 @@ function App() {
             <a href={siteHref('/#services')}>Services</a>
             <a href={siteHref('/practice-projects')}>Projects</a>
             <a href={siteHref('/#curriculum-packages')}>Curricula</a>
-            <a href={siteHref('/ai-uses-tools')}>AI Map</a>
+            <a href={siteHref('/resources')}>Resources</a>
             <a href={siteHref('/#guide')}>About</a>
             <a href={siteHref(onsiteBookingHref)}>Contact</a>
           </nav>
@@ -3283,6 +3549,8 @@ function App() {
         <PracticeProjectsPage navigateToRoute={navigateToRoute} />
       ) : isAiUsesToolsPage ? (
         <AiUsesToolsPage navigateToRoute={navigateToRoute} />
+      ) : isResourcesPage ? (
+        <ResourcesPage navigateToRoute={navigateToRoute} />
       ) : activeCurriculum || isCurriculumHub || isFreeCurriculum || isExpertCurriculumLibrary ? (
         <CurriculumPage
           curriculum={activeCurriculum}
@@ -3702,10 +3970,10 @@ function HomePage({
             </div>
             <a
               className="button button-primary"
-              href={siteHref('/ai-uses-tools')}
-              onClick={(event) => navigateToRoute(event, '/ai-uses-tools')}
+              href={siteHref('/resources')}
+              onClick={(event) => navigateToRoute(event, '/resources')}
             >
-              Open AI Map
+              Open Resources
               <ArrowRight aria-hidden="true" />
             </a>
           </div>
@@ -4088,7 +4356,7 @@ function ThanksPage({
 
 function PromptingStarterLabSection() {
   return (
-    <section className="section prompting-starter-section" aria-labelledby="prompting-starter-title">
+    <section className="section prompting-starter-section" id="practice-cards" aria-labelledby="prompting-starter-title">
       <div className="section-heading">
         <p className="eyebrow">First prompting lab</p>
         <h2 id="prompting-starter-title">Small activities for a learner's first useful prompts.</h2>
@@ -4127,6 +4395,228 @@ function PromptingStarterLabSection() {
         ))}
       </div>
     </section>
+  )
+}
+
+function ResourcesPage({
+  navigateToRoute,
+}: {
+  navigateToRoute: (
+    event: MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => void
+}) {
+  return (
+    <main className="resources-page">
+      <section className="info-hero resource-hero">
+        <div>
+          <a
+            className="back-link"
+            href={siteHref('/')}
+            onClick={(event) => navigateToRoute(event, '/')}
+          >
+            <ArrowLeft aria-hidden="true" />
+            Back to home
+          </a>
+          <p className="eyebrow">AI fluency resources</p>
+          <h1>Clear categories for learning, practicing, and evaluating AI.</h1>
+          <p className="hero-copy">
+            This library keeps Xensible's public resources easy to navigate:
+            mindset first, safe practice next, then use domains, challenges,
+            landscape notes, monthly review habits, and curated links.
+          </p>
+          <div className="hero-actions">
+            <a className="button button-primary" href="#practice-cards">
+              Start With Practice Cards
+              <ArrowRight aria-hidden="true" />
+            </a>
+            <a
+              className="button button-secondary"
+              href={siteHref('/ai-uses-tools')}
+              onClick={(event) => navigateToRoute(event, '/ai-uses-tools')}
+            >
+              Open AI Map
+              <ArrowRight aria-hidden="true" />
+            </a>
+          </div>
+        </div>
+        <div className="info-hero-panel">
+          <p className="eyebrow">Site structure</p>
+          <h2>Where things live</h2>
+          <ul className="resource-structure-list">
+            <li>Home: who Xensible helps and why</li>
+            <li>Projects: one- to two-hour exercises</li>
+            <li>Curricula: free and expert training paths</li>
+            <li>Resources: maps, cards, notes, and links</li>
+          </ul>
+        </div>
+      </section>
+
+      <section className="section resource-directory-section" aria-labelledby="resource-directory-title">
+        <div className="section-heading">
+          <p className="eyebrow">Resource directory</p>
+          <h2 id="resource-directory-title">Choose the category that matches your question.</h2>
+          <p>
+            The categories below are intentionally plain. They help visitors
+            decide whether they need a mindset shift, a practice exercise, a
+            business use map, a challenge, a landscape update, or outside
+            reading.
+          </p>
+        </div>
+        <div className="resource-directory-grid">
+          {resourceCategories.map(({ title, body, href }) => (
+            <a className="resource-directory-card" href={href} key={title}>
+              <h3>{title}</h3>
+              <p>{body}</p>
+              <span className="text-link">
+                Jump to section
+                <ArrowRight aria-hidden="true" />
+              </span>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      <section className="section section-band resource-mindset-section" id="mindset" aria-labelledby="mindset-title">
+        <div className="section-heading centered">
+          <p className="eyebrow">The prompting mindset</p>
+          <h2 id="mindset-title">Prompting is less about clever wording than clear thinking.</h2>
+          <p>
+            Xensible teaches prompting as a practical disposition: curious,
+            specific, iterative, cautious with data, and willing to review
+            before relying.
+          </p>
+        </div>
+        <div className="resource-principle-grid">
+          {promptingMindsetPrinciples.map(({ title, body }, index) => (
+            <article className="resource-principle-card" key={title}>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{title}</h3>
+              <p>{body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <PromptingStarterLabSection />
+
+      <section className="section use-domain-section" id="use-domains" aria-labelledby="use-domains-title">
+        <div className="section-heading">
+          <p className="eyebrow">Use domains map</p>
+          <h2 id="use-domains-title">Where AI can become useful before tool buying begins.</h2>
+          <p>
+            The best AI value assessment starts with time, attention, and
+            neglected work: what people do repeatedly, what they avoid, and
+            what would be valuable if it were easier to start.
+          </p>
+        </div>
+        <div className="use-domain-grid">
+          {useDomainGroups.map(({ title, body, firstExperiment, watchFor }) => (
+            <article className="use-domain-card" key={title}>
+              <h3>{title}</h3>
+              <p>{body}</p>
+              <div className="activity-detail">
+                <span>First experiment</span>
+                <p>{firstExperiment}</p>
+              </div>
+              <div className="activity-detail activity-safe-input">
+                <span>Watch for</span>
+                <p>{watchFor}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section section-band practice-challenge-section" id="practice-challenges" aria-labelledby="practice-challenges-title">
+        <div className="section-heading centered">
+          <p className="eyebrow">Practice challenges</p>
+          <h2 id="practice-challenges-title">Challenge-style exercises without the contest pressure.</h2>
+          <p>
+            These can be used in workshops, office hours, or solo practice.
+            Each one has a concrete output and a review moment.
+          </p>
+        </div>
+        <div className="practice-challenge-grid">
+          {practiceChallenges.map(({ title, brief, output }) => (
+            <article className="practice-challenge-card" key={title}>
+              <Sparkles aria-hidden="true" />
+              <h3>{title}</h3>
+              <p>{brief}</p>
+              <div className="activity-detail">
+                <span>Output</span>
+                <p>{output}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section landscape-note-section" id="landscape-notes" aria-labelledby="landscape-notes-title">
+        <div className="section-heading">
+          <p className="eyebrow">The prompt-scape</p>
+          <h2 id="landscape-notes-title">A calm way to track the AI landscape.</h2>
+          <p>
+            Tool names change quickly, but the categories below help learners
+            notice what matters without chasing every announcement.
+          </p>
+        </div>
+        <div className="landscape-note-grid">
+          {landscapeNotes.map(({ title, body }) => (
+            <article className="landscape-note-card" key={title}>
+              <h3>{title}</h3>
+              <p>{body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section monthly-notes-section" id="monthly-notes" aria-labelledby="monthly-notes-title">
+        <div className="section-heading centered">
+          <p className="eyebrow">Monthly AI fluency notes</p>
+          <h2 id="monthly-notes-title">A sustainable alternative to chasing weekly AI news.</h2>
+          <p>
+            Xensible can use this rhythm in office hours or public updates:
+            summarize what changed, what was tried, what needs review, and
+            what to practice next.
+          </p>
+        </div>
+        <div className="monthly-note-grid">
+          {monthlyFluencyNotes.map(({ title, body }, index) => (
+            <article className="monthly-note-card" key={title}>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{title}</h3>
+              <p>{body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section resource-shelf-section" id="resource-shelf" aria-labelledby="resource-shelf-title">
+        <div className="section-heading">
+          <p className="eyebrow">Resource shelf</p>
+          <h2 id="resource-shelf-title">Curated links for practical AI fluency.</h2>
+          <p>
+            These links are starting points for learners and teams. Xensible
+            emphasizes that outside resources still require human judgment,
+            current-source checking, and attention to data boundaries.
+          </p>
+        </div>
+        <div className="resource-shelf-grid">
+          {resourceShelfLinks.map(({ label, category, href, body }) => (
+            <a className="resource-shelf-card" href={href} key={href} rel="noreferrer" target="_blank">
+              <span>{category}</span>
+              <h3>{label}</h3>
+              <p>{body}</p>
+              <span className="text-link">
+                Open resource
+                <ExternalLink aria-hidden="true" />
+              </span>
+            </a>
+          ))}
+        </div>
+      </section>
+    </main>
   )
 }
 
@@ -4452,12 +4942,36 @@ function AiUsesToolsPage({
 
       <section className="section section-band" aria-labelledby="uses-list-title">
         <div className="section-heading centered">
-          <p className="eyebrow">Uses to consider</p>
-          <h2 id="uses-list-title">AI can help before it becomes a technology decision.</h2>
+          <p className="eyebrow">Use domains map</p>
+          <h2 id="uses-list-title">Start with the work before choosing the tool.</h2>
           <p>
-            These are safe places to begin with public, fictional, or
-            anonymized examples.
+            These domains help teams look for practical value in the work
+            they already do, the work they postpone, and the questions they
+            need to understand before buying technology.
           </p>
+        </div>
+        <div className="use-domain-grid">
+          {useDomainGroups.map(({ title, body, firstExperiment, watchFor }) => (
+            <article className="use-domain-card" key={title}>
+              <h3>{title}</h3>
+              <p>{body}</p>
+              <div className="activity-detail">
+                <span>First experiment</span>
+                <p>{firstExperiment}</p>
+              </div>
+              <div className="activity-detail activity-safe-input">
+                <span>Watch for</span>
+                <p>{watchFor}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section" aria-labelledby="starter-uses-title">
+        <div className="section-heading">
+          <p className="eyebrow">Starter uses to consider</p>
+          <h2 id="starter-uses-title">Safe places to begin with public, fictional, or anonymized examples.</h2>
         </div>
         <div className="info-list-grid">
           {aiUseIdeas.map(({ title, body }, index) => (
