@@ -46,6 +46,14 @@ type SectorProjectExample = {
   safeInput: string
 }
 
+type PracticeLab = {
+  title: string
+  artifact: string
+  safeInput: string
+  steps: string[]
+  review: string
+}
+
 type CurriculumContent = {
   slug: string
   title: string
@@ -59,7 +67,7 @@ type CurriculumContent = {
   modules: Array<{ title: string; body: string }>
   guidingQuestions: string[]
   sessionFlow: Array<{ title: string; body: string }>
-  practiceLabs: Array<{ title: string; body: string }>
+  practiceLabs: PracticeLab[]
   readinessChecks: string[]
   adoptionPractices: string[]
   materials: string[]
@@ -150,132 +158,140 @@ const services: Array<{
 
 const individualUtilityProjects: UtilityProject[] = [
   {
-    title: 'Learning Sprint',
+    title: 'Public Article Learning Kit',
     timebox: '60-75 minutes',
-    hook: 'Turn a confusing topic into a private tutor session.',
+    hook: 'Turn one public article into a tutor session and a usable study packet.',
     outcome:
-      'A one-page explainer, a short quiz, a glossary, and a list of what to verify elsewhere.',
+      'A one-page explainer, eight-term glossary, five-question quiz, misconception list, and verification table.',
     safeInput:
-      'Use a public topic, a public article, or a concept you want to understand. Avoid private client, patient, employee, or proprietary material.',
+      'Use a public article, help page, announcement, or topic summary. Avoid private client, patient, employee, financial, legal, or proprietary material.',
     steps: [
-      'Ask for a plain-language explanation at your current level.',
-      'Request examples, analogies, common misconceptions, and a five-question quiz.',
-      'Ask what claims need source checking before you rely on them.',
+      'Paste or summarize one public source and state your current knowledge level.',
+      'Ask for an explainer, glossary, examples, and common misconceptions.',
+      'Create a five-question quiz and answer it before looking at the answer key.',
+      'Mark every claim that needs source checking before you share or rely on it.',
     ],
     starterPrompt:
-      'Teach me [topic] as a smart beginner. Start with a plain-language explanation, then give examples, common misconceptions, a short glossary, a five-question quiz, and a list of claims I should verify with reliable sources.',
+      'Use this public source to create a learning kit for a smart beginner: [public source or topic]. Produce a one-page explainer, eight-term glossary, three examples, common misconceptions, a five-question quiz with answer key, and a verification table listing claims I should check in reliable sources.',
   },
   {
-    title: 'Decision Clarity Brief',
+    title: 'Decision Brief in a Box',
     timebox: '75-90 minutes',
-    hook: 'Use AI to make a decision easier to think about without outsourcing the decision.',
+    hook: 'Use AI to structure a decision without handing the decision away.',
     outcome:
-      'A comparison table, assumptions list, pre-mortem, missing-information checklist, and final decision questions.',
+      'A one-page decision brief with criteria, option table, assumption register, pre-mortem, and next-evidence checklist.',
     safeInput:
       'Use a personal, public, fictional, or sanitized decision. Keep confidential finances, contracts, medical, legal, or customer details out of public tools.',
     steps: [
-      'Describe the options, constraints, values, and what would count as success.',
-      'Ask AI to compare options and surface assumptions instead of choosing for you.',
-      'Run a pre-mortem and identify what a human should check before acting.',
+      'Name two or three options, the decision deadline, constraints, and what success would look like.',
+      'Ask for a weighted criteria table and force the model to show its assumptions.',
+      'Run a pre-mortem for the most tempting option and a second pass for the safest option.',
+      'Write three human-only judgment questions you will answer before acting.',
     ],
     starterPrompt:
-      'Help me think through this decision without deciding for me: [safe decision context]. Create criteria, compare options, name assumptions, run a pre-mortem, list missing information, and end with questions I should answer myself.',
+      'Help me build a decision brief without deciding for me: [safe decision context]. Include weighted criteria, an option comparison table, assumptions, likely failure modes, missing evidence, who should be consulted, and three final human judgment questions.',
   },
   {
-    title: 'Meeting Prep Kit',
+    title: 'Meeting-to-Momentum Kit',
     timebox: '60-90 minutes',
-    hook: 'Turn a rough meeting idea into a more useful conversation.',
+    hook: 'Convert a rough meeting idea into a focused agenda and follow-through packet.',
     outcome:
-      'A meeting agenda, prep questions, likely tensions, decision points, and a follow-up email template.',
+      'A timed agenda, participant prep note, decision log template, action-item table, and follow-up email draft.',
     safeInput:
       'Use fictional or sanitized meeting context. Do not paste private attendee notes, personnel details, patient data, customer records, or proprietary plans into public tools.',
     steps: [
-      'Give AI the purpose, audience, desired outcome, and any safe background.',
-      'Ask for an agenda, questions, risks, and decisions to clarify.',
-      'Revise the agenda for tone, time, and who needs to review it.',
+      'Describe the meeting purpose, attendees by role, time available, and desired output.',
+      'Ask for a timed agenda with decisions, discussion prompts, and parking-lot items.',
+      'Create a follow-up template with owners, due dates, unresolved questions, and confirmation language.',
+      'Delete or rewrite anything that sounds like a promise, personnel judgment, or confidential detail.',
     ],
     starterPrompt:
-      'Using this fictional or sanitized meeting context, create a focused agenda, prep questions, likely tensions, decision points, and a follow-up email template. Mark anything that needs human confirmation: [context].',
+      'Using this fictional or sanitized meeting context, create a meeting kit: timed agenda, prep questions by role, likely tensions, decision log, action-item table, and follow-up email draft. Mark assumptions and anything a human should confirm before sending: [context].',
   },
   {
-    title: 'Writing Upgrade Studio',
+    title: 'Before-and-After Writing Studio',
     timebox: '60 minutes',
-    hook: 'See how AI can draft, critique, and revise with you in a loop.',
+    hook: 'Use AI as an editor, not a ghostwriter, and leave with a cleaner real draft.',
     outcome:
-      'A stronger email, memo, bio, announcement, or short article with a revision history and review checklist.',
+      'A revised email, memo, bio, announcement, or article with a change log, tone rationale, and final review checklist.',
     safeInput:
       'Use a rough draft that contains no sensitive personal, client, patient, employee, legal, financial, or proprietary details.',
     steps: [
-      'Ask for a first rewrite for a specific audience and tone.',
-      'Ask AI to critique its own draft for clarity, claims, tone, and missing context.',
-      'Request a final revision and make the last edits yourself.',
+      'Paste a safe rough draft and name the audience, purpose, tone, and length limit.',
+      'Ask for two alternative revisions: one clearer and one warmer or more concise.',
+      'Have AI critique the revision for unsupported claims, missing context, and awkward tone.',
+      'Make the final edits yourself and keep a before-and-after note on what improved.',
     ],
     starterPrompt:
-      'Improve this rough draft for [audience] with a [tone] tone. Then critique your revision for clarity, unsupported claims, missing context, and anything a human should verify before sending: [safe draft].',
+      'Revise this safe rough draft for [audience] with a [tone] tone and a [length] limit. Give me two versions, explain the changes, then critique the stronger version for clarity, unsupported claims, missing context, and anything I should verify before sending: [safe draft].',
   },
   {
-    title: 'Research Compass',
+    title: 'Research Launch Board',
     timebox: '90-120 minutes',
-    hook: 'Use AI to plan research before you read, search, or cite.',
+    hook: 'Plan the research before the rabbit hole opens.',
     outcome:
-      'A research question map, search terms, source categories, red flags, and verification plan.',
+      'A research board with question clusters, search strings, source ladder, opposing views, red flags, and claim-check table.',
     safeInput:
       'Use a public topic or general business question. Do not ask AI to invent citations or make final claims without sources.',
     steps: [
-      'Ask AI to turn a broad topic into better questions and search terms.',
-      'Request source categories, possible biases, and missing perspectives.',
-      'Use the output as a reading plan, then verify claims in actual sources.',
+      'Start with one broad public question and ask AI to break it into subquestions.',
+      'Generate search strings, source categories, keywords to avoid, and missing perspectives.',
+      'Ask for a claim-check table with columns for claim, source needed, confidence, and next action.',
+      'Use the board to search actual sources; do not treat the model output as evidence.',
     ],
     starterPrompt:
-      'Help me plan research on [public topic]. Create key questions, search terms, source types to seek, likely blind spots, red flags, and a verification checklist. Do not make final claims without sources.',
+      'Help me build a research launch board for [public topic]. Create question clusters, search strings, source types, likely blind spots, opposing perspectives, red flags, and a claim-check table. Do not invent citations or make final claims without sources.',
   },
   {
-    title: 'Workflow Recipe Builder',
+    title: 'Workflow Recipe Card',
     timebox: '90-120 minutes',
-    hook: 'Turn one repeated task into a reusable AI-assisted workflow.',
+    hook: 'Turn one repeated task into a reusable recipe your future self can follow.',
     outcome:
-      'A workflow recipe with inputs, prompt sequence, review gates, human owner, and when-not-to-use guidance.',
+      'A recipe card with trigger, safe inputs, prompt sequence, review gates, owner, time saved estimate, and stop signs.',
     safeInput:
       'Choose a recurring task and describe it generally or with fictional examples. Keep sensitive operational data out of public tools.',
     steps: [
-      'Map the task into steps, inputs, outputs, review points, and handoffs.',
-      'Ask AI where it can help and where human judgment should stay in charge.',
-      'Create a repeatable prompt sequence and a review checklist.',
+      'Write the current task steps from trigger to final output.',
+      'Mark which inputs are safe, which must be generalized, and which should not enter a public tool.',
+      'Ask AI to propose a prompt sequence and review checkpoints for the safest useful slice.',
+      'Test the recipe with one fictional example and revise the steps until they are repeatable.',
     ],
     starterPrompt:
-      'Turn this recurring task into a safe AI-assisted workflow recipe: [task]. Include purpose, safe inputs, prompt sequence, review checkpoints, human decision points, risks, and when not to use AI for this task.',
+      'Turn this recurring task into a safe AI-assisted workflow recipe: [task]. Include trigger, user, safe inputs, prompt sequence, expected output, review checkpoints, human owner, estimated time saved, risks, stop signs, and when not to use AI.',
   },
   {
-    title: 'Professional Profile Refresh',
+    title: 'Professional Proof Portfolio',
     timebox: '75-90 minutes',
-    hook: 'Use AI as a coach for describing your work more clearly.',
+    hook: 'Use AI to turn scattered experience into concrete positioning you can defend.',
     outcome:
-      'A refreshed bio, resume bullet options, interview talking points, and confidence-building practice questions.',
+      'A 150-word bio, six resume bullets, proof bank, interview answer outlines, and claims-to-evidence checklist.',
     safeInput:
       'Use a sanitized career summary or fictionalized role description. Do not include private employer data, references, compensation, or confidential projects.',
     steps: [
-      'Give AI a safe summary of your work, audience, and desired tone.',
-      'Ask for clearer positioning, bullet options, and examples of evidence to add.',
-      'Roleplay interview questions and revise anything that feels inflated or inaccurate.',
+      'Write a sanitized inventory of roles, strengths, projects, and outcomes you can discuss publicly.',
+      'Ask AI to draft positioning options and separate claims from evidence.',
+      'Create resume bullets and interview outlines, then remove anything inflated or unverifiable.',
+      'Practice three interview questions and revise the language until it sounds true in your own voice.',
     ],
     starterPrompt:
-      'Using this sanitized professional summary, help me describe my work more clearly. Draft a short bio, five resume bullet options, three interview talking points, and questions I should answer to make the claims more accurate: [summary].',
+      'Using this sanitized professional summary, help me build a proof portfolio. Draft a 150-word bio, six resume bullet options, a proof bank, three interview answer outlines, and a claims-to-evidence checklist. Flag anything that sounds inflated or needs stronger evidence: [summary].',
   },
   {
-    title: 'Personal Planning Co-Pilot',
+    title: 'Seven-Day Action Plan',
     timebox: '60-75 minutes',
-    hook: 'Use AI to turn vague goals into a realistic plan you can actually follow.',
+    hook: 'Turn a vague goal into a week of small, scheduled actions.',
     outcome:
-      'A one-week plan, prioritized task list, obstacle plan, review ritual, and next-action checklist.',
+      'A seven-day plan with calendar blocks, next actions, obstacle responses, accountability note, and end-of-week review.',
     safeInput:
       'Use personal goals and constraints that are not private, medical, financial, legal, or deeply sensitive.',
     steps: [
-      'Describe the goal, constraints, time available, and what has made it hard.',
-      'Ask AI for a practical plan with tradeoffs and small next actions.',
-      'Review the plan yourself and remove anything unrealistic or intrusive.',
+      'Describe the goal, available time, constraints, and what usually derails progress.',
+      'Ask for a one-week plan with daily actions no longer than 45 minutes.',
+      'Have AI identify likely obstacles and create if-then responses.',
+      'Put the first two actions on your calendar and delete anything unrealistic.',
     ],
     starterPrompt:
-      'Help me turn this goal into a realistic one-week plan: [safe goal]. Ask clarifying questions if needed, then create priorities, daily actions, likely obstacles, a review ritual, and a simple checklist.',
+      'Help me turn this safe goal into a seven-day action plan: [safe goal]. Ask up to five clarifying questions if needed, then create calendar blocks, daily next actions under 45 minutes, obstacle responses, an accountability note, and an end-of-week review checklist.',
   },
 ]
 
@@ -283,50 +299,50 @@ const starterProjectPdfHref = '/curriculum-pdfs/first-60-minute-ai-utility-proje
 
 const sectorProjectExamples: SectorProjectExample[] = [
   {
-    title: 'Nonprofit donor update practice',
+    title: 'Nonprofit donor update packet',
     audience: 'Nonprofits',
     body:
-      'Turn public program facts and fictional event notes into a warm update, then check claims, tone, and what a staff member must verify.',
+      'Turn public program facts and fictional event notes into a warm one-page update, subject-line options, a verification checklist, and a staff review note.',
     safeInput:
       'Use public facts, fictional event notes, and no donor records or private beneficiary details.',
   },
   {
-    title: 'Health care admin FAQ rewrite',
+    title: 'Health care admin FAQ clarity pass',
     audience: 'Health care organizations',
     body:
-      'Rewrite a fictional clinic FAQ for clarity while flagging anything that belongs with the appropriate internal owner.',
+      'Rewrite a fictional clinic FAQ into plain language, create a questions-for-owner list, and flag anything that requires the appropriate internal review.',
     safeInput:
       'Use fictional FAQ text only. Do not include patient data or ask AI for medical, legal, compliance, or cybersecurity assurances.',
   },
   {
-    title: 'Small business meeting follow-up',
+    title: 'Small business meeting follow-through',
     audience: 'Small businesses',
     body:
-      'Convert sanitized meeting context into decisions, action items, owner questions, and a follow-up email draft.',
+      'Convert sanitized meeting context into a decision log, owner table, deadline checklist, and follow-up email draft.',
     safeInput:
       'Use sanitized or fictional notes, not customer records, employee issues, contracts, or proprietary plans.',
   },
   {
-    title: 'Professional profile refresh',
+    title: 'Professional proof portfolio',
     audience: 'Individual professionals',
     body:
-      'Use AI as a positioning coach for a short bio, resume bullets, interview talking points, and practice questions.',
+      'Use AI as a positioning coach to produce a defensible bio, resume bullets, proof bank, and interview practice cards.',
     safeInput:
       'Use a sanitized career summary with no private employer data, references, compensation, or confidential projects.',
   },
   {
-    title: 'Department knowledge cleanup',
+    title: 'Department checklist cleanup',
     audience: 'Teams and departments',
     body:
-      'Turn a public or sanitized process description into a clearer checklist, glossary, and questions for the process owner.',
+      'Turn a public or sanitized process description into a checklist, glossary, exception list, and questions for the process owner.',
     safeInput:
       'Use public or sanitized process text. Keep private operational data, credentials, and proprietary details out.',
   },
   {
-    title: 'Personal learning sprint',
+    title: 'Public article learning kit',
     audience: 'AI-curious beginners',
     body:
-      'Transform a confusing topic into an explainer, examples, quiz, glossary, and verification checklist.',
+      'Transform a confusing public topic into an explainer, quiz, glossary, misconception list, and claim-check table.',
     safeInput:
       'Use public topics or articles and verify important claims with reliable sources before relying on them.',
   },
@@ -334,34 +350,34 @@ const sectorProjectExamples: SectorProjectExample[] = [
 
 const projectSelectionRubric = [
   {
-    title: 'Real work, low risk',
+    title: 'Real work, safe input',
     body:
-      'Choose a task people already recognize, but keep inputs public, fictional, or sanitized so practice does not depend on sensitive data.',
+      'Choose a task learners already recognize, then substitute public, fictional, or sanitized material so the exercise never depends on sensitive data.',
   },
   {
-    title: 'Clear walk-away artifact',
+    title: 'Named walk-away artifact',
     body:
-      'The exercise should produce something concrete: a brief, agenda, checklist, glossary, comparison table, or reusable prompt sequence.',
+      'Every exercise should end with a file, table, checklist, brief, agenda, glossary, recipe card, or other object the learner can inspect and improve.',
   },
   {
-    title: 'Visible judgment step',
+    title: 'Visible human judgment',
     body:
-      'Build in a moment where the learner checks claims, names uncertainty, revises tone, or decides what should remain human-led.',
+      'Build in a required moment where the learner checks claims, rejects weak output, revises tone, names uncertainty, or decides what stays human-led.',
   },
   {
-    title: 'Transferable habit',
+    title: 'Transferable next use',
     body:
-      'A strong project teaches a pattern the learner can reuse later: ask better questions, provide context, compare outputs, or verify before relying.',
+      'A strong project teaches a repeatable pattern: add context, request structure, compare alternatives, verify claims, document the recipe, and try it again next week.',
   },
 ]
 
 const projectReviewQuestions = [
-  'What did AI make easier, faster, clearer, or more complete?',
-  'Where did the output sound confident but still need verification?',
-  'What context improved the result most?',
-  'What information should never be pasted into a public tool?',
-  'What part of the work should remain owned by a person?',
-  'What small workflow would be worth practicing again next week?',
+  'What exact artifact did you leave with: document, table, checklist, agenda, brief, or recipe?',
+  'What part of the artifact is useful enough to keep, and what should be discarded?',
+  'Which prompt detail improved the result most: audience, context, constraints, examples, or output format?',
+  'Where did the output sound confident but still need source checking, owner review, or human judgment?',
+  'What information did you deliberately keep out of the public tool?',
+  'What is the smallest real task where you could reuse this pattern in the next seven days?',
 ]
 
 const offerFormats: Array<{
@@ -542,20 +558,60 @@ const freeCurriculum: CurriculumContent = {
   ],
   practiceLabs: [
     {
-      title: 'Rewrite a neutral paragraph',
-      body: 'Practice asking for tone and audience changes using public, non-sensitive text.',
+      title: 'Public article learning kit',
+      artifact:
+        'A one-page explainer, eight-term glossary, five-question quiz, and claim-check table.',
+      safeInput:
+        'One public article, help page, announcement, or encyclopedia-style topic summary.',
+      steps: [
+        'Ask for the article in plain language at your current level.',
+        'Request examples, analogies, terms, misconceptions, and a quiz.',
+        'Build a claim-check table before sharing the summary with anyone else.',
+      ],
+      review:
+        'Check whether the summary preserves the source, labels uncertainty, and separates explanation from evidence.',
     },
     {
-      title: 'Summarize public information',
-      body: 'Turn a public article or generic meeting note into a summary, then identify what still needs verification.',
+      title: 'Email tone workshop',
+      artifact:
+        'Three versions of the same safe email: concise, warmer, and more formal, plus a change log.',
+      safeInput:
+        'A fictional or sanitized email scenario with no client, patient, employee, financial, legal, or proprietary details.',
+      steps: [
+        'Describe the recipient, purpose, tone, and maximum length.',
+        'Ask for three versions and a note explaining what changed.',
+        'Choose one version and revise it in your own voice.',
+      ],
+      review:
+        'Confirm that the final email makes no unsupported promise and still sounds like a human you would stand behind.',
     },
     {
-      title: 'Plan a simple task',
-      body: 'Ask AI for a checklist, timeline, or agenda, then revise it to fit real constraints.',
+      title: 'Agenda and next-action plan',
+      artifact:
+        'A 30-minute agenda, prep questions, owner table, and follow-up email shell.',
+      safeInput:
+        'A fictional or sanitized meeting goal, attendee roles, and desired decision or output.',
+      steps: [
+        'Give the meeting purpose, participants by role, timebox, and desired outcome.',
+        'Ask for a timed agenda and action table with owners and due dates.',
+        'Rewrite any item that assumes facts or commitments not yet confirmed.',
+      ],
+      review:
+        'Look for missing owners, unrealistic timing, hidden assumptions, and language that should be confirmed by a person.',
     },
     {
-      title: 'Critique the output',
-      body: 'Use a review prompt to find weak assumptions, vague wording, and missing context.',
+      title: 'Output red-team pass',
+      artifact:
+        'A marked-up AI draft with unsupported claims, vague wording, missing context, and next checks highlighted.',
+      safeInput:
+        'Any AI-generated draft from a public, fictional, or sanitized exercise.',
+      steps: [
+        'Ask AI to critique its own output against accuracy, tone, completeness, and risk.',
+        'Ask a second pass focused only on assumptions and missing context.',
+        'Decide what to keep, revise, verify, or discard.',
+      ],
+      review:
+        'The learner should be able to explain why each kept item is useful and what evidence would be needed before use.',
     },
   ],
   readinessChecks: [
@@ -594,49 +650,49 @@ const freeCurriculum: CurriculumContent = {
       situation:
         'A learner wants to understand a public article, newsletter, or announcement without losing the main ideas.',
       learnerTask:
-        'Use AI to summarize the text, then mark which claims still need source checking before sharing.',
+        'Produce a one-page explainer, glossary, quiz, and claim-check table from the public text.',
       prompt:
-        'Summarize the following public text for a beginner. Give me five key points, three terms to define, and a short list of claims I should verify before I rely on the summary: [paste public text].',
+        'Create a learning kit from the following public text. Give me a one-page explainer, eight-term glossary, five-question quiz with answer key, and a claim-check table with claim, source needed, and next action: [paste public text].',
     },
     {
       title: 'Fictional email draft',
       situation:
         'A professional wants to practice drafting an email without using client, patient, employee, or proprietary details.',
       learnerTask:
-        'Draft from a fictional scenario, revise tone, and decide what a human should edit before sending.',
+        'Draft three versions, choose one, and create a final review checklist before sending.',
       prompt:
-        'Using this fictional scenario, draft a warm professional email. Keep it concise, avoid promises, and include a checklist of details a human should confirm before sending: [fictional scenario].',
+        'Using this fictional scenario, draft three versions of a professional email: concise, warmer, and more formal. Recommend one, explain why, and include a checklist of claims, promises, names, dates, and tone choices a human should confirm: [fictional scenario].',
     },
     {
       title: 'First practice plan',
       situation:
         'A curious learner needs a low-pressure way to keep practicing after the starter session.',
       learnerTask:
-        'Choose one safe weekly task, define boundaries, and keep a short log of useful and unreliable outputs.',
+        'Choose one safe weekly task and create a daily practice log with artifact, review note, and next use.',
       prompt:
-        'Help me design a one-week AI practice plan using only public or fictional information. Include one task per day, a safety reminder, and a simple log format for what worked, what failed, and what I checked.',
+        'Help me design a one-week AI practice plan using only public or fictional information. Include one task per day, the exact artifact to produce, a safety reminder, a five-minute review step, and a log table for what worked, what failed, what I checked, and what I will reuse.',
     },
   ],
   promptLibrary: [
     {
       title: 'Plain-language explanation',
       prompt:
-        'Explain [AI concept] for a smart beginner. Use an everyday analogy, name two useful applications, and name two reasons I should not overtrust the output.',
+        'Explain [AI concept] for a smart beginner. Produce a one-page explainer with an everyday analogy, two practical uses, two limits, three terms to learn, and a short verification checklist.',
     },
     {
       title: 'Starter prompt builder',
       prompt:
-        'Turn my rough request into a stronger prompt. Ask me for missing context first. Then produce a prompt with task, audience, context, constraints, and review criteria.',
+        'Turn my rough request into a stronger prompt. Ask me for missing context first. Then produce a reusable prompt card with task, audience, context, constraints, output format, examples to provide, and review criteria.',
     },
     {
       title: 'Output review',
       prompt:
-        'Review this AI-generated draft. Identify unsupported claims, vague wording, missing context, possible bias, tone problems, and anything that needs human verification: [draft].',
+        'Review this AI-generated draft. Return a table with issue, quoted phrase, why it matters, fix, and human verification needed. Check unsupported claims, vague wording, missing context, possible bias, tone problems, and privacy concerns: [draft].',
     },
     {
       title: 'Safe practice chooser',
       prompt:
-        'Given these possible practice tasks, sort them into safe public practice, use caution, and do not use in a public tool. Explain the reason for each category: [task list].',
+        'Given these possible practice tasks, sort them into safe public practice, use caution or anonymize, and do not use in a public tool. For each task, explain the reason, suggest a safer substitute input, and name the review owner if one is needed: [task list].',
     },
   ],
   pdfHref: '/curriculum-pdfs/free-ai-fluency-starter.pdf',
@@ -737,20 +793,60 @@ const curriculumPackages: CurriculumContent[] = [
     ],
     practiceLabs: [
       {
-        title: 'Prompt anatomy lab',
-        body: 'Rewrite a weak prompt into a stronger one by adding role, task, context, audience, constraints, and success criteria.',
+        title: 'Prompt card build',
+        artifact:
+          'A reusable prompt card with role, task, audience, context, constraints, output format, and success criteria.',
+        safeInput:
+          'A bland public task such as drafting a welcome note, summarizing a public page, or planning a fictional event.',
+        steps: [
+          'Start from a deliberately vague request and record the weak first output.',
+          'Add context, audience, constraints, examples, and a requested format.',
+          'Compare the before-and-after outputs and mark what improved.',
+        ],
+        review:
+          'The prompt card should be specific enough for another learner to reuse without needing private context.',
       },
       {
-        title: 'Output comparison',
-        body: 'Compare two model responses and identify which is more useful, what is missing, and what should be checked.',
+        title: 'Two-output quality review',
+        artifact:
+          'A comparison table scoring two outputs for usefulness, accuracy risk, tone, missing context, and next revision.',
+        safeInput:
+          'Two AI responses to the same public or fictional prompt.',
+        steps: [
+          'Generate two versions of the same answer with different constraints.',
+          'Score them against a simple quality rubric.',
+          'Ask for a third version that keeps the strengths and fixes the weaknesses.',
+        ],
+        review:
+          'Learners should name exactly what changed between versions and what still needs human verification.',
       },
       {
-        title: 'Data-boundary sorting',
-        body: 'Sort example inputs into safe public practice, caution, and private-data categories.',
+        title: 'Data-boundary sorting table',
+        artifact:
+          'A three-column table: safe public practice, caution or anonymize, and do not paste into a public tool.',
+        safeInput:
+          'Fictional examples of emails, notes, spreadsheets, policy excerpts, customer scenarios, and public webpages.',
+        steps: [
+          'Sort each example by sensitivity and explain the reason.',
+          'Rewrite two risky examples into safer fictional or generalized versions.',
+          'Name the internal owner who should review borderline cases.',
+        ],
+        review:
+          'The final table should make the safety boundary teachable without implying legal, compliance, or cybersecurity guarantees.',
       },
       {
         title: 'Revision ladder',
-        body: 'Practice moving from first draft to better draft through critique, constraint, and audience-shift prompts.',
+        artifact:
+          'A four-step draft ladder: raw output, clearer version, audience-tuned version, and human-final version.',
+        safeInput:
+          'A short public or fictional announcement, explainer, or internal note.',
+        steps: [
+          'Ask for a first draft, then a critique of that draft.',
+          'Revise for one audience and one tone constraint.',
+          'Make the last edit yourself and write what you changed.',
+        ],
+        review:
+          'The final version should be measurably clearer while preserving claims a person can verify.',
       },
     ],
     readinessChecks: [
@@ -788,49 +884,49 @@ const curriculumPackages: CurriculumContent[] = [
         situation:
           'A leadership group and frontline staff are using different words for prompts, outputs, hallucinations, and review.',
         learnerTask:
-          'Create a shared glossary and test it against everyday examples so the group can discuss AI without confusion.',
+          'Create a shared glossary, example table, and misconception list the team can use during future AI discussions.',
         prompt:
-          'Create a plain-language glossary for a team learning AI. Define prompt, context, output, hallucination, review, sensitive data, and human judgment. For each term, give a workplace example and a common misconception.',
+          'Create a plain-language AI glossary for a mixed-comfort team. Define prompt, context, output, hallucination, review, sensitive data, and human judgment. For each term, provide a workplace example, common misconception, and one question a learner can ask in a Zoom session.',
       },
       {
         title: 'Nonprofit communications draft',
         situation:
           'A nonprofit team wants to draft a donor update from public program facts and a fictional event recap.',
         learnerTask:
-          'Practice drafting, audience adaptation, and review without using donor records or private beneficiary details.',
+          'Create a donor update packet with draft, subject lines, verification list, and human review note.',
         prompt:
-          'Draft a donor update using only the public facts and fictional event notes below. Make it warm, specific, and modest. Then list what a staff member should verify before sending: [public facts and fictional notes].',
+          'Draft a donor update packet using only the public facts and fictional event notes below. Include a 250-word update, five subject lines, a tone note, a claims-to-verify checklist, and a staff review note. Do not use donor records or private beneficiary details: [public facts and fictional notes].',
       },
       {
         title: 'Healthcare admin FAQ practice',
         situation:
           'A cautious health care admin team wants AI practice that does not involve patient information.',
         learnerTask:
-          'Use a fictional policy FAQ to practice summarizing, tone adjustment, and boundary setting.',
+          'Rewrite a fictional FAQ, create a review-owner list, and separate plain-language help from anything requiring internal review.',
         prompt:
-          'Using this fictional clinic FAQ, rewrite the answer for a general audience. Do not add medical advice. Flag anything that should be reviewed by the appropriate internal owner before publication: [fictional FAQ].',
+          'Using this fictional clinic FAQ, create a plain-language version for a general audience, a jargon glossary, and a review-owner checklist. Do not add medical advice or legal/compliance assurances. Flag anything the appropriate internal owner should review: [fictional FAQ].',
       },
     ],
     promptLibrary: [
       {
         title: 'Team baseline',
         prompt:
-          'Ask five questions that help a mixed-comfort team describe what they know about AI, what worries them, and what they want to learn. Keep the questions nontechnical and practical.',
+          'Create a five-question baseline intake for a mixed-comfort team. For each question, include what the answer reveals, how it might shape training, and one safe follow-up exercise. Keep the questions nontechnical and practical.',
       },
       {
         title: 'Prompt anatomy',
         prompt:
-          'Rewrite this vague prompt into a stronger one with role, task, audience, context, constraints, examples, and success criteria. Explain what changed and why: [rough prompt].',
+          'Rewrite this vague prompt into a stronger prompt card with role, task, audience, context, constraints, examples, output format, and success criteria. Then explain what changed and provide a review checklist for the output: [rough prompt].',
       },
       {
         title: 'Output comparison',
         prompt:
-          'Compare these two AI outputs. Which is more useful, more accurate, clearer, and safer to use? Name what still needs human review before either one is applied: [output A] [output B].',
+          'Compare these two AI outputs in a table. Score usefulness, clarity, accuracy risk, tone, missing context, and safety. Recommend what to keep, revise, verify, or discard before either one is applied: [output A] [output B].',
       },
       {
         title: 'Boundary sort',
         prompt:
-          'Sort these example inputs into safe public practice, caution, and do not paste into public AI tools. Give a short reason for each decision: [example inputs].',
+          'Sort these example inputs into safe public practice, caution or anonymize, and do not paste into public AI tools. Give the reason, a safer substitute if possible, and the human owner who should review borderline cases: [example inputs].',
       },
     ],
     pdfHref: '/curriculum-pdfs/ai-fluency-essentials.pdf',
@@ -904,20 +1000,60 @@ const curriculumPackages: CurriculumContent[] = [
     ],
     practiceLabs: [
       {
-        title: 'Writing workflow',
-        body: 'Draft, critique, revise, and audience-tune a neutral document while keeping the human responsible for final voice and claims.',
+        title: 'Writing packet workflow',
+        artifact:
+          'A repeatable writing packet: intake questions, draft prompt, critique prompt, revision prompt, and final review checklist.',
+        safeInput:
+          'A public, fictional, or sanitized announcement, memo, newsletter item, or FAQ answer.',
+        steps: [
+          'Define the audience, purpose, voice, length, and claims that must be preserved.',
+          'Draft, critique, and revise using separate prompts.',
+          'Document the prompt sequence so the workflow can be reused.',
+        ],
+        review:
+          'The packet is complete only when the human owner can verify claims, adjust voice, and approve the final text.',
       },
       {
-        title: 'Meeting workflow',
-        body: 'Generate an agenda, prep questions, follow-up notes, and action-item drafts from fictional or sanitized scenarios.',
+        title: 'Meeting-to-action workflow',
+        artifact:
+          'A meeting packet with agenda, prep questions, decision log, action table, and follow-up message.',
+        safeInput:
+          'Fictional or sanitized meeting context with attendee roles instead of names when needed.',
+        steps: [
+          'Turn the meeting purpose into a timed agenda.',
+          'Generate prep questions and a decision log template.',
+          'Draft a follow-up email with open questions and owner placeholders.',
+        ],
+        review:
+          'Check that no action item invents a commitment and every owner, due date, and decision needs human confirmation.',
       },
       {
-        title: 'Research triage workflow',
-        body: 'Use AI for question planning and source-triage support, then separate what must be verified elsewhere.',
+        title: 'Research triage board',
+        artifact:
+          'A research board with question clusters, source categories, search strings, blind spots, and a claim-verification table.',
+        safeInput:
+          'A public topic, market question, policy issue, or general business question.',
+        steps: [
+          'Break the topic into researchable questions and opposing viewpoints.',
+          'Generate search terms and source types before collecting sources.',
+          'Move every important claim into a verification table.',
+        ],
+        review:
+          'The board guides research but does not count as evidence; final claims must be checked in actual sources.',
       },
       {
-        title: 'Decision-support workflow',
-        body: 'Compare options, surface assumptions, and draft decision criteria without outsourcing the decision itself.',
+        title: 'Decision-support brief',
+        artifact:
+          'A decision brief with criteria, option matrix, assumptions, pre-mortem, missing evidence, and human decision questions.',
+        safeInput:
+          'A fictional, public, personal, or sanitized decision with confidential details removed.',
+        steps: [
+          'Name options, constraints, success criteria, and the person who owns the decision.',
+          'Ask for comparison, assumptions, failure modes, and missing evidence.',
+          'Create a final decision checklist that the human owner completes.',
+        ],
+        review:
+          'The workflow should make thinking clearer while leaving the decision, accountability, and risk acceptance with a person.',
       },
     ],
     readinessChecks: [
@@ -956,49 +1092,49 @@ const curriculumPackages: CurriculumContent[] = [
         situation:
           'A team loses momentum after meetings because notes, decisions, and follow-up messages are inconsistent.',
         learnerTask:
-          'Use fictional meeting notes to create an agenda, decision summary, action list, and follow-up draft.',
+          'Use fictional meeting notes to create a decision summary, action table, unresolved-questions list, and follow-up draft.',
         prompt:
-          'Using these fictional meeting notes, create a concise decision summary, action-item table, and follow-up email draft. Mark anything that requires human confirmation before sending: [fictional notes].',
+          'Using these fictional meeting notes, create a meeting-to-action packet: decision summary, action-item table with owner and deadline placeholders, unresolved questions, follow-up email draft, and assumptions requiring human confirmation: [fictional notes].',
       },
       {
         title: 'Policy explainer rewrite',
         situation:
           'A department has a dense internal policy that staff struggle to understand.',
         learnerTask:
-          'Rewrite a public or sanitized policy excerpt into clearer language, then review for missing nuance.',
+          'Rewrite a public or sanitized policy excerpt into a staff explainer, glossary, exceptions list, and review note.',
         prompt:
-          'Rewrite this public or sanitized policy excerpt for busy staff. Keep the meaning intact, define jargon, list what changed, and identify any part that should be reviewed by the policy owner: [excerpt].',
+          'Rewrite this public or sanitized policy excerpt for busy staff. Produce a plain-language explainer, glossary, exceptions or edge cases to ask about, change log, and policy-owner review checklist. Keep the meaning intact: [excerpt].',
       },
       {
         title: 'Research question map',
         situation:
           'A professional needs to explore an unfamiliar topic before deciding what sources to read.',
         learnerTask:
-          'Use AI to generate research questions, search terms, source categories, and verification steps.',
+          'Use AI to create a research launch board with search strings, source ladder, blind spots, and claim-check table.',
         prompt:
-          'Help me plan research on [topic]. Give me key questions, useful search terms, source types to look for, likely blind spots, and a verification checklist. Do not make final claims without sources.',
+          'Help me plan research on [topic]. Build a research launch board with question clusters, search strings, source types, likely blind spots, opposing perspectives, red flags, and a claim-check table. Do not make final claims without sources.',
       },
     ],
     promptLibrary: [
       {
         title: 'Workflow recipe',
         prompt:
-          'Turn this recurring task into an AI-assisted workflow recipe. Include purpose, safe inputs, prompt sequence, review checkpoints, human decision points, and when not to use the workflow: [task].',
+          'Turn this recurring task into an AI-assisted workflow recipe card. Include trigger, user, safe inputs, prompt sequence, expected output, review checkpoints, human decision points, handoffs, risks, stop signs, and when not to use the workflow: [task].',
       },
       {
         title: 'Draft and critique',
         prompt:
-          'Create a first draft for [audience] using the safe context below. Then critique your own draft for clarity, tone, unsupported claims, missing context, and review needs: [safe context].',
+          'Create a first draft for [audience] using the safe context below. Then produce a critique table covering clarity, tone, unsupported claims, missing context, audience fit, and review needs. Finish with a revised version and a human-final checklist: [safe context].',
       },
       {
         title: 'Meeting preparation',
         prompt:
-          'Using this fictional meeting context, create an agenda, prep questions, risks to discuss, and a follow-up template. Keep all assumptions visible: [fictional context].',
+          'Using this fictional meeting context, create a timed agenda, prep questions by role, likely tensions, decision log template, action table, and follow-up email shell. Keep assumptions visible and mark what a human must confirm: [fictional context].',
       },
       {
         title: 'Decision support',
         prompt:
-          'Compare these options without choosing for me. Create criteria, pros and cons, assumptions, missing information, and questions a human decision maker should answer: [options].',
+          'Compare these options without choosing for me. Create a decision brief with criteria, option matrix, assumptions, missing evidence, pre-mortem, stakeholder questions, and final human decision questions: [options].',
       },
     ],
     pdfHref: '/curriculum-pdfs/practical-ai-workflows.pdf',
@@ -1072,20 +1208,60 @@ const curriculumPackages: CurriculumContent[] = [
     ],
     practiceLabs: [
       {
-        title: 'Friction mapping',
-        body: 'Identify where teams lose time to drafting, summarizing, searching, rework, planning, or coordination.',
+        title: '20-task time scan',
+        artifact:
+          'A ranked list of 20 recurring tasks with time spent, friction, neglected work, data sensitivity, and review owner.',
+        safeInput:
+          'Workshop notes describing task categories, not confidential records, credentials, contracts, or private operational details.',
+        steps: [
+          'List tasks people spend time on and tasks they keep postponing.',
+          'Score each for frequency, pain, value, data sensitivity, and review burden.',
+          'Mark which tasks are training candidates, discovery candidates, or out of scope.',
+        ],
+        review:
+          'The scan should reveal where AI may create value because time is being spent heavily or important work is being ignored.',
       },
       {
         title: 'Use-case card sorting',
-        body: 'Turn vague AI ideas into comparable cards with audience, input, output, review, and risk fields.',
+        artifact:
+          'A deck of use-case cards with user, task, input, output, value, risk, readiness, review owner, and next step.',
+        safeInput:
+          'Generalized workflow descriptions and fictional examples rather than sensitive internal data.',
+        steps: [
+          'Convert vague AI ideas into one card each.',
+          'Fill every card with the same fields so ideas can be compared fairly.',
+          'Sort cards into train, discover, pilot, wait, avoid, or specialist review.',
+        ],
+        review:
+          'A useful card is specific enough to act on and cautious enough to show what must be learned or approved first.',
       },
       {
-        title: 'Value-risk matrix',
-        body: 'Place candidate use cases on the grid and discuss what belongs in training, pilot, wait, or avoid.',
+        title: 'Value-risk board',
+        artifact:
+          'A 2x2 board placing candidate use cases by practical value and risk or review burden.',
+        safeInput:
+          'Sanitized use-case cards from the previous exercise.',
+        steps: [
+          'Plot each use case by likely value and risk.',
+          'Discuss what would reduce risk or increase readiness.',
+          'Choose two low-risk training examples and one idea to postpone.',
+        ],
+        review:
+          'The board should prevent premature buying by showing what needs training, evidence, policy input, or a smaller test.',
       },
       {
-        title: 'Readiness narrative',
-        body: 'Draft a plain-language summary leaders can use to explain the next step without overpromising.',
+        title: '30-day readiness memo',
+        artifact:
+          'A one-page memo naming what to train, what to test, what to postpone, and what needs the right internal owner.',
+        safeInput:
+          'Anonymized workshop findings, use-case scores, and agreed next-step categories.',
+        steps: [
+          'Summarize the highest-value low-risk training candidates.',
+          'Name higher-risk ideas that need policy, privacy, legal, technical, or procurement review.',
+          'Draft a 30-day action plan with owners and learning goals.',
+        ],
+        review:
+          'The memo should be clear enough for leaders to explain without promising savings, compliance, or implementation outcomes.',
       },
     ],
     readinessChecks: [
@@ -1125,49 +1301,49 @@ const curriculumPackages: CurriculumContent[] = [
         situation:
           'A nonprofit team spends too much time sorting public inquiries, drafting first responses, and preparing internal handoffs.',
         learnerTask:
-          'Map the workflow, identify safe practice points, and decide which steps are training candidates rather than automation projects.',
+          'Build a friction map, use-case cards, and train/pilot/wait/avoid sort without treating intake as an automation project.',
         prompt:
-          'Analyze this fictional nonprofit intake workflow. Identify friction points, possible AI training opportunities, data sensitivity concerns, review needs, and whether each idea belongs in train, pilot, wait, or avoid: [fictional workflow].',
+          'Analyze this fictional nonprofit intake workflow. Create a friction map, use-case cards, data sensitivity notes, review-owner list, and train/discover/pilot/wait/avoid recommendation for each idea: [fictional workflow].',
       },
       {
         title: 'Clinic admin documentation',
         situation:
           'A health care organization wants to improve admin templates but is cautious about patient privacy and medical claims.',
         learnerTask:
-          'Separate generic documentation practice from anything requiring internal privacy, clinical, legal, or compliance owners.',
+          'Create a safe-practice list, internal-owner list, and avoid list for admin documentation improvement.',
         prompt:
-          'Given this fictional clinic admin workflow, list low-risk AI training ideas, items that require private systems or internal approval, and items to avoid. Do not provide medical, legal, compliance, or cybersecurity assurances: [fictional workflow].',
+          'Given this fictional clinic admin workflow, create three tables: low-risk AI training ideas, items requiring private systems or internal owner approval, and items to avoid. Include input, output, review owner, and why. Do not provide medical, legal, compliance, or cybersecurity assurances: [fictional workflow].',
       },
       {
         title: 'Customer support knowledge gaps',
         situation:
           'A small company has scattered public FAQ pages and repeated support questions.',
         learnerTask:
-          'Score possible use cases by value, risk, readiness, and review burden before any tool purchase.',
+          'Score possible support use cases and create a 30-day training-first next-step map before any tool purchase.',
         prompt:
-          'Turn these fictional support pain points into use-case cards. For each card, include task, user, input, output, value, risk, readiness, review owner, and recommended next step: [pain points].',
+          'Turn these fictional support pain points into use-case cards. For each card, include task, user, input, output, value, risk, readiness, review owner, recommended next step, and a 30-day training-first experiment if appropriate: [pain points].',
       },
     ],
     promptLibrary: [
       {
         title: 'Friction map',
         prompt:
-          'Help a team map workflow friction. Ask for recurring tasks, delays, rework, handoffs, knowledge bottlenecks, and sensitive-data concerns. Then summarize likely AI training opportunities.',
+          'Help a team map workflow friction. Ask for recurring tasks, delays, rework, handoffs, knowledge bottlenecks, tasks being neglected, time spent, data sensitivity, and review owners. Then produce a ranked friction map and likely AI training opportunities.',
       },
       {
         title: 'Use-case card',
         prompt:
-          'Create a use-case card for this AI idea with user, task, input, output, value, risk, data sensitivity, review owner, readiness, and training need: [idea].',
+          'Create a use-case card for this AI idea with user, task, safe input, expected output, current pain, value, risk, data sensitivity, review owner, readiness, training need, and smallest next experiment: [idea].',
       },
       {
         title: 'Value-risk scoring',
         prompt:
-          'Score these AI ideas from 1 to 5 for value, risk, readiness, and review burden. Explain each score and sort the ideas into train, pilot, wait, or avoid: [ideas].',
+          'Score these AI ideas from 1 to 5 for value, risk, readiness, review burden, and data sensitivity. Explain each score, name missing evidence, and sort the ideas into train, discover, pilot, wait, avoid, or specialist review: [ideas].',
       },
       {
         title: 'Readiness summary',
         prompt:
-          'Draft a cautious readiness summary for leaders. Include what the team is ready to learn, what should be postponed, what needs specialist review, and the smallest practical next step: [findings].',
+          'Draft a cautious one-page readiness summary for leaders. Include top time sinks, neglected work worth exploring, training candidates, ideas to postpone, items needing specialist review, owner roles, and the smallest practical next step: [findings].',
       },
     ],
     pdfHref: '/curriculum-pdfs/team-ai-readiness-sprint.pdf',
@@ -1241,20 +1417,60 @@ const curriculumPackages: CurriculumContent[] = [
     ],
     practiceLabs: [
       {
-        title: 'Vendor question drill',
-        body: 'Translate broad vendor claims into concrete questions about data handling, review, workflow fit, and training needs.',
+        title: 'Vendor claim scorecard',
+        artifact:
+          'A scorecard turning one vendor claim into questions about workflow fit, evidence, data handling, review, and implementation effort.',
+        safeInput:
+          'A public vendor claim, product page excerpt, or fictional pitch with no confidential procurement material.',
+        steps: [
+          'Extract each implied promise from the claim.',
+          'Write evidence questions, data questions, training questions, and exit questions.',
+          'Score what must be learned before a demo, pilot, or purchase.',
+        ],
+        review:
+          'The scorecard should sharpen procurement judgment without making legal, security, or compliance conclusions.',
       },
       {
-        title: 'Decision-gate scenario',
-        body: 'Walk through an AI idea and decide whether it belongs in training, discovery, pilot, procurement, or wait.',
+        title: 'Decision-gate worksheet',
+        artifact:
+          'A train, discover, pilot, buy, wait, or specialist-review worksheet for one proposed AI idea.',
+        safeInput:
+          'A fictional or sanitized AI idea described by task, user, data type, desired output, and possible value.',
+        steps: [
+          'Separate the idea into learning need, workflow need, tool need, and governance need.',
+          'Name the evidence required to move to the next gate.',
+          'Choose the smallest next step that creates learning without lock-in.',
+        ],
+        review:
+          'The worksheet should prevent a broad AI idea from turning into a purchase before the organization understands the work.',
       },
       {
-        title: 'Risk language rehearsal',
-        body: 'Practice naming uncertainty and boundaries without implying legal, medical, compliance, or cybersecurity guarantees.',
+        title: 'Risk language rewrite',
+        artifact:
+          'A before-and-after leadership statement that names uncertainty, boundaries, and owner responsibilities clearly.',
+        safeInput:
+          'A fictional leadership message or sanitized draft about AI exploration.',
+        steps: [
+          'Identify hype, guarantees, vague risk language, and missing owner roles.',
+          'Rewrite the message in calm operational language.',
+          'Add a sentence naming what requires policy, privacy, legal, technical, or clinical review when relevant.',
+        ],
+        review:
+          'The final language should be reassuring because it is specific, not because it overpromises safety.',
       },
       {
         title: 'Leadership message draft',
-        body: 'Create a calm message that explains why the organization is learning before buying or implementing.',
+        artifact:
+          'A 250-word internal message explaining why the organization is learning first, what is in bounds, and what comes next.',
+        safeInput:
+          'Public or sanitized context about the organization’s AI learning goals and audience concerns.',
+        steps: [
+          'Name the audience, current confusion, and the purpose of AI fluency training.',
+          'Draft a short message with practical next steps and boundaries.',
+          'Revise for warmth, confidence, and absence of hype.',
+        ],
+        review:
+          'The message should reduce anxiety and unrealistic expectations while making the next learning step concrete.',
       },
     ],
     readinessChecks: [
@@ -1294,49 +1510,49 @@ const curriculumPackages: CurriculumContent[] = [
         situation:
           'A CEO hears a vendor promise broad productivity gains and wants better questions before spending money.',
         learnerTask:
-          'Translate the pitch into concrete questions about workflow fit, data handling, review, ownership, and training.',
+          'Translate the pitch into a vendor scorecard with evidence requests, workflow-fit questions, and training implications.',
         prompt:
-          'Turn this vendor claim into practical evaluation questions. Cover workflow fit, data handling, human review, implementation burden, training needs, lock-in, and evidence we should request: [vendor claim].',
+          'Turn this vendor claim into a leadership scorecard. Include claimed value, evidence to request, workflow-fit questions, data-handling questions, human-review requirements, implementation burden, training needs, lock-in concerns, and what would justify a pilot: [vendor claim].',
       },
       {
         title: 'Board-level AI stance',
         situation:
           'A board or senior leadership group asks whether the organization has an AI strategy.',
         learnerTask:
-          'Draft a calm response that frames learning, boundaries, and next steps without overpromising outcomes.',
+          'Draft a board-ready learning stance with boundaries, next-step gates, and owner roles without overpromising outcomes.',
         prompt:
-          'Draft a board-level AI learning statement. Emphasize clarity before complexity, staff fluency, safe experimentation, human judgment, and decisions that need the right internal owners. Avoid hype and guarantees.',
+          'Draft a board-level AI learning statement of 250 words or fewer. Include clarity before complexity, staff fluency, safe experimentation, human judgment, owner roles, near-term training steps, and decisions that require specialist review. Avoid hype and guarantees.',
       },
       {
         title: 'Policy before practice tension',
         situation:
           'A department wants to ban, buy, or standardize AI before staff understand practical use.',
         learnerTask:
-          'Separate what training can solve from what requires policy, legal, privacy, technical, or procurement decisions.',
+          'Create a decision table separating training, workflow practice, policy, privacy/legal, technical, procurement, and wait items.',
         prompt:
-          'Given this leadership concern, separate issues into fluency training, workflow practice, policy, procurement, technical implementation, and specialist review. Recommend a small next step for each: [concern].',
+          'Given this leadership concern, create a decision table with columns for issue, category, owner, risk, evidence needed, and smallest next step. Categories: fluency training, workflow practice, policy, privacy/legal, technical implementation, procurement, specialist review, or wait: [concern].',
       },
     ],
     promptLibrary: [
       {
         title: 'Decision gate',
         prompt:
-          'Evaluate this AI idea through decision gates: learn, practice, pilot, buy, wait, or seek specialist review. Explain the evidence needed before moving to the next gate: [AI idea].',
+          'Evaluate this AI idea through decision gates: learn, practice, discover, pilot, buy, wait, or seek specialist review. Produce a table with gate, evidence needed, owner, risk, cost of being wrong, and next action: [AI idea].',
       },
       {
         title: 'Leadership briefing prep',
         prompt:
-          'Prepare a plain-language executive briefing on [AI topic]. Include what it is, what it is useful for, limits, risks, good questions to ask, and a cautious next step.',
+          'Prepare a plain-language executive briefing on [AI topic]. Include what it is, what it is useful for, where it fails, practical examples, limits, risks, questions leaders should ask, training implications, and a cautious next step.',
       },
       {
         title: 'Vendor question bank',
         prompt:
-          'Create a vendor question bank for [tool category]. Include questions about data use, privacy, review workflows, admin controls, implementation effort, training, support, and exit options.',
+          'Create a vendor question bank for [tool category]. Organize it by workflow fit, evidence, data use, privacy/security review, human review, admin controls, implementation effort, training, support, lock-in, and exit options.',
       },
       {
         title: 'Internal message',
         prompt:
-          'Draft an internal message explaining that we are learning about AI before making major technology decisions. Keep it calm, practical, nontechnical, and clear about responsible use boundaries.',
+          'Draft an internal message explaining that we are learning about AI before making major technology decisions. Keep it calm, practical, nontechnical, and clear about responsible use boundaries, safe practice examples, what not to paste into public tools, and where questions should go.',
       },
     ],
     pdfHref: '/curriculum-pdfs/executive-ai-briefing.pdf',
@@ -1410,20 +1626,60 @@ const curriculumPackages: CurriculumContent[] = [
     ],
     practiceLabs: [
       {
-        title: 'Question clinic',
-        body: 'Turn participant questions into better prompts, safer examples, and clearer review steps.',
+        title: 'Question intake board',
+        artifact:
+          'A board of participant questions sorted by task, data boundary, tool class, review need, and next experiment.',
+        safeInput:
+          'Real questions rewritten without sensitive names, records, credentials, contracts, or proprietary detail.',
+        steps: [
+          'Collect questions before the session and rewrite risky details into safe placeholders.',
+          'Sort questions into quick answer, live demo, workflow rescue, policy owner, or later research.',
+          'Turn two questions into safe practice prompts.',
+        ],
+        review:
+          'The board should make office hours feel useful while reinforcing what should not be handled in a public tool.',
       },
       {
-        title: 'Tool-change translation',
-        body: 'Assess one new AI feature and decide whether it changes actual practice for the team.',
+        title: 'Feature-to-work triage',
+        artifact:
+          'A one-page digest translating one AI feature change into who should care, what to test, and what to ignore.',
+        safeInput:
+          'A public product announcement, release note, or feature description.',
+        steps: [
+          'Summarize the feature in plain language.',
+          'Map it to team tasks it might affect and tasks it probably does not affect.',
+          'Design one safe 15-minute test or decide to ignore it for now.',
+        ],
+        review:
+          'The digest is successful when people know whether the change alters practice rather than simply sounding new.',
       },
       {
-        title: 'Workflow rescue',
-        body: 'Take an AI experiment that disappointed someone and diagnose whether the issue was prompt, context, task choice, or overtrust.',
+        title: 'Failed-prompt rescue',
+        artifact:
+          'A diagnosis sheet with failure category, missing context, revised prompt, review step, and do-not-use warning if needed.',
+        safeInput:
+          'A non-sensitive failed prompt and output, or a fictionalized version of one.',
+        steps: [
+          'Classify the failure as task choice, missing context, unclear constraints, bad source, overtrust, or weak review.',
+          'Rewrite the prompt and add one review checkpoint.',
+          'Decide whether the task is worth trying again or should remain human-led.',
+        ],
+        review:
+          'The rescue should teach why the attempt failed, not merely produce a nicer prompt.',
       },
       {
-        title: 'Monthly habit drill',
-        body: 'Practice one review or revision habit until it becomes easy enough to use in ordinary work.',
+        title: 'Monthly habit scorecard',
+        artifact:
+          'A small scorecard tracking one habit, one safe experiment, one useful output, one failure, and one norm to update.',
+        safeInput:
+          'Team practice notes stripped of sensitive details.',
+        steps: [
+          'Choose one monthly habit such as source checking, tone revision, or assumption naming.',
+          'Apply it to a safe example during office hours.',
+          'Capture what worked, what failed, and what the team will try next month.',
+        ],
+        review:
+          'The scorecard should create institutional memory, not just a satisfying live demo.',
       },
     ],
     readinessChecks: [
@@ -1462,49 +1718,49 @@ const curriculumPackages: CurriculumContent[] = [
         situation:
           'A team member tried AI for a harmless task, but the result was generic, wrong, or too confident.',
         learnerTask:
-          'Diagnose whether the issue was task choice, missing context, weak constraints, or insufficient review.',
+          'Create a failed-prompt diagnosis sheet, revised prompt, review checkpoint, and reuse-or-stop decision.',
         prompt:
-          'Diagnose why this AI attempt failed. Classify the likely issue as task choice, missing context, unclear constraints, weak examples, overtrust, or review failure. Suggest a safer revised prompt: [failed prompt and output].',
+          'Diagnose why this AI attempt failed. Create a table with failure category, evidence from the output, missing context, revised prompt, review checkpoint, and reuse-or-stop recommendation. Categories include task choice, missing context, unclear constraints, weak examples, overtrust, and review failure: [failed prompt and output].',
       },
       {
         title: 'New feature translation',
         situation:
           'A model or product announces a new feature, and the team is unsure whether it matters.',
         learnerTask:
-          'Translate the change into practical implications, ignore the noise, and name any new boundaries.',
+          'Create a feature-to-work digest naming who should care, what to test, what to ignore, and what boundary changed.',
         prompt:
-          'Explain this AI tool update for a cautious team. What changed, what might be useful, what should we ignore for now, what risks or boundaries remain, and what small safe experiment could we try? [update].',
+          'Explain this AI tool update for a cautious team. Produce a one-page digest with what changed, who should care, likely work impact, what to ignore, remaining risks or boundaries, and one small safe experiment to try: [update].',
       },
       {
         title: 'Shared learning capture',
         situation:
           'Several staff members are experimenting privately, but the organization is not learning from those experiments.',
         learnerTask:
-          'Convert individual examples into shared guidance, question lists, workflow notes, and follow-up topics.',
+          'Convert individual examples into a team recap, reusable patterns, caution list, workflow candidates, and next questions.',
         prompt:
-          'Turn these monthly AI practice notes into a team learning recap. Include useful patterns, confusing moments, unsafe ideas to avoid, workflows to revisit, and questions for next office hours: [practice notes].',
+          'Turn these monthly AI practice notes into a team learning recap. Include useful patterns, confusing moments, unsafe ideas to avoid, reusable prompts, workflow candidates, owner questions, and a next-month practice habit: [practice notes].',
       },
     ],
     promptLibrary: [
       {
         title: 'Question refinement',
         prompt:
-          'Turn this messy AI question into a clearer office-hours question. Identify the real task, missing context, data boundaries, and what kind of answer would be useful: [question].',
+          'Turn this messy AI question into a clearer office-hours question. Identify the real task, safe substitute input, missing context, data boundaries, desired artifact, review need, and whether it belongs in live demo, policy owner, or later research: [question].',
       },
       {
         title: 'Workflow rescue',
         prompt:
-          'Rescue this disappointing AI workflow. Identify where it broke down, rewrite the prompt sequence, add review checkpoints, and say when the task should stay human-led: [workflow].',
+          'Rescue this disappointing AI workflow. Identify where it broke down, rewrite the prompt sequence, add safe-input guidance, add review checkpoints, define the desired artifact, and say when the task should stay human-led: [workflow].',
       },
       {
         title: 'Tool-change digest',
         prompt:
-          'Summarize this AI tool change for a practical team. Use three sections: what changed, who should care, and what to test safely next month: [announcement].',
+          'Summarize this AI tool change for a practical team. Use five sections: what changed, who should care, what work it may affect, what to ignore for now, and one safe test for next month: [announcement].',
       },
       {
         title: 'Monthly recap',
         prompt:
-          'Create a one-page office-hours recap from these notes. Include questions answered, examples discussed, practice habit, cautions, and items to revisit next month: [notes].',
+          'Create a one-page office-hours recap from these notes. Include questions answered, artifacts created, examples discussed, practice habit, cautions, owner follow-ups, and items to revisit next month: [notes].',
       },
     ],
     pdfHref: '/curriculum-pdfs/monthly-ai-office-hours.pdf',
@@ -1578,24 +1834,74 @@ const curriculumPackages: CurriculumContent[] = [
     ],
     practiceLabs: [
       {
-        title: 'Repo inspection lab',
-        body: 'Ask the agent to inspect a project and produce a change plan before editing anything.',
+        title: 'Repo inspection memo',
+        artifact:
+          'A pre-edit memo naming the app structure, relevant files, dependencies, current git state, risks, and proposed smallest change.',
+        safeInput:
+          'A low-risk local practice repo or public project without secrets or private client data.',
+        steps: [
+          'Ask the agent to inspect files before editing.',
+          'Require a concise plan with files likely to change and verification to run.',
+          'Compare the plan to the actual repo before approving edits.',
+        ],
+        review:
+          'The memo should prove the operator understands the project surface before allowing the agent to act.',
       },
       {
-        title: 'Scoped edit lab',
-        body: 'Make a small content or UI change, then review the diff and reject unrelated churn.',
+        title: 'Scoped edit diff',
+        artifact:
+          'A tiny change set plus a diff review note explaining what changed, what did not change, and why.',
+        safeInput:
+          'A small public content or UI change in a controlled local project.',
+        steps: [
+          'Give a narrow instruction with explicit non-goals.',
+          'Review the diff for unrelated churn, formatting noise, or hidden behavior changes.',
+          'Ask for a cleanup pass if the edit wandered outside scope.',
+        ],
+        review:
+          'The operator should be able to reject a working change if it includes unnecessary or unclear edits.',
       },
       {
-        title: 'Verification lab',
-        body: 'Run lint, build, browser screenshots, and content checks before deciding whether to commit.',
+        title: 'Verification evidence packet',
+        artifact:
+          'A verification packet listing commands run, browser routes checked, screenshots or render checks, failures, fixes, and residual risk.',
+        safeInput:
+          'A completed low-risk local change ready for review.',
+        steps: [
+          'Run the project’s relevant static checks and build.',
+          'Open the affected route at desktop and mobile widths.',
+          'Record evidence, not just a claim that it works.',
+        ],
+        review:
+          'The packet should be strong enough for a human to decide whether a commit or deployment is reasonable.',
       },
       {
-        title: 'Rollback lab',
-        body: 'Use Git history and deployment checks to reason about how to recover from a bad change.',
+        title: 'Rollback note',
+        artifact:
+          'A rollback note naming the commit, changed files, deployment check, reversal path, and evidence to confirm after release.',
+        safeInput:
+          'A practice commit or low-risk branch with no destructive commands run automatically.',
+        steps: [
+          'Identify what would need to be reversed if the change failed.',
+          'Write the safest rollback path using git history and deployment checks.',
+          'Name what a human must verify after rollback.',
+        ],
+        review:
+          'The goal is not to perform a rollback; it is to make reversibility visible before higher-risk work begins.',
       },
       {
-        title: 'Approval boundary lab',
-        body: 'Classify actions such as file edits, package installs, API calls, credential use, deployment, and deletion by approval level.',
+        title: 'Approval boundary matrix',
+        artifact:
+          'A matrix classifying file reads, edits, tests, installs, API calls, credential use, deploys, deletions, and payments by approval level.',
+        safeInput:
+          'A fictional set of agent actions or an anonymized workflow policy discussion.',
+        steps: [
+          'List actions a local agent might take inside a project.',
+          'Classify each as okay to proceed, ask first, never without explicit approval, or out of bounds.',
+          'Add examples of prompts that set those boundaries clearly.',
+        ],
+        review:
+          'The matrix should protect user control while still allowing the agent to be genuinely useful on low-risk work.',
       },
     ],
     readinessChecks: [
@@ -1634,49 +1940,49 @@ const curriculumPackages: CurriculumContent[] = [
         situation:
           'A site owner wants to add a new section to a public website while preserving design patterns and avoiding unrelated changes.',
         learnerTask:
-          'Ask the agent to inspect the repo, propose scoped edits, implement, test, screenshot, and summarize the diff.',
+          'Ask the agent to inspect the repo, write a pre-edit memo, implement a scoped change, verify it, and produce a diff summary.',
         prompt:
-          'Inspect this project first. Then add a new public content section about [topic] using existing design patterns. Do not change unrelated files. After editing, run the appropriate checks, capture any layout concerns, and summarize the exact files changed.',
+          'Inspect this project first and write a pre-edit memo with relevant files, existing patterns, risks, and verification plan. Then add a new public content section about [topic] using existing design patterns. Do not change unrelated files. After editing, run checks, inspect desktop and mobile layout if relevant, and summarize exact files changed.',
       },
       {
         title: 'PDF companion generation',
         situation:
           'A curriculum owner wants PDF companions regenerated from site content and visually checked.',
         learnerTask:
-          'Use the local generator, render PDFs to images, inspect layout, and keep public and output copies synchronized.',
+          'Use the local generator, render representative PDF pages, inspect layout, record evidence, and keep public and output copies synchronized.',
         prompt:
-          'Update the PDF companion content for [track]. Regenerate the PDFs, render representative pages to images, check for clipping or awkward spacing, and report the output files and verification results.',
+          'Update the PDF companion content for [track]. Regenerate the PDFs, render representative pages to images, check for clipping, awkward spacing, missing sections, and stale content, then report output files, evidence inspected, fixes made, and residual risks.',
       },
       {
         title: 'Low-risk bug fix',
         situation:
           'A local app has a visible layout bug on mobile after new content was added.',
         learnerTask:
-          'Have the agent reproduce the issue, inspect CSS, make a targeted fix, run lint/build, and verify mobile width.',
+          'Have the agent reproduce the issue, inspect CSS, make the smallest targeted fix, run checks, and attach mobile verification evidence.',
         prompt:
-          'Reproduce the mobile layout issue at [route]. Identify the smallest CSS change that fixes it, avoid unrelated refactors, run lint and build, then verify there is no horizontal overflow at 390px width.',
+          'Reproduce the mobile layout issue at [route]. Identify the smallest CSS change that fixes it, avoid unrelated refactors, run lint and build, verify at 390px and desktop width, and report the before/after evidence and any residual risk.',
       },
     ],
     promptLibrary: [
       {
         title: 'Inspect before editing',
         prompt:
-          'Before making changes, inspect the repo structure, relevant files, existing patterns, and likely risks. Then propose the smallest implementation plan and wait for approval if the change touches deployment, credentials, deletion, or external API calls.',
+          'Before making changes, inspect the repo structure, relevant files, existing patterns, current git state, dependencies, and likely risks. Produce a pre-edit memo with the smallest implementation plan, expected files, checks to run, and approval triggers for deployment, credentials, deletion, installs, payments, or external API calls.',
       },
       {
         title: 'Scoped edit',
         prompt:
-          'Make only the requested change: [change]. Follow existing patterns, avoid unrelated refactors, and list any assumptions. After editing, show the files changed and the verification you ran.',
+          'Make only the requested change: [change]. Follow existing patterns, avoid unrelated refactors, and list assumptions. After editing, provide a diff summary, files changed, checks run, screenshots or render evidence if relevant, and anything a human should inspect.',
       },
       {
         title: 'Verification plan',
         prompt:
-          'Create and run a verification plan for this change. Include static checks, build, browser checks, screenshot or render checks where relevant, and any residual risks a human should review.',
+          'Create and run a verification plan for this change. Include static checks, build, affected routes, desktop and mobile browser checks, screenshot or render checks where relevant, known limitations, and residual risks a human should review.',
       },
       {
         title: 'Rollback thinking',
         prompt:
-          'Before publishing, explain how to reverse this change if it is wrong. Identify the commit, changed files, deployment checks, and the exact evidence we should confirm after release.',
+          'Before publishing, write a rollback note. Identify the commit or branch, changed files, deployment checks, safest reversal path, data or content that would need special care, and the exact evidence we should confirm after release.',
       },
     ],
     pdfHref: '/curriculum-pdfs/advanced-operator-codex-track.pdf',
@@ -3629,11 +3935,11 @@ function PracticeProjectsPage({
         </div>
         <div className="info-hero-panel starter-pdf-panel">
           <p className="eyebrow">Best first project</p>
-          <h2>Learning Sprint</h2>
+          <h2>Public Article Learning Kit</h2>
           <p>
             Start with one topic you genuinely want to understand. In about an
             hour, AI can help you produce an explainer, examples, a quiz, a
-            glossary, and a verification checklist.
+            glossary, a misconception list, and a claim-check table.
           </p>
           <a className="text-link" href={siteHref(starterProjectPdfHref)}>
             Download the 60-minute worksheet
@@ -4283,14 +4589,30 @@ function CurriculumDetail({
       <section className="section section-band">
         <div className="section-heading centered">
           <p className="eyebrow">Practice labs</p>
-          <h2>Exercises that turn concepts into repeatable habits.</h2>
+          <h2>Exercises that produce artifacts, review habits, and reusable patterns.</h2>
         </div>
         <div className="practice-lab-grid">
-          {curriculum.practiceLabs.map(({ title, body }) => (
+          {curriculum.practiceLabs.map(({ title, artifact, safeInput, steps, review }) => (
             <article className="practice-lab-card" key={title}>
               <ClipboardCheck aria-hidden="true" />
               <h3>{title}</h3>
-              <p>{body}</p>
+              <div className="lab-detail">
+                <span>Build</span>
+                <p>{artifact}</p>
+              </div>
+              <div className="lab-detail lab-safe-input">
+                <span>Use</span>
+                <p>{safeInput}</p>
+              </div>
+              <ol className="lab-step-list">
+                {steps.map((step) => (
+                  <li key={step}>{step}</li>
+                ))}
+              </ol>
+              <div className="lab-detail lab-review">
+                <span>Check</span>
+                <p>{review}</p>
+              </div>
             </article>
           ))}
         </div>

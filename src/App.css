@@ -885,17 +885,28 @@ details {
   background: var(--surface);
 }
 
-.curriculum-flow-grid,
-.practice-lab-grid {
+.curriculum-flow-grid {
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 16px;
+}
+
+.practice-lab-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
 }
 
 .flow-card,
 .practice-lab-card {
   min-height: 246px;
   padding: 22px;
+}
+
+.practice-lab-card {
+  display: grid;
+  gap: 16px;
+  align-content: start;
 }
 
 .flow-card span {
@@ -907,15 +918,56 @@ details {
 }
 
 .flow-card p,
-.practice-lab-card p {
+.practice-lab-card p,
+.practice-lab-card li {
   line-height: 1.6;
 }
 
 .practice-lab-card svg {
   width: 24px;
   height: 24px;
-  margin-bottom: 22px;
   color: var(--teal);
+}
+
+.lab-detail {
+  padding: 14px 16px;
+  border: 1px solid rgba(26, 44, 49, 0.1);
+  border-radius: 8px;
+  background: rgba(234, 242, 238, 0.62);
+}
+
+.lab-detail span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--clay);
+  font-size: 0.74rem;
+  font-weight: 820;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.lab-detail p {
+  margin-bottom: 0;
+  color: var(--ink-soft);
+  font-weight: 650;
+}
+
+.lab-safe-input {
+  background: var(--surface-warm);
+}
+
+.lab-review {
+  border-color: rgba(189, 102, 86, 0.2);
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.lab-step-list {
+  display: grid;
+  gap: 8px;
+  margin: 0;
+  padding-left: 20px;
+  color: var(--ink-soft);
+  font-weight: 650;
 }
 
 .curriculum-case-section {
