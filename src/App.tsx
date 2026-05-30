@@ -3197,15 +3197,51 @@ function HomePage({
                 Plain-language guidance
               </span>
             </div>
+            <div className="hero-proof-strip" aria-label="Training emphasis">
+              <span>Training before tools</span>
+              <span>Safe practice inputs</span>
+              <span>Review before reliance</span>
+            </div>
           </div>
+          <aside className="hero-signal-panel" aria-label="Xensible learning path">
+            <p className="hero-signal-kicker">Guided learning path</p>
+            <h2>From AI curiosity to usable judgment.</h2>
+            <div className="hero-step-list">
+              <div>
+                <span>01</span>
+                <strong>Discover</strong>
+                <p>Surface questions, time sinks, and work that keeps getting postponed.</p>
+              </div>
+              <div>
+                <span>02</span>
+                <strong>Train</strong>
+                <p>Build shared language for prompts, limits, data boundaries, and review.</p>
+              </div>
+              <div>
+                <span>03</span>
+                <strong>Practice</strong>
+                <p>Try realistic Zoom exercises with public, fictional, or sanitized inputs.</p>
+              </div>
+              <div>
+                <span>04</span>
+                <strong>Apply</strong>
+                <p>Choose sensible workflows before investing in larger technology decisions.</p>
+              </div>
+            </div>
+          </aside>
         </section>
 
-        <section className="section section-intro" aria-labelledby="who-title">
+        <section className="section section-intro audience-section" aria-labelledby="who-title">
           <div className="section-heading">
             <p className="eyebrow">Who this is for</p>
             <h2 id="who-title">
               For teams that are ready to understand what AI can actually do.
             </h2>
+            <p>
+              Xensible is built for people who need clear examples, careful
+              boundaries, and practical confidence before making expensive AI
+              decisions.
+            </p>
           </div>
           <div className="audience-grid">
             {audience.map((item) => (
@@ -3233,7 +3269,9 @@ function HomePage({
           <div className="pillar-grid">
             {fluencyPillars.map(({ title, body, icon: Icon }) => (
               <article className="info-card" key={title}>
-                <Icon aria-hidden="true" />
+                <span className="info-card-icon">
+                  <Icon aria-hidden="true" />
+                </span>
                 <h3>{title}</h3>
                 <p>{body}</p>
               </article>

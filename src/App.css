@@ -88,18 +88,53 @@
 }
 
 .hero-section {
-  min-height: 76svh;
-  display: flex;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: clamp(680px, calc(100svh - 72px), 900px);
+  display: grid;
+  grid-template-columns: minmax(0, 680px) minmax(340px, 0.72fr);
+  gap: clamp(28px, 5vw, 76px);
   align-items: center;
-  padding: 60px 48px 70px;
+  padding: 70px 48px 82px;
   background-color: var(--surface);
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  box-shadow: inset 0 -90px 90px rgba(247, 249, 246, 0.72);
+}
+
+.hero-section::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  content: "";
+  background:
+    linear-gradient(180deg, rgba(247, 249, 246, 0.02), rgba(247, 249, 246, 0.5)),
+    repeating-linear-gradient(
+      90deg,
+      rgba(28, 76, 84, 0.055) 0,
+      rgba(28, 76, 84, 0.055) 1px,
+      transparent 1px,
+      transparent 112px
+    );
+  mask-image: linear-gradient(90deg, #000 0%, rgba(0, 0, 0, 0.62) 47%, transparent 88%);
+  pointer-events: none;
 }
 
 .hero-content {
+  position: relative;
+  z-index: 1;
   width: min(680px, 100%);
+}
+
+.hero-content .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  min-height: 28px;
+  padding: 0 10px;
+  border-left: 3px solid var(--clay);
+  background: rgba(247, 249, 246, 0.68);
 }
 
 .eyebrow {
@@ -240,6 +275,101 @@ p {
   color: var(--teal);
 }
 
+.hero-proof-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  width: min(650px, 100%);
+  margin-top: 20px;
+  overflow: hidden;
+  border: 1px solid rgba(28, 76, 84, 0.14);
+  border-radius: 8px;
+  background: rgba(28, 76, 84, 0.14);
+  box-shadow: 0 18px 42px rgba(28, 76, 84, 0.08);
+}
+
+.hero-proof-strip span {
+  display: flex;
+  align-items: center;
+  min-height: 50px;
+  padding: 12px 14px;
+  background: rgba(247, 249, 246, 0.82);
+  color: var(--ink);
+  font-size: 0.86rem;
+  font-weight: 780;
+  line-height: 1.25;
+}
+
+.hero-signal-panel {
+  position: relative;
+  z-index: 1;
+  justify-self: end;
+  width: min(430px, 100%);
+  padding: 26px;
+  border: 1px solid rgba(28, 76, 84, 0.16);
+  border-radius: 8px;
+  background: rgba(247, 249, 246, 0.78);
+  box-shadow: 0 28px 70px rgba(28, 76, 84, 0.18);
+  backdrop-filter: blur(16px);
+}
+
+.hero-signal-kicker {
+  margin-bottom: 10px;
+  color: var(--clay);
+  font-size: 0.76rem;
+  font-weight: 820;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.hero-signal-panel h2 {
+  max-width: 340px;
+  margin-bottom: 20px;
+  font-size: 2rem;
+  line-height: 1.05;
+}
+
+.hero-step-list {
+  display: grid;
+  gap: 0;
+}
+
+.hero-step-list div {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  column-gap: 14px;
+  padding: 16px 0;
+  border-top: 1px solid rgba(28, 76, 84, 0.13);
+}
+
+.hero-step-list span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid rgba(189, 102, 86, 0.28);
+  border-radius: 50%;
+  color: var(--clay);
+  font-size: 0.72rem;
+  font-weight: 840;
+}
+
+.hero-step-list strong {
+  color: var(--ink);
+  font-size: 1rem;
+  font-weight: 820;
+}
+
+.hero-step-list p {
+  grid-column: 2;
+  margin-bottom: 0;
+  color: var(--ink-soft);
+  font-size: 0.91rem;
+  font-weight: 640;
+  line-height: 1.48;
+}
+
 .section {
   padding: 96px 48px;
 }
@@ -277,6 +407,23 @@ p {
   grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
   gap: 48px;
   align-items: start;
+}
+
+.audience-section {
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(90deg, rgba(247, 249, 246, 1) 0%, rgba(247, 249, 246, 0.94) 46%, rgba(234, 242, 238, 0.72) 100%);
+}
+
+.audience-section::before {
+  position: absolute;
+  top: 40px;
+  right: 48px;
+  width: min(420px, 38vw);
+  height: 1px;
+  content: "";
+  background: linear-gradient(90deg, transparent, rgba(28, 76, 84, 0.28));
 }
 
 .audience-grid {
@@ -317,10 +464,23 @@ details {
 }
 
 .audience-item {
+  position: relative;
   display: flex;
   gap: 12px;
   min-height: 138px;
   padding: 20px;
+  overflow: hidden;
+  border-color: rgba(28, 76, 84, 0.12);
+  background: rgba(255, 255, 255, 0.78);
+}
+
+.audience-item::after {
+  position: absolute;
+  inset: auto 0 0;
+  height: 4px;
+  content: "";
+  background: linear-gradient(90deg, var(--clay), var(--brass), var(--teal));
+  opacity: 0.65;
 }
 
 .audience-item svg {
@@ -348,10 +508,20 @@ details {
   padding: 24px;
 }
 
-.info-card svg {
+.info-card-icon {
+  display: inline-grid;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  margin-bottom: 22px;
+  border: 1px solid rgba(28, 76, 84, 0.12);
+  border-radius: 8px;
+  background: rgba(234, 242, 238, 0.72);
+}
+
+.info-card-icon svg {
   width: 26px;
   height: 26px;
-  margin-bottom: 22px;
   color: var(--teal);
 }
 
@@ -2267,8 +2437,17 @@ details p {
   }
 
   .hero-section {
+    grid-template-columns: minmax(0, 1fr) minmax(300px, 380px);
     padding-right: 28px;
     padding-left: 28px;
+  }
+
+  .hero-signal-panel {
+    padding: 22px;
+  }
+
+  .hero-signal-panel h2 {
+    font-size: 1.72rem;
   }
 
   h1 {
@@ -2366,10 +2545,16 @@ details p {
 
   .hero-section {
     min-height: 66svh;
+    grid-template-columns: 1fr;
     align-items: center;
     padding-top: 58px;
     padding-bottom: 56px;
     background-position: 60% center;
+  }
+
+  .hero-signal-panel {
+    justify-self: start;
+    width: min(100%, 560px);
   }
 
   h1 {
@@ -2382,6 +2567,11 @@ details p {
 
   .hero-copy {
     font-size: 1.03rem;
+  }
+
+  .hero-proof-strip {
+    grid-template-columns: 1fr;
+    width: min(100%, 420px);
   }
 
   .section {
@@ -2501,6 +2691,25 @@ details p {
   .hero-actions,
   .hero-copy {
     margin-bottom: 18px;
+  }
+
+  .hero-signal-panel {
+    padding: 20px;
+  }
+
+  .hero-signal-panel h2 {
+    font-size: 1.48rem;
+  }
+
+  .hero-step-list div {
+    grid-template-columns: 34px minmax(0, 1fr);
+    column-gap: 12px;
+    padding: 13px 0;
+  }
+
+  .hero-step-list span {
+    width: 28px;
+    height: 28px;
   }
 
   .hero-actions .button,
