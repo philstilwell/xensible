@@ -1860,6 +1860,32 @@ const publicInfoVisuals = [
     image: '/visuals/ai-uses-you-may-not-have-considered.webp?v=gemini-20260529',
     fullImage: '/visuals/ai-uses-you-may-not-have-considered.png?v=gemini-20260529',
     alt: 'Infographic mapping practical AI uses such as decision rehearsal, meeting momentum, learning acceleration, research support, writing, workflows, roleplay, and pattern finding.',
+    elements: [
+      {
+        label: 'Safe practice hub',
+        text: 'The center of the image keeps the emphasis on low-risk experimentation: use public, fictional, or anonymized material first, then review outputs before they affect real work.',
+      },
+      {
+        label: 'Decide',
+        text: 'AI can help rehearse decisions by comparing options, surfacing assumptions, naming tradeoffs, and running a pre-mortem before a meeting or purchase.',
+      },
+      {
+        label: 'Meet',
+        text: 'Meeting work is often full of small but valuable tasks: agenda drafts, prep questions, action summaries, follow-up notes, and clearer handoffs.',
+      },
+      {
+        label: 'Learn and research',
+        text: 'The learning and research paths point to AI as a patient explainer and research compass: ask for examples, quizzes, analogies, source categories, and verification questions.',
+      },
+      {
+        label: 'Write and workflow',
+        text: 'The writing and workflow paths show how AI can shape rough notes into useful drafts, check tone, sketch repeatable steps, and make review points visible.',
+      },
+      {
+        label: 'Roleplay and patterns',
+        text: 'Roleplay gives people practice for interviews, client conversations, and difficult questions, while pattern finding helps turn safe notes into themes, risks, and next actions.',
+      },
+    ],
   },
   {
     title: 'AI Tools by Utility Class',
@@ -1868,6 +1894,32 @@ const publicInfoVisuals = [
     image: '/visuals/ai-tools-utility-classes.webp?v=gemini-20260529',
     fullImage: '/visuals/ai-tools-utility-classes.png?v=gemini-20260529',
     alt: 'Symbolic infographic mapping AI tool classes through conversation, research, workplace documents, creative design, video and audio, coding, automation, and data visuals.',
+    elements: [
+      {
+        label: 'Central compass',
+        text: 'The compass represents the durable question: what job needs help? Xensible teaches people to start with the work before choosing a tool category.',
+      },
+      {
+        label: 'Conversation and research',
+        text: 'The speech and open-book areas represent general assistants, research companions, source comparison, summarizing, questioning, and explanation.',
+      },
+      {
+        label: 'Workplace documents',
+        text: 'The document and binder area points to copilots that help with everyday office work: drafts, tables, slides, calendars, meeting notes, and internal knowledge.',
+      },
+      {
+        label: 'Creative production',
+        text: 'The palette area represents visual design, campaign assets, presentation imagery, layout exploration, and fast creative variation.',
+      },
+      {
+        label: 'Video, audio, and code',
+        text: 'The media and code areas cover voice, video, editing, prototyping, code explanation, code review, and local development workflows.',
+      },
+      {
+        label: 'Automation and data',
+        text: 'The automation and chart areas point to repeatable handoffs, routing, spreadsheet cleanup, pattern discovery, dashboards, and data sensemaking with human review.',
+      },
+    ],
   },
 ]
 
@@ -3811,25 +3863,28 @@ function AiUsesToolsPage({
           </p>
         </div>
         <div className="info-visual-grid">
-          {publicInfoVisuals.map(({ title, body, image, fullImage, alt }) => (
+          {publicInfoVisuals.map(({ title, body, image, fullImage, alt, elements }) => (
             <article className="info-image-card" key={title}>
-              <a
-                className="info-image-link"
-                href={siteHref(fullImage)}
-                aria-label={`Open full-size ${title} infographic`}
-              >
+              <div className="info-image-frame">
                 <picture>
                   <source srcSet={siteHref(image)} type="image/webp" />
                   <img src={siteHref(fullImage)} alt={alt} />
                 </picture>
-              </a>
-              <div>
+              </div>
+              <div className="info-image-copy">
                 <h3>{title}</h3>
                 <p>{body}</p>
-                <a className="text-link" href={siteHref(fullImage)}>
-                  Open full-size image
-                  <ArrowRight aria-hidden="true" />
-                </a>
+                <details className="info-image-details">
+                  <summary>What this image is showing</summary>
+                  <ul className="info-image-details-list">
+                    {elements.map(({ label, text }) => (
+                      <li key={label}>
+                        <strong>{label}</strong>
+                        <span>{text}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </details>
               </div>
             </article>
           ))}
