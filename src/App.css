@@ -1289,8 +1289,11 @@ details {
 }
 
 .info-image-details {
-  margin-top: 20px;
+  margin: 0;
   padding: 0 18px;
+  border-right: 0;
+  border-left: 0;
+  border-radius: 0;
   border-color: rgba(28, 76, 84, 0.12);
   box-shadow: none;
 }

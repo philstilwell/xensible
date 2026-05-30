@@ -3871,20 +3871,20 @@ function AiUsesToolsPage({
                   <img src={siteHref(fullImage)} alt={alt} />
                 </picture>
               </div>
+              <details className="info-image-details">
+                <summary>What this image is showing</summary>
+                <ul className="info-image-details-list">
+                  {elements.map(({ label, text }) => (
+                    <li key={label}>
+                      <strong>{label}</strong>
+                      <span>{text}</span>
+                    </li>
+                  ))}
+                </ul>
+              </details>
               <div className="info-image-copy">
                 <h3>{title}</h3>
                 <p>{body}</p>
-                <details className="info-image-details">
-                  <summary>What this image is showing</summary>
-                  <ul className="info-image-details-list">
-                    {elements.map(({ label, text }) => (
-                      <li key={label}>
-                        <strong>{label}</strong>
-                        <span>{text}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </details>
               </div>
             </article>
           ))}
