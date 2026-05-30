@@ -159,6 +159,106 @@ PROJECT_REVIEW_QUESTIONS = [
 ]
 
 
+STARTER_PROMPTING_ACTIVITIES = [
+    {
+        "title": "Ask-for-a-prompt warmup",
+        "pattern": "Pre-prompting",
+        "skill": "Learners discover that prompting can begin by asking the model to help shape the prompt itself.",
+        "artifact": "A reusable prompt card with task, audience, context, constraints, output format, and review criteria.",
+        "safe_input": "Use a public topic, fictional scenario, or harmless personal learning goal.",
+        "starter_prompt": "I want to use AI for [safe topic or task], but I am not sure how to prompt well. Ask me up to five clarifying questions, then give me three prompt options: quick, structured, and advanced. Include what each prompt is good for and what I should check afterward.",
+    },
+    {
+        "title": "Structured research table",
+        "pattern": "Basic research prompting",
+        "skill": "Students learn to ask for organized output instead of accepting a long, shapeless answer.",
+        "artifact": "A comparison table with columns the learner specified, plus a list of claims to verify.",
+        "safe_input": "Use a public topic such as renewable energy, storage devices, local history, or a general product category.",
+        "starter_prompt": "Create a beginner-friendly research table about [public topic]. Use columns for concept, short explanation, practical use, common confusion, and what to verify in reliable sources. After the table, suggest three better follow-up questions.",
+    },
+    {
+        "title": "Timeline builder",
+        "pattern": "Chronological organization",
+        "skill": "Students see how prompt format changes understanding by turning a topic into sequence, development, and context.",
+        "artifact": "A chronological timeline with significance notes and uncertainty flags.",
+        "safe_input": "Use public historical, technical, cultural, or organizational topics.",
+        "starter_prompt": "Create a chronological timeline for [public topic]. Include year or period, event, why it mattered, what changed afterward, and confidence level. Mark anything that needs source checking.",
+    },
+    {
+        "title": "Email tone trio",
+        "pattern": "Business email drafting",
+        "skill": "Learners experience AI as a writing partner while keeping voice, promises, and final judgment human-led.",
+        "artifact": "Three email versions, a tone comparison, and a send-before-review checklist.",
+        "safe_input": "Use a fictional or sanitized email scenario with no customer, patient, employee, financial, or proprietary details.",
+        "starter_prompt": "Using this fictional email scenario, draft three versions: concise, warm, and more formal. Explain what changed in each version, recommend one, and list facts, promises, names, dates, and tone choices a human should confirm before sending: [scenario].",
+    },
+    {
+        "title": "Image observation drill",
+        "pattern": "Image description",
+        "skill": "Students distinguish visible evidence from inference, uncertainty, and possible overclaiming.",
+        "artifact": "A two-column observation table separating what is visible from what is inferred.",
+        "safe_input": "Use a public-domain, stock, classroom, or non-sensitive image. Avoid faces or private settings unless permissions are clear.",
+        "starter_prompt": "Describe this image for a careful learner. Separate visible details from inferences. Add a table with observation, evidence in the image, confidence, and what should not be assumed. Finish with three questions a human reviewer should ask.",
+    },
+    {
+        "title": "Career fit map",
+        "pattern": "Career research",
+        "skill": "Learners practice giving context, asking for options, and requesting useful decision criteria.",
+        "artifact": "A career option table with fit reasons, education paths, tradeoffs, and next questions.",
+        "safe_input": "Use a fictional profile or a sanitized personal summary that excludes private employer data, compensation, references, and confidential projects.",
+        "starter_prompt": "Using this safe career profile, suggest career directions in a table with role, why it may fit, skills to build, typical education or training path, tradeoffs, and next research questions. Do not make the decision for me: [profile].",
+    },
+    {
+        "title": "Proof-bank resume drill",
+        "pattern": "Resume creation",
+        "skill": "Students learn to turn scattered experience into defensible claims and then ask for critique.",
+        "artifact": "Six resume bullets, proof bank, critique table, and claims-to-evidence checklist.",
+        "safe_input": "Use a fictional or sanitized work history without private employer details, references, compensation, or confidential outcomes.",
+        "starter_prompt": "Turn this sanitized work history into a proof bank and six resume bullet options. For each bullet, list the evidence needed to support it, possible overstatement risk, and one stronger revision. Flag anything that sounds inflated: [work history].",
+    },
+    {
+        "title": "Brand connotation check",
+        "pattern": "Branding feedback",
+        "skill": "Learners see how AI can brainstorm associations while human judgment still checks audience, culture, and evidence.",
+        "artifact": "A naming or messaging table with positive associations, risks, audience fit, and questions to test.",
+        "safe_input": "Use fictional brand names, public examples, or early ideas that are not confidential.",
+        "starter_prompt": "Evaluate these fictional brand or project names for connotations. Create a table with name, positive associations, possible drawbacks, audience fit, words to avoid, and questions we should test with real people: [names].",
+    },
+    {
+        "title": "Survey cleanup and format",
+        "pattern": "Survey construction",
+        "skill": "Students learn to ask for editing, consistency, and application-ready formatting in one clear request.",
+        "artifact": "A cleaned survey list plus a format-ready version for a form tool or spreadsheet.",
+        "safe_input": "Use fictional survey items or public workshop feedback questions. Avoid private personnel, patient, customer, or sensitive demographic data.",
+        "starter_prompt": "Clean up these fictional survey items. Fix grammar, remove leading language, make the scale consistent, and return two outputs: a numbered review table and a form-ready list in the format [Required] [Question type] Question text: [items].",
+    },
+    {
+        "title": "Chart storyboard",
+        "pattern": "Chart creation",
+        "skill": "Learners separate the data question, chart type, audience, and caveats before asking for a visual.",
+        "artifact": "A chart plan with data needed, recommended chart type, annotation ideas, and cautions.",
+        "safe_input": "Use public data, fictional data, or a small hand-written sample. Do not use sensitive spreadsheets in public tools.",
+        "starter_prompt": "Help me plan a chart for [public or fictional data topic]. Recommend chart type, needed columns, sample data structure, title, labels, annotations, caveats, and three checks before presenting the chart.",
+    },
+    {
+        "title": "Cloze quiz maker",
+        "pattern": "Quiz generation",
+        "skill": "Students practice precise output instructions, distractor quality, and iterative repair.",
+        "artifact": "A short cloze quiz in table format with answer key, distractors, and a quality check.",
+        "safe_input": "Use a public article, textbook excerpt you have rights to use, or original instructional text.",
+        "starter_prompt": "Create a five-item cloze quiz from this public or original text. Return a table with sentence, missing term, three plausible distractors, correct answer, and explanation. Then critique the quiz for ambiguity and weak distractors: [text].",
+    },
+    {
+        "title": "Lesson or page outline",
+        "pattern": "Lesson plans and website pages",
+        "skill": "Learners see how AI can structure material into a usable outline before any polished writing begins.",
+        "artifact": "A one-hour lesson plan or one-page website outline with sections, examples, activities, and review notes.",
+        "safe_input": "Use public topic notes, fictional program descriptions, or sanitized learning goals.",
+        "starter_prompt": "Turn this safe topic into a one-hour lesson plan or one-page website outline. Include audience, learning goals, section sequence, examples, activity ideas, plain-language explanations, and review questions. Mark assumptions and missing information: [topic notes].",
+    },
+]
+
+
 FREE_CURRICULUM = {
     "slug": "free-ai-fluency-starter",
     "title": "Free AI Fluency Starter",
@@ -176,6 +276,7 @@ FREE_CURRICULUM = {
     "modules": [
         ("LLMs in plain language", "A beginner-friendly explanation of how large language models respond to prompts, what they are useful for, and where they become unreliable."),
         ("The first prompting loop", "A reusable pattern for giving context, asking for a draft, checking the result, and requesting a revision without overtrusting the output."),
+        ("First prompting activity ladder", "A sequence of low-pressure exercises introduces pre-prompting, structured tables, timelines, tone revision, image observation, quiz creation, and simple outline building."),
         ("Safe public-tool practice", "A practical boundary-setting module that keeps sensitive or proprietary details out of public tools while still making room to learn."),
         ("Review before use", "A lightweight review habit for checking accuracy, tone, assumptions, missing context, and decisions that need a human owner."),
         ("Choosing a next step", "A closing module that helps learners identify one useful, low-risk task to practice and one question to bring to a trainer or manager."),
@@ -193,6 +294,7 @@ FREE_CURRICULUM = {
         ("Choose", "Name one safe workflow to practice and one boundary the learner will keep in mind."),
     ],
     "practice_labs": [
+        ("Ask-for-a-prompt warmup", "Build: a reusable prompt card with task, context, audience, constraints, format, and review criteria. Use: one public topic, fictional scenario, or harmless personal learning goal. Do: ask the model to interview you before writing the prompt, compare prompt options, then run one. Check: the learner should see that better prompting is often a design conversation, not a single perfect sentence."),
         ("Public article learning kit", "Build: one-page explainer, eight-term glossary, five-question quiz, and claim-check table. Use: one public article or help page. Do: ask for explanation, examples, misconceptions, and quiz. Check: source fidelity, uncertainty, and claims needing verification."),
         ("Email tone workshop", "Build: three versions of the same safe email plus a change log. Use: a fictional or sanitized email scenario. Do: request concise, warmer, and formal versions, then revise one in your own voice. Check: unsupported promises, missing facts, and tone."),
         ("Agenda and next-action plan", "Build: 30-minute agenda, prep questions, owner table, and follow-up email shell. Use: a fictional or sanitized meeting goal. Do: generate agenda, actions, and follow-up. Check: owners, timing, assumptions, and human confirmation needs."),
@@ -212,6 +314,7 @@ FREE_CURRICULUM = {
     ],
     "materials": [
         "Free AI fluency starter guide",
+        "First prompting lab card set",
         "Basic prompting loop worksheet",
         "Public-tool safety checklist",
         "Output review checklist",
@@ -221,9 +324,11 @@ FREE_CURRICULUM = {
         "Beginner LLM session loop: ask, inspect, revise, verify",
         "Safe practice boundary map for public AI tools",
         "First workflow chooser: draft, summarize, plan, or critique",
+        "First prompting ladder: ask for a prompt, structure output, revise, verify",
         "Responsible adoption loop: learn, practice, review, apply",
     ],
     "follow_up": [
+        "Complete three starter prompting activities using only public, fictional, or sanitized material.",
         "Keep a one-week practice log using only non-sensitive examples.",
         "Collect three questions that would benefit from coaching or a team discussion.",
         "Choose one recurring task that may become a future workflow workshop candidate.",
@@ -275,6 +380,7 @@ CURRICULA = [
         "modules": [
             ("The practical mental model", "Participants learn how prompts, context, instructions, examples, and review shape an AI session without needing technical background."),
             ("Prompting as conversation design", "We practice turning vague requests into useful context, constraints, examples, and review questions."),
+            ("Beginner prompting activity set", "Participants try short activities such as asking for a better prompt, requesting a structured research table, revising tone, and separating observation from inference."),
             ("Safe experimentation", "The session establishes clear boundaries around patient, customer, employee, legal, financial, and proprietary information."),
             ("Confidence routines", "Participants leave with small repeatable habits: draft, critique, revise, verify, and decide what still needs human judgment."),
             ("Team language and norms", "The group names simple shared expectations for AI use, including what to try, what to avoid, and how to talk about uncertain outputs."),
@@ -293,6 +399,7 @@ CURRICULA = [
             ("Normalize", "Close with team language, safe-use reminders, and a first set of practice habits."),
         ],
         "practice_labs": [
+            ("Starter activity carousel", "Build: three completed starter cards: one prompt-improvement card, one structured-output card, and one review note. Use: public, fictional, or sanitized topics. Do: ask for a better prompt, convert one broad question into a table, timeline, or checklist, and review the output. Check: what prompt details improved the result and what still required judgment."),
             ("Prompt card build", "Build: a reusable prompt card with role, task, audience, context, constraints, output format, and success criteria. Use: a bland public or fictional task. Do: compare vague and improved prompts. Check: whether another learner can reuse it safely."),
             ("Two-output quality review", "Build: a comparison table scoring two outputs for usefulness, accuracy risk, tone, missing context, and next revision. Use: two responses to the same safe prompt. Do: score and combine strengths. Check: what still needs human verification."),
             ("Data-boundary sorting table", "Build: safe public practice, caution or anonymize, and do-not-paste columns. Use: fictional examples of emails, notes, spreadsheets, policies, and webpages. Do: sort and rewrite risky examples. Check: whether the boundary is teachable."),
@@ -312,6 +419,7 @@ CURRICULA = [
         ],
         "materials": [
             "AI fluency starter guide",
+            "First prompting lab card set",
             "Prompt pattern quick sheet",
             "Sensitive-data boundary checklist",
             "Output review checklist",
@@ -320,6 +428,7 @@ CURRICULA = [
         "diagram_slots": [
             "LLM session loop: prompt, context, output, review, revision",
             "Safe-data boundary map for public AI tools",
+            "Starter prompting activity ladder: prompt, structure, revise, verify",
             "Team fluency ladder from curiosity to useful practice",
         ],
         "follow_up": [
@@ -979,6 +1088,20 @@ def build_pdf(curriculum, out_dir):
     for title, body in curriculum["modules"]:
         story.append(Paragraph(f"<b>{title}</b>", style["BodyTextX"]))
         story.append(Paragraph(body, style["BodyTextX"]))
+
+    story.append(Paragraph("First prompting lab", style["SectionTitle"]))
+    story.append(
+        Paragraph(
+            "These short starter activities help learners experience prompt design before longer workflow projects. They are adapted from the activity patterns researched on Everybody Prompts and similar beginner practice formats.",
+            style["BodyTextX"],
+        )
+    )
+    for activity in STARTER_PROMPTING_ACTIVITIES:
+        story.append(Paragraph(f"<b>{activity['title']} ({activity['pattern']})</b>", style["BodyTextX"]))
+        story.append(Paragraph(activity["skill"], style["BodyTextX"]))
+        story.append(Paragraph(f"<b>Build:</b> {activity['artifact']}", style["BodyTextX"]))
+        story.append(Paragraph(f"<b>Safe input:</b> {activity['safe_input']}", style["BodyTextX"]))
+        story.append(Paragraph(f"<b>Starter prompt:</b> {activity['starter_prompt']}", style["BodyTextX"]))
 
     story.append(Paragraph("Session flow", style["SectionTitle"]))
     for title, body in curriculum["session_flow"]:

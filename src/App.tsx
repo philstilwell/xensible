@@ -54,6 +54,15 @@ type PracticeLab = {
   review: string
 }
 
+type StarterPromptingActivity = {
+  title: string
+  pattern: string
+  skill: string
+  artifact: string
+  safeInput: string
+  starterPrompt: string
+}
+
 type CurriculumContent = {
   slug: string
   title: string
@@ -380,6 +389,117 @@ const projectReviewQuestions = [
   'What is the smallest real task where you could reuse this pattern in the next seven days?',
 ]
 
+const starterPromptingActivities: StarterPromptingActivity[] = [
+  {
+    title: 'Ask-for-a-prompt warmup',
+    pattern: 'Pre-prompting',
+    skill: 'Learners discover that prompting can begin by asking the model to help shape the prompt itself.',
+    artifact: 'A reusable prompt card with task, audience, context, constraints, output format, and review criteria.',
+    safeInput: 'Use a public topic, fictional scenario, or harmless personal learning goal.',
+    starterPrompt:
+      'I want to use AI for [safe topic or task], but I am not sure how to prompt well. Ask me up to five clarifying questions, then give me three prompt options: quick, structured, and advanced. Include what each prompt is good for and what I should check afterward.',
+  },
+  {
+    title: 'Structured research table',
+    pattern: 'Basic research prompting',
+    skill: 'Students learn to ask for organized output instead of accepting a long, shapeless answer.',
+    artifact: 'A comparison table with columns the learner specified, plus a list of claims to verify.',
+    safeInput: 'Use a public topic such as renewable energy, storage devices, local history, or a general product category.',
+    starterPrompt:
+      'Create a beginner-friendly research table about [public topic]. Use columns for concept, short explanation, practical use, common confusion, and what to verify in reliable sources. After the table, suggest three better follow-up questions.',
+  },
+  {
+    title: 'Timeline builder',
+    pattern: 'Chronological organization',
+    skill: 'Students see how prompt format changes understanding by turning a topic into sequence, development, and context.',
+    artifact: 'A chronological timeline with significance notes and uncertainty flags.',
+    safeInput: 'Use public historical, technical, cultural, or organizational topics.',
+    starterPrompt:
+      'Create a chronological timeline for [public topic]. Include year or period, event, why it mattered, what changed afterward, and confidence level. Mark anything that needs source checking.',
+  },
+  {
+    title: 'Email tone trio',
+    pattern: 'Business email drafting',
+    skill: 'Learners experience AI as a writing partner while keeping voice, promises, and final judgment human-led.',
+    artifact: 'Three email versions, a tone comparison, and a send-before-review checklist.',
+    safeInput: 'Use a fictional or sanitized email scenario with no customer, patient, employee, financial, or proprietary details.',
+    starterPrompt:
+      'Using this fictional email scenario, draft three versions: concise, warm, and more formal. Explain what changed in each version, recommend one, and list facts, promises, names, dates, and tone choices a human should confirm before sending: [scenario].',
+  },
+  {
+    title: 'Image observation drill',
+    pattern: 'Image description',
+    skill: 'Students distinguish visible evidence from inference, uncertainty, and possible overclaiming.',
+    artifact: 'A two-column observation table separating what is visible from what is inferred.',
+    safeInput: 'Use a public-domain, stock, classroom, or non-sensitive image. Avoid faces or private settings unless permissions are clear.',
+    starterPrompt:
+      'Describe this image for a careful learner. Separate visible details from inferences. Add a table with observation, evidence in the image, confidence, and what should not be assumed. Finish with three questions a human reviewer should ask.',
+  },
+  {
+    title: 'Career fit map',
+    pattern: 'Career research',
+    skill: 'Learners practice giving context, asking for options, and requesting useful decision criteria.',
+    artifact: 'A career option table with fit reasons, education paths, tradeoffs, and next questions.',
+    safeInput: 'Use a fictional profile or a sanitized personal summary that excludes private employer data, compensation, references, and confidential projects.',
+    starterPrompt:
+      'Using this safe career profile, suggest career directions in a table with role, why it may fit, skills to build, typical education or training path, tradeoffs, and next research questions. Do not make the decision for me: [profile].',
+  },
+  {
+    title: 'Proof-bank resume drill',
+    pattern: 'Resume creation',
+    skill: 'Students learn to turn scattered experience into defensible claims and then ask for critique.',
+    artifact: 'Six resume bullets, proof bank, critique table, and claims-to-evidence checklist.',
+    safeInput: 'Use a fictional or sanitized work history without private employer details, references, compensation, or confidential outcomes.',
+    starterPrompt:
+      'Turn this sanitized work history into a proof bank and six resume bullet options. For each bullet, list the evidence needed to support it, possible overstatement risk, and one stronger revision. Flag anything that sounds inflated: [work history].',
+  },
+  {
+    title: 'Brand connotation check',
+    pattern: 'Branding feedback',
+    skill: 'Learners see how AI can brainstorm associations while human judgment still checks audience, culture, and evidence.',
+    artifact: 'A naming or messaging table with positive associations, risks, audience fit, and questions to test.',
+    safeInput: 'Use fictional brand names, public examples, or early ideas that are not confidential.',
+    starterPrompt:
+      'Evaluate these fictional brand or project names for connotations. Create a table with name, positive associations, possible drawbacks, audience fit, words to avoid, and questions we should test with real people: [names].',
+  },
+  {
+    title: 'Survey cleanup and format',
+    pattern: 'Survey construction',
+    skill: 'Students learn to ask for editing, consistency, and application-ready formatting in one clear request.',
+    artifact: 'A cleaned survey list plus a format-ready version for a form tool or spreadsheet.',
+    safeInput: 'Use fictional survey items or public workshop feedback questions. Avoid private personnel, patient, customer, or sensitive demographic data.',
+    starterPrompt:
+      'Clean up these fictional survey items. Fix grammar, remove leading language, make the scale consistent, and return two outputs: a numbered review table and a form-ready list in the format [Required] [Question type] Question text: [items].',
+  },
+  {
+    title: 'Chart storyboard',
+    pattern: 'Chart creation',
+    skill: 'Learners separate the data question, chart type, audience, and caveats before asking for a visual.',
+    artifact: 'A chart plan with data needed, recommended chart type, annotation ideas, and cautions.',
+    safeInput: 'Use public data, fictional data, or a small hand-written sample. Do not use sensitive spreadsheets in public tools.',
+    starterPrompt:
+      'Help me plan a chart for [public or fictional data topic]. Recommend chart type, needed columns, sample data structure, title, labels, annotations, caveats, and three checks before presenting the chart.',
+  },
+  {
+    title: 'Cloze quiz maker',
+    pattern: 'Quiz generation',
+    skill: 'Students practice precise output instructions, distractor quality, and iterative repair.',
+    artifact: 'A short cloze quiz in table format with answer key, distractors, and a quality check.',
+    safeInput: 'Use a public article, textbook excerpt you have rights to use, or original instructional text.',
+    starterPrompt:
+      'Create a five-item cloze quiz from this public or original text. Return a table with sentence, missing term, three plausible distractors, correct answer, and explanation. Then critique the quiz for ambiguity and weak distractors: [text].',
+  },
+  {
+    title: 'Lesson or page outline',
+    pattern: 'Lesson plans and website pages',
+    skill: 'Learners see how AI can structure material into a usable outline before any polished writing begins.',
+    artifact: 'A one-hour lesson plan or one-page website outline with sections, examples, activities, and review notes.',
+    safeInput: 'Use public topic notes, fictional program descriptions, or sanitized learning goals.',
+    starterPrompt:
+      'Turn this safe topic into a one-hour lesson plan or one-page website outline. Include audience, learning goals, section sequence, examples, activity ideas, plain-language explanations, and review questions. Mark assumptions and missing information: [topic notes].',
+  },
+]
+
 const offerFormats: Array<{
   slug: string
   title: string
@@ -520,6 +640,10 @@ const freeCurriculum: CurriculumContent = {
       body: 'A reusable pattern for giving context, asking for a draft, checking the result, and requesting a revision without overtrusting the output.',
     },
     {
+      title: 'First prompting activity ladder',
+      body: 'A sequence of low-pressure exercises introduces pre-prompting, structured tables, timelines, tone revision, image observation, quiz creation, and simple outline building.',
+    },
+    {
       title: 'Safe public-tool practice',
       body: 'A practical boundary-setting module that keeps sensitive or proprietary details out of public tools while still making room to learn.',
     },
@@ -557,6 +681,20 @@ const freeCurriculum: CurriculumContent = {
     },
   ],
   practiceLabs: [
+    {
+      title: 'Ask-for-a-prompt warmup',
+      artifact:
+        'A reusable prompt card with task, context, audience, constraints, format, and review criteria.',
+      safeInput:
+        'One public topic, fictional scenario, or harmless personal learning goal.',
+      steps: [
+        'Ask the model to interview you before writing the prompt.',
+        'Compare quick, structured, and advanced prompt options.',
+        'Choose one, run it, and mark what improved or remained weak.',
+      ],
+      review:
+        'The learner should see that better prompting is often a design conversation, not a single perfect sentence.',
+    },
     {
       title: 'Public article learning kit',
       artifact:
@@ -628,6 +766,7 @@ const freeCurriculum: CurriculumContent = {
   ],
   materials: [
     'Free AI fluency starter guide',
+    'First prompting lab card set',
     'Basic prompting loop worksheet',
     'Public-tool safety checklist',
     'Output review checklist',
@@ -637,9 +776,11 @@ const freeCurriculum: CurriculumContent = {
     'Beginner LLM session loop: ask, inspect, revise, verify',
     'Safe practice boundary map for public AI tools',
     'First workflow chooser: draft, summarize, plan, or critique',
+    'First prompting ladder: ask for a prompt, structure output, revise, verify',
     'Responsible adoption loop: learn, practice, review, apply',
   ],
   followUp: [
+    'Complete three starter prompting activities using only public, fictional, or sanitized material.',
     'Keep a one-week practice log using only non-sensitive examples.',
     'Collect three questions that would benefit from coaching or a team discussion.',
     'Choose one recurring task that may become a future workflow workshop candidate.',
@@ -751,6 +892,10 @@ const curriculumPackages: CurriculumContent[] = [
         body: 'We practice turning vague requests into useful context, constraints, examples, and review questions.',
       },
       {
+        title: 'Beginner prompting activity set',
+        body: 'Participants try short activities such as asking for a better prompt, requesting a structured research table, revising tone, and separating observation from inference.',
+      },
+      {
         title: 'Safe experimentation',
         body: 'The session establishes clear boundaries around patient, customer, employee, legal, financial, and proprietary information.',
       },
@@ -792,6 +937,20 @@ const curriculumPackages: CurriculumContent[] = [
       },
     ],
     practiceLabs: [
+      {
+        title: 'Starter activity carousel',
+        artifact:
+          'Three completed starter cards: one prompt-improvement card, one structured-output card, and one review note.',
+        safeInput:
+          'Public, fictional, or sanitized topics chosen before the session.',
+        steps: [
+          'Run an ask-for-a-prompt warmup on a safe topic.',
+          'Convert one broad question into a table, timeline, or checklist.',
+          'Review the output for assumptions, missing context, and claims to verify.',
+        ],
+        review:
+          'Learners should be able to name which prompt details improved the result and what still required judgment.',
+      },
       {
         title: 'Prompt card build',
         artifact:
@@ -863,6 +1022,7 @@ const curriculumPackages: CurriculumContent[] = [
     ],
     materials: [
       'AI fluency starter guide',
+      'First prompting lab card set',
       'Prompt pattern quick sheet',
       'Sensitive-data boundary checklist',
       'Output review checklist',
@@ -871,6 +1031,7 @@ const curriculumPackages: CurriculumContent[] = [
     diagramSlots: [
       'LLM session loop: prompt, context, output, review, revision',
       'Safe-data boundary map for public AI tools',
+      'Starter prompting activity ladder: prompt, structure, revise, verify',
       'Team fluency ladder from curiosity to useful practice',
     ],
     followUp: [
@@ -3925,6 +4086,50 @@ function ThanksPage({
   )
 }
 
+function PromptingStarterLabSection() {
+  return (
+    <section className="section prompting-starter-section" aria-labelledby="prompting-starter-title">
+      <div className="section-heading">
+        <p className="eyebrow">First prompting lab</p>
+        <h2 id="prompting-starter-title">Small activities for a learner's first useful prompts.</h2>
+        <p>
+          Adapted from the beginner-friendly activity patterns on{' '}
+          <a href="https://everybodyprompts.wordpress.com/" target="_blank" rel="noreferrer">
+            Everybody Prompts
+          </a>
+          , this lab gives students low-risk ways to experience prompting:
+          ask for a better prompt, request structure, revise tone, describe
+          an image carefully, build a quiz, and review the result before use.
+        </p>
+      </div>
+      <div className="prompting-activity-grid">
+        {starterPromptingActivities.map(({ title, pattern, skill, artifact, safeInput, starterPrompt }, index) => (
+          <article className="prompting-activity-card" key={title}>
+            <div className="activity-card-header">
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <p>{pattern}</p>
+            </div>
+            <h3>{title}</h3>
+            <p>{skill}</p>
+            <div className="activity-detail">
+              <span>Build</span>
+              <p>{artifact}</p>
+            </div>
+            <div className="activity-detail activity-safe-input">
+              <span>Use</span>
+              <p>{safeInput}</p>
+            </div>
+            <div className="prompt-box">
+              <span>Starter prompt</span>
+              <p>{starterPrompt}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  )
+}
+
 function PracticeProjectsPage({
   navigateToRoute,
 }: {
@@ -3977,6 +4182,8 @@ function PracticeProjectsPage({
           </a>
         </div>
       </section>
+
+      <PromptingStarterLabSection />
 
       <section className="section utility-project-detail-section" aria-labelledby="project-list-title">
         <div className="section-heading">
@@ -4584,6 +4791,8 @@ function CurriculumDetail({
           ))}
         </div>
       </section>
+
+      <PromptingStarterLabSection />
 
       <section className="section adoption-practices-section">
         <div className="section-heading centered">
