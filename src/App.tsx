@@ -1857,16 +1857,16 @@ const publicInfoVisuals = [
     title: 'AI Uses You May Not Have Considered',
     body:
       'A public-facing map of practical AI experiments for curious professionals who want useful ideas before committing to expensive tools.',
-    image: '/visuals/ai-uses-you-may-not-have-considered.webp',
-    fullImage: '/visuals/ai-uses-you-may-not-have-considered.png',
+    image: '/visuals/ai-uses-you-may-not-have-considered.webp?v=gemini-20260529',
+    fullImage: '/visuals/ai-uses-you-may-not-have-considered.png?v=gemini-20260529',
     alt: 'Infographic mapping practical AI uses such as decision rehearsal, meeting momentum, learning acceleration, research support, writing, workflows, roleplay, and pattern finding.',
   },
   {
     title: 'AI Tools by Utility Class',
     body:
       'A current tool-class map that helps visitors think in categories rather than chasing product names.',
-    image: '/visuals/ai-tools-utility-classes.webp',
-    fullImage: '/visuals/ai-tools-utility-classes.png',
+    image: '/visuals/ai-tools-utility-classes.webp?v=gemini-20260529',
+    fullImage: '/visuals/ai-tools-utility-classes.png?v=gemini-20260529',
     alt: 'Symbolic infographic mapping AI tool classes through conversation, research, workplace documents, creative design, video and audio, coding, automation, and data visuals.',
   },
 ]
