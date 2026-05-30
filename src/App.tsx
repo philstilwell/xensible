@@ -1862,28 +1862,36 @@ const publicInfoVisuals = [
     alt: 'Infographic mapping practical AI uses such as decision rehearsal, meeting momentum, learning acceleration, research support, writing, workflows, roleplay, and pattern finding.',
     elements: [
       {
-        label: 'Safe practice hub',
-        text: 'The center of the image keeps the emphasis on low-risk experimentation: use public, fictional, or anonymized material first, then review outputs before they affect real work.',
-      },
-      {
         label: 'Decide',
-        text: 'AI can help rehearse decisions by comparing options, surfacing assumptions, naming tradeoffs, and running a pre-mortem before a meeting or purchase.',
+        text: 'Rehearse choices before they become expensive: compare options, surface assumptions, name tradeoffs, and run a pre-mortem before a meeting or purchase.',
       },
       {
         label: 'Meet',
-        text: 'Meeting work is often full of small but valuable tasks: agenda drafts, prep questions, action summaries, follow-up notes, and clearer handoffs.',
+        text: 'Turn meeting friction into useful momentum with agenda drafts, prep questions, action summaries, follow-up notes, and clearer handoffs.',
       },
       {
-        label: 'Learn and research',
-        text: 'The learning and research paths point to AI as a patient explainer and research compass: ask for examples, quizzes, analogies, source categories, and verification questions.',
+        label: 'Learn',
+        text: 'Use AI as a patient explainer that can generate analogies, quizzes, examples, practice questions, and level-appropriate explanations.',
       },
       {
-        label: 'Write and workflow',
-        text: 'The writing and workflow paths show how AI can shape rough notes into useful drafts, check tone, sketch repeatable steps, and make review points visible.',
+        label: 'Research',
+        text: 'Use AI as a research compass: generate search terms, compare source categories, clarify claims, and prepare verification questions before trusting an answer.',
       },
       {
-        label: 'Roleplay and patterns',
-        text: 'Roleplay gives people practice for interviews, client conversations, and difficult questions, while pattern finding helps turn safe notes into themes, risks, and next actions.',
+        label: 'Write',
+        text: 'Move from rough notes to usable drafts by shaping structure, adjusting tone, rewriting for an audience, and creating versions for review.',
+      },
+      {
+        label: 'Workflow',
+        text: 'Sketch repeatable processes, identify inputs and outputs, clarify decision points, and make human review steps visible before changing real operations.',
+      },
+      {
+        label: 'Roleplay',
+        text: 'Practice interviews, client conversations, sales questions, coaching moments, and difficult discussions in a low-stakes environment.',
+      },
+      {
+        label: 'Patterns',
+        text: 'Turn safe notes or public examples into themes, risks, categories, questions, and next actions that would be hard to see one item at a time.',
       },
     ],
   },
@@ -1896,28 +1904,36 @@ const publicInfoVisuals = [
     alt: 'Symbolic infographic mapping AI tool classes through conversation, research, workplace documents, creative design, video and audio, coding, automation, and data visuals.',
     elements: [
       {
-        label: 'Central compass',
-        text: 'The compass represents the durable question: what job needs help? Xensible teaches people to start with the work before choosing a tool category.',
+        label: 'Conversation',
+        text: 'General assistants help with brainstorming, explanation, summarizing, drafting, roleplay, and first-pass thinking across many everyday tasks.',
       },
       {
-        label: 'Conversation and research',
-        text: 'The speech and open-book areas represent general assistants, research companions, source comparison, summarizing, questioning, and explanation.',
+        label: 'Research',
+        text: 'Research tools help compare sources, organize claims, generate better questions, and keep uncertainty visible while a human checks the result.',
       },
       {
         label: 'Workplace documents',
-        text: 'The document and binder area points to copilots that help with everyday office work: drafts, tables, slides, calendars, meeting notes, and internal knowledge.',
+        text: 'Workplace copilots support email, documents, spreadsheets, slide decks, meeting notes, calendars, and internal knowledge workflows.',
       },
       {
-        label: 'Creative production',
-        text: 'The palette area represents visual design, campaign assets, presentation imagery, layout exploration, and fast creative variation.',
+        label: 'Creative',
+        text: 'Creative tools help explore visual directions, campaign assets, layouts, presentation imagery, brand variations, and quick design alternatives.',
       },
       {
-        label: 'Video, audio, and code',
-        text: 'The media and code areas cover voice, video, editing, prototyping, code explanation, code review, and local development workflows.',
+        label: 'Video and audio',
+        text: 'Media tools support voice, video, editing, cleanup, narration, translation, storyboarding, and fast prototype content.',
       },
       {
-        label: 'Automation and data',
-        text: 'The automation and chart areas point to repeatable handoffs, routing, spreadsheet cleanup, pattern discovery, dashboards, and data sensemaking with human review.',
+        label: 'Code',
+        text: 'Coding agents can inspect repositories, explain code, draft changes, run tests, review diffs, and support careful local development workflows.',
+      },
+      {
+        label: 'Automation flow',
+        text: 'Automation tools connect apps, route information, draft handoffs, trigger repeatable steps, and coordinate routine work with clear boundaries.',
+      },
+      {
+        label: 'Data chart',
+        text: 'Data tools help clean tables, find patterns, summarize trends, generate questions, and prepare charts or dashboards for human review.',
       },
     ],
   },
