@@ -63,6 +63,27 @@ type StarterPromptingActivity = {
   starterPrompt: string
 }
 
+type ClearPromptingPrinciple = {
+  title: string
+  body: string
+  payoff: string
+}
+
+type ClearPromptingExample = {
+  title: string
+  situation: string
+  poor: string
+  excellent: string
+  whyItWorks: string
+  blunderAvoided: string
+  timeGain: string
+}
+
+type ClearPromptingTip = {
+  title: string
+  body: string
+}
+
 type CurriculumContent = {
   slug: string
   title: string
@@ -305,6 +326,202 @@ const individualUtilityProjects: UtilityProject[] = [
 ]
 
 const starterProjectPdfHref = '/curriculum-pdfs/first-60-minute-ai-utility-project.pdf'
+const clearPromptingPdfHref = '/curriculum-pdfs/clear-prompting-field-guide.pdf'
+
+const clearPromptingPrinciples: ClearPromptingPrinciple[] = [
+  {
+    title: 'Context narrows the universe',
+    body:
+      'A model begins with too many plausible directions. Tell it the situation, audience, purpose, constraints, prior attempts, and what the output will be used for.',
+    payoff:
+      'Less generic output, fewer rounds of repair, and a result that starts closer to the real work.',
+  },
+  {
+    title: 'Vocabulary carries judgment',
+    body:
+      'Words like brief, warm, rigorous, practical, leadership-ready, or beginner-friendly mean different things in different settings. Define the key terms that matter.',
+    payoff:
+      'The model stops guessing your standards and starts working inside them.',
+  },
+  {
+    title: 'Sentence logic controls behavior',
+    body:
+      'Clear prompts use precise relationships: compare this with that, do X before Y, only use these facts, ask questions if evidence is missing, and do not decide for me.',
+    payoff:
+      'You prevent hidden assumptions, invented commitments, and answers that solve the wrong problem.',
+  },
+  {
+    title: 'Output shape saves time',
+    body:
+      'Ask for a table, checklist, memo, decision brief, revision log, or ordered plan when that is what the work needs. Shape is not decoration; it is workflow design.',
+    payoff:
+      'The answer becomes easier to scan, edit, assign, verify, and reuse.',
+  },
+  {
+    title: 'Review criteria reduce blunders',
+    body:
+      'Tell the model how the output will be judged: accuracy risk, tone, missing context, audience fit, unsupported claims, data boundaries, and human approval needs.',
+    payoff:
+      'The same prompt that generates work can also make the work safer to inspect.',
+  },
+  {
+    title: 'Iteration turns effort into assets',
+    body:
+      'A good prompt is not a one-off trick. Save the version that worked, name when it should be used, and keep a note about what still requires human judgment.',
+    payoff:
+      'A single experiment becomes a reusable prompt card, workflow recipe, or specialty assistant seed.',
+  },
+]
+
+const clearPromptingExamples: ClearPromptingExample[] = [
+  {
+    title: 'Business email revision',
+    situation:
+      'A professional needs to rewrite a sensitive but non-confidential email without sounding vague, cold, or overpromising.',
+    poor: 'Make this email better.',
+    excellent:
+      'Revise this fictional email for a busy department director. Keep the message under 160 words, make the tone calm and direct, preserve the three facts listed below, avoid promising a deadline, and return two versions: concise and warmer. Then list what a human should confirm before sending. Facts to preserve: [facts]. Draft: [email].',
+    whyItWorks:
+      'It names audience, tone, length, facts that must not change, a promise to avoid, output format, and review criteria.',
+    blunderAvoided:
+      'Prevents the model from inventing commitments or polishing away the facts that matter.',
+    timeGain:
+      'Cuts the usual back-and-forth from several vague revisions to one focused comparison and a send-before-review checklist.',
+  },
+  {
+    title: 'Article learning kit',
+    situation:
+      'A learner wants to understand a public article quickly without mistaking a fluent summary for verified knowledge.',
+    poor: 'Summarize this article.',
+    excellent:
+      'Create a learning kit from this public article for a smart beginner. Include a 150-word summary, eight-term glossary, three practical examples, five-question quiz with answer key, common misconceptions, and a claim-check table. Separate what the article says from what would need outside verification. Article: [public article].',
+    whyItWorks:
+      'It turns summarization into a structured learning task with vocabulary, examples, assessment, and verification.',
+    blunderAvoided:
+      'Prevents passive acceptance of confident claims and makes the learner notice what still needs sources.',
+    timeGain:
+      'Converts a long reading session into a reusable study packet in one pass.',
+  },
+  {
+    title: 'Meeting follow-through',
+    situation:
+      'A team wants momentum after a meeting but has only rough, sanitized notes.',
+    poor: 'Turn these notes into action items.',
+    excellent:
+      'Using these fictional meeting notes, create a follow-through packet with five sections: decision summary, unresolved questions, action-item table with owner and deadline placeholders, risks or assumptions to confirm, and a follow-up email draft. Do not invent owners, dates, or decisions. Mark anything that needs human confirmation. Notes: [notes].',
+    whyItWorks:
+      'It defines the deliverable, separates decisions from open questions, and blocks invented commitments.',
+    blunderAvoided:
+      'Prevents false certainty in action items, a common source of team confusion.',
+    timeGain:
+      'Replaces a messy post-meeting cleanup with a scannable packet the team can confirm quickly.',
+  },
+  {
+    title: 'Research planning',
+    situation:
+      'A leader wants to explore an unfamiliar topic before reading sources or talking to vendors.',
+    poor: 'Research AI tools for us.',
+    excellent:
+      'Help me plan research on AI tools for a cautious midsize organization. Do not recommend products yet. Create question clusters, search terms, source categories, comparison criteria, risk questions, vendor-claim questions, and a table of claims we must verify in current sources. End with the first five searches a human should run.',
+    whyItWorks:
+      'It keeps the model in planning mode and prevents premature recommendations.',
+    blunderAvoided:
+      'Avoids tool-chasing and vendor-shaped thinking before the organization understands its own use cases.',
+    timeGain:
+      'Turns a broad research fog into a search plan and comparison structure in minutes.',
+  },
+  {
+    title: 'Policy or guidance rewrite',
+    situation:
+      'A department needs a plain-language version of a public or sanitized policy excerpt.',
+    poor: 'Make this policy easier to understand.',
+    excellent:
+      'Rewrite this public policy excerpt for staff who are not specialists. Keep the meaning intact, avoid adding legal or compliance advice, create a short plain-language version, glossary, examples of what the policy does and does not cover, and a policy-owner review checklist. Excerpt: [excerpt].',
+    whyItWorks:
+      'It specifies audience, preserves meaning, blocks unauthorized advice, and creates a review path.',
+    blunderAvoided:
+      'Prevents the model from smoothing over exceptions or inventing authoritative guidance.',
+    timeGain:
+      'Produces a usable explainer and a review checklist without requiring the writer to start from a blank page.',
+  },
+  {
+    title: 'Decision support',
+    situation:
+      'A person or team needs help thinking through options without handing the decision to AI.',
+    poor: 'Which option should we choose?',
+    excellent:
+      'Help us think through these options without choosing for us. Create a decision brief with criteria, option comparison table, assumptions, missing evidence, likely failure modes, stakeholder questions, and final human decision questions. If facts are missing, ask for them or label the gap. Options: [options].',
+    whyItWorks:
+      'It uses AI for structure, comparison, and blind-spot detection while keeping accountability human.',
+    blunderAvoided:
+      'Prevents outsourcing judgment to a fluent answer that may not understand context, risk, or responsibility.',
+    timeGain:
+      'Compresses the first draft of a decision memo while making the remaining human work clearer.',
+  },
+]
+
+const clearPromptingTips: ClearPromptingTip[] = [
+  {
+    title: 'Name the job before naming the tool',
+    body:
+      'Start with the work: explain, compare, revise, critique, plan, extract, translate, summarize, or decide what to ask next.',
+  },
+  {
+    title: 'Give the model a reader',
+    body:
+      'Output changes when the reader is a board member, patient-facing staff member, donor, technician, beginner, or skeptical manager.',
+  },
+  {
+    title: 'Define the words that carry standards',
+    body:
+      'If clear means brief, warm means reassuring, or rigorous means evidence-tagged, say so. Otherwise the model uses its own average meaning.',
+  },
+  {
+    title: 'Protect facts that must not move',
+    body:
+      'List non-negotiable facts separately so the model knows what can be rewritten and what must stay intact.',
+  },
+  {
+    title: 'Use complete constraints',
+    body:
+      'Do not write "short and professional" if you mean "under 180 words, no exclamation points, no promises, and a calm closing sentence."',
+  },
+  {
+    title: 'Separate creating from judging',
+    body:
+      'Ask for a draft first, then ask for a critique. Mixing both can make the model hide weaknesses inside polished prose.',
+  },
+  {
+    title: 'Ask for questions when context is missing',
+    body:
+      'A strong prompt can say, "Ask up to five clarifying questions before drafting if the answer would otherwise rely on assumptions."',
+  },
+  {
+    title: 'Choose the output container',
+    body:
+      'Tables, checklists, briefs, logs, and side-by-side comparisons often save more time than paragraphs because they make review easier.',
+  },
+  {
+    title: 'Make uncertainty visible',
+    body:
+      'Ask the model to label assumptions, missing facts, confidence level, and claims that require current-source checking.',
+  },
+  {
+    title: 'Keep private data out of public tools',
+    body:
+      'Use public, fictional, or sanitized practice inputs unless an approved private environment and internal owner are in place.',
+  },
+  {
+    title: 'Request a change log',
+    body:
+      'When revising, ask what changed and why. This turns editing into learning and makes accidental meaning shifts easier to catch.',
+  },
+  {
+    title: 'Save prompts that survive review',
+    body:
+      'A good prompt is an asset. Give it a name, note when to use it, and record what a human still needs to check.',
+  },
+]
 
 const sectorProjectExamples: SectorProjectExample[] = [
   {
@@ -2537,6 +2754,11 @@ const toolMapSources = [
 
 const resourceCategories = [
   {
+    title: 'Clear Prompting Field Guide',
+    body: 'A public curriculum and PDF on context, vocabulary, sentence logic, examples, and blunder avoidance.',
+    href: '#clear-prompting',
+  },
+  {
     title: 'Prompting Mindset',
     body: 'How to think clearly with AI: context, curiosity, iteration, review, and boundaries.',
     href: '#mindset',
@@ -3233,6 +3455,7 @@ const getPageMetadata = ({
   isExpertCurriculumLibrary,
   isFreeCurriculum,
   isAiUsesToolsPage,
+  isClearPromptingPage,
   isPracticeProjectsPage,
   isResourcesPage,
   isThanksPage,
@@ -3244,6 +3467,7 @@ const getPageMetadata = ({
   isExpertCurriculumLibrary: boolean
   isFreeCurriculum: boolean
   isAiUsesToolsPage: boolean
+  isClearPromptingPage: boolean
   isPracticeProjectsPage: boolean
   isResourcesPage: boolean
   isThanksPage: boolean
@@ -3314,11 +3538,21 @@ const getPageMetadata = ({
     }
   }
 
+  if (isClearPromptingPage) {
+    return {
+      title: 'Clear Prompting Field Guide | Xensible',
+      description:
+        'A practical Xensible guide to clearer AI prompts through context, vocabulary, sentence logic, better examples, time savings, and blunder avoidance.',
+      path: '/clear-prompting',
+      schemaType: 'CollectionPage',
+    }
+  }
+
   if (isResourcesPage) {
     return {
       title: 'AI Fluency Resources | Xensible',
       description:
-        'Explore Xensible AI fluency resources: prompting mindset, practice cards, use domains, practice challenges, landscape notes, monthly fluency notes, and curated links.',
+        'Explore Xensible AI fluency resources: clear prompting, prompting mindset, practice cards, use domains, practice challenges, landscape notes, monthly fluency notes, and curated links.',
       path: '/resources',
       schemaType: 'CollectionPage',
     }
@@ -3627,6 +3861,7 @@ function App() {
   const isExpertCurriculumLibrary = currentPath === '/curricula/expert'
   const isAiUsesToolsPage = currentPath === '/ai-uses-tools'
   const isPracticeProjectsPage = currentPath === '/practice-projects'
+  const isClearPromptingPage = currentPath === '/clear-prompting'
   const isResourcesPage = currentPath === '/resources'
   const isThanksPage = currentPath === '/thanks'
   const isUnknownRoute =
@@ -3638,6 +3873,7 @@ function App() {
     !isExpertCurriculumLibrary &&
     !isAiUsesToolsPage &&
     !isPracticeProjectsPage &&
+    !isClearPromptingPage &&
     !isResourcesPage &&
     !isThanksPage
   const pageMetadata = useMemo(
@@ -3650,6 +3886,7 @@ function App() {
         isExpertCurriculumLibrary,
         isFreeCurriculum,
         isAiUsesToolsPage,
+        isClearPromptingPage,
         isPracticeProjectsPage,
         isResourcesPage,
         isThanksPage,
@@ -3662,6 +3899,7 @@ function App() {
       isExpertCurriculumLibrary,
       isFreeCurriculum,
       isAiUsesToolsPage,
+      isClearPromptingPage,
       isPracticeProjectsPage,
       isResourcesPage,
       isThanksPage,
@@ -3744,6 +3982,8 @@ function App() {
         <PracticeProjectsPage navigateToRoute={navigateToRoute} />
       ) : isAiUsesToolsPage ? (
         <AiUsesToolsPage navigateToRoute={navigateToRoute} />
+      ) : isClearPromptingPage ? (
+        <ClearPromptingPage navigateToRoute={navigateToRoute} />
       ) : isResourcesPage ? (
         <ResourcesPage navigateToRoute={navigateToRoute} />
       ) : activeCurriculum || isCurriculumHub || isFreeCurriculum || isExpertCurriculumLibrary ? (
@@ -3902,6 +4142,8 @@ function HomePage({
             ))}
           </div>
         </section>
+
+        <ClearPromptingTeaserSection navigateToRoute={navigateToRoute} />
 
         <section
           className="section utility-project-section"
@@ -4549,6 +4791,285 @@ function ThanksPage({
   )
 }
 
+function ClearPromptingTeaserSection({
+  navigateToRoute,
+}: {
+  navigateToRoute: (
+    event: MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => void
+}) {
+  return (
+    <section
+      className="section clear-prompting-teaser-section"
+      id="clear-prompting"
+      aria-labelledby="clear-prompting-teaser-title"
+    >
+      <div className="section-heading">
+        <p className="eyebrow">Clear prompting field guide</p>
+        <h2 id="clear-prompting-teaser-title">
+          Better prompts are not magic words. They are clearer thinking in
+          sentence form.
+        </h2>
+        <p>
+          This public guide focuses on the parts of prompting that immediately
+          reduce wasted time: context, vocabulary, precise sentence logic,
+          output shape, and review criteria. The payoff is not cleverness. It
+          is fewer avoidable blunders and less backtracking.
+        </p>
+      </div>
+      <div className="clear-teaser-layout">
+        <div className="clear-teaser-copy">
+          <div className="clear-metric-grid" aria-label="Clear prompting benefits">
+            <article className="clear-metric-card">
+              <span>Time reduction</span>
+              <p>
+                Move from vague retries to a useful first draft, comparison
+                table, or review checklist in fewer rounds.
+              </p>
+            </article>
+            <article className="clear-metric-card">
+              <span>Blunder avoidance</span>
+              <p>
+                Prevent invented facts, shifted meaning, hidden assumptions,
+                wrong audience, and accidental promises.
+              </p>
+            </article>
+          </div>
+          <div className="hero-actions">
+            <a
+              className="button button-primary"
+              href={siteHref('/clear-prompting')}
+              onClick={(event) => navigateToRoute(event, '/clear-prompting')}
+            >
+              Open the Guide
+              <ArrowRight aria-hidden="true" />
+            </a>
+            <a className="button button-secondary" href={siteHref(clearPromptingPdfHref)}>
+              Download PDF
+            </a>
+          </div>
+        </div>
+        <div className="clear-teaser-principles">
+          {clearPromptingPrinciples.slice(0, 3).map(({ title, body }) => (
+            <article className="clear-teaser-card" key={title}>
+              <h3>{title}</h3>
+              <p>{body}</p>
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+function ClearPromptingPage({
+  navigateToRoute,
+}: {
+  navigateToRoute: (
+    event: MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => void
+}) {
+  return (
+    <main className="clear-prompting-page">
+      <section className="info-hero clear-prompting-hero">
+        <div>
+          <a
+            className="back-link"
+            href={siteHref('/resources')}
+            onClick={(event) => navigateToRoute(event, '/resources')}
+          >
+            <ArrowLeft aria-hidden="true" />
+            Back to resources
+          </a>
+          <p className="eyebrow">Clear prompting curriculum</p>
+          <h1>Prompting is clear thinking made visible.</h1>
+          <p className="hero-copy">
+            A strong prompt is not a clever incantation. It is a compact
+            description of the job, the context, the vocabulary, the sentence
+            logic, the output shape, and the review standard. That is why
+            better prompting saves time and prevents expensive-looking little
+            blunders.
+          </p>
+          <div className="hero-actions">
+            <a className="button button-primary" href={siteHref(clearPromptingPdfHref)}>
+              Download Prompting Tips PDF
+            </a>
+            <a className="button button-secondary" href={siteHref(onsiteBookingHref)}>
+              Discuss Training
+              <ArrowRight aria-hidden="true" />
+            </a>
+          </div>
+        </div>
+        <div className="info-hero-panel clear-hero-panel">
+          <p className="eyebrow">Core promise</p>
+          <h2>Less retrying. Fewer mistakes. Better judgment.</h2>
+          <p>
+            The guide teaches prompt habits that people recognize as wisdom as
+            soon as they see them: define the audience, specify the meaning of
+            key words, control the logic of the request, and ask for review
+            before relying.
+          </p>
+        </div>
+      </section>
+
+      <section className="section clear-outcome-section">
+        <div className="section-heading centered">
+          <p className="eyebrow">Why this matters</p>
+          <h2>Most poor AI output is not mysterious. It was under-instructed.</h2>
+          <p>
+            Clear prompting helps learners see how a little more precision at
+            the start can prevent a long chain of repair later.
+          </p>
+        </div>
+        <div className="clear-outcome-grid">
+          <article className="clear-outcome-card">
+            <span>01</span>
+            <h3>Context reduces wandering</h3>
+            <p>
+              The model stops answering the average version of the question
+              and starts answering the situation in front of you.
+            </p>
+          </article>
+          <article className="clear-outcome-card">
+            <span>02</span>
+            <h3>Vocabulary sharpens standards</h3>
+            <p>
+              Words like concise, rigorous, warm, useful, and strategic become
+              operational instead of decorative.
+            </p>
+          </article>
+          <article className="clear-outcome-card">
+            <span>03</span>
+            <h3>Sentence logic prevents wrong work</h3>
+            <p>
+              Only, before, after, unless, compare, preserve, avoid, and verify
+              are small words with large consequences.
+            </p>
+          </article>
+          <article className="clear-outcome-card">
+            <span>04</span>
+            <h3>Review instructions catch errors sooner</h3>
+            <p>
+              A prompt can ask for the output and the inspection habits that
+              make the output safer to use.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section className="section section-band clear-principles-section">
+        <div className="section-heading">
+          <p className="eyebrow">Six moves</p>
+          <h2>What clear prompting teaches first.</h2>
+        </div>
+        <div className="clear-principle-grid">
+          {clearPromptingPrinciples.map(({ title, body, payoff }, index) => (
+            <article className="clear-principle-card" key={title}>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{title}</h3>
+              <p>{body}</p>
+              <div className="activity-detail activity-safe-input">
+                <span>Payoff</span>
+                <p>{payoff}</p>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section prompt-examples-section">
+        <div className="section-heading">
+          <p className="eyebrow">Poor vs excellent</p>
+          <h2>Examples that make the difference visible.</h2>
+          <p>
+            These examples are intentionally plain. The point is to help a
+            learner feel the difference between asking AI to guess and giving
+            it enough structure to work intelligently.
+          </p>
+        </div>
+        <div className="prompt-example-grid">
+          {clearPromptingExamples.map(({ title, situation, poor, excellent, whyItWorks, blunderAvoided, timeGain }) => (
+            <article className="prompt-example-card" key={title}>
+              <div>
+                <p className="eyebrow">Example</p>
+                <h3>{title}</h3>
+                <p>{situation}</p>
+              </div>
+              <div className="prompt-contrast">
+                <div className="prompt-bad">
+                  <span>Poor prompt</span>
+                  <p>{poor}</p>
+                </div>
+                <div className="prompt-good">
+                  <span>Excellent prompt</span>
+                  <p>{excellent}</p>
+                </div>
+              </div>
+              <div className="prompt-example-notes">
+                <div className="activity-detail">
+                  <span>Why it works</span>
+                  <p>{whyItWorks}</p>
+                </div>
+                <div className="activity-detail activity-safe-input">
+                  <span>Blunder avoided</span>
+                  <p>{blunderAvoided}</p>
+                </div>
+                <div className="activity-detail">
+                  <span>Time gain</span>
+                  <p>{timeGain}</p>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section clear-tips-section">
+        <div className="section-heading centered">
+          <p className="eyebrow">Prompting tips</p>
+          <h2>Simple enough to use immediately, subtle enough to change habits.</h2>
+          <p>
+            These tips are designed to feel obvious in hindsight. That is why
+            they work as a first trust-building handout.
+          </p>
+        </div>
+        <div className="prompt-tip-grid">
+          {clearPromptingTips.map(({ title, body }, index) => (
+            <article className="prompt-tip-card" key={title}>
+              <span>{String(index + 1).padStart(2, '0')}</span>
+              <h3>{title}</h3>
+              <p>{body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section clear-prompting-cta-section">
+        <div className="section-heading">
+          <p className="eyebrow">Use it as a first step</p>
+          <h2>The PDF can open the door to a broader AI fluency conversation.</h2>
+          <p>
+            A team that recognizes the value of clearer prompting is ready for
+            the next question: where else is the organization losing time
+            because context, vocabulary, review, and workflow logic are not
+            explicit yet?
+          </p>
+        </div>
+        <div className="hero-actions">
+          <a className="button button-primary" href={siteHref(clearPromptingPdfHref)}>
+            Download the PDF
+          </a>
+          <a className="button button-secondary" href={siteHref(onsiteBookingHref)}>
+            Schedule an AI Fluency Call
+          </a>
+        </div>
+      </section>
+    </main>
+  )
+}
+
 function PromptingStarterLabSection() {
   return (
     <section className="section prompting-starter-section" id="practice-cards" aria-labelledby="prompting-starter-title">
@@ -4617,10 +5138,19 @@ function ResourcesPage({
           <h1>Clear categories for learning, practicing, and evaluating AI.</h1>
           <p className="hero-copy">
             This library keeps Xensible's public resources easy to navigate:
-            mindset first, safe practice next, then use domains, challenges,
-            landscape notes, monthly review habits, and curated links.
+            clear prompting first, safe practice next, then use domains,
+            challenges, landscape notes, monthly review habits, and curated
+            links.
           </p>
           <div className="hero-actions">
+            <a
+              className="button button-primary"
+              href={siteHref('/clear-prompting')}
+              onClick={(event) => navigateToRoute(event, '/clear-prompting')}
+            >
+              Get Clear Prompting Guide
+              <ArrowRight aria-hidden="true" />
+            </a>
             <a className="button button-primary" href="#practice-cards">
               Start With Practice Cards
               <ArrowRight aria-hidden="true" />
@@ -4669,6 +5199,51 @@ function ResourcesPage({
               </span>
             </a>
           ))}
+        </div>
+      </section>
+
+      <section className="section clear-prompting-resource-section" id="clear-prompting" aria-labelledby="clear-prompting-resource-title">
+        <div className="section-heading">
+          <p className="eyebrow">Loss-leader guide</p>
+          <h2 id="clear-prompting-resource-title">Clear prompting tips that feel obvious after someone explains them.</h2>
+          <p>
+            The field guide gives AI-curious visitors a high-value starting
+            point: how context, vocabulary, sentence logic, output shape, and
+            review criteria reduce both time waste and preventable mistakes.
+          </p>
+        </div>
+        <div className="clear-resource-layout">
+          <div className="clear-resource-card">
+            <h3>What the PDF teaches</h3>
+            <ul>
+              <li>Why vague prompts create vague work.</li>
+              <li>How precise vocabulary changes output quality.</li>
+              <li>How sentence logic prevents wrong-task answers.</li>
+              <li>How strong prompts save time by making review easier.</li>
+              <li>How to compare poor and excellent examples.</li>
+            </ul>
+            <div className="hero-actions">
+              <a className="button button-primary" href={siteHref(clearPromptingPdfHref)}>
+                Download PDF
+              </a>
+              <a
+                className="button button-secondary"
+                href={siteHref('/clear-prompting')}
+                onClick={(event) => navigateToRoute(event, '/clear-prompting')}
+              >
+                Open Web Curriculum
+                <ArrowRight aria-hidden="true" />
+              </a>
+            </div>
+          </div>
+          <div className="clear-resource-grid">
+            {clearPromptingPrinciples.slice(0, 4).map(({ title, payoff }) => (
+              <article className="clear-teaser-card" key={title}>
+                <h3>{title}</h3>
+                <p>{payoff}</p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 

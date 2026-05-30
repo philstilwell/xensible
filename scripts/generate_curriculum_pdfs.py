@@ -262,6 +262,100 @@ STARTER_PROMPTING_ACTIVITIES = [
 ]
 
 
+CLEAR_PROMPTING_PRINCIPLES = [
+    (
+        "Context narrows the universe",
+        "Tell the model the situation, audience, purpose, constraints, prior attempts, and what the output will be used for.",
+        "Less generic output, fewer rounds of repair, and a result that starts closer to the real work.",
+    ),
+    (
+        "Vocabulary carries judgment",
+        "Define words such as brief, warm, rigorous, practical, leadership-ready, or beginner-friendly when those standards matter.",
+        "The model stops guessing your standards and starts working inside them.",
+    ),
+    (
+        "Sentence logic controls behavior",
+        "Use precise relationships: compare this with that, do X before Y, only use these facts, ask questions if evidence is missing, and do not decide for me.",
+        "You prevent hidden assumptions, invented commitments, and answers that solve the wrong problem.",
+    ),
+    (
+        "Output shape saves time",
+        "Ask for a table, checklist, memo, decision brief, revision log, or ordered plan when that is what the work needs.",
+        "The answer becomes easier to scan, edit, assign, verify, and reuse.",
+    ),
+    (
+        "Review criteria reduce blunders",
+        "Name how the output will be judged: accuracy risk, tone, missing context, audience fit, unsupported claims, data boundaries, and human approval needs.",
+        "The same prompt that generates work can also make the work safer to inspect.",
+    ),
+    (
+        "Iteration turns effort into assets",
+        "Save the version that worked, name when it should be used, and note what still requires human judgment.",
+        "A single experiment becomes a reusable prompt card, workflow recipe, or specialty assistant seed.",
+    ),
+]
+
+
+CLEAR_PROMPTING_EXAMPLES = [
+    {
+        "title": "Business email revision",
+        "poor": "Make this email better.",
+        "excellent": "Revise this fictional email for a busy department director. Keep the message under 160 words, make the tone calm and direct, preserve the three facts listed below, avoid promising a deadline, and return two versions: concise and warmer. Then list what a human should confirm before sending. Facts to preserve: [facts]. Draft: [email].",
+        "why": "Names audience, tone, length, fixed facts, a promise to avoid, output format, and review criteria.",
+        "blunder": "Prevents invented commitments or polished language that changes the facts.",
+        "time": "Cuts several vague revision rounds down to one focused comparison and a review checklist.",
+    },
+    {
+        "title": "Article learning kit",
+        "poor": "Summarize this article.",
+        "excellent": "Create a learning kit from this public article for a smart beginner. Include a 150-word summary, eight-term glossary, three practical examples, five-question quiz with answer key, common misconceptions, and a claim-check table. Separate what the article says from what would need outside verification. Article: [public article].",
+        "why": "Turns summarization into a structured learning task with vocabulary, examples, assessment, and verification.",
+        "blunder": "Prevents passive acceptance of confident claims by making source checking visible.",
+        "time": "Converts reading support into a reusable study packet in one pass.",
+    },
+    {
+        "title": "Meeting follow-through",
+        "poor": "Turn these notes into action items.",
+        "excellent": "Using these fictional meeting notes, create a follow-through packet with five sections: decision summary, unresolved questions, action-item table with owner and deadline placeholders, risks or assumptions to confirm, and a follow-up email draft. Do not invent owners, dates, or decisions. Mark anything that needs human confirmation. Notes: [notes].",
+        "why": "Defines the deliverable, separates decisions from open questions, and blocks invented commitments.",
+        "blunder": "Prevents false certainty in action items, a common source of team confusion.",
+        "time": "Turns messy notes into a scannable packet the team can confirm quickly.",
+    },
+    {
+        "title": "Research planning",
+        "poor": "Research AI tools for us.",
+        "excellent": "Help me plan research on AI tools for a cautious midsize organization. Do not recommend products yet. Create question clusters, search terms, source categories, comparison criteria, risk questions, vendor-claim questions, and a table of claims we must verify in current sources. End with the first five searches a human should run.",
+        "why": "Keeps the model in planning mode and prevents premature recommendations.",
+        "blunder": "Avoids tool-chasing before the organization understands its own use cases.",
+        "time": "Turns a broad research fog into a search plan and comparison structure in minutes.",
+    },
+    {
+        "title": "Decision support",
+        "poor": "Which option should we choose?",
+        "excellent": "Help us think through these options without choosing for us. Create a decision brief with criteria, option comparison table, assumptions, missing evidence, likely failure modes, stakeholder questions, and final human decision questions. If facts are missing, ask for them or label the gap. Options: [options].",
+        "why": "Uses AI for structure, comparison, and blind-spot detection while keeping accountability human.",
+        "blunder": "Prevents outsourcing judgment to a fluent answer that lacks context or responsibility.",
+        "time": "Compresses the first draft of a decision memo while making remaining human work clearer.",
+    },
+]
+
+
+CLEAR_PROMPTING_TIPS = [
+    "Name the job before naming the tool: explain, compare, revise, critique, plan, extract, translate, summarize, or decide what to ask next.",
+    "Give the model a reader: board member, patient-facing staff member, donor, technician, beginner, or skeptical manager.",
+    "Define the words that carry standards. If clear means brief or rigorous means evidence-tagged, say so.",
+    "Protect facts that must not move by listing them separately from material that may be rewritten.",
+    "Use complete constraints: under 180 words, no promises, calm closing sentence, and no new facts is clearer than short and professional.",
+    "Separate creating from judging. Ask for a draft first, then ask for a critique.",
+    "Ask for questions when context is missing instead of letting the model fill the gaps silently.",
+    "Choose the output container: table, checklist, brief, log, comparison, or revision memo.",
+    "Make uncertainty visible by asking for assumptions, missing facts, confidence level, and claims to verify.",
+    "Keep private data out of public tools unless an approved private environment and internal owner are in place.",
+    "Request a change log when revising so accidental meaning shifts are easier to catch.",
+    "Save prompts that survive review. Name when to use them and what a human still needs to check.",
+]
+
+
 FREE_CURRICULUM = {
     "slug": "free-ai-fluency-starter",
     "title": "Free AI Fluency Starter",
@@ -1197,6 +1291,105 @@ def build_pdf(curriculum, out_dir):
     return out_path
 
 
+def build_clear_prompting_pdf(out_dir):
+    out_path = out_dir / "clear-prompting-field-guide.pdf"
+    doc = SimpleDocTemplate(
+        str(out_path),
+        pagesize=letter,
+        rightMargin=0.72 * inch,
+        leftMargin=0.72 * inch,
+        topMargin=0.72 * inch,
+        bottomMargin=0.72 * inch,
+        title="Clear Prompting Field Guide | Xensible",
+    )
+    style = styles()
+    story = [
+        Paragraph("Xensible public field guide", style["Kicker"]),
+        Paragraph("Clear Prompting Field Guide", style["CoverTitle"]),
+        Paragraph(
+            "Better prompting is not a trick vocabulary. It is clearer thinking in sentence form: context, vocabulary, logic, output shape, and review criteria. These habits save time because they reduce retry loops, and they prevent blunders because they make assumptions visible before output is used.",
+            style["BodyTextX"],
+        ),
+        Spacer(1, 0.12 * inch),
+        Table(
+            [
+                [Paragraph("<b>Best use</b>", style["BodyTextX"]), Paragraph("A first handout for AI-curious individuals, teams, and leaders.", style["BodyTextX"])],
+                [Paragraph("<b>Time payoff</b>", style["BodyTextX"]), Paragraph("Fewer vague retries, faster review, and reusable prompt cards.", style["BodyTextX"])],
+                [Paragraph("<b>Blunder avoided</b>", style["BodyTextX"]), Paragraph("Invented facts, wrong audience, hidden assumptions, shifted meaning, and accidental promises.", style["BodyTextX"])],
+            ],
+            colWidths=[1.3 * inch, 4.5 * inch],
+            style=TableStyle(
+                [
+                    ("BACKGROUND", (0, 0), (-1, -1), MIST),
+                    ("BOX", (0, 0), (-1, -1), 0.5, colors.HexColor("#d7e3de")),
+                    ("INNERGRID", (0, 0), (-1, -1), 0.5, colors.HexColor("#d7e3de")),
+                    ("VALIGN", (0, 0), (-1, -1), "TOP"),
+                    ("LEFTPADDING", (0, 0), (-1, -1), 10),
+                    ("RIGHTPADDING", (0, 0), (-1, -1), 10),
+                    ("TOPPADDING", (0, 0), (-1, -1), 8),
+                    ("BOTTOMPADDING", (0, 0), (-1, -1), 8),
+                ]
+            ),
+        ),
+        Paragraph("The premise", style["SectionTitle"]),
+        bullet_list(
+            [
+                "The model cannot know which version of a task you mean unless you name the context.",
+                "The words that seem obvious to humans often carry hidden standards that should be defined.",
+                "Small logic words such as only, before, unless, preserve, compare, and verify change the behavior of the output.",
+                "The shape of the answer is part of the work: table, checklist, brief, revision log, or decision memo.",
+                "A strong prompt includes its own review habit so the user does not mistake fluent output for finished work.",
+            ],
+            style["BodyTextX"],
+        ),
+        Paragraph("Six clear prompting moves", style["SectionTitle"]),
+    ]
+
+    for title, body, payoff in CLEAR_PROMPTING_PRINCIPLES:
+        story.append(Paragraph(f"<b>{title}</b>", style["BodyTextX"]))
+        story.append(Paragraph(body, style["BodyTextX"]))
+        story.append(Paragraph(f"<b>Payoff:</b> {payoff}", style["BodyTextX"]))
+
+    story.append(PageBreak())
+    story.append(Paragraph("Poor prompts and excellent prompts", style["SectionTitle"]))
+    story.append(
+        Paragraph(
+            "The goal is not to memorize these exact prompts. The goal is to notice how context, vocabulary, sentence logic, output shape, and review criteria change the quality of the work.",
+            style["BodyTextX"],
+        )
+    )
+
+    for example in CLEAR_PROMPTING_EXAMPLES:
+        story.append(Paragraph(f"<b>{example['title']}</b>", style["BodyTextX"]))
+        story.append(Paragraph(f"<b>Poor:</b> {example['poor']}", style["BodyTextX"]))
+        story.append(Paragraph(f"<b>Excellent:</b> {example['excellent']}", style["BodyTextX"]))
+        story.append(Paragraph(f"<b>Why it works:</b> {example['why']}", style["BodyTextX"]))
+        story.append(Paragraph(f"<b>Blunder avoided:</b> {example['blunder']}", style["BodyTextX"]))
+        story.append(Paragraph(f"<b>Time gain:</b> {example['time']}", style["BodyTextX"]))
+
+    story.append(PageBreak())
+    story.append(Paragraph("Prompting tips that repay attention", style["SectionTitle"]))
+    story.append(bullet_list(CLEAR_PROMPTING_TIPS, style["BodyTextX"]))
+    story.append(Paragraph("Practice exercise", style["SectionTitle"]))
+    story.append(
+        Paragraph(
+            "Choose one poor prompt you have used recently. Rewrite it with: job, audience, context, vocabulary definitions, constraints, output format, review criteria, and a sentence saying what the model must not do.",
+            style["BodyTextX"],
+        )
+    )
+    story.append(Paragraph("Starter prompt for the exercise", style["SectionTitle"]))
+    story.append(
+        Paragraph(
+            "Turn my rough request into a clearer prompt. Ask up to five clarifying questions if needed. Then produce a prompt card with job, audience, context, key vocabulary, constraints, output format, review criteria, and what not to do. Rough request: [paste request].",
+            style["BodyTextX"],
+        )
+    )
+    story.append(Paragraph("Contact", style["SectionTitle"]))
+    story.append(Paragraph("For guided AI fluency training over Zoom: contact@xensible.com", style["BodyTextX"]))
+    doc.build(story, onFirstPage=draw_page, onLaterPages=draw_page)
+    return out_path
+
+
 def build_starter_project_pdf(out_dir):
     out_path = out_dir / "first-60-minute-ai-utility-project.pdf"
     doc = SimpleDocTemplate(
@@ -1293,6 +1486,11 @@ def main():
     starter_output_pdf = output_dir / starter_pdf.name
     starter_output_pdf.write_bytes(starter_pdf.read_bytes())
     print(starter_pdf)
+
+    clear_prompting_pdf = build_clear_prompting_pdf(public_dir)
+    clear_prompting_output_pdf = output_dir / clear_prompting_pdf.name
+    clear_prompting_output_pdf.write_bytes(clear_prompting_pdf.read_bytes())
+    print(clear_prompting_pdf)
 
 
 if __name__ == "__main__":
