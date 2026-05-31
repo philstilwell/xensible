@@ -130,6 +130,7 @@ type CurriculumContent = {
 }
 
 const expertPassword = 'xpert'
+const instructorPassword = 'clay'
 
 const audience = [
   'Small and midsize companies that want clear AI literacy before buying tools',
@@ -424,6 +425,7 @@ const individualUtilityProjects: UtilityProject[] = [
 
 const starterProjectPdfHref = '/curriculum-pdfs/first-60-minute-ai-utility-project.pdf'
 const clearPromptingPdfHref = '/curriculum-pdfs/clear-prompting-field-guide.pdf'
+const teacherGuidePdfHref = '/curriculum-pdfs/from-frozen-fingers-to-wow-teacher-guide.pdf'
 
 const clearPromptingPrinciples: ClearPromptingPrinciple[] = [
   {
@@ -3676,6 +3678,7 @@ const getPageMetadata = ({
   isFreeCurriculum,
   isAiUsesToolsPage,
   isClearPromptingPage,
+  isInstructorPage,
   isPracticeProjectsPage,
   isResourcesPage,
   isThanksPage,
@@ -3688,6 +3691,7 @@ const getPageMetadata = ({
   isFreeCurriculum: boolean
   isAiUsesToolsPage: boolean
   isClearPromptingPage: boolean
+  isInstructorPage: boolean
   isPracticeProjectsPage: boolean
   isResourcesPage: boolean
   isThanksPage: boolean
@@ -3775,6 +3779,16 @@ const getPageMetadata = ({
         'Explore Xensible AI fluency resources: clear prompting, prompting mindset, practice cards, use domains, practice challenges, landscape notes, monthly fluency notes, and curated links.',
       path: '/resources',
       schemaType: 'CollectionPage',
+    }
+  }
+
+  if (isInstructorPage) {
+    return {
+      title: 'Instructor Resources | Xensible',
+      description:
+        'Password-gated Xensible instructor resources for classroom AI fluency activities and teacher materials.',
+      path: '/instructor',
+      robots: 'noindex,follow',
     }
   }
 
@@ -4083,6 +4097,7 @@ function App() {
   const isPracticeProjectsPage = currentPath === '/practice-projects'
   const isClearPromptingPage = currentPath === '/clear-prompting'
   const isResourcesPage = currentPath === '/resources'
+  const isInstructorPage = currentPath === '/instructor'
   const isThanksPage = currentPath === '/thanks'
   const isUnknownRoute =
     currentPath !== '/' &&
@@ -4095,6 +4110,7 @@ function App() {
     !isPracticeProjectsPage &&
     !isClearPromptingPage &&
     !isResourcesPage &&
+    !isInstructorPage &&
     !isThanksPage
   const pageMetadata = useMemo(
     () =>
@@ -4107,6 +4123,7 @@ function App() {
         isFreeCurriculum,
         isAiUsesToolsPage,
         isClearPromptingPage,
+        isInstructorPage,
         isPracticeProjectsPage,
         isResourcesPage,
         isThanksPage,
@@ -4120,6 +4137,7 @@ function App() {
       isFreeCurriculum,
       isAiUsesToolsPage,
       isClearPromptingPage,
+      isInstructorPage,
       isPracticeProjectsPage,
       isResourcesPage,
       isThanksPage,
@@ -4206,6 +4224,8 @@ function App() {
         <ClearPromptingPage navigateToRoute={navigateToRoute} />
       ) : isResourcesPage ? (
         <ResourcesPage navigateToRoute={navigateToRoute} />
+      ) : isInstructorPage ? (
+        <InstructorPage navigateToRoute={navigateToRoute} />
       ) : activeCurriculum || isCurriculumHub || isFreeCurriculum || isExpertCurriculumLibrary ? (
         <CurriculumPage
           curriculum={activeCurriculum}
@@ -4660,7 +4680,16 @@ function HomePage({
               Phil Stilwell is an early AI adopter, educator, and AI fluency
               coach. For the past three years, he has been teaching AI skills
               over Zoom, helping people move from curiosity to practical
-              confidence. He has also spent a year coding and has long been an
+              confidence. He has also spent a year{' '}
+              <a
+                aria-label="Instructor resources"
+                className="stealth-about-link"
+                href={siteHref('/instructor')}
+                onClick={(event) => navigateToRoute(event, '/instructor')}
+              >
+                coding
+              </a>{' '}
+              and has long been an
               early adopter of demonstrably useful technology, which helps him
               translate emerging tools into everyday work without the hype.
             </p>
@@ -5984,6 +6013,156 @@ function CurriculumGate({ children }: { children: ReactNode }) {
             Unlock Expert Tier
           </button>
         </form>
+      </section>
+    </main>
+  )
+}
+
+function InstructorPage({
+  navigateToRoute,
+}: {
+  navigateToRoute: (
+    event: MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => void
+}) {
+  const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+  const [isUnlocked, setIsUnlocked] = useState(
+    () => window.sessionStorage.getItem('xensible-instructor-access') === 'true',
+  )
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+
+    if (password.trim() === instructorPassword) {
+      window.sessionStorage.setItem('xensible-instructor-access', 'true')
+      setIsUnlocked(true)
+      setError('')
+      return
+    }
+
+    setError('That password did not work.')
+  }
+
+  if (!isUnlocked) {
+    return (
+      <main className="protected-page">
+        <section className="protected-gate" aria-labelledby="instructor-gate-title">
+          <div>
+            <a
+              className="back-link"
+              href={siteHref('/')}
+              onClick={(event) => navigateToRoute(event, '/')}
+            >
+              <ArrowLeft aria-hidden="true" />
+              Back to home
+            </a>
+            <p className="eyebrow">Instructor resources</p>
+            <h1 id="instructor-gate-title">Enter the instructor password.</h1>
+            <p className="hero-copy">
+              This page holds classroom-facing AI fluency materials for teachers
+              and facilitators.
+            </p>
+          </div>
+          <form className="password-panel" onSubmit={handleSubmit}>
+            <label htmlFor="instructor-password">Password</label>
+            <input
+              id="instructor-password"
+              onChange={(event) => setPassword(event.target.value)}
+              type="password"
+              value={password}
+            />
+            {error && <p className="form-error">{error}</p>}
+            <button className="button button-primary" type="submit">
+              <ShieldCheck aria-hidden="true" />
+              Unlock Instructor Page
+            </button>
+          </form>
+        </section>
+      </main>
+    )
+  }
+
+  return (
+    <main className="protected-page instructor-page">
+      <section className="curriculum-hero">
+        <div>
+          <a
+            className="back-link"
+            href={siteHref('/')}
+            onClick={(event) => navigateToRoute(event, '/')}
+          >
+            <ArrowLeft aria-hidden="true" />
+            Back to home
+          </a>
+          <p className="eyebrow">Instructor resources</p>
+          <h1>Instructor</h1>
+          <p className="hero-copy">
+            Teacher-facing materials for introducing complete beginners to AI
+            through practical, high-wow classroom activities.
+          </p>
+          <div className="hero-actions">
+            <a className="button button-primary" href={siteHref(teacherGuidePdfHref)}>
+              <BookOpenCheck aria-hidden="true" />
+              Download Teacher Guide PDF
+            </a>
+            <a className="button button-secondary" href={bookingHref}>
+              <CalendarDays aria-hidden="true" />
+              Discuss a Classroom Session
+            </a>
+          </div>
+        </div>
+        <div className="curriculum-hero-panel">
+          <span className="service-icon">
+            <BookOpenCheck aria-hidden="true" />
+          </span>
+          <h2>Featured guide</h2>
+          <p>From Frozen Fingers to Wow</p>
+          <h2>Includes</h2>
+          <p>30 beginner-friendly AI classroom activities, a prompt rubric, and reflection prompts.</p>
+          <h2>Format</h2>
+          <p>PDF teacher guide</p>
+        </div>
+      </section>
+
+      <section className="section curriculum-detail-grid instructor-resource-section">
+        <div className="detail-panel">
+          <p className="eyebrow">Teacher guide</p>
+          <h2>From Frozen Fingers to Wow</h2>
+          <p>
+            A 13-page guide that takes students from first AI conversations to
+            prompt tournaments, verification labs, interactive study guides,
+            website blueprints, and capstone public products.
+          </p>
+          <div className="curriculum-actions">
+            <a className="button button-primary" href={siteHref(teacherGuidePdfHref)}>
+              Open PDF
+              <ExternalLink aria-hidden="true" />
+            </a>
+          </div>
+        </div>
+        <div className="detail-panel">
+          <p className="eyebrow">Classroom arc</p>
+          <ul className="offer-list">
+            <li>
+              <CheckCircle2 aria-hidden="true" />
+              <span>Comfort with first prompts and AI dialogue</span>
+            </li>
+            <li>
+              <CheckCircle2 aria-hidden="true" />
+              <span>Prompt craft through comparison, constraints, and iteration</span>
+            </li>
+            <li>
+              <CheckCircle2 aria-hidden="true" />
+              <span>Judgment habits for verification, bias, and feedback</span>
+            </li>
+            <li>
+              <CheckCircle2 aria-hidden="true" />
+              <span>Creation work that turns AI output into useful products</span>
+            </li>
+          </ul>
+        </div>
       </section>
     </main>
   )
