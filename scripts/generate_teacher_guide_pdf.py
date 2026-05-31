@@ -534,6 +534,159 @@ STAGE_SUMMARIES = {
     "Wow Build": "Chain tools into personalized coaches, websites, app ideas, and capstones.",
 }
 
+PROMPT_SETS = {
+    "The First Safe Hello": [
+        ("Start", "Explain [topic] to me like I am brand new. Use one everyday example. Then ask me one friendly question to check what I understand."),
+        ("Follow-up", "I answered: [student answer]. Correct any misunderstanding gently, then explain the next idea I should learn in three sentences."),
+        ("Wow", "Explain the same topic at three levels: for a five-year-old, for a high school student, and for an expert. Put the differences in a table."),
+    ],
+    "Tiny Prompt, Better Prompt": [
+        ("Start", "Give me a beginner explanation of [topic]."),
+        ("Improve", "Rewrite my prompt so it includes a clear goal, audience, context, constraints, tone, and output format. Then explain why each part helps."),
+        ("Template", "Turn the improved prompt into a reusable fill-in-the-blank template for students studying any topic."),
+    ],
+    "AI as a Patient Tutor": [
+        ("Start", "Tutor me on [concept]. Start with the basics, use one example, and ask me one question before moving on."),
+        ("Check", "Here is my answer: [answer]. Tell me what is correct, what is missing, and the next small step I should practice."),
+        ("Practice", "Create a three-question mini-quiz on [concept]. Wait for my answers, then grade them and recommend what to review next."),
+    ],
+    "Question Storm": [
+        ("Start", "Generate 20 curious beginner questions about [theme]. Mix factual, creative, ethical, technical, personal, and debatable questions."),
+        ("Sort", "Sort these questions into categories and mark the five with the strongest research potential: [questions]. Explain your ranking."),
+        ("Sharpen", "Rewrite this question so it is specific, researchable, and interesting to a class audience: [question]."),
+    ],
+    "Everyday Task Transformer": [
+        ("Start", "Turn this everyday task into a realistic checklist with time estimates: [task]. Assume I am a beginner and have limited time."),
+        ("Personalize", "Revise the checklist for these constraints: [available time, energy level, deadline, tools, obstacles]. Delete anything unrealistic."),
+        ("Convert", "Convert the final checklist into a calendar plan, reminder script, or message I could send to someone helping me stay accountable."),
+    ],
+    "Explain It Five Ways": [
+        ("Start", "Explain [concept] in five formats: plain explanation, analogy, short story, step-by-step guide, and quiz."),
+        ("Compare", "Compare the five versions. Which one helps memory, which helps understanding, and which would work best for a beginner?"),
+        ("Lesson", "Combine the strongest parts into a 15-minute mini-lesson with teacher script, student activity, and exit question."),
+    ],
+    "Common Topic Prompt Tournament": [
+        ("Student", "Create the best possible prompt for teaching [common topic] to [audience]. It should request accurate, useful, beginner-friendly information in a clear format."),
+        ("Judge", "Score these prompts from 0-4 for goal, audience, context, format, and quality check. Identify strengths, weaknesses, and likely output problems: [prompt list]."),
+        ("Upgrade", "Generate three stronger prompts for teaching [common topic]. Make one concise, one rigorous, and one creative. Explain the tradeoffs."),
+    ],
+    "The Constraint Game": [
+        ("Start", "Explain [topic] for beginners while following this constraint: [constraint]."),
+        ("Add", "Revise the answer using these two constraints at once: [constraint 1] and [constraint 2]. Keep the explanation useful."),
+        ("Reflect", "Explain how each constraint changed the output. Which constraint improved clarity, and which made the answer weaker?"),
+    ],
+    "Persona Lens Lab": [
+        ("Start", "Explain [topic] from the perspective of a [role]. Name what this perspective emphasizes and what it might miss."),
+        ("Compare", "Explain [topic] through these perspectives: scientist, historian, artist, coach, journalist, parent, and student. Put the differences in a table."),
+        ("Roundtable", "Create a roundtable conversation where each perspective asks one tough question of another perspective."),
+    ],
+    "Format Switchboard": [
+        ("Start", "Transform this content into a checklist, timeline, FAQ, comparison table, flashcards, and practice quiz: [content]."),
+        ("Purpose", "For each format, explain when a student should use it: studying, teaching, deciding, remembering, or presenting."),
+        ("Bundle", "Create a three-part resource bundle for [audience] using the best formats. Include a short note explaining how to use each part."),
+    ],
+    "Bad Prompt Rescue": [
+        ("Diagnose", "Act as a strict but helpful prompt coach. Diagnose what is weak about this prompt: [prompt]. Use labels like unclear goal, missing audience, no constraints, no format, or too broad."),
+        ("Rewrite", "Rewrite the prompt so it has a clear goal, audience, context, constraints, output format, and quality check."),
+        ("Compare", "Compare the original and revised prompts. Predict how the AI answers would differ and why the revised version is stronger."),
+    ],
+    "The Iteration Ladder": [
+        ("First", "Answer this prompt as written, then identify what information you wish the prompt had included: [first prompt]."),
+        ("Revise", "Revise my prompt in five rounds: clarify the goal, define the audience, add examples, set quality criteria, and request a final format."),
+        ("Checklist", "Summarize my prompt improvement process as a personal checklist I can reuse before asking AI for help."),
+    ],
+    "Fact-Check Relay": [
+        ("Claims", "Explain [factual topic] in 150 words. Then list five specific claims from your answer that a student should verify."),
+        ("Plan", "Create a verification plan for these claims. For each one, name the kind of source needed and what would count as confirmation: [claims]."),
+        ("Revise", "Rewrite the explanation using only claims marked verified. Add a short note about what remains uncertain."),
+    ],
+    "Bias and Missing Voices": [
+        ("Overview", "Give a neutral overview of [topic]. Then list whose interests, voices, or experiences might be missing from your overview."),
+        ("Stakeholders", "Create a stakeholder map for [topic]. For each stakeholder, name their likely concerns, priorities, and questions."),
+        ("Balance", "Rewrite the original overview so it includes multiple perspectives and avoids pretending that one viewpoint is automatically neutral."),
+    ],
+    "Hallucination Hunt": [
+        ("Answer", "Answer this question confidently but mark any detail that may need verification: [question]."),
+        ("Audit", "Review your answer and identify possible fabricated details, unsupported claims, wrong dates, wrong names, or overgeneralizations."),
+        ("Cautious", "Rewrite the answer with confidence levels for each claim and a list of details students should verify before trusting it."),
+    ],
+    "Debate Coach With Two Sides": [
+        ("Sides", "Build arguments for both sides of this question: [debatable question]. Include evidence needed and likely weak points for each side."),
+        ("Cross-exam", "Ask Side A three tough questions and Side B three tough questions. Make the questions fair and specific."),
+        ("Improve", "Help us strengthen our argument without adding unsupported claims. Mark each point as strong, weak, emotional, or needing evidence: [argument]."),
+    ],
+    "Rubric Builder": [
+        ("Draft", "Create a four-level rubric for [assignment type]. Include criteria for accuracy, clarity, evidence, organization, and originality."),
+        ("Critique", "Critique this rubric for vague language, missing criteria, unfair expectations, and anything students may misunderstand: [rubric]."),
+        ("Samples", "Generate three short sample submissions at different quality levels so students can practice scoring with the rubric."),
+    ],
+    "Feedback Without Panic": [
+        ("Feedback", "Give kind but rigorous feedback on this draft. Provide two strengths, two revision priorities, and one concrete next step: [safe draft]."),
+        ("Compare", "Compare this AI feedback with peer feedback. Where do they agree, where do they differ, and what should I revise first? [feedback notes]."),
+        ("Checklist", "Create a personalized revision checklist from this draft. Make it short enough to use during a second revision pass."),
+    ],
+    "Classroom Museum Label": [
+        ("Label", "Write an 80-120 word museum label for [object, image, quote, formula, map, tool, or idea]. Use a curious tone for a general audience."),
+        ("Audio", "Turn the label into a 45-second audio-tour script with one hook, one surprising detail, and one visitor question."),
+        ("Revise", "Revise the label for accuracy, clarity, and curiosity. Identify any claim that should be checked before display."),
+    ],
+    "Micro Documentary Kit": [
+        ("Plan", "Create a two-minute documentary plan for [topic]. Include hook, scene list, interview questions, narration beats, and closing question."),
+        ("Style", "Rewrite the plan in three styles: investigative, playful, emotional, and news-style. Explain which style best fits the topic and why."),
+        ("Storyboard", "Turn the chosen plan into a shot-by-shot storyboard with visuals we can film, draw, photograph, or present."),
+    ],
+    "Interactive Study Guide": [
+        ("Quiz", "Create a ten-question branching review quiz for [unit topic]. Each answer choice should trigger feedback and a next step."),
+        ("Repair", "Review this quiz for confusing questions, weak feedback, or wrong-answer explanations that shame the learner: [quiz]."),
+        ("Convert", "Convert the quiz into a simple website outline, slide deck flow, or chatbot-style script."),
+    ],
+    "Data Story From Scratch": [
+        ("Survey", "Help us design a short anonymous class survey about [safe topic]. Keep questions non-private and easy to total."),
+        ("Analyze", "Analyze this small class data table. Identify patterns, possible charts, cautious conclusions, and limitations: [data]."),
+        ("Infographic", "Create an infographic outline with title, chart labels, key takeaway, and one warning against overclaiming."),
+    ],
+    "Local Problem Pitch": [
+        ("Map", "Create a stakeholder map, causes list, possible solutions, and investigation questions for this school or community problem: [problem]."),
+        ("Proposal", "Draft a one-page proposal for this solution: [solution]. Include benefits, risks, resources, first steps, and questions for local experts."),
+        ("Pitch", "Turn the proposal into a five-slide pitch deck outline, a flyer draft, or an email to a decision-maker."),
+    ],
+    "Translation and Accessibility Lab": [
+        ("Adapt", "Adapt this text for four audiences: younger reader, multilingual family, audio listener, and visual learner: [text]."),
+        ("Check", "Check whether the adapted versions kept the meaning accurate, respectful, and clear. Flag anything a human should review."),
+        ("Kit", "Create a communication kit with plain-language version, translation draft for human review, audio script, and image prompt."),
+    ],
+    "Personal Learning Coach Simulation": [
+        ("Plan", "Create a seven-day beginner learning plan for this goal: [goal]. Use my time, current level, resources, obstacles, and motivation: [details]."),
+        ("Adjust", "Revise the plan to be more realistic. Remove anything too hard, too long, or too vague, and add checkpoints."),
+        ("Coach", "Act as a daily coach. Ask me what I completed, adjust tomorrow's plan, and celebrate evidence of effort without exaggerating."),
+    ],
+    "No-Code Website Blueprint": [
+        ("Plan", "Create a simple website plan for teaching [topic] to [audience]. Include pages, section headings, visual ideas, and calls to action."),
+        ("Copy", "Write concise page copy for the website. Keep it beginner-friendly and mark any claims that need verification."),
+        ("Interactive", "Add one interactive feature idea: quiz, decision tree, calculator, glossary filter, or choose-your-path guide. Explain how it works."),
+    ],
+    "AI Tool Chain Challenge": [
+        ("Source", "Create a clear, verified source explanation about [idea, message, or lesson]. Include claims to check before reuse."),
+        ("Transform", "Transform the source into five products: article, poster copy, podcast script, quiz, and slide outline."),
+        ("Style", "Create a consistent campaign theme, tagline, and style guide so all five products feel connected."),
+    ],
+    "Socratic Seminar With AI Observer": [
+        ("Analyze", "Analyze these anonymous seminar notes. Identify themes, claims, evidence, questions, disagreements, and missing voices: [notes]."),
+        ("Next", "Create a follow-up seminar plan that deepens the discussion and includes quieter voices."),
+        ("Reflect", "Compare the AI analysis with our class experience. What can be seen in notes, and what classroom context might be missing?"),
+    ],
+    "Mini App Design Sprint": [
+        ("Users", "Help us design a mini app for this classroom problem: [problem]. Create user stories, essential features, screens, and a simple workflow."),
+        ("Critique", "Critique our paper prototype for a beginner user. Identify confusing steps, missing feedback, and unnecessary features: [prototype notes]."),
+        ("Test", "Create a usability test script with tasks, observation criteria, and questions for the tester after they try the prototype."),
+    ],
+    "From Question to Public Product": [
+        ("Research", "Turn this question into a research plan: [question]. Include subquestions, search terms, source types, and claims to verify."),
+        ("Product", "Help me choose the best final product for this audience: PDF guide, website, slide deck, video plan, quiz, podcast script, or proposal. Explain the tradeoffs."),
+        ("Process", "Create a process note template showing first prompt, best prompt, verification steps, human decisions, and final product purpose."),
+    ],
+}
+
 styles = getSampleStyleSheet()
 
 title_style = ParagraphStyle(
@@ -642,6 +795,14 @@ dash = ParagraphStyle(
     spaceAfter=2.4,
 )
 
+step = ParagraphStyle(
+    "Step",
+    parent=body,
+    leftIndent=17,
+    firstLineIndent=-13,
+    spaceAfter=3.0,
+)
+
 table_header = ParagraphStyle(
     "TableHeader",
     parent=body,
@@ -676,6 +837,25 @@ note_style = ParagraphStyle(
     spaceAfter=0,
 )
 
+prompt_label_style = ParagraphStyle(
+    "PromptLabel",
+    parent=small,
+    fontName="Helvetica-Bold",
+    fontSize=7.7,
+    leading=9.3,
+    textColor=TEAL,
+    spaceAfter=0,
+)
+
+prompt_text_style = ParagraphStyle(
+    "PromptText",
+    parent=small,
+    fontSize=7.45,
+    leading=9.6,
+    textColor=INK,
+    spaceAfter=0,
+)
+
 
 def p(text, style=body):
     return Paragraph(escape(text), style)
@@ -687,6 +867,31 @@ def rich(text, style=body):
 
 def dash_list(items):
     return [p(f"- {item}", dash) for item in items]
+
+
+def numbered_list(items):
+    return [p(f"{index}. {item}", step) for index, item in enumerate(items, 1)]
+
+
+def prompt_table(title):
+    rows = [[p(label, prompt_label_style), p(prompt, prompt_text_style)] for label, prompt in PROMPT_SETS[title]]
+    table = Table(rows, colWidths=[0.82 * inch, 6.14 * inch])
+    table.setStyle(
+        TableStyle(
+            [
+                ("BACKGROUND", (0, 0), (-1, -1), colors.HexColor("#fbfdfc")),
+                ("ROWBACKGROUNDS", (0, 0), (-1, -1), [colors.HexColor("#fbfdfc"), LIGHT]),
+                ("BOX", (0, 0), (-1, -1), 0.45, LINE),
+                ("INNERGRID", (0, 0), (-1, -1), 0.35, LINE),
+                ("VALIGN", (0, 0), (-1, -1), "TOP"),
+                ("LEFTPADDING", (0, 0), (-1, -1), 7),
+                ("RIGHTPADDING", (0, 0), (-1, -1), 7),
+                ("TOPPADDING", (0, 0), (-1, -1), 6),
+                ("BOTTOMPADDING", (0, 0), (-1, -1), 6),
+            ]
+        )
+    )
+    return table
 
 
 def on_page(canvas, doc):
@@ -770,14 +975,20 @@ def rubric_table():
 def activity_flowables(index, item):
     heading = f"{index:02d}. {item['title']}"
     meta = f"Stage: {item['stage']}     Time: {item['time']}     Core skill: {item['skill']}"
-    step_paragraphs = dash_list(item["steps"])
+    sequence_items = [
+        "Frame the activity goal, name the safe-input boundary, and show the artifact students will produce.",
+        *item["steps"],
+        "Give students two minutes to mark what improved, what became confusing, and what they still need to verify.",
+        "Have students save the first prompt, best prompt, final output, and one human decision they made.",
+    ]
+    step_paragraphs = numbered_list(sequence_items)
     intro = KeepTogether(
         [
             p(heading, activity_title),
             p(meta, small),
             rich(f"<b>Materials:</b> {escape(item['materials'])}", body),
             rich(f"<b>Goal:</b> {escape(item['goal'])}", body),
-            p("Classroom moves", label),
+            p("Step-by-step classroom flow", label),
             step_paragraphs[0],
         ]
     )
@@ -804,7 +1015,14 @@ def activity_flowables(index, item):
             ]
         )
     )
-    return [intro, *step_paragraphs[1:], notes, Spacer(1, 5)]
+    return [
+        intro,
+        *step_paragraphs[1:],
+        p("Copy-ready prompts", label),
+        prompt_table(item["title"]),
+        notes,
+        Spacer(1, 6),
+    ]
 
 
 def build_pdf():
@@ -843,7 +1061,7 @@ def build_pdf():
             [
                 [
                     rich("<b>Teacher Guide</b>", ParagraphStyle("CoverLabel", parent=body, fontSize=13, leading=16, textColor=TEAL)),
-                    p("30 classroom activities that move from first prompts to high-wow AI products", body),
+                    p("30 step-by-step classroom activities with copy-ready prompts and high-wow AI products", body),
                 ]
             ],
             colWidths=[1.7 * inch, 5.35 * inch],
@@ -876,7 +1094,7 @@ def build_pdf():
         *dash_list(
             [
                 "Best fit: grades 6-12, higher education, adult education, or professional learning, with adaptation.",
-                "Class rhythm: demonstrate briefly, let students try, compare outputs, revise prompts, and reflect.",
+                "Class rhythm: demonstrate briefly, let students try, compare outputs, revise prompts, use the provided prompt ladder, and reflect.",
                 "Teacher stance: praise curiosity, ask for evidence, and require students to explain final choices.",
                 "Evidence of learning: prompt drafts, AI outputs, verification notes, revised products, and short reflections.",
             ]
@@ -908,7 +1126,7 @@ def build_pdf():
         PageBreak(),
         p("The Activities", h1),
         p(
-            "Each activity can stand alone, but the sequence is designed to build confidence, craft, judgment, and creative ambition. The activities deliberately repeat a pattern students can internalize: prompt, inspect, revise, verify, make, and explain.",
+            "Each activity can stand alone, but the sequence is designed to build confidence, craft, judgment, and creative ambition. Each activity includes a classroom flow plus copy-ready prompts. Replace bracketed text with the topic, draft, data, or question students are using.",
             body,
         ),
     ]
