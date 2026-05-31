@@ -88,6 +88,13 @@ type ClearPromptingExample = {
   timeGain: string
 }
 
+type ClearPromptingReadyPrompt = {
+  title: string
+  use: string
+  prompt: string
+  whyItWorks: string
+}
+
 type ClearPromptingTip = {
   title: string
   body: string
@@ -547,6 +554,57 @@ const clearPromptingExamples: ClearPromptingExample[] = [
       'Prevents outsourcing judgment to a fluent answer that may not understand context, risk, or responsibility.',
     timeGain:
       'Compresses the first draft of a decision memo while making the remaining human work clearer.',
+  },
+]
+
+const clearPromptingReadyPrompts: ClearPromptingReadyPrompt[] = [
+  {
+    title: 'Warm follow-up email',
+    use: 'When you need a polished message but must preserve a few facts and avoid accidental promises.',
+    prompt:
+      'Revise this fictional email for a warm, concise follow-up to a professional who missed an AI fluency workshop. Audience: busy adult learner. Purpose: acknowledge the missed session, offer useful next steps, avoid guilt, and do not promise a recording. Facts to preserve: no recording is available; a one-page notes sheet can be sent; the next office-hours session is Thursday at 2:00 p.m.; questions are welcome by email. Return two versions under 140 words and a send-before-review checklist.',
+    whyItWorks:
+      'It names audience, tone, purpose, fixed facts, a promise to avoid, length, output count, and review needs.',
+  },
+  {
+    title: 'Meeting-to-action packet',
+    use: 'When a meeting needs momentum but the notes are rough and should not be treated as confirmed truth.',
+    prompt:
+      'Use this fictional meeting context to create a follow-through packet. Context: a small nonprofit team discussed a fall volunteer orientation, a donor update, and a website FAQ refresh. Create five sections: decision summary, unresolved questions, action-item table with owner and date placeholders, risks or assumptions to confirm, and a follow-up email draft. Do not invent owners, dates, budgets, or final decisions. Mark every item that needs human confirmation.',
+    whyItWorks:
+      'It turns messy notes into a useful artifact while blocking false certainty about owners, dates, and decisions.',
+  },
+  {
+    title: 'Public article learning kit',
+    use: 'When a learner wants to understand a public source without mistaking a fluent summary for verified knowledge.',
+    prompt:
+      'Create a learning kit from a public article about urban heat islands for a smart beginner. Include a 150-word summary, eight-term glossary, three practical examples, five-question quiz with answer key, common misconceptions, and a claim-check table. Separate what the article says from what would need outside verification. Use only the article text I provide, and label any point that requires another source.',
+    whyItWorks:
+      'It asks for learning support, practice questions, and verification boundaries instead of a shapeless summary.',
+  },
+  {
+    title: 'Decision brief without outsourcing judgment',
+    use: 'When a person or team needs help thinking clearly but must keep the decision human-owned.',
+    prompt:
+      'Help me think through three options without choosing for me: a one-time team briefing, monthly AI office hours, or waiting three months. Create a decision brief with criteria, comparison table, assumptions, missing evidence, likely failure modes, stakeholder questions, and final human decision questions. If a fact is missing, label the gap instead of filling it in.',
+    whyItWorks:
+      'It uses AI for structure, comparison, and blind-spot detection while refusing to hand over the decision.',
+  },
+  {
+    title: 'Plain-language FAQ rewrite',
+    use: 'When cautious organizations need clearer writing without legal, medical, or compliance overreach.',
+    prompt:
+      'Rewrite this fictional clinic admin FAQ for a general audience. Keep the meaning intact, use plain language, create a jargon glossary, list questions that require an internal owner, and flag phrases that could sound like medical, legal, privacy, security, or compliance advice. Do not add new policy claims. End with a review checklist for the appropriate staff owner.',
+    whyItWorks:
+      'It makes clarity useful while naming the boundaries that require human and organizational review.',
+  },
+  {
+    title: 'Prompt repair coach',
+    use: 'When a learner has a vague request and needs help turning it into a reliable prompt card.',
+    prompt:
+      'Turn this rough request into a clearer prompt card: "Help me make our onboarding better." Ask up to five clarifying questions first if needed. Then produce a prompt with job, audience, context needed, key vocabulary to define, constraints, output format, review criteria, and what the model must not do. Finish by explaining why each part improves the prompt.',
+    whyItWorks:
+      'It teaches the structure behind better prompting instead of merely producing one improved sentence.',
   },
 ]
 
@@ -5243,6 +5301,37 @@ function ClearPromptingPage({
                   <span>Time gain</span>
                   <p>{timeGain}</p>
                 </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section section-band ready-prompt-section">
+        <div className="section-heading">
+          <p className="eyebrow">Copy, edit, reuse</p>
+          <h2>Actual prompt examples for common first wins.</h2>
+          <p>
+            These are not magic formulas. They are ready-to-adapt examples
+            that show the habits in action: context, vocabulary, constraints,
+            output shape, review criteria, and human judgment.
+          </p>
+        </div>
+        <div className="prompt-example-grid ready-prompt-grid">
+          {clearPromptingReadyPrompts.map(({ title, use, prompt, whyItWorks }) => (
+            <article className="prompt-example-card ready-prompt-card" key={title}>
+              <div>
+                <p className="eyebrow">Ready prompt</p>
+                <h3>{title}</h3>
+                <p>{use}</p>
+              </div>
+              <div className="prompt-good">
+                <span>Copy or adapt</span>
+                <p>{prompt}</p>
+              </div>
+              <div className="activity-detail">
+                <span>Why it works</span>
+                <p>{whyItWorks}</p>
               </div>
             </article>
           ))}

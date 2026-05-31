@@ -265,32 +265,32 @@ STARTER_PROMPTING_ACTIVITIES = [
 CLEAR_PROMPTING_PRINCIPLES = [
     (
         "Context narrows the universe",
-        "Tell the model the situation, audience, purpose, constraints, prior attempts, and what the output will be used for.",
+        "Tell the model the situation, audience, purpose, constraints, prior attempts, and what the output will be used for. Without context, the model answers an average version of the request. With context, it can aim at the actual work in front of you.",
         "Less generic output, fewer rounds of repair, and a result that starts closer to the real work.",
     ),
     (
         "Vocabulary carries judgment",
-        "Define words such as brief, warm, rigorous, practical, leadership-ready, or beginner-friendly when those standards matter.",
+        "Define words such as brief, warm, rigorous, practical, leadership-ready, or beginner-friendly when those standards matter. Many prompt failures happen because a familiar word quietly carries a standard the model cannot infer.",
         "The model stops guessing your standards and starts working inside them.",
     ),
     (
         "Sentence logic controls behavior",
-        "Use precise relationships: compare this with that, do X before Y, only use these facts, ask questions if evidence is missing, and do not decide for me.",
+        "Use precise relationships: compare this with that, do X before Y, only use these facts, ask questions if evidence is missing, and do not decide for me. Small logic words such as only, before, unless, preserve, avoid, and verify are not decorations. They steer the task.",
         "You prevent hidden assumptions, invented commitments, and answers that solve the wrong problem.",
     ),
     (
         "Output shape saves time",
-        "Ask for a table, checklist, memo, decision brief, revision log, or ordered plan when that is what the work needs.",
+        "Ask for a table, checklist, memo, decision brief, revision log, or ordered plan when that is what the work needs. A paragraph may sound polished, but a table or checklist is often easier to inspect, assign, revise, and reuse.",
         "The answer becomes easier to scan, edit, assign, verify, and reuse.",
     ),
     (
         "Review criteria reduce blunders",
-        "Name how the output will be judged: accuracy risk, tone, missing context, audience fit, unsupported claims, data boundaries, and human approval needs.",
+        "Name how the output will be judged: accuracy risk, tone, missing context, audience fit, unsupported claims, data boundaries, and human approval needs. A useful prompt can produce the draft and the checklist for inspecting the draft.",
         "The same prompt that generates work can also make the work safer to inspect.",
     ),
     (
         "Iteration turns effort into assets",
-        "Save the version that worked, name when it should be used, and note what still requires human judgment.",
+        "Save the version that worked, name when it should be used, and note what still requires human judgment. Clear prompting becomes valuable when a useful experiment turns into a reusable habit, not when a single answer sounds impressive.",
         "A single experiment becomes a reusable prompt card, workflow recipe, or specialty assistant seed.",
     ),
 ]
@@ -299,6 +299,7 @@ CLEAR_PROMPTING_PRINCIPLES = [
 CLEAR_PROMPTING_EXAMPLES = [
     {
         "title": "Business email revision",
+        "situation": "A professional needs to rewrite a sensitive but non-confidential email without sounding vague, cold, or overpromising.",
         "poor": "Make this email better.",
         "excellent": "Revise this fictional email for a busy department director. Keep the message under 160 words, make the tone calm and direct, preserve the three facts listed below, avoid promising a deadline, and return two versions: concise and warmer. Then list what a human should confirm before sending. Facts to preserve: [facts]. Draft: [email].",
         "why": "Names audience, tone, length, fixed facts, a promise to avoid, output format, and review criteria.",
@@ -307,6 +308,7 @@ CLEAR_PROMPTING_EXAMPLES = [
     },
     {
         "title": "Article learning kit",
+        "situation": "A learner wants to understand a public article quickly without mistaking a fluent summary for verified knowledge.",
         "poor": "Summarize this article.",
         "excellent": "Create a learning kit from this public article for a smart beginner. Include a 150-word summary, eight-term glossary, three practical examples, five-question quiz with answer key, common misconceptions, and a claim-check table. Separate what the article says from what would need outside verification. Article: [public article].",
         "why": "Turns summarization into a structured learning task with vocabulary, examples, assessment, and verification.",
@@ -315,6 +317,7 @@ CLEAR_PROMPTING_EXAMPLES = [
     },
     {
         "title": "Meeting follow-through",
+        "situation": "A team wants momentum after a meeting but has only rough, sanitized notes.",
         "poor": "Turn these notes into action items.",
         "excellent": "Using these fictional meeting notes, create a follow-through packet with five sections: decision summary, unresolved questions, action-item table with owner and deadline placeholders, risks or assumptions to confirm, and a follow-up email draft. Do not invent owners, dates, or decisions. Mark anything that needs human confirmation. Notes: [notes].",
         "why": "Defines the deliverable, separates decisions from open questions, and blocks invented commitments.",
@@ -323,6 +326,7 @@ CLEAR_PROMPTING_EXAMPLES = [
     },
     {
         "title": "Research planning",
+        "situation": "A leader wants to explore an unfamiliar topic before reading sources or talking to vendors.",
         "poor": "Research AI tools for us.",
         "excellent": "Help me plan research on AI tools for a cautious midsize organization. Do not recommend products yet. Create question clusters, search terms, source categories, comparison criteria, risk questions, vendor-claim questions, and a table of claims we must verify in current sources. End with the first five searches a human should run.",
         "why": "Keeps the model in planning mode and prevents premature recommendations.",
@@ -331,11 +335,52 @@ CLEAR_PROMPTING_EXAMPLES = [
     },
     {
         "title": "Decision support",
+        "situation": "A person or team needs help thinking through options without handing the decision to AI.",
         "poor": "Which option should we choose?",
         "excellent": "Help us think through these options without choosing for us. Create a decision brief with criteria, option comparison table, assumptions, missing evidence, likely failure modes, stakeholder questions, and final human decision questions. If facts are missing, ask for them or label the gap. Options: [options].",
         "why": "Uses AI for structure, comparison, and blind-spot detection while keeping accountability human.",
         "blunder": "Prevents outsourcing judgment to a fluent answer that lacks context or responsibility.",
         "time": "Compresses the first draft of a decision memo while making remaining human work clearer.",
+    },
+]
+
+
+CLEAR_PROMPTING_READY_PROMPTS = [
+    {
+        "title": "Warm follow-up email",
+        "use": "When you need a polished message but must preserve a few facts and avoid accidental promises.",
+        "prompt": "Revise this fictional email for a warm, concise follow-up to a professional who missed an AI fluency workshop. Audience: busy adult learner. Purpose: acknowledge the missed session, offer useful next steps, avoid guilt, and do not promise a recording. Facts to preserve: no recording is available; a one-page notes sheet can be sent; the next office-hours session is Thursday at 2:00 p.m.; questions are welcome by email. Return two versions under 140 words and a send-before-review checklist.",
+        "why": "It names audience, tone, purpose, fixed facts, a promise to avoid, length, output count, and review needs.",
+    },
+    {
+        "title": "Meeting-to-action packet",
+        "use": "When a meeting needs momentum but the notes are rough and should not be treated as confirmed truth.",
+        "prompt": "Use this fictional meeting context to create a follow-through packet. Context: a small nonprofit team discussed a fall volunteer orientation, a donor update, and a website FAQ refresh. Create five sections: decision summary, unresolved questions, action-item table with owner and date placeholders, risks or assumptions to confirm, and a follow-up email draft. Do not invent owners, dates, budgets, or final decisions. Mark every item that needs human confirmation.",
+        "why": "It turns messy notes into a useful artifact while blocking false certainty about owners, dates, and decisions.",
+    },
+    {
+        "title": "Public article learning kit",
+        "use": "When a learner wants to understand a public source without mistaking a fluent summary for verified knowledge.",
+        "prompt": "Create a learning kit from a public article about urban heat islands for a smart beginner. Include a 150-word summary, eight-term glossary, three practical examples, five-question quiz with answer key, common misconceptions, and a claim-check table. Separate what the article says from what would need outside verification. Use only the article text I provide, and label any point that requires another source.",
+        "why": "It asks for learning support, practice questions, and verification boundaries instead of a shapeless summary.",
+    },
+    {
+        "title": "Decision brief without outsourcing judgment",
+        "use": "When a person or team needs help thinking clearly but must keep the decision human-owned.",
+        "prompt": "Help me think through three options without choosing for me: a one-time team briefing, monthly AI office hours, or waiting three months. Create a decision brief with criteria, comparison table, assumptions, missing evidence, likely failure modes, stakeholder questions, and final human decision questions. If a fact is missing, label the gap instead of filling it in.",
+        "why": "It uses AI for structure, comparison, and blind-spot detection while refusing to hand over the decision.",
+    },
+    {
+        "title": "Plain-language FAQ rewrite",
+        "use": "When cautious organizations need clearer writing without legal, medical, or compliance overreach.",
+        "prompt": "Rewrite this fictional clinic admin FAQ for a general audience. Keep the meaning intact, use plain language, create a jargon glossary, list questions that require an internal owner, and flag phrases that could sound like medical, legal, privacy, security, or compliance advice. Do not add new policy claims. End with a review checklist for the appropriate staff owner.",
+        "why": "It makes clarity useful while naming the boundaries that require human and organizational review.",
+    },
+    {
+        "title": "Prompt repair coach",
+        "use": "When a learner has a vague request and needs help turning it into a reliable prompt card.",
+        "prompt": "Turn this rough request into a clearer prompt card: \"Help me make our onboarding better.\" Ask up to five clarifying questions first if needed. Then produce a prompt with job, audience, context needed, key vocabulary to define, constraints, output format, review criteria, and what the model must not do. Finish by explaining why each part improves the prompt.",
+        "why": "It teaches the structure behind better prompting instead of merely producing one improved sentence.",
     },
 ]
 
@@ -351,7 +396,10 @@ CLEAR_PROMPTING_TIPS = [
     "Choose the output container: table, checklist, brief, log, comparison, or revision memo.",
     "Make uncertainty visible by asking for assumptions, missing facts, confidence level, and claims to verify.",
     "Keep private data out of public tools unless an approved private environment and internal owner are in place.",
+    "Use realistic but safe examples. A fictional donor update or sanitized meeting note teaches more than an abstract toy prompt.",
     "Request a change log when revising so accidental meaning shifts are easier to catch.",
+    "Ask the model to explain its own interpretation of your request when the stakes are higher or the task is easy to misunderstand.",
+    "Use the first answer as raw material. The goal is not to accept the first draft, but to get something structured enough to review.",
     "Save prompts that survive review. Name when to use them and what a human still needs to check.",
 ]
 
@@ -1331,15 +1379,19 @@ def build_clear_prompting_pdf(out_dir):
         Paragraph("Xensible public field guide", style["Kicker"]),
         Paragraph("Clear Prompting Field Guide", style["CoverTitle"]),
         Paragraph(
-            "Better prompting is not a trick vocabulary. It is clearer thinking in sentence form: context, vocabulary, logic, output shape, and review criteria. These habits save time because they reduce retry loops, and they prevent blunders because they make assumptions visible before output is used.",
+            "Better prompting is not a secret vocabulary or a clever trick. It is clearer thinking in sentence form: context, vocabulary, logic, output shape, and review criteria. This guide is meant to feel practical on the first read. You should be able to copy a prompt, adapt it to safe material, and immediately see why the result is easier to review.",
+            style["BodyTextX"],
+        ),
+        Paragraph(
+            "The deeper habit is simple: do not ask AI to guess the job. Tell it the job, the reader, the constraints, the shape of the answer, and how the answer will be checked. That small amount of up-front clarity saves time because it reduces retry loops, and it prevents blunders because it makes assumptions visible before output is used.",
             style["BodyTextX"],
         ),
         Spacer(1, 0.12 * inch),
         Table(
             [
-                [Paragraph("<b>Best use</b>", style["BodyTextX"]), Paragraph("A first handout for AI-curious individuals, teams, and leaders.", style["BodyTextX"])],
-                [Paragraph("<b>Time payoff</b>", style["BodyTextX"]), Paragraph("Fewer vague retries, faster review, and reusable prompt cards.", style["BodyTextX"])],
-                [Paragraph("<b>Blunder avoided</b>", style["BodyTextX"]), Paragraph("Invented facts, wrong audience, hidden assumptions, shifted meaning, and accidental promises.", style["BodyTextX"])],
+                [Paragraph("<b>Best use</b>", style["BodyTextX"]), Paragraph("A friendly first handout for AI-curious individuals, teams, and leaders who want practical wins without hype.", style["BodyTextX"])],
+                [Paragraph("<b>Time payoff</b>", style["BodyTextX"]), Paragraph("Fewer vague retries, faster review, and prompt cards that can be reused in real workflows.", style["BodyTextX"])],
+                [Paragraph("<b>Blunders avoided</b>", style["BodyTextX"]), Paragraph("Invented facts, wrong audience, hidden assumptions, shifted meaning, accidental promises, and outputs that sound finished before they are reviewed.", style["BodyTextX"])],
             ],
             colWidths=[1.3 * inch, 4.5 * inch],
             style=TableStyle(
@@ -1354,6 +1406,17 @@ def build_clear_prompting_pdf(out_dir):
                     ("BOTTOMPADDING", (0, 0), (-1, -1), 8),
                 ]
             ),
+        ),
+        Paragraph("How to use this guide", style["SectionTitle"]),
+        bullet_list(
+            [
+                "Read the six moves first. They are the habits behind nearly every good prompt.",
+                "Skim the poor-vs-excellent examples to see how a vague request becomes a usable work instruction.",
+                "Copy one ready prompt, replace the fictional context with safe material, and run it as a low-risk practice exercise.",
+                "Review the output before using it. Clear prompting improves the draft, but it does not remove human responsibility.",
+                "Save any prompt that survives review. A useful prompt is a small workflow asset.",
+            ],
+            style["BodyTextX"],
         ),
         Paragraph("The premise", style["SectionTitle"]),
         bullet_list(
@@ -1385,6 +1448,8 @@ def build_clear_prompting_pdf(out_dir):
 
     for example in CLEAR_PROMPTING_EXAMPLES:
         story.append(Paragraph(f"<b>{example['title']}</b>", style["BodyTextX"]))
+        if "situation" in example:
+            story.append(Paragraph(f"<b>Situation:</b> {example['situation']}", style["BodyTextX"]))
         story.append(Paragraph(f"<b>Poor:</b> {example['poor']}", style["BodyTextX"]))
         story.append(Paragraph(f"<b>Excellent:</b> {example['excellent']}", style["BodyTextX"]))
         story.append(Paragraph(f"<b>Why it works:</b> {example['why']}", style["BodyTextX"]))
@@ -1392,12 +1457,39 @@ def build_clear_prompting_pdf(out_dir):
         story.append(Paragraph(f"<b>Time gain:</b> {example['time']}", style["BodyTextX"]))
 
     story.append(PageBreak())
-    story.append(Paragraph("Prompting tips that repay attention", style["SectionTitle"]))
-    story.append(bullet_list(CLEAR_PROMPTING_TIPS, style["BodyTextX"]))
-    story.append(Paragraph("Practice exercise", style["SectionTitle"]))
+    story.append(Paragraph("Actual prompts you can copy, edit, and reuse", style["SectionTitle"]))
     story.append(
         Paragraph(
-            "Choose one poor prompt you have used recently. Rewrite it with: job, audience, context, vocabulary definitions, constraints, output format, review criteria, and a sentence saying what the model must not do.",
+            "These prompts are intentionally concrete. They use fictional or public-safe contexts so learners can practice without exposing patient, customer, employee, financial, legal, or proprietary material. Copy one, change the safe context, and keep the review instructions intact.",
+            style["BodyTextX"],
+        )
+    )
+    for item in CLEAR_PROMPTING_READY_PROMPTS:
+        story.append(Paragraph(f"<b>{item['title']}</b>", style["BodyTextX"]))
+        story.append(Paragraph(f"<b>Use when:</b> {item['use']}", style["BodyTextX"]))
+        story.append(Paragraph(f"<b>Prompt:</b> {item['prompt']}", style["BodyTextX"]))
+        story.append(Paragraph(f"<b>Why it works:</b> {item['why']}", style["BodyTextX"]))
+
+    story.append(PageBreak())
+    story.append(Paragraph("Prompting tips that repay attention", style["SectionTitle"]))
+    story.append(bullet_list(CLEAR_PROMPTING_TIPS, style["BodyTextX"]))
+    story.append(Paragraph("Practice exercise: repair a vague prompt", style["SectionTitle"]))
+    story.append(
+        Paragraph(
+            "Choose one poor prompt you have used recently. Do not start by making it fancy. Start by making it inspectable. Rewrite it with job, audience, context, vocabulary definitions, constraints, output format, review criteria, and a sentence saying what the model must not do.",
+            style["BodyTextX"],
+        )
+    )
+    story.append(
+        bullet_list(
+            [
+                "Step 1: Write the rough request exactly as you might normally type it.",
+                "Step 2: Add the real reader, purpose, and safe background context.",
+                "Step 3: Define two or three words that carry standards, such as concise, warm, rigorous, practical, or executive-ready.",
+                "Step 4: Choose the output shape: table, checklist, memo, brief, lesson plan, revision log, or action list.",
+                "Step 5: Add review instructions: what to verify, what to avoid, what assumptions to label, and what remains human-owned.",
+                "Step 6: Save the improved version only if the output survives review.",
+            ],
             style["BodyTextX"],
         )
     )
