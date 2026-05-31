@@ -4667,7 +4667,17 @@ function HomePage({
               <span>3 years teaching AI over Zoom</span>
               <span>25+ years in education</span>
               <span>100+ corporate training clients</span>
-              <span>1 year of hands-on coding</span>
+              <span>
+                1 year of hands-on{' '}
+                <a
+                  aria-label="Instructor resources"
+                  className="stealth-about-link"
+                  href={siteHref('/instructor')}
+                  onClick={(event) => navigateToRoute(event, '/instructor')}
+                >
+                  coding
+                </a>
+              </span>
             </div>
           </div>
           <div className="founder-copy">
