@@ -3315,10 +3315,10 @@ const monthlyFluencyNotes = [
 
 const resourceShelfLinks = [
   {
-    label: 'Everybody Prompts',
+    label: 'AI Pedagogy Project assignments',
     category: 'Starter activities',
-    href: 'https://everybodyprompts.wordpress.com/',
-    body: 'A practical archive of beginner prompting activities and examples.',
+    href: 'https://aipedagogy.org/assignments/',
+    body: 'A curated collection of classroom assignments that integrate AI tools and reflection.',
   },
   {
     label: 'OpenAI prompt engineering guide',
