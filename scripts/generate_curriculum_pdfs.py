@@ -1276,7 +1276,7 @@ def build_pdf(curriculum, out_dir):
     story.append(Paragraph("First prompting lab", style["SectionTitle"]))
     story.append(
         Paragraph(
-            "These short starter activities help learners experience prompt design before longer workflow projects. They are adapted from the activity patterns researched on Everybody Prompts and similar beginner practice formats.",
+            "These short starter activities help learners experience prompt design before longer workflow projects. They are adapted from classroom-ready AI assignment collections and similar beginner practice formats.",
             style["BodyTextX"],
         )
     )

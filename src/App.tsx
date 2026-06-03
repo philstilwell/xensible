@@ -5440,9 +5440,9 @@ function PromptingStarterLabSection() {
         <p className="eyebrow">First prompting lab</p>
         <h2 id="prompting-starter-title">Small activities for a learner's first useful prompts.</h2>
         <p>
-          Adapted from the beginner-friendly activity patterns on{' '}
-          <a href="https://everybodyprompts.wordpress.com/" target="_blank" rel="noreferrer">
-            Everybody Prompts
+          Adapted from the classroom-ready assignment patterns collected by the{' '}
+          <a href="https://aipedagogy.org/assignments/" target="_blank" rel="noreferrer">
+            AI Pedagogy Project
           </a>
           , this lab gives students low-risk ways to experience prompting:
           ask for a better prompt, request structure, revise tone, describe
