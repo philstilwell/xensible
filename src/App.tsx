@@ -2960,8 +2960,8 @@ const resourceCategories = [
     href: '#clear-prompting',
   },
   {
-    title: 'Prompting Mindset',
-    body: 'How to think clearly with AI: context, curiosity, iteration, review, and boundaries.',
+    title: 'AI Working Principles',
+    body: 'General habits for getting real value from AI: start with a capable model, let it build, then refine with judgment.',
     href: '#mindset',
   },
   {
@@ -3008,28 +3008,40 @@ const resourceCategories = [
 
 const promptingMindsetPrinciples = [
   {
-    title: 'Begin with the job, not the tool',
-    body: 'Name the work you are trying to improve: a draft, decision, meeting, research plan, explanation, or workflow. The tool choice comes later.',
+    title: 'Start with a capable general AI',
+    body: 'Use a model that is broadly reliable for reasoning, writing, files, coding, or planning before assuming the problem needs a specialized tool. A weak first model can make the whole workflow look worse than it is.',
   },
   {
-    title: 'Give context generously',
-    body: 'Useful prompts include audience, purpose, constraints, examples, format, and what success should look like. Context is how you teach the model the shape of the task.',
+    title: 'Ask for the whole first pass',
+    body: 'When the stakes are low and the inputs are safe, let AI build the full outline, draft, plan, prototype, or analysis before you narrow it. You learn more from seeing its complete attempt than from micromanaging every sentence.',
   },
   {
-    title: 'Iterate in public view',
-    body: 'Good prompting is a visible loop: ask, inspect, revise, compare, and explain what changed. Learners should see the process, not only the polished result.',
+    title: 'Loosen first, tighten later',
+    body: 'Do not smother the first attempt with too many cobbled-together restraints. Give the AI room to show patterns, structure, and possibilities, then move in with constraints, corrections, taste, and standards.',
   },
   {
-    title: 'Treat output as material',
-    body: 'AI output is not a verdict. It is draft material to inspect, reshape, verify, discard, or combine with human knowledge.',
+    title: 'Give context, not clutter',
+    body: 'Useful context includes audience, purpose, examples, constraints, available materials, and what success looks like. Clutter is everything the model does not need in order to do the job well.',
   },
   {
-    title: 'Keep boundaries active',
-    body: 'Use public, fictional, or sanitized inputs for practice. Keep patient, customer, employee, legal, financial, security, and proprietary material out of public tools.',
+    title: 'Treat output as raw material',
+    body: 'AI output is not a verdict. It is material to inspect, reshape, verify, discard, combine, or redirect. The human role becomes editor, reviewer, strategist, and owner of the final choice.',
+  },
+  {
+    title: 'Iterate by diagnosis',
+    body: 'Do not merely say “make it better.” Name the defect: too generic, too long, wrong audience, unsupported, boring, risky, missing examples, or visually weak. Clear diagnosis produces sharper revisions.',
+  },
+  {
+    title: 'Use AI to improve the prompt',
+    body: 'Ask the model what information it needs, what prompt would work better, or how it would structure the task. Good AI work often begins by having AI help design the next prompt.',
+  },
+  {
+    title: 'Keep safe boundaries active',
+    body: 'Use public, fictional, or sanitized inputs for practice. Keep patient, customer, employee, legal, financial, security, and proprietary material out of public tools unless the environment is approved.',
   },
   {
     title: 'Review before relying',
-    body: 'Every useful workflow needs a final human pass for accuracy, tone, assumptions, missing context, and responsibility.',
+    body: 'Every useful workflow needs a human pass for accuracy, tone, assumptions, missing context, source quality, and responsibility. Let AI strut, but do not let it sign off on itself.',
   },
 ]
 
@@ -5600,12 +5612,12 @@ function ResourcesPage({
 
       <section className="section section-band resource-mindset-section" id="mindset" aria-labelledby="mindset-title">
         <div className="section-heading centered">
-          <p className="eyebrow">The prompting mindset</p>
-          <h2 id="mindset-title">Prompting is less about clever wording than clear thinking.</h2>
+          <p className="eyebrow">AI working principles</p>
+          <h2 id="mindset-title">Let AI make a strong first move, then bring human judgment to the edit.</h2>
           <p>
-            Xensible teaches prompting as a practical disposition: curious,
-            specific, iterative, cautious with data, and willing to review
-            before relying.
+            Xensible teaches AI work as a partnership rhythm: choose a capable
+            model, give it enough room to build, study what it produces, then
+            revise with standards, evidence, boundaries, and taste.
           </p>
         </div>
         <div className="resource-principle-grid">
