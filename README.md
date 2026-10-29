@@ -11,7 +11,7 @@ npm run dev
 ```
 
 The booking CTAs and embedded contact calendar default to the Xensible Calendly
-event at `https://calendly.com/contact-xensible/30min`. To test a different
+AI Consultation event at `https://calendly.com/philstilwell/ai-consultation`. To test a different
 Calendly event URL locally, set `VITE_CALENDLY_URL` before starting Vite.
 
 ## Production Build

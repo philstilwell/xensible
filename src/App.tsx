@@ -3545,7 +3545,7 @@ const faqs = [
 
 const emailHref =
   'mailto:contact@xensible.com?subject=AI%20Fluency%20Call%20for%20Xensible'
-const defaultCalendlyHref = 'https://calendly.com/contact-xensible/30min'
+const defaultCalendlyHref = 'https://calendly.com/philstilwell/ai-consultation'
 const calendlyWidgetSrc = 'https://assets.calendly.com/assets/external/widget.js'
 const onsiteBookingHref = '/#contact'
 const bookingHref =
@@ -4306,7 +4306,7 @@ function HomePage({
             <div className="hero-actions" aria-label="Primary calls to action">
               <a className="button button-primary" href={siteHref(onsiteBookingHref)}>
                 <CalendarDays aria-hidden="true" />
-                Schedule an AI Fluency Call
+                Schedule a Free AI Consultation
               </a>
               <a
                 className="button button-secondary"
@@ -4905,7 +4905,7 @@ function HomePage({
         <section className="contact-section contact-booking-section" id="contact" aria-labelledby="contact-title">
           <div className="contact-booking-copy">
             <p className="eyebrow">Start with a conversation</p>
-            <h2 id="contact-title">Schedule an AI Fluency Call</h2>
+            <h2 id="contact-title">Schedule a Free AI Consultation</h2>
             <p>
               Bring your questions, your team context, and the places where AI
               feels confusing. We will use a short Zoom conversation to identify
@@ -5443,7 +5443,7 @@ function ClearPromptingPage({
             Download the PDF
           </a>
           <a className="button button-secondary" href={siteHref(onsiteBookingHref)}>
-            Schedule an AI Fluency Call
+            Schedule a Free AI Consultation
           </a>
         </div>
       </section>
@@ -6951,7 +6951,7 @@ function OfferPage({
         </div>
         <a className="button button-primary" href={bookingHref}>
           <Handshake aria-hidden="true" />
-          Schedule an AI Fluency Call
+          Schedule a Free AI Consultation
         </a>
       </section>
     </main>
