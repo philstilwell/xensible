@@ -3432,6 +3432,24 @@ const reasons = [
 
 const aiBuiltSites = [
   {
+    name: 'AIEVOQ',
+    url: 'https://aievoq.com/',
+    domain: 'aievoq.com',
+    image: '/showcase/aievoq.webp',
+    alt: 'Screenshot of the AIEVOQ — AI Evolution Quarterly landing page.',
+    description:
+      'An illustrated quarterly exploring AI adoption, work, capabilities, and costs through biological metaphors and sourced statistics.',
+  },
+  {
+    name: 'Apoloplex',
+    url: 'https://apoloplex.com/',
+    domain: 'apoloplex.com',
+    image: '/showcase/apoloplex.webp',
+    alt: 'Screenshot of the Apoloplex landing page.',
+    description:
+      'A philosophy-of-religion comic series exploring Christian apologetics, skeptical inquiry, and evidence in a fictional theme park.',
+  },
+  {
     name: 'LogFall',
     url: 'https://logfall.com/',
     domain: 'logfall.com',
